@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+
+/Server/.idea
+/Server/database/*.db
+/Server/node_modules

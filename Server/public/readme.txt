@@ -1,0 +1,2 @@
+The 'public' directory is what will be loaded when a client requests from the webserver directly and as such works just
+like a regular APACHE webserver.  Files and CSS will be loaded using 'public' as the root directory.
