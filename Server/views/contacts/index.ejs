@@ -1,0 +1,15 @@
+<% include ../header %>
+<h1>All Contacts</h1>
+<% if (allContacts.length == 0) {%>
+    <p>There are no contacts on record.</p>
+<%} else {%>
+    <ul class="contacts-list">
+        <% allContacts.forEach(function(model){ %>
+            <% include a_contact %>
+        <%}) %>
+    </ul>
+<%} %>
+<p>
+    <a href="/contacts/new">Add a Contact</a>
+</p>
+<% include ../footer %>
