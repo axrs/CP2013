@@ -1,5 +1,6 @@
 import java.awt.image.BufferedImage;
 import java.sql.Date;
+import javax.json.*;
 
 /**
  * Created with IntelliJ IDEA.
