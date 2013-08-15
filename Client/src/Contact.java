@@ -1,3 +1,6 @@
+import javax.json.*;
+import com.google.gson.Gson;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mindikingsun
@@ -26,5 +29,15 @@ public class Contact {
         this.contPhone = contPhone;
         this.contEmail = contEmail;
         this.contAddress = contAddress;
+    }
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public static Contact fromJson(String data) {
+        Gson gson = new Gson();
+        return gson.fromJson(data, Contact.class);
     }
 }

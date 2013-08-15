@@ -11,18 +11,18 @@ import java.sql.Time;
 public class Appointment {
 
     protected int appTypeID;
-    protected int contID;
-    protected int servID;
+    protected Contact contact;
+    protected ServiceProvider serviceProvider;
     protected Date appDate;
     protected Time appStartTime;
 
     public Appointment() {
     }
 
-    public Appointment(int appTypeID, int contID, int servID, Date appDate, Time appStartTime) {
+    public Appointment(int appTypeID, Contact contact, ServiceProvider serviceProvider, Date appDate, Time appStartTime) {
         this.appTypeID = appTypeID;
-        this.contID = contID;
-        this.servID = servID;
+        this.contact = contact;
+        this.serviceProvider = serviceProvider;
         this.appDate = appDate;
         this.appStartTime = appStartTime;
     }
@@ -30,8 +30,8 @@ public class Appointment {
     public void setAppointment() {
         try {
             this.appTypeID = appTypeID;
-            this.contID = contID;
-            this.servID = servID;
+            this.contact = contact;
+            this.serviceProvider = serviceProvider;
             this.appDate = appDate;
             this.appStartTime = appStartTime;
 
