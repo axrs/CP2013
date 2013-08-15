@@ -3,6 +3,7 @@
 # Package Files #
 *.war
 *.ear
+/Client/.idea
 
 /Server/.idea
 /Server/database/*.db
