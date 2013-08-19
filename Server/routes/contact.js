@@ -32,8 +32,14 @@ module.exports = function (Contact) {
                             });
                     }
                 }
-            )
-            ;
+            );
+        },
+        edit: function (req, res) {
+            res.render('../views/contacts/form',
+                {
+                    header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
+                    contact: req.model
+                })
         },
         show: function (req, res) {
             res.render('../views/contacts/profile',
@@ -41,6 +47,7 @@ module.exports = function (Contact) {
                     header: req.model.contSurname + ', ' + req.model.contForename,
                     contact: req.model
                 });
-        }
+        },
+
     }
 }

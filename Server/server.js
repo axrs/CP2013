@@ -43,6 +43,10 @@ app.get('/',locals, core.index);
 app.get('/contacts',locals, contacts.index);
 app.get('/contacts/:id([0-9]+)',locals, loadContact('contact you requested'), contacts.show);
 
+app.get('/contacts/:id([0-9]+)/edit',locals, loadContact('contact you requested'), contacts.edit);
+
+
+
 /**
  * Initialise the HTTP listening server
  */

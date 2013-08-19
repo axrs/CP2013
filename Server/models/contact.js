@@ -52,6 +52,29 @@ module.exports = function (database) {
                 ],
                 callback
             );
+        },
+        update: function (id, data, callback) {
+            var statement = database.prepare(
+                'UPDATE contact SET contForename = ?, contSurname = ?, contCompany = ?, contPhone = ?, contEmail = ? ' +
+                    'contAddrStreet = ?, contAddrSuburb = ?, contAddrCity = ?, contAddrZip = ?, contAddrState = ? ' +
+                    'WHERE contId = ?;'
+            );
+            statement.run(
+                [
+                    data.contForename,
+                    data.contSurname,
+                    data.contCompany,
+                    data.contPhone,
+                    data.contEmail,
+                    (typeof data.contAddrStreet == 'undefined') ? '' : data.contAddrStreet,
+                    (typeof data.contAddrSuburb == 'undefined') ? '' : data.contAddrSurburb,
+                    (typeof data.contAddrCity == 'undefined') ? '' : data.contAddrCity,
+                    (typeof data.contAddrZip == 'undefined') ? '' : data.contAddrZip,
+                    (typeof data.contAddrState == 'undefined') ? '' : data.contAddrState,
+                    id
+                ],
+                callback
+            );
         }
     }
 }

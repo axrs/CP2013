@@ -12,11 +12,19 @@
     </td>
     <td>
         <div class="btn-group">
-            <a class="btn btn-primary" href="/contacts/<%= model.contId %>"><i class="icon-user icon-white"></i> View</a>
-            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <a class="btn btn-primary" href="/contacts/<%= model.contId %>">
+                <i class="icon-user icon-white"></i> View
+            </a>
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu">
 
-                <li><a href="/contacts/<%= model.contId %>/edit"><i class="icon-pencil"></i> Edit</a></li>
+                <li>
+                    <a href="/contacts/<%= model.contId %>/edit">
+                        <i class="icon-pencil"></i> Edit
+                    </a>
+                </li>
             </ul>
         </div>
     </td>
