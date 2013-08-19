@@ -18,7 +18,7 @@ module.exports = function () {
          * @param res Response to client request
          */
         index: function (req, res) {
-            res.render('../views/index',
+            res.render(res.viewPath + 'index',
                 {
                     header: 'Home'
                 });

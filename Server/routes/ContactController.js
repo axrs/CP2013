@@ -20,29 +20,23 @@ module.exports = function (Contact) {
          */
         index: function (req, res) {
             Contact.all(function (err, results) {
-                    if (!results) {
-                        res.send(500, 'Database error.');
-                    } else if (err) {
-                        res.send(404, 'Contact not found.');
-                    } else {
-                        res.render('../views/contacts/index',
-                            {
-                                header: 'All Contacts',
-                                allContacts: results
-                            });
-                    }
+                    res.render(res.viewPath + 'contacts/index',
+                        {
+                            header: 'All Contacts',
+                            allContacts: results
+                        });
                 }
             );
         },
         show: function (req, res) {
-            res.render('../views/contacts/profile',
+            res.render(res.viewPath + 'contacts/profile',
                 {
                     header: req.model.contSurname + ', ' + req.model.contForename,
                     contact: req.model
                 });
         },
         new: function (req, res) {
-            res.render('../views/contacts/form',
+            res.render(res.viewPath + 'contacts/form',
                 {
                     header: 'New Contact'
                 }
@@ -55,7 +49,7 @@ module.exports = function (Contact) {
             });
         },
         edit: function (req, res) {
-            res.render('../views/contacts/form',
+            res.render(res.viewPath + 'contacts/form',
                 {
                     header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
                     contact: req.model
