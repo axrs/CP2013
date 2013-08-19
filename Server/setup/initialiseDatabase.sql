@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS contact (
     contCompany VARCHAR,
     contPhone INTEGER,
     contEmail VARCHAR,
-    contAddrStreet VARCHAR NOT NULL,
-    contAddrSuburb VARCHAR NOT NULL,
-    contAddrCity VARCHAR NOT NULL,
-    contAddrZip INTEGER NOT NULL,
+    contAddrStreet VARCHAR,
+    contAddrSuburb VARCHAR,
+    contAddrCity VARCHAR,
+    contAddrZip INTEGER,
     contAddrState VARCHAR
 );
 
