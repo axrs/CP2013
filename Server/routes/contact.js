@@ -36,9 +36,9 @@ module.exports = function (Contact) {
             ;
         },
         show: function (req, res) {
-            res.render('../views/contacts/show',
+            res.render('../views/contacts/profile',
                 {
-                    header: req.model.cont_surname + ', ' + req.model.cont_surname,
+                    header: req.model.contSurname + ', ' + req.model.contForename,
                     contact: req.model
                 });
         }
