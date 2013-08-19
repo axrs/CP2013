@@ -1,7 +1,8 @@
 <%
-var isEditing  = (typeof contact != 'undefined') ? true : false;
+var isEditing  = (typeof contact != 'undefined' && typeof contact.contId != 'undefined' ) ? true : false;
 var buttonLabel = isEditing ? 'Update' : 'Create';
 var actionParam = isEditing ? '/' + contact.contId : '';
+
 %>
 
 <% include ../header %>
@@ -14,6 +15,17 @@ var actionParam = isEditing ? '/' + contact.contId : '';
         <h1>Editing : <%= contact.contSurname %>, <%= contact.contForename %></h1>
         <% } else { %>
         <h1>New Contact</h1>
+        <% } %>
+
+        <% if (typeof errors != 'undefined') {%>
+        <p class="text-error">
+            Error(s) were detected in the form. Please review the follow:
+        <ul>
+        <% errors.forEach(function(err){ %>
+        <li><%- err %></li>
+        <%}) %>
+        </ul>
+        </p>
         <% } %>
 
         <div class="row-fluid">

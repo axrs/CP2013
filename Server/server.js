@@ -20,8 +20,8 @@ app.configure(function () {
     app.use(express.methodOverride()); // Allows use of HTML REST hacks of _method
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
-
 });
+
 
 //Connect routes
 require('./routes/RouteController.js')(app);

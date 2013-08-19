@@ -47,12 +47,16 @@ module.exports = {
         }
     },
     validateContact: function () {
-        return function (req, res, next) {
-            contact = req.params.contact;
-
-            if (typeof contact.contForname == 'undefined' || contact.contForename == '') {
-                console.log('attempted to register contact without forename');
-            }
-        }
+        var form = require('express-form')
+            , field = form.field
+            , filter = form.filter
+            , validate = form.validate;
+        ;
+        return form(
+            filter('contact.contForename').trim(),
+            validate("contact.contForename", "first name").required("", "No %s specified."),
+            filter('contact.contSurname').trim(),
+            validate("contact.contSurname", "surname").required("", "No %s specified.")
+        );
     }
 }
