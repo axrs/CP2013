@@ -55,46 +55,43 @@ public class Main extends Application {
             }
         });
 
+        userMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                UserUI userUI = new UserUI();
+                Stage userStage = new Stage();
+                try {
+                    userUI.start(userStage);
+                } catch (Exception e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
+            }
+        });
+
+        adminMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                AdminUI adminUI = new AdminUI();
+                Stage adminStage = new Stage();
+                try {
+                    adminUI.start(adminStage);
+                } catch (Exception e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
+            }
+        });
+
+        contactMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ContactUI contactUI = new ContactUI();
+            }
+        });
+
         Agenda agenda = new Agenda();
         mainPane.setCenter(agenda);
 
         agenda.appointments();
-        /* final GridPane grid = new GridPane();
-        TabPane mainPane = new TabPane();
-
-        Tab userTab = new Tab();
-        userTab.setText("User");
-
-
-        Tab adminTab = new Tab();
-        adminTab.setText("Admin");
-
-        Tab contactTab = new Tab();
-        contactTab.setText("Contacts");
-
-        Tab aboutTab= new Tab();
-        aboutTab.setText("About");
-        Label aboutText = new Label();
-        aboutText.setText("Sheer'n'dipity does haircuts and things like that\n Get your hair cut now");
-        aboutTab.setContent(aboutText);
-
-        mainPane.getTabs().add(userTab);
-        mainPane.getTabs().add(adminTab);
-        mainPane.getTabs().add(contactTab);
-        mainPane.getTabs().add(aboutTab);
-
-        grid.add(mainPane,0,0);
-        Button userBtn = new Button("User");
-        grid.add(userTab,0,0);
-
-        Button adminBtn = new Button("Admin");
-        grid.add(adminBtn,0,1);
-
-        Button aboutBtn = new Button("About");
-        grid.add(aboutBtn,0,2);
-
-        Button contactBtn = new Button("Contact");
-        grid.add(contactBtn,0,3); */
 
         Scene scene = new Scene(mainPane,600,400);
         primaryStage.setScene(scene);

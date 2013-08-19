@@ -5,5 +5,5 @@
  * Time: 1:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AppointmentController extends  {
+public class AppointmentController {
 }
