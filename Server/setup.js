@@ -32,10 +32,7 @@ fileSystem.exists(config.sqlite.dbPath, function (exists) {
             database.exec(data, function (error) {
                 if (error) throw error;
                 console.info('Database created.');
-                callback();
             });
         });
-    } else {
-        callback();
     }
 });
