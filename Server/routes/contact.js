@@ -34,13 +34,6 @@ module.exports = function (Contact) {
                 }
             );
         },
-        edit: function (req, res) {
-            res.render('../views/contacts/form',
-                {
-                    header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
-                    contact: req.model
-                })
-        },
         show: function (req, res) {
             res.render('../views/contacts/profile',
                 {
@@ -48,6 +41,31 @@ module.exports = function (Contact) {
                     contact: req.model
                 });
         },
-
+        new: function (req, res) {
+            res.render('../views/contacts/form',
+                {
+                    header: 'New Contact'
+                }
+            )
+        },
+        create: function (req, res) {
+            Contact.insert(req.body.contact, function (err) {
+                if (err) res.send(500, 'Database Error');
+                else res.redirect('/contacts');
+            });
+        },
+        edit: function (req, res) {
+            res.render('../views/contacts/form',
+                {
+                    header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
+                    contact: req.model
+                })
+        },
+        update: function (req, res) {
+            Contact.update(req.params.id, req.body.contact, function (err) {
+                if (err) res.send(500, 'Database Error');
+                else res.redirect('/contacts');
+            });
+        },
     }
 }

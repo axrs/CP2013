@@ -15,118 +15,139 @@ var actionParam = isEditing ? '/' + contact.contId : '';
         <% } else { %>
         <h1>New Contact</h1>
         <% } %>
-    </div>
-    <form class="form-horizontal span9" method="post" accept-charset="utf-8" action="<%= 'contacts' + actionParam %>">
-        <% if (isEditing) {%>
-        <input type="hidden" name="_method" value="put" id="_method"/>
-        <%}%>
 
-        <fieldset class="span5">
-            <legend>General</legend>
-            <div class="control-group">
-                <label class="control-label" for="contForename">First Name</label>
+        <div class="row-fluid">
 
-                <div class="controls">
-                    <input type="text" id="contForename" placeholder="First Name"
-                           value="<% if(isEditing){ %><%= contact.contForename %><% } %>">
+            <form class="form-horizontal" method="post" accept-charset="utf-8"
+                  action="<%= '/contacts' + actionParam %>">
+                <% if (isEditing) {%>
+                <input type="hidden" name="_method" value="put" id="_method"/>
+                <%}%>
+                <div class="span6">
+                    <fieldset>
+                        <legend>General</legend>
+                        <div class="control-group">
+                            <label class="control-label" for="contForename">First Name</label>
+
+                            <div class="controls">
+                                <input type="text" id="contForename" name="contact[contForename]"
+                                       placeholder="First Name"
+                                       value="<% if(isEditing){ %><%= contact.contForename %><% } %>">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="contSurname">Surname</label>
+
+                            <div class="controls">
+                                <input type="text" id="contSurname" name="contact[contSurname]" placeholder="Surname"
+                                       value="<% if(isEditing){ %><%= contact.contSurname %><% } %>">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="contCompany">Company</label>
+
+                            <div class="controls">
+                                <input type="text" id="contCompany" name="contact[contCompany]" placeholder="Company"
+                                       value="<% if(isEditing){ %><%= contact.contCompany %><% } %>">
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="contSurname">Surname</label>
 
-                <div class="controls">
-                    <input type="text" id="contSurname" placeholder="Surname"
-                           value="<% if(isEditing){ %><%= contact.contSurname %><% } %>">
+
+                <div class="span6">
+
+                    <fieldset>
+                        <legend>Contact</legend>
+                        <div class="control-group">
+                            <label class="control-label" for="contEmail">Email</label>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    <input type="text" id="contEmail" name="contact[contEmail]"
+                                           placeholder="you@domain.com"
+                                           value="<% if(isEditing && contact.contEmail){ %><%= contact.contEmail %><% } %>">
+                                </div>
+                            </div>
+                            <div class="control-group">
+
+                                <label class="control-label" for="contPhone">Phone</label>
+
+                                <div class="controls">
+                                    <input type="text" id="contPhone" name="contact[contPhone]" placeholder="4700 0000"
+                                           value="<% if(isEditing && contact.contPhone){ %><%= contact.contPhone %><% } %>">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
                 </div>
-            </div>
+                <div class="span12">
+                    <fieldset>
+                        <legend>Address</legend>
+                        <div class="control-group">
+                            <label class="control-label" for="contAddrStreet">Street</label>
 
-            <div class="control-group">
-                <label class="control-label" for="contCompany">Company</label>
+                            <div class="controls">
+                                <input type="text" id="contAddrStreet" name="contact[contAddrStreet]"
+                                       placeholder="123 Street Name"
+                                       value="<% if(isEditing){ %><%= contact.contAddrStreet %><% } %>">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="contAddrSuburb">Suburb</label>
 
-                <div class="controls">
-                    <input type="text" id="contCompany" placeholder="Company"
-                           value="<% if(isEditing){ %><%= contact.contCompany %><% } %>">
-                </div>
-            </div>
-        </fieldset>
+                            <div class="controls">
+                                <input type="text" id="contAddrSuburb" name="contact[contAddrSuburb]"
+                                       placeholder="Suburb"
+                                       value="<% if(isEditing){ %><%= contact.contAddrSuburb %><% } %>">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="contAddrCity">City/Town</label>
 
-        <fieldset class="span5">
-            <legend>Contact</legend>
-            <div class="control-group">
-                <label class="control-label" for="contEmail">Email</label>
+                            <div class="controls controls-row">
+                                <input class="span4" type="text" name="contact[contAddrCity]" id="contAddrCity"
+                                       placeholder="City"
+                                       value="<% if(isEditing){ %><%= contact.contAddrCity %><% } %>">
+                                <select class="span2" id="contAddrState" name="contact[contAddrState]">
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == ''){ %>selected<% } %>></option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'ACT'){ %>selected<% } %> >ACT</option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'NSW'){ %>selected<% } %> >NSW</option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'NT'){ %>selected<% } %> >NT</option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'QLD'){ %>selected<% } %> >QLD</option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'SA'){ %>selected<% } %> >SA</option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'TAS'){ %>selected<% } %> >TAS</option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'VIC'){ %>selected<% } %> >VIC</option>
+                                    <option
+                                    <% if(isEditing && contact.contAddrState == 'WA'){ %>selected<% } %> >WA</option>
+                                </select>
+                                <input class="span2" type="text" id="contAddrZip" name="contact[contAddrZip]"
+                                       placeholder="POST"
+                                       value="<% if(isEditing){ %><%= contact.contAddrZip %><% } %>">
+                            </div>
+                        </div>
+                    </fieldset>
 
-                <div class="control-group">
-                    <div class="controls">
-                        <input type="text" id="contEmail" placeholder="you@domain.com"
-                               value="<% if(isEditing && contact.contEmail){ %><%= contact.contEmail %><% } %>">
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <a class="btn" href="<%= '/contacts' + actionParam %>">Cancel</a>
                     </div>
                 </div>
-                <div class="control-group">
 
-                    <label class="control-label" for="contPhone">Phone</label>
-
-                    <div class="controls">
-                        <input type="text" id="contPhone" placeholder="4700 0000"
-                               value="<% if(isEditing && contact.contPhone){ %><%= contact.contPhone %><% } %>">
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="span12">
-            <legend>Address</legend>
-            <div class="control-group">
-                <label class="control-label" for="contAddrStreet">Street</label>
-
-                <div class="controls">
-                    <input type="text" id="contAddrStreet" placeholder="123 Street Name"
-                           value="<% if(isEditing){ %><%= contact.contAddrStreet %><% } %>">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="contAddrSuburb">Suburb</label>
-
-                <div class="controls">
-                    <input type="text" id="contAddrSuburb" placeholder="Suburb"
-                           value="<% if(isEditing){ %><%= contact.contAddrSuburb %><% } %>">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="contAddrCity">City/Town</label>
-
-                <div class="controls controls-row">
-                    <input class="span4" type="text" id="contAddrCity" placeholder="City"
-                           value="<% if(isEditing){ %><%= contact.contAddrCity %><% } %>">
-                    <select class="span2" id="contAddrState">
-                        <option
-                        <% if(isEditing && contact.contAddrState == ''){ %>selected<% } %>></option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'ACT'){ %>selected<% } %> >ACT</option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'NSW'){ %>selected<% } %> >NSW</option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'NT'){ %>selected<% } %> >NT</option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'QLD'){ %>selected<% } %> >QLD</option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'SA'){ %>selected<% } %> >SA</option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'TAS'){ %>selected<% } %> >TAS</option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'VIC'){ %>selected<% } %> >VIC</option>
-                        <option
-                        <% if(isEditing && contact.contAddrState == 'WA'){ %>selected<% } %> >WA</option>
-                    </select>
-                    <input class="span2" type="text" id="contAddrZip" placeholder="POST"
-                           value="<% if(isEditing){ %><%= contact.contAddrZip %><% } %>">
-                </div>
-            </div>
-        </fieldset>
-
-        <div class="form-actions span12">
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn">Cancel</button>
+            </form>
         </div>
-    </form>
+    </div>
+
 </div>
 <!--/span-->
 <% include ../footer %>

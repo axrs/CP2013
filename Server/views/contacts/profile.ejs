@@ -1,5 +1,7 @@
 <% include ../header %>
 
+        <% console.log(contact);  %>
+
 <div class="row-fluid">
     <% include toolbox %>
 
@@ -10,17 +12,22 @@
 
         <dl class="dl-horizontal">
 
-            <% if(typeof contact.contCompany != 'undefined'){ %>
+            <% if(typeof contact.contCompany != 'undefined' && contact.contCompany){ %>
             <dt>Company</dt>
             <dd><%= contact.contCompany %></dd>
             <% }%>
 
-            <% if(typeof contact.addrPhone != 'undefined'){ %>
+            <% if(typeof contact.contPhone != 'undefined' && contact.contPhone){ %>
             <dt>Phone</dt>
             <dd><%= contact.contPhone %></dd>
             <% }%>
 
-            <% if(typeof contact.contAddrStreet != 'undefined'){ %>
+            <% if(typeof contact.contEmail != 'undefined'  && contact.contEmail){ %>
+            <dt>Email</dt>
+            <dd><a href="mailto:<%= contact.contEmail %>"><%= contact.contEmail %></a></dd>
+            <% }%>
+
+            <% if(typeof contact.contAddrStreet != 'undefined'  && contact.contAddrStreet){ %>
             <dt>Address</dt>
             <dd><%= contact.contAddrStreet %>, <%= contact.contAddrSuburb %><br>
                 <%= contact.contAddrCity %>, <%= contact.contAddrState %> <%= contact.contAddrZip %><br>

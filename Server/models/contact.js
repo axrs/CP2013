@@ -21,7 +21,7 @@
 module.exports = function (database) {
     return{
         all: function (callback) {
-            database.all('SELECT * FROM contact;', callback);
+            database.all('SELECT * FROM contact ORDER BY contForename ASC, contSurname ASC;', callback);
         },
         findById: function (id, callback) {
             database.get('SELECT * FROM contact WHERE contId = ?;', id, callback);
@@ -55,7 +55,7 @@ module.exports = function (database) {
         },
         update: function (id, data, callback) {
             var statement = database.prepare(
-                'UPDATE contact SET contForename = ?, contSurname = ?, contCompany = ?, contPhone = ?, contEmail = ? ' +
+                'UPDATE contact SET contForename = ?, contSurname = ?, contCompany = ?, contPhone = ?, contEmail = ?, ' +
                     'contAddrStreet = ?, contAddrSuburb = ?, contAddrCity = ?, contAddrZip = ?, contAddrState = ? ' +
                     'WHERE contId = ?;'
             );
@@ -67,7 +67,7 @@ module.exports = function (database) {
                     data.contPhone,
                     data.contEmail,
                     (typeof data.contAddrStreet == 'undefined') ? '' : data.contAddrStreet,
-                    (typeof data.contAddrSuburb == 'undefined') ? '' : data.contAddrSurburb,
+                    (typeof data.contAddrSuburb == 'undefined') ? '' : data.contAddrSuburb,
                     (typeof data.contAddrCity == 'undefined') ? '' : data.contAddrCity,
                     (typeof data.contAddrZip == 'undefined') ? '' : data.contAddrZip,
                     (typeof data.contAddrState == 'undefined') ? '' : data.contAddrState,

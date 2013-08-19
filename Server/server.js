@@ -40,11 +40,14 @@ var core = require('./routes/core.js')()
 var loadContact = require('./libs/middleware/route-middleware')(Contact).loadModel;
 
 app.get('/',locals, core.index);
+
+
 app.get('/contacts',locals, contacts.index);
 app.get('/contacts/:id([0-9]+)',locals, loadContact('contact you requested'), contacts.show);
-
+app.get('/contacts/new',locals, contacts.new);
+app.post('/contacts', contacts.create);
 app.get('/contacts/:id([0-9]+)/edit',locals, loadContact('contact you requested'), contacts.edit);
-
+app.put('/contacts/:id([0-9]+)',contacts.update);
 
 
 /**

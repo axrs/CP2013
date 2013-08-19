@@ -1,3 +1,15 @@
 [class*="pull-right"] + [class*="span"] {
     margin-left: 0;
 }
+
+[class*="span"] > [class*="row"] {
+    margin-left: 0;
+}
+
+.row-fluid .span12{
+    margin-left:0;
+}
+
+.form-horizontal > [class*="span"]{
+    margin-left:0;
+}
