@@ -24,7 +24,7 @@ module.exports = function (database) {
             database.all('SELECT * FROM contact;', callback);
         },
         findById: function (id, callback) {
-            database.get('SELECT * FROM contact WHERE cont_id = ?;', id, callback);
+            database.get('SELECT * FROM contact WHERE contId = ?;', id, callback);
         },
         count: function (callback) {
             database.get('SELECT count(*) FROM contact', null, callback);
@@ -32,16 +32,23 @@ module.exports = function (database) {
         insert: function (data, callback) {
             var statement = database.prepare(
                 'INSERT INTO contact ' +
-                    '(cont_forename, cont_surname, cont_company, cont_phone, cont_email)' +
-                    ' VALUES (?,?,?,?,?);'
+                    '(contForename, contSurname, contCompany, contPhone, contEmail, ' +
+                    'contAddrStreet, contAddrSuburb, contAddrCity, contAddrZip, contAddrState)' +
+                    ' VALUES (?,?,?,?,?,' +
+                    '?,?,?,?,?);'
             );
             statement.run(
                 [
-                    data.cont_forename,
-                    data.cont_surname,
-                    data.cont_company,
-                    data.cont_phone,
-                    data.cont_email
+                    data.contForename,
+                    data.contSurname,
+                    data.contCompany,
+                    data.contPhone,
+                    data.contEmail,
+                    (typeof data.contAddrStreet == 'undefined') ? '' : data.contAddrStreet,
+                    (typeof data.contAddrSuburb == 'undefined') ? '' : data.contAddrSurburb,
+                    (typeof data.contAddrCity == 'undefined') ? '' : data.contAddrCity,
+                    (typeof data.contAddrZip == 'undefined') ? '' : data.contAddrZip,
+                    (typeof data.contAddrState == 'undefined') ? '' : data.contAddrState
                 ],
                 callback
             );

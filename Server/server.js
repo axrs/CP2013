@@ -28,14 +28,20 @@ app.configure(function () {
 
 app.locals.deleteButton = require('./libs/helpers').deleteButton;
 
-var Contact = require('./models/contact')(db)
+locals = function (req, res, next) {
+    res.locals.res = res;
+    res.locals.req = req;
+    next();
+};
+var core = require('./routes/core.js')()
+    , Contact = require('./models/contact')(db)
     , contacts = require('./routes/contact')(Contact);
 
 var loadContact = require('./libs/middleware/route-middleware')(Contact).loadModel;
 
-app.get('/',contacts.index);
-app.get('/contacts',contacts.index);
-app.get('/contacts/:id([0-9]+)', loadContact('contact you requested'), contacts.show);
+app.get('/',locals, core.index);
+app.get('/contacts',locals, contacts.index);
+app.get('/contacts/:id([0-9]+)',locals, loadContact('contact you requested'), contacts.show);
 
 /**
  * Initialise the HTTP listening server

@@ -1,0 +1,3 @@
+[class*="pull-right"] + [class*="span"] {
+    margin-left: 0;
+}

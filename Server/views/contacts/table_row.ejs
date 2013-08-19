@@ -1,0 +1,17 @@
+<tr>
+    <td>
+        <a href="/contacts/<%= model.contId %>"><%= model.contForename %></a>
+    </td>
+    <td>
+        <a href="/contacts/<%= model.contId %>"><%= model.contSurname %></a>
+    </td>
+    <td>
+        <% if (model.contCompany != '') {%>
+        <a href="/contacts/<%= model.contId %>"><%= model.contCompany %></a>
+        <%} %>
+    </td>
+</tr>
+<div class="actions">
+    <a href="/contacts/<%= model.contId %>/edit">Edit</a>
+    <%- deleteButton('/contacts',model.contId) -%>
+</div>

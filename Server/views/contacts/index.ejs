@@ -1,15 +1,29 @@
 <% include ../header %>
-<h1>All Contacts</h1>
-<% if (allContacts.length == 0) {%>
-    <p>There are no contacts on record.</p>
-<%} else {%>
-    <ul class="contacts-list">
-        <% allContacts.forEach(function(model){ %>
-            <% include a_contact %>
-        <%}) %>
-    </ul>
-<%} %>
-<p>
-    <a href="/contacts/new">Add a Contact</a>
-</p>
+<div class="row-fluid">
+    <% include toolbox %>
+
+    <div class="span9">
+
+        <h1>All Contacts</h1>
+        <% if (allContacts.length == 0) {%>
+        <p>There are no contacts on record.</p>
+        <%} else {%>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Company</th>
+            </tr>
+            </thead>
+            <% allContacts.forEach(function(model){ %>
+            <% include table_row %>
+            <%}) %>
+        </table>
+        <%} %>
+    </div>
+    <!--/span-->
+</div>
+<!--/row-->
 <% include ../footer %>
