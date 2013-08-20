@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mindikingsun
@@ -19,5 +21,24 @@ public class Address {
         this.addrCity = addrCity;
         this.addrPostCode = addrPostCode;
         this.addrState = addrState;
+    }
+
+    /**
+     * Turns Address object into Json object for use by server.
+     * @return a Json serialization of Address.
+     */
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    /**
+     * Returns a Address object generated from Json object, sent from server.
+     * @param data
+     * @return
+     */
+    public static Address fromJson(String data) {
+        Gson gson = new Gson();
+        return gson.fromJson(data, Address.class);
     }
 }

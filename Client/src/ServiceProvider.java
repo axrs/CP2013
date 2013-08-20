@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.awt.image.BufferedImage;
 import java.sql.Date;
 import javax.json.*;
@@ -17,12 +19,31 @@ public class ServiceProvider extends Contact {
     protected Date servTerminated;
     protected boolean servIsActive;
 
-    public ServiceProvider(int contID, String contFirstName, String contLastName, String contCompany, int contPhone, String contEmail, String contAddress, String servBio, Date servEmployed, BufferedImage servPortrait, Date servTerminated, boolean servIsActive) {
+    public ServiceProvider(int contID, String contFirstName, String contLastName, String contCompany, int contPhone, String contEmail, Address contAddress, String servBio, Date servEmployed, BufferedImage servPortrait, Date servTerminated, boolean servIsActive) {
         super(contID, contFirstName, contLastName, contCompany, contPhone, contEmail, contAddress);
         this.servBio = servBio;
         this.servEmployed = servEmployed;
         this.servPortrait = servPortrait;
         this.servTerminated = servTerminated;
         this.servIsActive = servIsActive;
+    }
+
+    /**
+     * Turns ServiceProvider object into Json object for use by server.
+     * @return a Json serialization of ServiceProvider.
+     */
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    /**
+     * Returns a ServiceProvider object generated from Json object, sent from server.
+     * @param data
+     * @return
+     */
+    public static ServiceProvider fromJson(String data) {
+        Gson gson = new Gson();
+        return gson.fromJson(data, ServiceProvider.class);
     }
 }

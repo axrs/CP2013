@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -27,18 +29,22 @@ public class Appointment {
         this.appStartTime = appStartTime;
     }
 
-    public void setAppointment() {
-        try {
-            this.appTypeID = appTypeID;
-            this.contact = contact;
-            this.serviceProvider = serviceProvider;
-            this.appDate = appDate;
-            this.appStartTime = appStartTime;
+    /**
+     * Turns Appointment object into Json object for use by server.
+     * @return a Json serialization of Appointment.
+     */
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
 
-            throw new AppointmentException("Appointment details missing");
-        }
-        catch(AppointmentException ex) {
-            System.err.println(ex.getMessage());
-        }
+    /**
+     * Returns a Appointment object generated from Json object, sent from server.
+     * @param data
+     * @return
+     */
+    public static Appointment fromJson(String data) {
+        Gson gson = new Gson();
+        return gson.fromJson(data, Appointment.class);
     }
 }

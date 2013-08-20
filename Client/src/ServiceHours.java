@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.sql.Time;
 
 /**
@@ -21,5 +23,24 @@ public class ServiceHours {
         this.servHrsDay = servHrsDay;
         this.servHrsStart = servHrsStart;
         this.servHrsEnd = servHrsEnd;
+    }
+
+    /**
+     * Turns ServiceHours object into Json object for use by server.
+     * @return a Json serialization of ServiceHours.
+     */
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    /**
+     * Returns a ServiceHours object generated from Json object, sent from server.
+     * @param data
+     * @return
+     */
+    public static ServiceHours fromJson(String data) {
+        Gson gson = new Gson();
+        return gson.fromJson(data, ServiceHours.class);
     }
 }
