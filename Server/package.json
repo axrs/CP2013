@@ -1,13 +1,14 @@
 {
-    "name":"shear-n-dipity",
+    "name": "shear-n-dipity",
     "description": "Shear-N-Dipity REST and Web Server",
-    "version" : "0.0.1",
-    "private" : true,
-    "dependencies":{
-        "express" : "x",
-        "ejs" : "x",
-        "socket.io" : "x",
-        "sqlite3" : "x",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "x",
+        "ejs": "x",
+        "express-form": "0.8.x",
+        "socket.io": "x",
+        "sqlite3": "x",
         "underscore": "x"
     }
 }

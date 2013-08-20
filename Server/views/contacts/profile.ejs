@@ -1,0 +1,38 @@
+<% include ../header %>
+
+<div class="row-fluid">
+    <% include toolbox %>
+
+    <div class="span9">
+        <h1><%= contact.contSurname %>, <%= contact.contForename %>
+            <a class="btn btn-primary" href="/contacts/<%= contact.contId %>/edit"><i class="icon-edit icon-white"></i> Edit</a>
+        </h1>
+
+        <dl class="dl-horizontal">
+
+            <% if(typeof contact.contCompany != 'undefined' && contact.contCompany){ %>
+            <dt>Company</dt>
+            <dd><%= contact.contCompany %></dd>
+            <% }%>
+
+            <% if(typeof contact.contPhone != 'undefined' && contact.contPhone){ %>
+            <dt>Phone</dt>
+            <dd><%= contact.contPhone %></dd>
+            <% }%>
+
+            <% if(typeof contact.contEmail != 'undefined'  && contact.contEmail){ %>
+            <dt>Email</dt>
+            <dd><a href="mailto:<%= contact.contEmail %>"><%= contact.contEmail %></a></dd>
+            <% }%>
+
+            <% if(typeof contact.contAddrStreet != 'undefined'  && contact.contAddrStreet){ %>
+            <dt>Address</dt>
+            <dd><%= contact.contAddrStreet %>, <%= contact.contAddrSuburb %><br>
+                <%= contact.contAddrCity %>, <%= contact.contAddrState %> <%= contact.contAddrZip %><br>
+            </dd>
+            <% }%>
+        </dl>
+    </div>
+    <!--/span-->
+</div>
+<% include ../footer %>

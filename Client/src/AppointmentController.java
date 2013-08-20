@@ -11,6 +11,7 @@ import java.io.IOException;
  * Time: 2:15 PM
  * To change this template use File | Settings | File Templates.
  */
+<<<<<<< HEAD
 public class AppointmentController implements RestAPI {
 
     /**
@@ -68,4 +69,7 @@ public class AppointmentController implements RestAPI {
     public void put() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+=======
+public class AppointmentController {
+>>>>>>> 6c6e9db55bad93fb5e49d3a29f17d45a8752fc8a
 }

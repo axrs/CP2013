@@ -4,16 +4,12 @@
 var express = require('express')
     , path = require('path')
     , http = require('http')
-    , config = require('./config.js')
-    , sqlite3 = require('sqlite3');
+    , config = require('./config.js');
 
-var db = new sqlite3.Database(config.sqlite.dbPath);
-
+//Initialise the express server application
 var app = exports.app = express();
 
-/**
- * Configure the web service
- */
+//Configure the server
 app.configure(function () {
     app.set('port', process.env.PORT || config.server.listenPort);
     app.set('views', __dirname + '/views');
@@ -26,16 +22,9 @@ app.configure(function () {
     app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.locals.deleteButton = require('./libs/helpers').deleteButton;
 
-var Contact = require('./models/contact')(db)
-    , contacts = require('./routes/contact')(Contact);
-
-var loadContact = require('./libs/middleware/route-middleware')(Contact).loadModel;
-
-app.get('/',contacts.index);
-app.get('/contacts',contacts.index);
-app.get('/contacts/:id([0-9]+)', loadContact('contact you requested'), contacts.show);
+//Connect routes
+require('./routes/RouteController.js')(app);
 
 /**
  * Initialise the HTTP listening server
