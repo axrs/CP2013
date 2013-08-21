@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import jfxtras.labs.scene.control.CalendarPicker;
 import jfxtras.labs.scene.control.LocalDatePicker;
@@ -64,12 +65,17 @@ public class UserUI extends Application {
 
                 CalendarPicker datePicker = new CalendarPicker();
 
+                final Button findAppointmentsButton = new Button("Find Appointments");
+                final Button makeBookingButton = new Button("Book Appointment");
+
                 makeBookingPane.add(new Label("Choose Service Provider: "),0,0);
                 makeBookingPane.add(name,0,1);
                 makeBookingPane.add(new Label("Choose Appointment Type: "),1,0);
                 makeBookingPane.add(appointment,1,1);
                 makeBookingPane.add(new Label("Choose Date: "),0,2);
                 makeBookingPane.add(datePicker,1,2);
+                makeBookingPane.add(findAppointmentsButton,1,3);
+                makeBookingPane.add(makeBookingButton,1,4);
 
                 ObservableList<String> availableAppointments = FXCollections.observableArrayList("1200-1300", "1400-1500");
                 ListView appointments = new ListView(availableAppointments);
@@ -77,9 +83,77 @@ public class UserUI extends Application {
                 makeBookingPane.add(appointments,0,3);
 
                 mainPane.setCenter(makeBookingPane);
+
+                findAppointmentsButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        //TODO implement retrieval of data to find appointments
+                    }
+                });
+
+                makeBookingButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        //TODO implement sending of data to server to book appointment.
+                    }
+                });
             }
 
 
+        });
+
+        editProfile.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+               GridPane editProfilePane = new GridPane();
+                editProfilePane.setHgap(5);
+                editProfilePane.setVgap(5);
+                editProfilePane.setPadding(new Insets(5, 5, 5, 5));
+                editProfilePane.setMinWidth(400);
+
+                TextField fornameInput = new TextField();
+                fornameInput.setMaxWidth(100);
+
+                TextField surnameInput= new TextField();
+                surnameInput.setMaxWidth(100);
+
+                TextField phoneInput = new TextField();
+                phoneInput.setMaxWidth(100);
+
+                TextField emailInput = new TextField();
+                emailInput.setMaxWidth(100);
+
+                TextField addressInput = new TextField();
+                addressInput.setMaxSize(100,150);
+
+                Button submit = new Button("Submit");
+
+                editProfilePane.add(new Label("First Name:"),0,0);
+                editProfilePane.add(fornameInput, 1, 0);
+
+                editProfilePane.add(new Label("Last Name:"),0,1);
+                editProfilePane.add(surnameInput, 1, 1);
+
+                editProfilePane.add(new Label("Phone:"),0,2);
+                editProfilePane.add(phoneInput, 1, 2);
+
+                editProfilePane.add(new Label("Email:"),0,3);
+                editProfilePane.add(emailInput, 1, 3);
+
+                editProfilePane.add(new Label("Address:"),0,4);
+                editProfilePane.add(addressInput, 1, 4);
+
+                editProfilePane.add(submit,0,5);
+
+                mainPane.setCenter(editProfilePane);
+
+                submit.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        //TODO implement sending of data to
+                    }
+                });
+            }
         });
     }
 }

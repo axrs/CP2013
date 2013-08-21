@@ -4,7 +4,7 @@
 *.war
 *.ear
 /Client/.idea
-
+/Client/Client.iml
 /Server/.idea
 /Server/database/*.db
 /Server/node_modules
