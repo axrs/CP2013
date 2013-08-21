@@ -58,6 +58,7 @@ module.exports = function (app) {
     app.get('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.attemptContactLoad(contact, true), contactController.apiShow);
     app.put('/api/contacts', exposeLocals, contactMiddleware.validateAPIContact(contact), contactController.apiCreate);
 
+    app.put('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateExistingAPIContact(contact), contactController.apiUpdate);
 
     //The 404 Route (ALWAYS Keep this as the last route)
     app.use(function (req, res) {

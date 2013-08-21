@@ -30,6 +30,7 @@ module.exports = function (Contact) {
         },
         apiIndex: function (req, res) {
             Contact.all(function (err, results) {
+                    if (err) res.statusCodes.apiStatus500(req, res);
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.write('{ "contacts" : ' + JSON.stringify(results) + '}');
                     res.end();
@@ -45,7 +46,9 @@ module.exports = function (Contact) {
                 });
         },
         apiShow: function (req, res) {
-            res.end(JSON.stringify(req.model));
+            res.set('Content-Type', 'application/json');
+            res.send(200, JSON.stringify(req.model));
+            res.end();
         },
 
         new: function (req, res) {
@@ -98,10 +101,16 @@ module.exports = function (Contact) {
                     });
             } else {
                 Contact.update(req.params.id, req.body.contact, function (err) {
-                    if (err) res.send(500, 'Database Error');
+                    if (err) res.statusCodes.status500(req, res, null);
                     else res.redirect('/contacts');
                 });
             }
         },
+        apiUpdate: function (req, res) {
+            Contact.update(req.params.id, req.body.contact, function (err) {
+                if (err) res.statusCodes.apiStatus500(req,res);
+                else res.statusCodes.apiStatus202(req,res);
+            });
+        }
     }
 }

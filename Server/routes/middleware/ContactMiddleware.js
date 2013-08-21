@@ -33,7 +33,6 @@ module.exports = {
                     if (err) res.statusCodes.apiStatus500(req, res);
                     else if (!record) res.statusCodes.apiStatus404(req, res);
                     else {
-                        res.writeHead(200, { 'Content-Type': 'application/json' });
                         req.model = record;
                         next();
                     }
@@ -82,6 +81,25 @@ module.exports = {
                 Model.matchName(contact.contForename, contact.contSurname, function (err, record) {
                     if (err) res.statusCodes.apiStatus500(req, res);
                     else if (record) res.statusCodes.apiStatus409(req, res);
+                    else next();
+                });
+            }
+            else res.statusCodes.apiStatus400(req, res);
+        }
+    },
+    /**
+     *
+     * @param Model
+     * @returns {Function}
+     */
+    validateExistingAPIContact: function (Model) {
+        return function (req, res, next) {
+            var contact = req.body.contact;
+
+            if (contact && contact.contId && contact.contForename && contact.contSurname) {
+                Model.findById(req.params.id, function (err, record) {
+                    if (err) res.statusCodes.apiStatus500(req, res);
+                    else if (!record) res.statusCodes.apiStatus404(req, res);
                     else next();
                 });
             }
