@@ -47,8 +47,8 @@ module.exports = function (app) {
 
     //Contact routing
     app.get('/contacts', exposeLocals, contactController.index);
-    app.get('/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.attemptContactLoad(contact), contactController.show);
     app.get('/contacts/new', exposeLocals, contactController.new);
+    app.get('/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.attemptContactLoad(contact), contactController.show);
     app.post('/contacts', exposeLocals, contactMiddleware.validateContact(), contactController.create);
     app.get('/contacts/:id([0-9]+)/edit', exposeLocals, contactMiddleware.attemptContactLoad(contact), contactController.edit);
     app.put('/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateContact(), contactController.update);
@@ -57,7 +57,6 @@ module.exports = function (app) {
     app.get('/api/contacts', exposeLocals, contactController.apiIndex);
     app.get('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.attemptContactLoad(contact, true), contactController.apiShow);
     app.put('/api/contacts', exposeLocals, contactMiddleware.validateAPIContact(contact), contactController.apiCreate);
-
     app.put('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateExistingAPIContact(contact), contactController.apiUpdate);
 
     //The 404 Route (ALWAYS Keep this as the last route)

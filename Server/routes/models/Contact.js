@@ -47,11 +47,11 @@ module.exports = function (database) {
                     data.contCompany,
                     data.contPhone,
                     data.contEmail,
-                    (typeof data.contAddrStreet == 'undefined') ? '' : data.contAddrStreet,
-                    (typeof data.contAddrSuburb == 'undefined') ? '' : data.contAddrSurburb,
-                    (typeof data.contAddrCity == 'undefined') ? '' : data.contAddrCity,
-                    (typeof data.contAddrZip == 'undefined') ? '' : data.contAddrZip,
-                    (typeof data.contAddrState == 'undefined') ? '' : data.contAddrState
+                    (typeof data.contAddrStreet === 'undefined') ? '' : data.contAddrStreet,
+                    (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSurburb,
+                    (typeof data.contAddrCity === 'undefined') ? '' : data.contAddrCity,
+                    (typeof data.contAddrZip === 'undefined') ? '' : data.contAddrZip,
+                    (typeof data.contAddrState === 'undefined') ? '' : data.contAddrState
                 ],
                 callback
             );
@@ -69,11 +69,11 @@ module.exports = function (database) {
                     data.contCompany,
                     data.contPhone,
                     data.contEmail,
-                    (typeof data.contAddrStreet == 'undefined') ? '' : data.contAddrStreet,
-                    (typeof data.contAddrSuburb == 'undefined') ? '' : data.contAddrSuburb,
-                    (typeof data.contAddrCity == 'undefined') ? '' : data.contAddrCity,
-                    (typeof data.contAddrZip == 'undefined') ? '' : data.contAddrZip,
-                    (typeof data.contAddrState == 'undefined') ? '' : data.contAddrState,
+                    (typeof data.contAddrStreet === 'undefined') ? '' : data.contAddrStreet,
+                    (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSuburb,
+                    (typeof data.contAddrCity === 'undefined') ? '' : data.contAddrCity,
+                    (typeof data.contAddrZip === 'undefined') ? '' : data.contAddrZip,
+                    (typeof data.contAddrState === 'undefined') ? '' : data.contAddrState,
                     id
                 ],
                 callback
