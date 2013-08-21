@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import jfxtras.labs.scene.control.CalendarPicker;
 import jfxtras.labs.scene.control.LocalDatePicker;
 
 /**
@@ -61,17 +62,24 @@ public class UserUI extends Application {
                 ObservableList<String> appointmentTypes = FXCollections.observableArrayList("Cut", "Trim", "Blow");
                 final ComboBox appointment = new ComboBox(appointmentTypes);
 
-                DatePicker datePicker = new LocalDatePicker();
+                CalendarPicker datePicker = new CalendarPicker();
 
                 makeBookingPane.add(new Label("Choose Service Provider: "),0,0);
                 makeBookingPane.add(name,0,1);
                 makeBookingPane.add(new Label("Choose Appointment Type: "),1,0);
                 makeBookingPane.add(appointment,1,1);
-                makeBookingPane.add(new Label("Choose Date: "),2,0);
-                //makeBookingPane.add(datePicker,2,1);
+                makeBookingPane.add(new Label("Choose Date: "),0,2);
+                makeBookingPane.add(datePicker,1,2);
+
+                ObservableList<String> availableAppointments = FXCollections.observableArrayList("1200-1300", "1400-1500");
+                ListView appointments = new ListView(availableAppointments);
+
+                makeBookingPane.add(appointments,0,3);
 
                 mainPane.setCenter(makeBookingPane);
             }
+
+
         });
     }
 }
