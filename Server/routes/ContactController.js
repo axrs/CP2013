@@ -68,6 +68,10 @@ module.exports = function (Contact) {
             }
 
         },
+        apiCreate: function (req, res) {
+            console.log(req.body);
+
+        },
         edit: function (req, res) {
             res.render(res.viewPath + 'contacts/form',
                 {
