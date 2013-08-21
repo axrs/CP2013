@@ -140,11 +140,11 @@ public class Main extends Application {
 
                     if (connection.getRequestMethod() != "GET") {
                         connection.setRequestProperty("Content-Type", "application/json");
-                        OutputStream os = connection.getOutputStream();
-                        final PrintStream printStream = new PrintStream(os);
-                        printStream.print(jsonString);
-                        printStream.close();
-                        os.flush();
+                        connection.setRequestProperty("Accept","application/json");
+                        OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                        writer.write(jsonString.getText());
+                        writer.flush();
+                        writer.close();
                     }
 
                     result.appendText("Server Response:" + connection.getResponseMessage() + "\n");
