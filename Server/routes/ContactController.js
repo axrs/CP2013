@@ -21,6 +21,7 @@ module.exports = function (Contact) {
             Contact.all(function (err, results) {
                     res.render(res.viewPath + 'contacts/index',
                         {
+                            status: 200,
                             header: 'All Contacts',
                             allContacts: results
                         });
@@ -29,13 +30,16 @@ module.exports = function (Contact) {
         },
         apiIndex: function (req, res) {
             Contact.all(function (err, results) {
-                    res.end(JSON.stringify(results));
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.write(JSON.stringify(results));
+                    res.end();
                 }
             );
         },
         show: function (req, res) {
             res.render('contacts/profile',
                 {
+                    status: 200,
                     header: req.model.contSurname + ', ' + req.model.contForename,
                     contact: req.model
                 });
@@ -47,6 +51,7 @@ module.exports = function (Contact) {
         new: function (req, res) {
             res.render(res.viewPath + 'contacts/form',
                 {
+                    status: 200,
                     header: 'New Contact'
                 }
             )
@@ -56,6 +61,7 @@ module.exports = function (Contact) {
                 console.log(req.form.errors);
                 res.render(res.viewPath + 'contacts/form',
                     {
+                        status: 200,
                         header: 'New Contact',
                         contact: req.body.contact,
                         errors: req.form.errors
@@ -75,6 +81,7 @@ module.exports = function (Contact) {
         edit: function (req, res) {
             res.render(res.viewPath + 'contacts/form',
                 {
+                    status: 200,
                     header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
                     contact: req.model
                 })
@@ -83,6 +90,7 @@ module.exports = function (Contact) {
             if (!req.form.isValid) {
                 res.render(res.viewPath + 'contacts/form',
                     {
+                        status: 200,
                         header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
                         contact: req.model,
                         errors: req.form.errors

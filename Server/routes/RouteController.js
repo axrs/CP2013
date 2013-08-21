@@ -56,12 +56,12 @@ module.exports = function (app) {
     //Contact API routing
     app.get('/api/contacts', contactController.apiIndex);
     app.get('/api/contacts/:id([0-9]+)', contactMiddleware.attemptContactLoad(contact,true), contactController.apiShow);
-    app.get('/api/contacts',contactController.apiCreate);
+    //app.get('/api/contacts',contactController.apiCreate);
 
 
     //The 404 Route (ALWAYS Keep this as the last route)
     app.use(function (req, res) {
-        locals(req, res, function () {
+        exposeLocals(req, res, function () {
             res.status(404);
             res.render('404',
                 {

@@ -29,27 +29,31 @@ module.exports = {
 
                 if (isAPI) {
                     if (err) {
+                        res.writeHead(500, { 'Content-Type': 'application/json' });
                         res.end(JSON.stringify(false));
                     } else if (!record) {
+                        res.writeHead(404, { 'Content-Type': 'application/json' });
                         res.end(JSON.stringify(null));
                     } else {
+                        console.log('here');
+                        res.writeHead(200, { 'Content-Type': 'application/json' });
                         req.model = record;
                         next();
                     }
                 } else {
                     if (err) {
-                        console.error('Middleware Database Error:\n' + err);
-
-                        res.render(res.viewPath + '404',
-                            {
-                                header: 'Error 404'
-                            });
-                    } else if (!record) {
-                        console.error('Middleware Database error: ' + record);
                         res.render(res.viewPath + '500',
                             {
+                                status: 500,
                                 header: 'Error 500'
                             });
+                    } else if (!record) {
+                        res.render(res.viewPath + '404',
+                            {
+                                status: 404,
+                                header: 'Error 404'
+                            });
+
                     } else {
                         req.model = record;
                         next();

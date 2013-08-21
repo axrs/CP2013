@@ -20,6 +20,7 @@ module.exports = function () {
         index: function (req, res) {
             res.render(res.viewPath + 'index',
                 {
+                    status: 200,
                     header: 'Home'
                 });
         }
