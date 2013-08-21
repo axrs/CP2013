@@ -26,6 +26,8 @@ module.exports = {
     attemptContactLoad: function (Model) {
         return function (req, res, next) {
             Model.findById(req.params.id, function (err, record) {
+
+                console.log(req.url);
                 if (err) {
                     console.error('Middleware Database Error:\n' + err);
 

@@ -25,7 +25,7 @@ module.exports = function (app) {
      * @param res
      * @param next
      */
-    locals = function (req, res, next) {
+    exposeLocals = function (req, res, next) {
         res.locals.res = res;
         res.locals.req = req;
         res.viewPath = config.views.path;
@@ -43,15 +43,21 @@ module.exports = function (app) {
 
 
     //Core routing
-    app.get('/', locals, coreController.index);
+    app.get('/', exposeLocals, coreController.index);
 
     //Contact routing
-    app.get('/contacts', locals, contactController.index);
-    app.get('/contacts/:id([0-9]+)', locals, contactMiddleware.attemptContactLoad(contact), contactController.show);
-    app.get('/contacts/new', locals, contactController.new);
-    app.post('/contacts', locals, contactMiddleware.validateContact(), contactController.create);
-    app.get('/contacts/:id([0-9]+)/edit', locals, contactMiddleware.attemptContactLoad(contact), contactController.edit);
-    app.put('/contacts/:id([0-9]+)',locals, contactMiddleware.validateContact(), contactController.update);
+    app.get('/contacts', exposeLocals, contactController.index);
+    app.get('/contacts/:id([0-9]+)',exposeLocals, contactMiddleware.attemptContactLoad(contact), contactController.show);
+    app.get('/contacts/new', exposeLocals, contactController.new);
+    app.post('/contacts', exposeLocals, contactMiddleware.validateContact(), contactController.create);
+    app.get('/contacts/:id([0-9]+)/edit', exposeLocals, contactMiddleware.attemptContactLoad(contact), contactController.edit);
+    app.put('/contacts/:id([0-9]+)',exposeLocals, contactMiddleware.validateContact(), contactController.update);
+
+    //Contact API routing
+    app.get('/api/contacts', contactController.apiIndex);
+    app.get('/api/contacts/:id([0-9]+)', contactMiddleware.attemptContactLoad(contact), contactController.apiShow);
+
+
 
     //The 404 Route (ALWAYS Keep this as the last route)
     app.use(function (req, res) {

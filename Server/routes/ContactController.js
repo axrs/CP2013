@@ -12,7 +12,6 @@
 
 module.exports = function (Contact) {
     return{
-
         /**
          * Manages the route to the contact index
          * @param req Client request
@@ -28,13 +27,23 @@ module.exports = function (Contact) {
                 }
             );
         },
+        apiIndex: function (req, res) {
+            Contact.all(function (err, results) {
+                    res.end(JSON.stringify(results));
+                }
+            );
+        },
         show: function (req, res) {
-            res.render(res.viewPath + 'contacts/profile',
+            res.render('contacts/profile',
                 {
                     header: req.model.contSurname + ', ' + req.model.contForename,
                     contact: req.model
                 });
         },
+        apiShow: function (req, res) {
+            res.end(JSON.stringify(req.model));
+        },
+
         new: function (req, res) {
             res.render(res.viewPath + 'contacts/form',
                 {
