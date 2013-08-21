@@ -26,6 +26,9 @@ module.exports = function (database) {
         findById: function (id, callback) {
             database.get('SELECT * FROM contact WHERE contId = ?;', id, callback);
         },
+        matchName: function (name, surname, callback) {
+            database.get('SELECT * FROM contact WHERE contForename = ? AND contSurname = ?;', [name, surname], callback);
+        },
         count: function (callback) {
             database.get('SELECT count(*) FROM contact', null, callback);
         },

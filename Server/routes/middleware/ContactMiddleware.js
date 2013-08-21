@@ -24,36 +24,24 @@ module.exports = {
      * @returns {Function}
      */
     attemptContactLoad: function (Model, isAPI) {
+
         return function (req, res, next) {
+
             Model.findById(req.params.id, function (err, record) {
 
                 if (isAPI) {
-                    if (err) {
-                        res.writeHead(500, { 'Content-Type': 'application/json' });
-                        res.end(JSON.stringify(false));
-                    } else if (!record) {
-                        res.writeHead(404, { 'Content-Type': 'application/json' });
-                        res.end(JSON.stringify(null));
-                    } else {
-                        console.log('here');
+                    if (err) res.statusCodes.apiStatus500(req, res);
+                    else if (!record) res.statusCodes.apiStatus404(req, res);
+                    else {
                         res.writeHead(200, { 'Content-Type': 'application/json' });
                         req.model = record;
                         next();
                     }
                 } else {
                     if (err) {
-                        res.render(res.viewPath + '500',
-                            {
-                                status: 500,
-                                header: 'Error 500'
-                            });
+                        res.statusCodes.status500(req, res, next);
                     } else if (!record) {
-                        res.render(res.viewPath + '404',
-                            {
-                                status: 404,
-                                header: 'Error 404'
-                            });
-
+                        res.statusCodes.status404(req, res, next);
                     } else {
                         req.model = record;
                         next();
@@ -84,19 +72,20 @@ module.exports = {
      * Validates a PUT from the API for the required contact details
      * @returns {Function}
      */
-    validateAPIContact: function () {
+    validateAPIContact: function (Model) {
 
         return function (req, res, next) {
 
             var contact = req.body.contact;
-            if (!req.form) req.form = [];
 
-            var valid = false;
             if (contact && contact.contForename && contact.contSurname) {
-                valid = true;
+                Model.matchName(contact.contForename, contact.contSurname, function (err, record) {
+                    if (err) res.statusCodes.apiStatus500(req, res);
+                    else if (record) res.statusCodes.apiStatus409(req, res);
+                    else next();
+                });
             }
-            req.form.isValid = valid;
-            next();
+            else res.statusCodes.apiStatus400(req, res);
         }
     }
 }

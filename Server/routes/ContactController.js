@@ -67,23 +67,17 @@ module.exports = function (Contact) {
                     });
             } else {
                 Contact.insert(req.body.contact, function (err) {
-                    if (err) res.send(500, 'Database Error');
+                    if (err) res.statusCodes.status500(req, res, null);
                     else res.redirect('/contacts');
                 });
             }
 
         },
         apiCreate: function (req, res) {
-            if (!req.form.isValid) {
-                res.writeHead(400, { 'Content-Type': 'application/json' });
-            } else {
-                Contact.insert(req.body.contact, function (err) {
-                    if (err) res.writeHead(500, { 'Content-Type': 'application/json' });
-                    else res.writeHead(200, { 'Content-Type': 'application/json' });
-                });
-            }
-            res.end();
-
+            Contact.insert(req.body.contact, function (err) {
+                if (err) res.statusCodes.apiStatus500(req, res);
+                else res.statusCodes.apiStatus201(req, res);
+            });
         },
         edit: function (req, res) {
             res.render(res.viewPath + 'contacts/form',
