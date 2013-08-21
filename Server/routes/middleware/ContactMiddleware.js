@@ -23,31 +23,46 @@ module.exports = {
      * @param message 'Typical error messages to display'
      * @returns {Function}
      */
-    attemptContactLoad: function (Model) {
+    attemptContactLoad: function (Model, isAPI) {
         return function (req, res, next) {
             Model.findById(req.params.id, function (err, record) {
 
-                console.log(req.url);
-                if (err) {
-                    console.error('Middleware Database Error:\n' + err);
-
-                    res.render(res.viewPath + '404',
-                        {
-                            header: 'Error 404'
-                        });
-                } else if (!record) {
-                    console.error('Middleware Database error: ' + record);
-                    res.render(res.viewPath + '500',
-                        {
-                            header: 'Error 500'
-                        });
+                if (isAPI) {
+                    if (err) {
+                        res.end(JSON.stringify(false));
+                    } else if (!record) {
+                        res.end(JSON.stringify(null));
+                    } else {
+                        req.model = record;
+                        next();
+                    }
                 } else {
-                    req.model = record;
-                    next();
+                    if (err) {
+                        console.error('Middleware Database Error:\n' + err);
+
+                        res.render(res.viewPath + '404',
+                            {
+                                header: 'Error 404'
+                            });
+                    } else if (!record) {
+                        console.error('Middleware Database error: ' + record);
+                        res.render(res.viewPath + '500',
+                            {
+                                header: 'Error 500'
+                            });
+                    } else {
+                        req.model = record;
+                        next();
+                    }
                 }
+
             })
         }
     },
+    /**
+     * Validates POST form fields for required contact details
+     * @returns {*}
+     */
     validateContact: function () {
         var form = require('express-form')
             , field = form.field

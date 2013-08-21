@@ -55,7 +55,7 @@ module.exports = function (app) {
 
     //Contact API routing
     app.get('/api/contacts', contactController.apiIndex);
-    app.get('/api/contacts/:id([0-9]+)', contactMiddleware.attemptContactLoad(contact), contactController.apiShow);
+    app.get('/api/contacts/:id([0-9]+)', contactMiddleware.attemptContactLoad(contact,true), contactController.apiShow);
 
 
 
