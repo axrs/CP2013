@@ -1,9 +1,8 @@
 {
-    "contact": [
-        {
-            "contForename": "Alexander",
-            "contSurname": "Scott",
-            "contCompany": "Codelandia",
+    "contact":  {
+            "contForename": "Sample",
+            "contSurname": "Contact",
+            "contCompany": "Me",
             "contPhone": "",
             "contEmail": "",
             "contAddrStreet": "",
@@ -11,5 +10,5 @@
             "contAddrCity": "",
             "contAddrZip": "",
             "contAddrState": ""
-        }]
+        }
 }

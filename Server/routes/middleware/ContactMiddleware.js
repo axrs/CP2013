@@ -79,5 +79,24 @@ module.exports = {
             filter('contact.contSurname').trim(),
             validate("contact.contSurname", "surname").required("", "No %s specified.")
         );
+    },
+    /**
+     * Validates a PUT from the API for the required contact details
+     * @returns {Function}
+     */
+    validateAPIContact: function () {
+
+        return function (req, res, next) {
+
+            var contact = req.body.contact;
+            if (!req.form) req.form = [];
+
+            var valid = false;
+            if (contact && contact.contForename && contact.contSurname) {
+                valid = true;
+            }
+            req.form.isValid = valid;
+            next();
+        }
     }
 }

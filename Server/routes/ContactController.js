@@ -31,7 +31,7 @@ module.exports = function (Contact) {
         apiIndex: function (req, res) {
             Contact.all(function (err, results) {
                     res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.write('{ "contacts:" : ' +  JSON.stringify(results) + '}');
+                    res.write('{ "contacts" : ' + JSON.stringify(results) + '}');
                     res.end();
                 }
             );
@@ -58,7 +58,6 @@ module.exports = function (Contact) {
         },
         create: function (req, res) {
             if (!req.form.isValid) {
-                console.log(req.form.errors);
                 res.render(res.viewPath + 'contacts/form',
                     {
                         status: 200,
@@ -75,8 +74,14 @@ module.exports = function (Contact) {
 
         },
         apiCreate: function (req, res) {
-            console.log(req.body.contact);
-            res.writeHead(200, { 'Content-Type': 'application/json' });
+            if (!req.form.isValid) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+            } else {
+                Contact.insert(req.body.contact, function (err) {
+                    if (err) res.writeHead(500, { 'Content-Type': 'application/json' });
+                    else res.writeHead(200, { 'Content-Type': 'application/json' });
+                });
+            }
             res.end();
 
         },
