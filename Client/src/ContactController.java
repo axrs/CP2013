@@ -1,12 +1,7 @@
-import java.io.Console;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 
 
 /**
@@ -34,17 +29,15 @@ public class ContactController extends RestAPI {
                 (new Date().getTime() - _timeStamp.getTime()) > 60000
         /**|| containr.size == 0*/
                 ) {
-            loadAllFromServer();
+            getAllFromServer();
         }
-
-
     }
 
     public static void forceContactLoad(){
-        loadAllFromServer();
+        getAllFromServer();
     }
 
-    private static void loadAllFromServer() {
+    private static void getAllFromServer() {
         _timeStamp = new Date();
         RESTResult result = get("http://shear-n-dipity.com/api/contacts");
 
@@ -54,9 +47,13 @@ public class ContactController extends RestAPI {
 
         System.out.println(result.getServerResponse());
         Contact[] contacts = new Gson().fromJson(result.getServerResponse(), Contact[].class);
-
+        for(int i=0; i < contacts.length; i++) {
+            Contact c = contacts[i];
+            _map.put(c.contID, c);
+        }
     }
 
+    private static void getOneFromSever() {
 
-
+    }
 }
