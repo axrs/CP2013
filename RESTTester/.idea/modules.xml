@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RESTTester.iml" filepath="$PROJECT_DIR$/RESTTester.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ShearNDipityLib/ShearNDipityLib.iml" filepath="$PROJECT_DIR$/../ShearNDipityLib/ShearNDipityLib.iml" />
     </modules>
   </component>
 </project>

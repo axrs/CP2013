@@ -3,8 +3,8 @@
 # Package Files #
 *.war
 *.ear
-/Client/.idea
+.idea
 /Client/Client.iml
-/Server/.idea
+*/.idea
 /Server/database/*.db
 /Server/node_modules

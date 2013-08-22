@@ -1,5 +1,6 @@
 package sample;
 
+import Controllers.ContactController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,9 +17,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Main extends Application {
 
@@ -57,41 +59,16 @@ public class Main extends Application {
         grid.setPadding(new Insets(10, 5, 5, 10));
 
         //Caption Label
-        Text scenetitle = new Text("RESTTester");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(scenetitle, 0, 0, 2, 1);
-
-        //Host Fields
-        Label host = new Label("Host:");
-        grid.add(host, 0, 1);
-
-        final TextField hostField = new TextField();
-        hostField.setText("127.0.0.1");
-        grid.add(hostField, 1, 1);
-
-        //URL Fields
-        Label urlLabel = new Label("API URL:");
-        grid.add(urlLabel, 0, 2);
-
-        final TextField urlField = new TextField();
-        urlField.setText("/api/contacts");
-        grid.add(urlField, 1, 2);
-
-        //COMBO BOX Fields
-        Label type = new Label("Request Type:");
-        grid.add(type, 0, 3);
-
-        final ComboBox types = new ComboBox();
-        types.getItems().addAll("GET", "DELETE", "POST", "PUT");
-        types.getSelectionModel().select(0);
-        grid.add(types, 1, 3);
+        Text sceneTitle = new Text("RESTTester");
+        sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        grid.add(sceneTitle, 0, 0, 2, 1);
 
         //TEXT Field
         final TextArea jsonString = new TextArea();
-        grid.add(jsonString, 0, 4, 2, 1);
+        grid.add(jsonString, 0, 1, 2, 1);
 
         final TextArea result = new TextArea();
-        grid.add(result, 0, 5, 2, 1);
+        grid.add(result, 0, 2, 2, 1);
 
         //Button
         Button btn = new Button("Submit");
@@ -101,13 +78,8 @@ public class Main extends Application {
 
         grid.add(hbBtn, 1, 6);
 
-
-        final Text actiontarget = new Text();
-        grid.add(actiontarget, 0, 7, 2, 1);
-
         Scene scene = new Scene(grid);
         primaryStage.setScene(scene);
-
 
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -117,56 +89,14 @@ public class Main extends Application {
                 result.clear();
                 result.appendText("Processing Request...\n");
 
-
-                try {
-
-                    String endPoint = hostField.getText() + urlField.getText();
-
-                    //  making sure that the string is right, has http (fully lower case)
-                    if (endPoint.toString().toLowerCase().substring(0, 7) != "http://") {
-                        result.appendText("Adjusting URL:" + endPoint.toString() + "...\n");
-                        endPoint = "http://" + endPoint;
+                final ContactController c = ContactController.getInstance();
+                c.addListner(new ContactController.ContactsListener() {
+                    @Override
+                    public void updated(ContactController.ContactsUpdated event) {
+                        result.appendText("Contacts collection updated:  " + c.countContacts() + " contacts.");
                     }
-
-                    URL url = new URL(endPoint);
-                    result.appendText("Set target:" + url.toString() + "...\n");
-
-                    // creating connection object
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    // give us the result
-                    connection.setDoOutput(true);
-                    // port handling, lets sever bounce request around to where it is needed.
-                    connection.setInstanceFollowRedirects(true);
-                    // get,put,delete.
-                    connection.setRequestMethod(types.getSelectionModel().getSelectedItem().toString());
-                    // updating the text box
-                    result.appendText("Request Method:" + connection.getRequestMethod() + " \n");
-
-                    if (connection.getRequestMethod() != "GET") {
-                        result.appendText("Writing to server...\n");
-                        connection.setRequestProperty("Content-Type", "application/json");  //must be json
-                        connection.setRequestProperty("Accept","application/json");         //must be json
-                        // point of view of the client, putting data out to server.
-                        OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                        writer.write(jsonString.getText());
-                        writer.flush();
-                        writer.close();
-                    }
-
-                    result.appendText("Server Response:" + connection.getResponseMessage() + "\n");
-
-
-                    if (connection.getResponseCode() == 200) {
-                        //reads servers response.
-                        result.appendText(ReadStream(connection.getInputStream()));
-                    }
-
-                    connection.disconnect();
-
-                } catch (Exception ex) {
-                    result.appendText(ex.toString());
-                    //throw new RuntimeException(ex);
-                }
+                });
+                c.getContactsFromServer();
             }
         });
 
