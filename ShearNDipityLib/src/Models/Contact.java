@@ -10,10 +10,6 @@ package Models;
 public class Contact {
 
     /**
-     * Contact Id
-     */
-    private int contId;
-    /**
      * Contact First Name
      */
     private String contForename;
@@ -53,6 +49,10 @@ public class Contact {
      * Address State
      */
     private String contAddrState;
+    /**
+     * Contact Id
+     */
+    private int contId;
 
     /**
      * Constructor

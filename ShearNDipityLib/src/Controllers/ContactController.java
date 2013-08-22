@@ -166,6 +166,7 @@ public class ContactController {
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
 
+            if (result.getStatus() != 200) return;
             //Process results
             try {
                 contactsLocker.acquire();
@@ -177,6 +178,7 @@ public class ContactController {
                         Contact c = results[i];
                         contacts.put(c.getContId(), c);
                     }
+
                 } finally {
                     contactsLocker.release();
                 }

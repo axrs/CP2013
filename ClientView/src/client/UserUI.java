@@ -23,7 +23,7 @@ import jfxtras.labs.scene.control.CalendarPicker;
 public class UserUI extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         primaryStage.setTitle("CP2013 Appointment Scheduler - User");
 
@@ -43,7 +43,7 @@ public class UserUI extends Application {
         menuBar.getMenus().add(menu);
         mainPane.setTop(menuBar);
 
-        Scene scene = new Scene(mainPane,600,400);
+        Scene scene = new Scene(mainPane, 600, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -103,7 +103,7 @@ public class UserUI extends Application {
         editProfile.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-               GridPane editProfilePane = new GridPane();
+                GridPane editProfilePane = new GridPane();
                 editProfilePane.setHgap(5);
                 editProfilePane.setVgap(5);
                 editProfilePane.setPadding(new Insets(5, 5, 5, 5));
@@ -112,7 +112,7 @@ public class UserUI extends Application {
                 TextField fornameInput = new TextField();
                 fornameInput.setMaxWidth(100);
 
-                TextField surnameInput= new TextField();
+                TextField surnameInput = new TextField();
                 surnameInput.setMaxWidth(100);
 
                 TextField phoneInput = new TextField();
@@ -122,26 +122,26 @@ public class UserUI extends Application {
                 emailInput.setMaxWidth(100);
 
                 TextField addressInput = new TextField();
-                addressInput.setMaxSize(100,150);
+                addressInput.setMaxSize(100, 150);
 
                 Button submit = new Button("Submit");
 
-                editProfilePane.add(new Label("First Name:"),0,0);
+                editProfilePane.add(new Label("First Name:"), 0, 0);
                 editProfilePane.add(fornameInput, 1, 0);
 
-                editProfilePane.add(new Label("Last Name:"),0,1);
+                editProfilePane.add(new Label("Last Name:"), 0, 1);
                 editProfilePane.add(surnameInput, 1, 1);
 
-                editProfilePane.add(new Label("Phone:"),0,2);
+                editProfilePane.add(new Label("Phone:"), 0, 2);
                 editProfilePane.add(phoneInput, 1, 2);
 
-                editProfilePane.add(new Label("Email:"),0,3);
+                editProfilePane.add(new Label("Email:"), 0, 3);
                 editProfilePane.add(emailInput, 1, 3);
 
-                editProfilePane.add(new Label("Address:"),0,4);
+                editProfilePane.add(new Label("Address:"), 0, 4);
                 editProfilePane.add(addressInput, 1, 4);
 
-                editProfilePane.add(submit,0,5);
+                editProfilePane.add(submit, 0, 5);
 
                 mainPane.setCenter(editProfilePane);
 
