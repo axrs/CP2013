@@ -159,14 +159,17 @@ public class RESTRunner implements Runnable {
                 connection.setRequestProperty("Content-Type", "application/json");  //must be json
                 connection.setRequestProperty("Accept", "application/json");         //must be json
 
-                //Write message to server over socket
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(message);
-                writer.flush();
-                writer.close();
+
+                if (method != "GET" && method != "DELETE"){
+                    //Write message to server over socket
+                    OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                    writer.write(message);
+                    writer.flush();
+                    writer.close();
+                }
 
                 //Capture the server status code and response
-                result = new Result(this, connection.getURL().toString(), connection.getResponseCode(), ReadStream(connection.getInputStream()));
+                result = new Result(this, connection.getResponseCode(), ReadStream(connection.getInputStream()));
 
                 //disconnect from the server
                 connection.disconnect();
@@ -227,22 +230,15 @@ public class RESTRunner implements Runnable {
     public class Result extends EventObject {
         private int status = 0;
         private String response = "";
-        private String target = "";
 
         public Result(Object source) {
             super(source);
         }
 
-        public Result(Object source, String target, int status, String response) {
+        public Result(Object source, int status, String response) {
             super(source);
-            this.target = target;
-
             this.status = status;
             this.response = response;
-        }
-
-        public String getTarget(){
-            return target;
         }
         public int getStatus() {
             return status;

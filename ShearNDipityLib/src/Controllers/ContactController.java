@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Config;
 import Models.Contact;
+import com.google.gson.Gson;
 
 import javax.swing.event.EventListenerList;
 import java.util.Date;
@@ -105,7 +106,6 @@ public class ContactController {
 
         runner.addListner(new GetContactsResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/contacts");
-
         Thread runnerThread = new Thread(runner, "Getting Contacts");
         runnerThread.start();
     }
@@ -165,6 +165,24 @@ public class ContactController {
 
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
+
+            //Process results
+            try {
+                contactsLocker.acquire();
+                try {
+                    contacts.clear();
+                    Contact[] results = new Gson().fromJson(result.getResponse(), Contact[].class);
+
+                    for (int i = 0; i < results.length; i++) {
+                        Contact c = results[i];
+                        contacts.put(c.getContId(), c);
+                    }
+                } finally {
+                    contactsLocker.release();
+                }
+            } catch (InterruptedException ie) {
+
+            }
 
             //Trigger the ContactController collection updated
             triggerUpdated(new ContactsUpdated(this));

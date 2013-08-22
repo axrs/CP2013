@@ -89,7 +89,7 @@ public class Main extends Application {
                 //result text box
                 result.clear();
 
-                result.appendText("Sending request to: " + Config.getInstance().getServer() "\n");
+                result.appendText("Sending request to: " + Config.getInstance().getServer() + "\n");
 
                 final ContactController c = ContactController.getInstance();
                 c.addListner(new ContactController.ContactsListener() {
