@@ -181,7 +181,6 @@ public class ContactController {
                     contactsLocker.release();
                 }
             } catch (InterruptedException ie) {
-
             }
 
             //Trigger the ContactController collection updated

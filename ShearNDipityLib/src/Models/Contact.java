@@ -2,9 +2,9 @@ package Models;
 
 /**
  * Contact
- *
+ * <p/>
  * Generic representation of a typical contact
- *
+ * <p/>
  * Created by xander on 8/22/13.
  */
 public class Contact {
@@ -13,53 +13,42 @@ public class Contact {
      * Contact Id
      */
     private int contId;
-
     /**
      * Contact First Name
      */
     private String contForename;
-
     /**
      * Contact Surname
      */
     private String contSurname;
-
     /**
      * Contact Company Name
      */
     private String contCompany;
-
     /**
      * Contact Email Address
      */
     private String contEmail;
-
     /**
      * Contact Phone Number
      */
     private String contPhone;
-
     /**
      * Contact Street Address
      */
     private String contAddrStreet;
-
     /**
      * Address Suburb
      */
     private String contAddrSubutb;
-
-
     /**
      * Address City
      */
     private String contAddrCity;
-
     /**
      * Address ZIP/Post Code
      */
     private String contAddrZip;
-
     /**
      * Address State
      */
@@ -68,11 +57,12 @@ public class Contact {
     /**
      * Constructor
      */
-    public Contact(){
+    public Contact() {
     }
 
     /**
      * Gets the contact id
+     *
      * @return contact id
      */
     public int getContId() {
@@ -81,6 +71,7 @@ public class Contact {
 
     /**
      * Sets the contact id
+     *
      * @param contId contact id
      */
     public void setContId(int contId) {
@@ -89,6 +80,7 @@ public class Contact {
 
     /**
      * Gets the contacts first name
+     *
      * @return contacts first name
      */
     public String getContFirstName() {
@@ -97,6 +89,7 @@ public class Contact {
 
     /**
      * Sets the contacts first name
+     *
      * @param contForename first name
      */
     public void setContForename(String contForename) {
@@ -105,6 +98,7 @@ public class Contact {
 
     /**
      * Gets the contacts surname
+     *
      * @return Surname
      */
     public String getContSurname() {
@@ -113,6 +107,7 @@ public class Contact {
 
     /**
      * Sets the contacts surname
+     *
      * @param contSurname surname
      */
     public void setContSurname(String contSurname) {
@@ -121,6 +116,7 @@ public class Contact {
 
     /**
      * Gets the contacts company
+     *
      * @return company
      */
     public String getContCompany() {
@@ -129,6 +125,7 @@ public class Contact {
 
     /**
      * Sets the contacts company
+     *
      * @param contCompany company
      */
     public void setContCompany(String contCompany) {
@@ -137,6 +134,7 @@ public class Contact {
 
     /**
      * Gets the contacts email address
+     *
      * @return contact email
      */
     public String getContEmail() {
@@ -145,6 +143,7 @@ public class Contact {
 
     /**
      * Sets the contacts email address
+     *
      * @param contEmail email address
      */
     public void setContEmail(String contEmail) {
@@ -153,6 +152,7 @@ public class Contact {
 
     /**
      * Gets the contacts phone number
+     *
      * @return phone number
      */
     public String getContPhone() {
@@ -161,6 +161,7 @@ public class Contact {
 
     /**
      * Sets the contacts phone number
+     *
      * @param contPhone phone number
      */
     public void setContPhone(String contPhone) {
@@ -169,6 +170,7 @@ public class Contact {
 
     /**
      * Gets the contacts street address
+     *
      * @return street address
      */
     public String getContAddrStreet() {
@@ -177,6 +179,7 @@ public class Contact {
 
     /**
      * Sets the contacts street address
+     *
      * @param contAddrStreet street address
      */
     public void setContAddrStreet(String contAddrStreet) {
@@ -185,6 +188,7 @@ public class Contact {
 
     /**
      * Gets the contacts address suburb
+     *
      * @return contacts address suburb
      */
     public String getContAddrSubutb() {
@@ -193,6 +197,7 @@ public class Contact {
 
     /**
      * Sets the contacts address suburb
+     *
      * @param contAddrSubutb address suburb
      */
     public void setContAddrSubutb(String contAddrSubutb) {
@@ -201,6 +206,7 @@ public class Contact {
 
     /**
      * Gets the contacts address city
+     *
      * @return address city
      */
     public String getContAddrCity() {
@@ -209,6 +215,7 @@ public class Contact {
 
     /**
      * Sets the contacts address city
+     *
      * @param contAddrCity city
      */
     public void setContAddrCity(String contAddrCity) {
@@ -217,6 +224,7 @@ public class Contact {
 
     /**
      * Gets the contacts post code
+     *
      * @return post code
      */
     public String getContAddrZip() {
@@ -225,6 +233,7 @@ public class Contact {
 
     /**
      * Sets the contacts post code
+     *
      * @param contAddrZip post code
      */
     public void setContAddrZip(String contAddrZip) {
@@ -233,6 +242,7 @@ public class Contact {
 
     /**
      * Gets the contacts address state
+     *
      * @return state
      */
     public String getContAddrState() {
@@ -241,6 +251,7 @@ public class Contact {
 
     /**
      * Sets the contacts address state
+     *
      * @param contAddrState state
      */
     public void setContAddrState(String contAddrState) {

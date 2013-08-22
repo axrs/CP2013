@@ -2,7 +2,10 @@ package sample;
 
 import Controllers.ContactController;
 import Models.Config;
+import Models.Contact;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -18,33 +21,16 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Main extends Application {
 
+    final private TableView table = new TableView();
+
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public static String ReadStream(InputStream stream) throws IOException {
-        String result = "";
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new InputStreamReader(stream));
-            StringBuffer buffer = new StringBuffer();
-            int read;
-            char[] chars = new char[4096];
-            while ((read = reader.read(chars)) != -1)
-                buffer.append(chars, 0, read);
-            result = buffer.toString();
-        } finally {
-            if (reader != null)
-                reader.close();
-        }
-        return result;
     }
 
     @Override
@@ -64,9 +50,16 @@ public class Main extends Application {
         sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(sceneTitle, 0, 0, 2, 1);
 
-        //TEXT Field
-        final TextArea jsonString = new TextArea();
-        grid.add(jsonString, 0, 1, 2, 1);
+
+        table.setEditable(false);
+
+
+        table.getColumns().addAll(
+                new TableColumn("First Name"),
+                new TableColumn("Last Name"),
+                new TableColumn("Company")
+        );
+        grid.add(table,0,1,2,1);
 
         final TextArea result = new TextArea();
         grid.add(result, 0, 2, 2, 1);
@@ -95,7 +88,10 @@ public class Main extends Application {
                 c.addListner(new ContactController.ContactsListener() {
                     @Override
                     public void updated(ContactController.ContactsUpdated event) {
-                        result.appendText("Contacts collection updated:  " + c.countContacts() + " contacts.");
+                        result.appendText("Contacts collection updated:  " + c.countContacts() + " contacts.\n");
+
+                        result.appendText("Contact with id 1 data:\n");
+                        result.appendText(c.getContact(1).getContFirstName() + " " + c.getContact(1).getContSurname());
                     }
                 });
                 c.getContactsFromServer();
