@@ -37,7 +37,7 @@ public class Contact {
     /**
      * Contact Phone Number
      */
-    private int contPhone;
+    private String contPhone;
 
     /**
      * Contact Street Address
@@ -58,7 +58,7 @@ public class Contact {
     /**
      * Address ZIP/Post Code
      */
-    private int contAddrZip;
+    private String contAddrZip;
 
     /**
      * Address State
@@ -155,7 +155,7 @@ public class Contact {
      * Gets the contacts phone number
      * @return phone number
      */
-    public int getContPhone() {
+    public String getContPhone() {
         return contPhone;
     }
 
@@ -163,7 +163,7 @@ public class Contact {
      * Sets the contacts phone number
      * @param contPhone phone number
      */
-    public void setContPhone(int contPhone) {
+    public void setContPhone(String contPhone) {
         this.contPhone = contPhone;
     }
 
@@ -219,7 +219,7 @@ public class Contact {
      * Gets the contacts post code
      * @return post code
      */
-    public int getContAddrZip() {
+    public String getContAddrZip() {
         return contAddrZip;
     }
 
@@ -227,7 +227,7 @@ public class Contact {
      * Sets the contacts post code
      * @param contAddrZip post code
      */
-    public void setContAddrZip(int contAddrZip) {
+    public void setContAddrZip(String contAddrZip) {
         this.contAddrZip = contAddrZip;
     }
 

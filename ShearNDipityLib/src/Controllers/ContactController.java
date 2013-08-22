@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Config;
 import Models.Contact;
 
 import javax.swing.event.EventListenerList;
@@ -103,7 +104,7 @@ public class ContactController {
         RESTRunner runner = new RESTRunner();
 
         runner.addListner(new GetContactsResultListener());
-        runner.setRequest("http://shear-n-dipity.com/api/contacts");
+        runner.setRequest(Config.getInstance().getServer() + "/api/contacts");
 
         Thread runnerThread = new Thread(runner, "Getting Contacts");
         runnerThread.start();

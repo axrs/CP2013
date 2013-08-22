@@ -6,12 +6,12 @@ CREATE TABLE IF NOT EXISTS contact (
     contForename VARCHAR NOT NULL,
     contSurname VARCHAR NOT NULL,
     contCompany VARCHAR,
-    contPhone INTEGER,
+    contPhone VARCHAR,
     contEmail VARCHAR,
     contAddrStreet VARCHAR,
     contAddrSuburb VARCHAR,
     contAddrCity VARCHAR,
-    contAddrZip INTEGER,
+    contAddrZip VARCHAR,
     contAddrState VARCHAR
 );
 

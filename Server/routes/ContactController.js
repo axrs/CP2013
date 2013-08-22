@@ -32,7 +32,7 @@ module.exports = function (Contact) {
             Contact.all(function (err, results) {
                     if (err) res.statusCodes.apiStatus500(req, res);
                     res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.write('{ "contacts" : ' + JSON.stringify(results) + '}');
+                    res.write(JSON.stringify(results));
                     res.end();
                 }
             );

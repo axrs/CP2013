@@ -1,6 +1,7 @@
 package sample;
 
 import Controllers.ContactController;
+import Models.Config;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -87,7 +88,8 @@ public class Main extends Application {
             public void handle(ActionEvent e) {
                 //result text box
                 result.clear();
-                result.appendText("Processing Request...\n");
+
+                result.appendText("Sending request to: " + Config.getInstance().getServer() "\n");
 
                 final ContactController c = ContactController.getInstance();
                 c.addListner(new ContactController.ContactsListener() {
