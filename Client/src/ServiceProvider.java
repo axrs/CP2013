@@ -20,7 +20,7 @@ public class ServiceProvider extends Contact {
     protected boolean servIsActive;
 
     public ServiceProvider(int contID, String contFirstName, String contLastName, String contCompany, int contPhone, String contEmail, Address contAddress, String servBio, Date servEmployed, BufferedImage servPortrait, Date servTerminated, boolean servIsActive) {
-        super(contID, contFirstName, contLastName, contCompany, contPhone, contEmail, contAddress);
+        super(contID, contFirstName, contLastName, contCompany, contPhone, contEmail/*, contAddress*/);
         this.servBio = servBio;
         this.servEmployed = servEmployed;
         this.servPortrait = servPortrait;

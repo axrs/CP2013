@@ -14,7 +14,7 @@ public class User extends Contact {
     protected Boolean userIsAdmin;
 
     public User(int contID, String contFirstName, String contLastName, String contCompany, int contPhone, String contEmail, Address contAddress, String userName, String userPass, Boolean userIsAdmin) {
-        super(contID, contFirstName, contLastName, contCompany, contPhone, contEmail, contAddress);
+        super(contID, contFirstName, contLastName, contCompany, contPhone, contEmail/*, contAddress*/);
         this.userName = userName;
         this.userPass = userPass;
         this.userIsAdmin = userIsAdmin;

@@ -1,17 +1,9 @@
-package sample;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import jfxtras.labs.scene.control.Agenda;
 
@@ -96,6 +88,9 @@ public class Main extends Application {
         Scene scene = new Scene(mainPane,600,400);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        ContactController c = new ContactController();
+
     }
 
 

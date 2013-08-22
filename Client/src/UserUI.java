@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,19 +66,19 @@ public class UserUI extends Application {
                 final Button findAppointmentsButton = new Button("Find Appointments");
                 final Button makeBookingButton = new Button("Book Appointment");
 
-                makeBookingPane.add(new Label("Choose Service Provider: "),0,0);
-                makeBookingPane.add(name,0,1);
-                makeBookingPane.add(new Label("Choose Appointment Type: "),1,0);
-                makeBookingPane.add(appointment,1,1);
-                makeBookingPane.add(new Label("Choose Date: "),0,2);
-                makeBookingPane.add(datePicker,1,2);
-                makeBookingPane.add(findAppointmentsButton,1,3);
-                makeBookingPane.add(makeBookingButton,1,4);
+                makeBookingPane.add(new Label("Choose Service Provider: "), 0, 0);
+                makeBookingPane.add(name, 0, 1);
+                makeBookingPane.add(new Label("Choose Appointment Type: "), 1, 0);
+                makeBookingPane.add(appointment, 1, 1);
+                makeBookingPane.add(new Label("Choose Date: "), 0, 2);
+                makeBookingPane.add(datePicker, 1, 2);
+                makeBookingPane.add(findAppointmentsButton, 1, 3);
+                makeBookingPane.add(makeBookingButton, 1, 4);
 
                 ObservableList<String> availableAppointments = FXCollections.observableArrayList("1200-1300", "1400-1500");
                 ListView appointments = new ListView(availableAppointments);
 
-                makeBookingPane.add(appointments,0,3);
+                makeBookingPane.add(appointments, 0, 3);
 
                 mainPane.setCenter(makeBookingPane);
 

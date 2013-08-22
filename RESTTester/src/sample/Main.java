@@ -113,14 +113,16 @@ public class Main extends Application {
 
             @Override
             public void handle(ActionEvent e) {
+                //result text box
                 result.clear();
                 result.appendText("Processing Request...\n");
 
 
                 try {
+
                     String endPoint = hostField.getText() + urlField.getText();
 
-
+                    //  making sure that the string is right, has http (fully lower case)
                     if (endPoint.toString().toLowerCase().substring(0, 7) != "http://") {
                         result.appendText("Adjusting URL:" + endPoint.toString() + "...\n");
                         endPoint = "http://" + endPoint;
@@ -129,18 +131,22 @@ public class Main extends Application {
                     URL url = new URL(endPoint);
                     result.appendText("Set target:" + url.toString() + "...\n");
 
-
+                    // creating connection object
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    // give us the result
                     connection.setDoOutput(true);
+                    // port handling, lets sever bounce request around to where it is needed.
                     connection.setInstanceFollowRedirects(true);
+                    // get,put,delete.
                     connection.setRequestMethod(types.getSelectionModel().getSelectedItem().toString());
+                    // updating the text box
                     result.appendText("Request Method:" + connection.getRequestMethod() + " \n");
 
-                    result.appendText("Writing to server...\n");
-
                     if (connection.getRequestMethod() != "GET") {
-                        connection.setRequestProperty("Content-Type", "application/json");
-                        connection.setRequestProperty("Accept","application/json");
+                        result.appendText("Writing to server...\n");
+                        connection.setRequestProperty("Content-Type", "application/json");  //must be json
+                        connection.setRequestProperty("Accept","application/json");         //must be json
+                        // point of view of the client, putting data out to server.
                         OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                         writer.write(jsonString.getText());
                         writer.flush();
@@ -151,6 +157,7 @@ public class Main extends Application {
 
 
                     if (connection.getResponseCode() == 200) {
+                        //reads servers response.
                         result.appendText(ReadStream(connection.getInputStream()));
                     }
 
