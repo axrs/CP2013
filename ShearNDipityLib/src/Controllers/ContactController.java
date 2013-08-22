@@ -11,6 +11,16 @@ import java.util.EventObject;
 import java.util.HashMap;
 
 /**
+ * Contact Controller
+ *
+ * Singleton contact controller class tasked at interacting with the REST API server and managing
+ * any known contacts in memory.
+ *
+ * Notes:
+ * As this class is of a singleton design pattern, Mutexes (or locks) are used throughout any method
+ * which requires manipulating of the contact hash map.  If a Mutex is not used, cross thread exceptions
+ * will occur.
+ *
  * Created by xander on 8/22/13.
  */
 public class ContactController {
@@ -22,6 +32,9 @@ public class ContactController {
     private Date lastUpdate;
 
 
+    /**
+     * Singleton constructor.  Not able to be overridden
+     */
     protected ContactController() {
         if (contactsLocker == null) {
             contactsLocker = new Mutex();
@@ -29,11 +42,17 @@ public class ContactController {
             contacts = new HashMap<Integer, Contact>();
         }
         if ((new Date().getTime() - lastUpdate.getTime()) > 60000) {
-
+            getContactsFromServer();
         }
     }
 
+    /**
+     * Method of obtaining the ContactController instance
+     *
+     * @return ContactController
+     */
     public static ContactController getInstance() {
+        //If a static instance of the controller doesn't exist, make it.
         if (instance == null) {
             instance = new ContactController();
         }
@@ -43,8 +62,8 @@ public class ContactController {
     /**
      * Attempts to get a contact with the specified contact id
      *
-     * @param id
-     * @return
+     * @param id Contact Id
+     * @return contact with a specified id or null.
      */
     public Contact getContact(int id) {
         Contact c = null;
@@ -63,8 +82,13 @@ public class ContactController {
         return c;
     }
 
+    /**
+     * Returns the total number of contacts
+     *
+     * @return contact count
+     */
     public int countContacts() {
-        int result = -1;
+        int result = 0;
         try {
             contactsLocker.acquire();
             try {
@@ -160,6 +184,7 @@ public class ContactController {
         @Override
         public void results(RESTRunner.Result result) {
 
+            //Print the outputs for now
             System.out.println(result.getStatus());
             System.out.println(result.getResponse());
 

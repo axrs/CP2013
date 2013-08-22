@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -30,9 +29,19 @@ import java.util.Collection;
 public class ContactUI extends Application {
 
 
+    /**
+     * Table data source.  Individual per ContactUI Instance
+     */
     private final ObservableList<Contact> data = FXCollections.observableArrayList();
+
+    /**
+     * Create a new table
+     */
     private TableView<Contact> table = new TableView<Contact>();
 
+    /**
+     * Initialises the table columns, binding each column to the respective model attributes
+     */
     private void initialiseTableColumns() {
         TableColumn firstNameColumn = new TableColumn("First Name");
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contFirstName"));
@@ -46,6 +55,11 @@ public class ContactUI extends Application {
 
     }
 
+    /**
+     * Starts the Contact UI interface
+     * @param primaryStage
+     * @throws Exception
+     */
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("CP2013 Appointment Scheduler - Contacts");
         BorderPane contactPane = new BorderPane();
@@ -58,26 +72,31 @@ public class ContactUI extends Application {
 
         table.setItems(data);
 
+        //Obtain a reference to the contact controller.
+        //Note: We do not use NEW as the ContactController is a singleton object.
+        //      (There is only ever one controller in existence, and it gets used by multiple interfaces).
         final ContactController c = ContactController.getInstance();
+
+        //Create a simple listener on the ContactController.  Whenever the contact list updates we want the
+        //table view to update also.
         c.addListner(new ContactController.ContactsListener() {
             @Override
             public void updated(ContactController.ContactsUpdated event) {
-                Collection<Contact> contacts = ContactController.getInstance().getContacts().values();
+                //Clear the table data source
                 data.clear();
-                data.addAll(contacts);
-
+                //Add all known contacts to the data source.
+                data.addAll(ContactController.getInstance().getContacts().values());
             }
         });
+
+        //Force the ContactController to get the latest and greatest contacts
         c.getContactsFromServer();
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 10, 10, 10));
         vbox.getChildren().addAll(label, table);
-
         contactPane.setCenter(vbox);
-
-
         Scene scene = new Scene(contactPane, 300, 250);
         primaryStage.setScene(scene);
         primaryStage.show();
