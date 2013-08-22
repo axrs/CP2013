@@ -6,5 +6,9 @@
 .idea
 /Client/Client.iml
 */.idea
+/*/.idea
 /Server/database/*.db
 /Server/node_modules
+.iws
+workspace.xml 
+tasks.xml
