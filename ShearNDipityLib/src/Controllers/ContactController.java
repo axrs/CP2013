@@ -12,15 +12,15 @@ import java.util.HashMap;
 
 /**
  * Contact Controller
- *
+ * <p/>
  * Singleton contact controller class tasked at interacting with the REST API server and managing
  * any known contacts in memory.
- *
+ * <p/>
  * Notes:
  * As this class is of a singleton design pattern, Mutexes (or locks) are used throughout any method
  * which requires manipulating of the contact hash map.  If a Mutex is not used, cross thread exceptions
  * will occur.
- *
+ * <p/>
  * Created by xander on 8/22/13.
  */
 public class ContactController {
@@ -79,6 +79,12 @@ public class ContactController {
         } catch (InterruptedException ie) {
 
         }
+
+        //Request to try and get single id from the server is placed outside the mutex
+        //to ensure we have release the mutex prior to the event return
+        if (c == null) {
+            getContactFromServer(id);
+        }
         return c;
     }
 
@@ -127,10 +133,17 @@ public class ContactController {
      */
     public void getContactsFromServer() {
         RESTRunner runner = new RESTRunner();
-
         runner.addListner(new GetContactsResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/contacts");
         Thread runnerThread = new Thread(runner, "Getting Contacts");
+        runnerThread.start();
+    }
+
+    public void getContactFromServer(int id) {
+        RESTRunner runner = new RESTRunner();
+        runner.addListner(new GetContactResultListener());
+        runner.setRequest(Config.getInstance().getServer() + "/api/contacts/" + String.valueOf(id));
+        Thread runnerThread = new Thread(runner, "Getting Contact");
         runnerThread.start();
     }
 
@@ -139,8 +152,8 @@ public class ContactController {
      *
      * @param listener
      */
-    public void addListner(ContactsListener listener) {
-        subscribers.add(ContactsListener.class, listener);
+    public void addUpdatedListener(ContactsUpdatedListener listener) {
+        subscribers.add(ContactsUpdatedListener.class, listener);
     }
 
     /**
@@ -148,8 +161,16 @@ public class ContactController {
      *
      * @param listener
      */
-    public void removeListener(ContactsListener listener) {
-        subscribers.remove(ContactsListener.class, listener);
+    public void removeUpdatedListener(ContactsUpdatedListener listener) {
+        subscribers.remove(ContactsUpdatedListener.class, listener);
+    }
+
+    public void addAddedListener(ContactAddedListener listener) {
+        subscribers.add(ContactAddedListener.class, listener);
+    }
+
+    public void removeAddedListener(ContactAddedListener listener) {
+        subscribers.remove(ContactAddedListener.class, listener);
     }
 
     /**
@@ -158,22 +179,33 @@ public class ContactController {
      * @param event
      */
     private void triggerUpdated(ContactsUpdated event) {
-
-        Object[] listeners = subscribers.getListenerList();
-        for (int i = 0; i < listeners.length; i += 2) {
-            //Each listener has two components. The listener and the listener instance.
-            if (listeners[i] == ContactsListener.class) {
-                ((ContactsListener) listeners[i + 1]).updated(event);
-            }
+        ContactsUpdatedListener[] listeners = subscribers.getListeners(ContactsUpdatedListener.class);
+        for (int i = 0; i < listeners.length; i++) {
+            listeners[i].updated(event);
         }
     }
 
+    /**
+     * Fires an event to all listeners informing them of a new contact added to the list
+     *
+     * @param event
+     */
+    private void triggerAdded(ContactAdded event) {
+        ContactAddedListener[] listeners = subscribers.getListeners(ContactAddedListener.class);
+        for (int i = 0; i < listeners.length; i++) {
+            listeners[i].added(event);
+        }
+    }
 
     /**
      * Contact Controller Updated Contacts Listener
      */
-    public interface ContactsListener extends EventListener {
+    public interface ContactsUpdatedListener extends EventListener {
         public void updated(ContactsUpdated event);
+    }
+
+    public interface ContactAddedListener extends EventListener {
+        public void added(ContactAdded event);
     }
 
     /**
@@ -185,7 +217,7 @@ public class ContactController {
         public void results(RESTRunner.Result result) {
 
             //Print the outputs for now
-            System.out.println(result.getStatus());
+            System.out.println("Get All Contacts Request : " + result.getStatus());
             System.out.println(result.getResponse());
 
             //Remove the listener from the contact object
@@ -216,6 +248,45 @@ public class ContactController {
     }
 
     /**
+     * REST Server Results listener.
+     * Implemented specifically to handle processing 'GET contact with id' requests.
+     */
+    private class GetContactResultListener implements RESTRunner.ResultsListener {
+        @Override
+        public void results(RESTRunner.Result result) {
+            //Print the outputs for now
+            System.out.println("Get Single Contact Request : " + result.getStatus());
+            System.out.println(result.getResponse());
+
+            //Remove the listener from the contact object
+            ((RESTRunner) result.getSource()).removeListener(this);
+
+            Contact c = null;
+            if (result.getStatus() != 200) return;
+            //Process results
+            try {
+                contactsLocker.acquire();
+                try {
+                    c = new Gson().fromJson(result.getResponse(), Contact.class);
+
+                    if (c.getContId() != 0) {
+                        contacts.put(c.getContId(), c);
+                    }
+                } finally {
+                    contactsLocker.release();
+                }
+            } catch (InterruptedException ie) {
+            }
+
+            //Fire events for individual contact added, and all contacts list updated
+            if (c != null) {
+                triggerAdded(new ContactAdded(this, c));
+                triggerUpdated(new ContactsUpdated(this));
+            }
+        }
+    }
+
+    /**
      * Contacts Updated Event
      */
     public class ContactsUpdated extends EventObject {
@@ -224,4 +295,20 @@ public class ContactController {
         }
     }
 
+    /**
+     * Contact Added Event
+     */
+    public class ContactAdded extends EventObject {
+
+        private Contact contact;
+
+        public ContactAdded(Object source, Contact contact) {
+            super(source);
+            this.contact = contact;
+        }
+
+        public Contact getContact() {
+            return contact;
+        }
+    }
 }

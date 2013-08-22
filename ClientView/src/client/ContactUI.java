@@ -16,8 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.util.Collection;
-
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,7 +31,6 @@ public class ContactUI extends Application {
      * Table data source.  Individual per ContactUI Instance
      */
     private final ObservableList<Contact> data = FXCollections.observableArrayList();
-
     /**
      * Create a new table
      */
@@ -57,6 +54,7 @@ public class ContactUI extends Application {
 
     /**
      * Starts the Contact UI interface
+     *
      * @param primaryStage
      * @throws Exception
      */
@@ -69,7 +67,6 @@ public class ContactUI extends Application {
         label.setFont(new Font("Arial", 20));
 
         initialiseTableColumns();
-
         table.setItems(data);
 
         //Obtain a reference to the contact controller.
@@ -79,7 +76,7 @@ public class ContactUI extends Application {
 
         //Create a simple listener on the ContactController.  Whenever the contact list updates we want the
         //table view to update also.
-        c.addListner(new ContactController.ContactsListener() {
+        c.addUpdatedListener(new ContactController.ContactsUpdatedListener() {
             @Override
             public void updated(ContactController.ContactsUpdated event) {
                 //Clear the table data source
@@ -88,7 +85,6 @@ public class ContactUI extends Application {
                 data.addAll(ContactController.getInstance().getContacts().values());
             }
         });
-
         //Force the ContactController to get the latest and greatest contacts
         c.getContactsFromServer();
 
