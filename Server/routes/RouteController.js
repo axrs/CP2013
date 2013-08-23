@@ -29,7 +29,7 @@ module.exports = function (app) {
         res.locals.res = res;
         res.locals.req = req;
         res.viewPath = config.views.path;
-        res.statusCodes =  require('./libs/StatusHelpers.js');
+        res.statusCodes = require('./libs/StatusHelpers.js');
         next();
     };
 
@@ -38,7 +38,10 @@ module.exports = function (app) {
     var coreController = require('./CoreController.js')()
         , contact = require('./models/Contact.js')(db)
         , contactController = require('./ContactController.js')(contact)
-        , contactMiddleware = require('./middleware/ContactMiddleware.js');
+        , contactMiddleware = require('./middleware/ContactMiddleware.js')
+        , provider = require('./models/Provider.js')(db)
+        , providerController = require('./ProviderController.js')(provider);
+
 
     app.locals.deleteButton = require('./libs/helpers').deleteButton;
 
@@ -58,6 +61,10 @@ module.exports = function (app) {
     app.get('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.attemptContactLoad(contact, true), contactController.apiShow);
     app.put('/api/contacts', exposeLocals, contactMiddleware.validateAPIContact(contact), contactController.apiCreate);
     app.put('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateExistingAPIContact(contact), contactController.apiUpdate);
+
+    //Staff routing
+    app.get('/staff', exposeLocals, providerController.index);
+    app.get('/staff/new', exposeLocals, providerController.new);
 
     //The 404 Route (ALWAYS Keep this as the last route)
     app.use(function (req, res) {

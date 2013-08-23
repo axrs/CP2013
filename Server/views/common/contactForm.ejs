@@ -1,0 +1,108 @@
+<div class="span6">
+    <fieldset>
+        <legend>General</legend>
+        <div class="control-group">
+            <label class="control-label" for="contForename">First Name</label>
+
+            <div class="controls">
+                <input class="span10" type="text" id="contForename" name="model[contForename]"
+                       placeholder="First Name"
+                       value="<% if(isEditing){ %><%= model.contForename %><% } %>">
+            </div>
+            <label class="control-label" for="contSurname">Surname</label>
+
+            <div class="controls">
+                <input class="span10" type="text" id="contSurname" name="model[contSurname]" placeholder="Surname"
+                       value="<% if(isEditing){ %><%= model.contSurname %><% } %>">
+            </div>
+
+            <label class="control-label" for="contCompany">Company</label>
+
+            <div class="controls">
+                <input class="span10" type="text" id="contCompany" name="model[contCompany]" placeholder="Company"
+                       value="<% if(isEditing){ %><%= model.contCompany %><% } %>">
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+
+<div class="span6">
+
+    <fieldset>
+        <legend>Contact</legend>
+        <div class="control-group">
+            <label class="control-label" for="contEmail">Email</label>
+
+            <div class="control-group">
+                <div class="controls">
+                    <input class="span10" type="text" id="contEmail" name="model[contEmail]"
+                           placeholder="you@domain.com"
+                           value="<% if(isEditing && model.contEmail){ %><%= model.contEmail %><% } %>">
+                </div>
+                <label class="control-label" for="contPhone">Phone</label>
+
+                <div class="controls">
+                    <input class="span10" type="text" id="contPhone" name="model[contPhone]" placeholder="4700 0000"
+                           value="<% if(isEditing && model.contPhone){ %><%= model.contPhone %><% } %>">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+</div>
+<div class="clearfix"></div>
+<div class="span6">
+    <fieldset>
+        <legend>Address</legend>
+        <div class="control-group">
+            <label class="control-label" for="contAddrStreet">Street</label>
+
+            <div class="controls">
+                <input
+                        class="span10"
+                        type="text" id="contAddrStreet" name="model[contAddrStreet]"
+                        placeholder="123 Street Name"
+                        value="<% if(isEditing){ %><%= model.contAddrStreet %><% } %>">
+            </div>
+            <label class="control-label" for="contAddrSuburb">Suburb</label>
+
+            <div class="controls">
+                <input class="span10"
+                       type="text" id="contAddrSuburb" name="model[contAddrSuburb]"
+                       placeholder="Suburb"
+                       value="<% if(isEditing){ %><%= model.contAddrSuburb %><% } %>">
+            </div>
+            <label class="control-label" for="contAddrCity">City/Town</label>
+
+            <div class="controls controls-row">
+                <input class="span6" type="text" name="model[contAddrCity]" id="contAddrCity"
+                       placeholder="City"
+                       value="<% if(isEditing){ %><%= model.contAddrCity %><% } %>">
+                <select class="span2" id="contAddrState" name="model[contAddrState]">
+                    <option
+                    <% if(isEditing && model.contAddrState == ''){ %>selected<% } %>></option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'ACT'){ %>selected<% } %> >ACT</option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'NSW'){ %>selected<% } %> >NSW</option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'NT'){ %>selected<% } %> >NT</option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'QLD'){ %>selected<% } %> >QLD</option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'SA'){ %>selected<% } %> >SA</option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'TAS'){ %>selected<% } %> >TAS</option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'VIC'){ %>selected<% } %> >VIC</option>
+                    <option
+                    <% if(isEditing && model.contAddrState == 'WA'){ %>selected<% } %> >WA</option>
+                </select>
+                <input class="span2" type="text" id="contAddrZip" name="model[contAddrZip]"
+                       placeholder="POST"
+                       value="<% if(isEditing){ %><%= model.contAddrZip %><% } %>">
+            </div>
+        </div>
+    </fieldset>
+</div>

@@ -30,13 +30,14 @@ CREATE TABLE IF NOT EXISTS user (
  * SERVICE PROVIDERS
  -=-=-=-=-=-=-=-=-=-=*/
 CREATE TABLE IF NOT EXISTS service_provider (
-    servId INTEGER,
+    servId INTEGER PRIMARY KEY AUTOINCREMENT,
+    contId INTEGER ,
     servBio VARCHAR,
     servPortrait VARCHAR,
     servInitiated DATE NOT NULL,
-    servTerminated DATE,      a
+    servTerminated DATE,
     servIsActive BINARY DEFAULT 1,
-    FOREIGN KEY(servId) REFERENCES contact(contId)
+    FOREIGN KEY(contId) REFERENCES contact(contId)
 );
 
 /*-=-=-=-=-=-=-=-=-=-=  

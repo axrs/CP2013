@@ -4,31 +4,31 @@
     <% include toolbox %>
 
     <div class="span9">
-        <h1><%= contact.contSurname %>, <%= contact.contForename %>
-            <a class="btn btn-primary" href="/contacts/<%= contact.contId %>/edit"><i class="icon-edit icon-white"></i> Edit</a>
+        <h1><%= model.contSurname %>, <%= model.contForename %>
+            <a class="btn btn-primary" href="/contacts/<%= model.contId %>/edit"><i class="icon-edit icon-white"></i> Edit</a>
         </h1>
 
         <dl class="dl-horizontal">
 
-            <% if(typeof contact.contCompany != 'undefined' && contact.contCompany){ %>
+            <% if(typeof model.contCompany != 'undefined' && model.contCompany){ %>
             <dt>Company</dt>
-            <dd><%= contact.contCompany %></dd>
+            <dd><%= model.contCompany %></dd>
             <% }%>
 
-            <% if(typeof contact.contPhone != 'undefined' && contact.contPhone){ %>
+            <% if(typeof model.contPhone != 'undefined' && model.contPhone){ %>
             <dt>Phone</dt>
-            <dd><%= contact.contPhone %></dd>
+            <dd><%= model.contPhone %></dd>
             <% }%>
 
-            <% if(typeof contact.contEmail != 'undefined'  && contact.contEmail){ %>
+            <% if(typeof model.contEmail != 'undefined'  && model.contEmail){ %>
             <dt>Email</dt>
-            <dd><a href="mailto:<%= contact.contEmail %>"><%= contact.contEmail %></a></dd>
+            <dd><a href="mailto:<%= model.contEmail %>"><%= model.contEmail %></a></dd>
             <% }%>
 
-            <% if(typeof contact.contAddrStreet != 'undefined'  && contact.contAddrStreet){ %>
+            <% if(typeof model.contAddrStreet != 'undefined'  && model.contAddrStreet){ %>
             <dt>Address</dt>
-            <dd><%= contact.contAddrStreet %>, <%= contact.contAddrSuburb %><br>
-                <%= contact.contAddrCity %>, <%= contact.contAddrState %> <%= contact.contAddrZip %><br>
+            <dd><%= model.contAddrStreet %>, <%= model.contAddrSuburb %><br>
+                <%= model.contAddrCity %>, <%= model.contAddrState %> <%= model.contAddrZip %><br>
             </dd>
             <% }%>
         </dl>

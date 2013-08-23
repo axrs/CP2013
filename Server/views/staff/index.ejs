@@ -1,0 +1,23 @@
+<% include ../header %>
+<div class="row-fluid">
+    <% include toolbox %>
+    <div class="span7">
+        <h1>Our Staff</h1>
+    </div>
+
+    <% if (allStaff.length == 0) {%>
+    <div class="span9">
+        <p>There are no staff on record.</p>
+    </div>
+    <%} else {%>
+    <div class="span2">
+        <p class="text-right">Total: <%- allStaff.length %></p>
+    </div>
+
+        <% allStaff.forEach(function(model){ %>
+        <% include staffListItem %>
+        <%}) %>
+
+    <%} %>
+</div>
+<% include ../footer %>

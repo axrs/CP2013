@@ -1,8 +1,8 @@
 <%
 var isEditing  = (typeof model != 'undefined' && model != null && typeof model.contId != 'undefined' ) ? true : false;
 var buttonLabel = isEditing ? 'Update' : 'Create';
-var formTitle = isEditing ? 'Editing : ' + model.contSurname + ',' + model.contForename : 'New Contact';
-var actionParam = isEditing ? '/contacts/' + model.contId : '/contacts';
+var formTitle = isEditing ? 'Editing : ' + model.contSurname + ',' + model.contForename : 'New Staff Member';
+var actionParam = isEditing ? '/staff/' + model.servId : '/staff';
 %>
 
 <% include ../header %>
@@ -13,6 +13,7 @@ var actionParam = isEditing ? '/contacts/' + model.contId : '/contacts';
 
         <% include ../common/formHeader %>
         <% include ../common/contactForm %>
+        <% include ../common/staffForm %>
         <% include ../common/formActions %>
         <% include ../common/formFooter %>
 

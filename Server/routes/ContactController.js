@@ -42,7 +42,7 @@ module.exports = function (Contact) {
                 {
                     status: 200,
                     header: req.model.contSurname + ', ' + req.model.contForename,
-                    contact: req.model
+                    model: req.model
                 });
         },
         apiShow: function (req, res) {
@@ -65,11 +65,11 @@ module.exports = function (Contact) {
                     {
                         status: 200,
                         header: 'New Contact',
-                        contact: req.body.contact,
+                        model: req.body.model,
                         errors: req.form.errors
                     });
             } else {
-                Contact.insert(req.body.contact, function (err) {
+                Contact.insert(req.body.model, function (err) {
                     if (err) res.statusCodes.status500(req, res, null);
                     else res.redirect('/contacts');
                 });
@@ -77,7 +77,7 @@ module.exports = function (Contact) {
 
         },
         apiCreate: function (req, res) {
-            Contact.insert(req.body.contact, function (err) {
+            Contact.insert(req.body.model, function (err) {
                 if (err) res.statusCodes.apiStatus500(req, res);
                 else res.statusCodes.apiStatus201(req, res);
             });
@@ -87,7 +87,7 @@ module.exports = function (Contact) {
                 {
                     status: 200,
                     header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
-                    contact: req.model
+                    model: req.model
                 })
         },
         update: function (req, res) {
@@ -96,18 +96,18 @@ module.exports = function (Contact) {
                     {
                         status: 200,
                         header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
-                        contact: req.model,
+                        model: req.model,
                         errors: req.form.errors
                     });
             } else {
-                Contact.update(req.params.id, req.body.contact, function (err) {
+                Contact.update(req.params.id, req.body.model, function (err) {
                     if (err) res.statusCodes.status500(req, res, null);
                     else res.redirect('/contacts');
                 });
             }
         },
         apiUpdate: function (req, res) {
-            Contact.update(req.params.id, req.body.contact, function (err) {
+            Contact.update(req.params.id, req.body.model, function (err) {
                 if (err) res.statusCodes.apiStatus500(req,res);
                 else res.statusCodes.apiStatus202(req,res);
             });

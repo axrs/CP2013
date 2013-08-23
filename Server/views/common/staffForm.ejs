@@ -1,0 +1,119 @@
+<div class="span6">
+    <fieldset>
+        <legend>Employment Details</legend>
+
+        <div class="control-group">
+            <label class="control-label" for="servInitiated">Employment Date</label>
+
+            <div class="controls">
+                <input type="text" id="servInitiated" name="model[servInitiated]"
+                       placeholder="2013-01-30"
+                       value="<% if(isEditing){ %><%= model.servInitiated %><% } %>" class="datepicker"
+                        >
+            </div>
+
+            <label class="control-label" for="servTerminated">Termination Date</label>
+
+            <div class="controls">
+                <input type="text" id="servTerminated" name="model[servTerminated]"
+                       placeholder="2013-01-30"
+                       value="<% if(isEditing){ %><%= model.servTerminated %><% } %>" class="datepicker"
+                        >
+            </div>
+        </div>
+
+    </fieldset>
+</div>
+
+<div class="span12">
+    <fieldset>
+        <legend>Public Profile</legend>
+        <textarea
+                class="span12"
+                name="model[provBio]"
+                id="provBio"
+                placeholder="Public Staff Profile"
+                rows="5"
+                ><% if(isEditing){ %><%= model.provBio %><% } %></textarea>
+    </fieldset>
+</div>
+
+
+<div class="span12">
+    <fieldset>
+        <legend>Appointment Availabilities</legend>
+
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>Usage Notes</h4>
+            If all times are the same for any given day, it will be assumed the staff member will not be available on that day.
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Day</th>
+                <th>Shift Start</th>
+                <th>Break Start</th>
+                <th>Break End</th>
+                <th>Shift End</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Monday</td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
+
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+
+
+<div class="clearfix"></div>
