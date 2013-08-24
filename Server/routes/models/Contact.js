@@ -48,7 +48,7 @@ module.exports = function (database) {
                     (typeof data.contPhone === 'undefined') ? '' :  data.contPhone,
                     (typeof data.contEmail === 'undefined') ? '' :  data.contEmail,
                     (typeof data.contAddrStreet === 'undefined') ? '' : data.contAddrStreet,
-                    (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSurburb,
+                    (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSuburb,
                     (typeof data.contAddrCity === 'undefined') ? '' : data.contAddrCity,
                     (typeof data.contAddrZip === 'undefined') ? '' : data.contAddrZip,
                     (typeof data.contAddrState === 'undefined') ? '' : data.contAddrState
@@ -70,7 +70,7 @@ module.exports = function (database) {
                     (typeof data.contPhone === 'undefined') ? '' :  data.contPhone,
                     (typeof data.contEmail === 'undefined') ? '' :  data.contEmail,
                     (typeof data.contAddrStreet === 'undefined') ? '' : data.contAddrStreet,
-                    (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSurburb,
+                    (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSuburb,
                     (typeof data.contAddrCity === 'undefined') ? '' : data.contAddrCity,
                     (typeof data.contAddrZip === 'undefined') ? '' : data.contAddrZip,
                     (typeof data.contAddrState === 'undefined') ? '' : data.contAddrState,

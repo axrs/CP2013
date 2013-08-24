@@ -1,3 +1,7 @@
+<% if (isEditing) {%>
+<input type="hidden" name="model[contId]" value="<% if(isEditing){ %><%= model.contId %><% } %>" id="contId"/>
+<%}%>
+
 <div class="span6">
     <fieldset>
         <legend>General</legend>

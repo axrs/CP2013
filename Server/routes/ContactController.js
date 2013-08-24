@@ -95,8 +95,8 @@ module.exports = function (Contact) {
                 res.render(res.viewPath + 'contacts/form',
                     {
                         status: 200,
-                        header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
-                        model: req.model,
+                        header: 'Editing Contact',
+                        model: req.body.model,
                         errors: req.form.errors
                     });
             } else {

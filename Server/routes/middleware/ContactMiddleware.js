@@ -61,10 +61,10 @@ module.exports = {
             , validate = form.validate;
         ;
         return form(
-            filter('contact.contForename').trim(),
-            validate("contact.contForename", "first name").required("", "No %s specified."),
-            filter('contact.contSurname').trim(),
-            validate("contact.contSurname", "surname").required("", "No %s specified.")
+            filter('model.contForename').trim(),
+            validate("model.contForename", "first name").required("", "No %s specified."),
+            filter('model.contSurname').trim(),
+            validate("model.contSurname", "surname").required("", "No %s specified.")
         );
     },
     /**

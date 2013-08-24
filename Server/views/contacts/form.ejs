@@ -1,5 +1,5 @@
 <%
-var isEditing  = (typeof model != 'undefined' && model != null && typeof model.contId != 'undefined' ) ? true : false;
+var isEditing  = (typeof model != 'undefined' && model.contId != 'undefined' ) ? true : false;
 var buttonLabel = isEditing ? 'Update' : 'Create';
 var formTitle = isEditing ? 'Editing : ' + model.contSurname + ',' + model.contForename : 'New Contact';
 var actionParam = isEditing ? '/contacts/' + model.contId : '/contacts';
