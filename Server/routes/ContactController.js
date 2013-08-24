@@ -60,13 +60,12 @@ module.exports = function (Contact) {
             )
         },
         create: function (req, res) {
-            if (!req.form.isValid) {
+            if (req.validationErrors()) {
                 res.render(res.viewPath + 'contacts/form',
                     {
                         status: 200,
                         header: 'New Contact',
-                        model: req.body.model,
-                        errors: req.form.errors
+                        model: req.body.model
                     });
             } else {
                 Contact.insert(req.body.model, function (err) {
@@ -91,13 +90,12 @@ module.exports = function (Contact) {
                 })
         },
         update: function (req, res) {
-            if (!req.form.isValid) {
+            if (req.validationErrors()) {
                 res.render(res.viewPath + 'contacts/form',
                     {
                         status: 200,
                         header: 'Editing Contact',
-                        model: req.body.model,
-                        errors: req.form.errors
+                        model: req.body.model
                     });
             } else {
                 Contact.update(req.params.id, req.body.model, function (err) {

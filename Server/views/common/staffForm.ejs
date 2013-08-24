@@ -8,7 +8,8 @@
             <div class="controls">
                 <input type="text" id="servInitiated" name="model[servInitiated]"
                        placeholder="2013-01-30"
-                       value="<% if(isEditing){ %><%= model.servInitiated %><% } %>" class="datepicker"
+                       value="<% if(isEditing){ %><%= model.servInitiated %><% }else {  %><%= new Date().toISOString().slice(0,10) %><% } %>"
+                       class="datepicker"
                         >
             </div>
 
@@ -46,7 +47,8 @@
         <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <h4>Usage Notes</h4>
-            If all times are the same for any given day, it will be assumed the staff member will not be available on that day.
+            If all times are the same for any given day, it will be assumed the staff member will not be available on
+            that day.
         </div>
         <table class="table table-striped">
             <thead>
@@ -61,54 +63,80 @@
             <tbody>
             <tr>
                 <td>Monday</td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small" value=""></td>
-
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][1][start]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][1][break]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][1][breakEnd]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][1][end]"
+                                                        class="timepicker input-small" value=""></td>
             </tr>
             <tr>
                 <td>Tuesday</td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][2][start]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][2][break]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][2][breakEnd]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][2][end]"
+                                                        class="timepicker input-small" value=""></td>
             </tr>
             <tr>
                 <td>Wednesday</td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][3][start]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][3][break]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][3][breakEnd]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][3][end]"
+                                                        class="timepicker input-small" value=""></td>
             </tr>
             <tr>
                 <td>Thursday</td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][4][start]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][4][break]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][4][breakEnd]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][4][end]"
+                                                        class="timepicker input-small" value=""></td>
             </tr>
             <tr>
                 <td>Friday</td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][5][start]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][5][break]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][5][breakEnd]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][5][end]"
+                                                        class="timepicker input-small" value=""></td>
             </tr>
             <tr>
                 <td>Saturday</td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][6][start]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][6][break]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][6][breakEnd]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][6][end]"
+                                                        class="timepicker input-small" value=""></td>
             </tr>
             <tr>
                 <td>Sunday</td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
-                <td class="bootstrap-timepicker"><input type="text" class="timepicker input-small"></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][7][start]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][7][break]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][7][breakEnd]"
+                                                        class="timepicker input-small" value=""></td>
+                <td class="bootstrap-timepicker"><input type="text" name="model[servHours][7][end]"
+                                                        class="timepicker input-small" value=""></td>
             </tr>
             </tbody>
         </table>

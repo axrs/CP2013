@@ -4,7 +4,8 @@
 var express = require('express')
     , path = require('path')
     , http = require('http')
-    , config = require('./config.js');
+    , config = require('./config.js')
+    , expressValidator = require('express-validator');
 
 //Initialise the express server application
 var app = exports.app = express();
@@ -16,7 +17,8 @@ app.configure(function () {
     app.set('view engine', 'ejs');
     app.use(express.favicon());
     app.use(express.logger('dev'));
-    app.use(express.bodyParser());
+    app.use(express.bodyParser())
+    app.use(expressValidator());  //required for Express-Validator
     app.use(express.methodOverride()); // Allows use of HTML REST hacks of _method
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));

@@ -23,7 +23,7 @@ module.exports = {
      * @param message 'Typical error messages to display'
      * @returns {Function}
      */
-    attemptContactLoad: function (Model, isAPI) {
+    loadContactFromDatabase: function (Model, isAPI) {
 
         return function (req, res, next) {
 
@@ -50,22 +50,15 @@ module.exports = {
             })
         }
     },
+
     /**
      * Validates POST form fields for required contact details
      * @returns {*}
      */
-    validateContact: function () {
-        var form = require('express-form')
-            , field = form.field
-            , filter = form.filter
-            , validate = form.validate;
-        ;
-        return form(
-            filter('model.contForename').trim(),
-            validate("model.contForename", "first name").required("", "No %s specified."),
-            filter('model.contSurname').trim(),
-            validate("model.contSurname", "surname").required("", "No %s specified.")
-        );
+    validateContactForm: function (req, res, next) {
+        req.assert('model.contForename', 'No first name specified.').notEmpty();
+        req.assert('model.contSurname', 'No last name specified.').notEmpty();
+        next();
     },
     /**
      * Validates a PUT from the API for the required contact details

@@ -31,6 +31,13 @@ module.exports = function (Provider) {
                     header: 'New Staff Member'
                 }
             )
+        },
+        create: function(req,res){
+            console.log(req.errors);
+            res.render(res.viewPath +'staff/form',{
+                status:200,
+                header: 'Editing Staff Member'
+            })
         }
     }
 }

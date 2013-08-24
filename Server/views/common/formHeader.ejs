@@ -1,11 +1,11 @@
 <h1><%- formTitle %></h1>
 
-<% if (typeof errors != 'undefined') {%>
+<% if (req.validationErrors() != null) {%>
 <p class="text-error">
     Error(s) were detected in the form. Please review the follow:
 <ul>
-    <% errors.forEach(function(err){ %>
-    <li><%- err %></li>
+    <% req.validationErrors().forEach(function(err){ %>
+    <li><%- err.msg %></li>
     <%}) %>
 </ul>
 </p>
