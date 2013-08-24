@@ -5,16 +5,16 @@
         <h1>Our Staff</h1>
     </div>
 
-    <% if (typeof allStaff == 'undefined' || allStaff.length == 0) {%>
+    <% if (typeof allModels == 'undefined' || allModels.length == 0) {%>
     <div class="span9">
         <p>There are no staff on record.</p>
     </div>
     <%} else {%>
     <div class="span2">
-        <p class="text-right">Total: <%- allStaff.length %></p>
+        <p class="text-right">Total: <%- allModels.length %></p>
     </div>
 
-        <% allStaff.forEach(function(model){ %>
+        <% allModels.forEach(function(model){ %>
         <% include staffListItem %>
         <%}) %>
 

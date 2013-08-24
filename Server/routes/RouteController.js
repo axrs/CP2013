@@ -37,12 +37,11 @@ module.exports = function (app) {
     //Reference Models and controllers
     var coreController = require('./CoreController.js')()
         , contact = require('./models/Contact.js')(db)
-        , contactController = require('./ContactController.js')(contact)
+        , contactController = require('./Controller.js')(contact,config.views.path + 'contacts','contacts','Contacts')
         , contactMiddleware = require('./middleware/ContactMiddleware.js')
         , staff = require('./models/Staff.js')(db)
-        , staffController = require('./StaffController.js')(staff)
+        , staffController = require('./Controller.js')(staff,config.views.path + 'staff','staff','Staff')
         , staffMiddleware = require('./middleware/StaffMiddleware.js');
-
 
     app.locals.deleteButton = require('./libs/helpers').deleteButton;
 

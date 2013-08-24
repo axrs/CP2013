@@ -10,7 +10,7 @@
  */
 
 
-module.exports = function (Contact) {
+module.exports = function (model, viewPath, redirectRoot, modelType) {
     return{
         /**
          * Manages the route to the contact index
@@ -18,18 +18,18 @@ module.exports = function (Contact) {
          * @param res Response to client request
          */
         index: function (req, res) {
-            Contact.all(function (err, results) {
-                    res.render(res.viewPath + 'contacts/index',
+            model.all(function (err, results) {
+                    res.render(viewPath + '/index',
                         {
                             status: 200,
-                            header: 'All Contacts',
-                            allContacts: results
+                            header: 'All ' + modelType,
+                            allModels: results
                         });
                 }
             );
         },
         apiIndex: function (req, res) {
-            Contact.all(function (err, results) {
+            model.all(function (err, results) {
                     if (err) res.statusCodes.apiStatus500(req, res);
                     res.writeHead(200, { 'Content-Type': 'application/json' });
                     res.write(JSON.stringify(results));
@@ -38,10 +38,10 @@ module.exports = function (Contact) {
             );
         },
         show: function (req, res) {
-            res.render('contacts/profile',
+            res.render(viewPath + '/profile',
                 {
                     status: 200,
-                    header: req.model.contSurname + ', ' + req.model.contForename,
+                    header: modelType,
                     model: req.model
                 });
         },
@@ -52,62 +52,62 @@ module.exports = function (Contact) {
         },
 
         new: function (req, res) {
-            res.render(res.viewPath + 'contacts/form',
+            res.render(viewPath + '/form',
                 {
                     status: 200,
-                    header: 'New Contact'
+                    header: 'New' + modelType
                 }
             )
         },
         create: function (req, res) {
             if (req.validationErrors()) {
-                res.render(res.viewPath + 'contacts/form',
+                res.render(viewPath + '/form',
                     {
                         status: 200,
-                        header: 'New Contact',
+                        header: 'New' + modelType,
                         model: req.body.model
                     });
             } else {
-                Contact.insert(req.body.model, function (err) {
+                model.insert(req.body.model, function (err) {
                     if (err) res.statusCodes.status500(req, res, null);
-                    else res.redirect('/contacts');
+                    else res.redirect('/' + redirectRoot);
                 });
             }
 
         },
         apiCreate: function (req, res) {
-            Contact.insert(req.body.model, function (err) {
+            model.insert(req.body.model, function (err) {
                 if (err) res.statusCodes.apiStatus500(req, res);
                 else res.statusCodes.apiStatus201(req, res);
             });
         },
         edit: function (req, res) {
-            res.render(res.viewPath + 'contacts/form',
+            res.render(viewPath + '/form',
                 {
                     status: 200,
-                    header: 'Editing: ' + req.model.contSurname + ', ' + req.model.contForename,
+                    header: 'Editing' + modelType,
                     model: req.model
                 })
         },
         update: function (req, res) {
             if (req.validationErrors()) {
-                res.render(res.viewPath + 'contacts/form',
+                res.render(viewPath + '/form',
                     {
                         status: 200,
-                        header: 'Editing Contact',
+                        header: 'Editing' + modelType,
                         model: req.body.model
                     });
             } else {
-                Contact.update(req.params.id, req.body.model, function (err) {
+                model.update(req.params.id, req.body.model, function (err) {
                     if (err) res.statusCodes.status500(req, res, null);
-                    else res.redirect('/contacts');
+                    else res.redirect('/' + redirectRoot);
                 });
             }
         },
         apiUpdate: function (req, res) {
-            Contact.update(req.params.id, req.body.model, function (err) {
-                if (err) res.statusCodes.apiStatus500(req,res);
-                else res.statusCodes.apiStatus202(req,res);
+            model.update(req.params.id, req.body.model, function (err) {
+                if (err) res.statusCodes.apiStatus500(req, res);
+                else res.statusCodes.apiStatus202(req, res);
             });
         }
     }
