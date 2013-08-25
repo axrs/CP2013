@@ -10,9 +10,9 @@ weekdays[6] = "Sunday";
 
 %>
 <tr>
-    <td><%= weekdays[hours.servHrsDay] %></td>
-    <td><%= hours.servHrsStart %></td>
-    <td><%= hours.servHrsBreakStart %></td>
-    <td><%= hours.servHrsBreakEnd %></td>
-    <td><%= hours.servHrsEnd %></td>
+    <td><%= weekdays[day] %></td>
+    <td><%= model.servHrs[day].servHrsStart %></td>
+    <td><%= model.servHrs[day].servHrsBreakStart %></td>
+    <td><%= model.servHrs[day].servHrsBreakEnd %></td>
+    <td><%= model.servHrs[day].servHrsEnd %></td>
 </tr>
