@@ -149,11 +149,21 @@ public class ContactController {
 
     public void createContact(Contact contact) {
         RESTRunner runner = new RESTRunner();
-        runner.addListner(new CreateContactResultListener());
+        runner.addListner(new ModifyContactResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/contacts");
         runner.setMethod("PUT");
         runner.setMessage(new Gson().toJson(contact, Contact.class));
         Thread runnerThread = new Thread(runner, "Creating Contact");
+        runnerThread.start();
+    }
+
+    public void updateContact(Contact contact) {
+        RESTRunner runner = new RESTRunner();
+        runner.addListner(new ModifyContactResultListener());
+        runner.setRequest(Config.getInstance().getServer() + "/api/contacts/" + String.valueOf(contact.getContId()));
+        runner.setMethod("PUT");
+        runner.setMessage(new Gson().toJson(contact, Contact.class));
+        Thread runnerThread = new Thread(runner, "Updating Contact");
         runnerThread.start();
     }
 
@@ -296,23 +306,24 @@ public class ContactController {
         }
     }
 
-    private class CreateContactResultListener implements RESTRunner.ResultsListener {
+    private class ModifyContactResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
             //Print the outputs for now
-            System.out.println("Create single contact : " + result.getStatus());
+            System.out.println("Modify single contact : " + result.getStatus());
             System.out.println(result.getResponse());
 
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
 
-            if (result.getStatus() != 201) return;
+            if (result.getStatus() != 201 || result.getStatus() != 202) return;
 
+            //Update Contacts with new information
             getContactsFromServer();
         }
     }
 
-        /**
+    /**
      * Contacts Updated Event
      */
     public class ContactsUpdated extends EventObject {
