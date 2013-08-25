@@ -27,7 +27,6 @@ module.exports = {
             status: 404,
             header: 'Resource not Found'
         });
-        next();
     },
     /**
      * Internal Server Error
@@ -42,7 +41,6 @@ module.exports = {
             status: 500,
             header: 'Database Error'
         });
-        next();
     },
     /**
      * OK

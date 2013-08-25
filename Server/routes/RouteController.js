@@ -36,6 +36,7 @@ module.exports = function (app) {
 
     //Reference Models and controllers
     var coreController = require('./CoreController.js')()
+        , modelMiddleware = require('./middleware/ModelMiddleware.js')
         , contact = require('./models/Contact.js')(db)
         , contactController = require('./Controller.js')(contact,config.views.path + 'contacts','contacts','Contacts')
         , contactMiddleware = require('./middleware/ContactMiddleware.js')
@@ -51,20 +52,21 @@ module.exports = function (app) {
     //Contact routing
     app.get('/contacts', exposeLocals, contactController.index);
     app.get('/contacts/new', exposeLocals, contactController.new);
-    app.get('/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.loadContactFromDatabase(contact), contactController.show);
+    app.get('/contacts/:id([0-9]+)', exposeLocals, modelMiddleware.loadFromDatabase(contact), contactController.show);
     app.post('/contacts', exposeLocals, contactMiddleware.validateContactForm, contactController.create);
-    app.get('/contacts/:id([0-9]+)/edit', exposeLocals, contactMiddleware.loadContactFromDatabase(contact), contactController.edit);
+    app.get('/contacts/:id([0-9]+)/edit', exposeLocals, modelMiddleware.loadFromDatabase(contact), contactController.edit);
     app.put('/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateContactForm, contactController.update);
 
     //Contact API routing
     app.get('/api/contacts', exposeLocals, contactController.apiIndex);
-    app.get('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.loadContactFromDatabase(contact, true), contactController.apiShow);
+    app.get('/api/contacts/:id([0-9]+)', exposeLocals, modelMiddleware.loadFromDatabase(contact, true), contactController.apiShow);
     app.put('/api/contacts', exposeLocals, contactMiddleware.validateAPIContact(contact), contactController.apiCreate);
     app.put('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateExistingAPIContact(contact), contactController.apiUpdate);
 
     //Staff routing
     app.get('/staff', exposeLocals, staffController.index);
     app.get('/staff/new', exposeLocals, staffController.new);
+    app.get('/staff/:id([0-9]+)', exposeLocals, modelMiddleware.loadFromDatabase(staff), staffController.show);
     app.post('/staff', exposeLocals, contactMiddleware.validateContactForm, staffMiddleware.validateStaffForm, staffController.create);
 
     //The 404 Route (ALWAYS Keep this as the last route)

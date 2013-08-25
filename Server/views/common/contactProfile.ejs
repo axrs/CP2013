@@ -1,0 +1,24 @@
+<dl class="dl-horizontal">
+
+    <% if(typeof model.contCompany != 'undefined' && model.contCompany){ %>
+    <dt>Company</dt>
+    <dd><%= model.contCompany %></dd>
+    <% }%>
+
+    <% if(typeof model.contPhone != 'undefined' && model.contPhone){ %>
+    <dt>Phone</dt>
+    <dd><%= model.contPhone %></dd>
+    <% }%>
+
+    <% if(typeof model.contEmail != 'undefined'  && model.contEmail){ %>
+    <dt>Email</dt>
+    <dd><a href="mailto:<%= model.contEmail %>"><%= model.contEmail %></a></dd>
+    <% }%>
+
+    <% if(typeof model.contAddrStreet != 'undefined'  && model.contAddrStreet){ %>
+    <dt>Address</dt>
+    <dd><%= model.contAddrStreet %>, <%= model.contAddrSuburb %><br>
+        <%= model.contAddrCity %>, <%= model.contAddrState %> <%= model.contAddrZip %><br>
+    </dd>
+    <% }%>
+</dl>

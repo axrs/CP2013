@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS service_hours(
     servId INTEGER,
     servHrsDay INTEGER NOT NULL,
     servHrsStart TIME NOT NULL,
+    servHrsBreakStart TIME NOT NULL,
+    servHrsBreakEnd TIME NOT NULL,
     servHrsEnd TIME NOT NULL,
     FOREIGN KEY(servId) REFERENCES service_provider(servId)
 );
