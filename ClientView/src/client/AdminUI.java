@@ -10,10 +10,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class AdminUI extends Application {
+    private final ObservableList<Contact> data = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -212,8 +215,8 @@ public class AdminUI extends Application {
                 editServiceProviderPane.setPadding(new Insets(5, 5, 5, 5));
 
 
-                ObservableList<String> serviceProviders = FXCollections.observableArrayList("Jane", "Jessica", "Joanne");
-                final ComboBox name = new ComboBox(serviceProviders);
+                final ComboBox name = new ComboBox();
+
 
                 final TextField fornameInput = new TextField();
                 fornameInput.setMaxWidth(100);
@@ -334,6 +337,7 @@ public class AdminUI extends Application {
                         String selected = name.getValue().toString();
                         System.out.println(selected);
                         //TODO implement retrieval of data about selected and place data into fields
+
                     }
                 });
 

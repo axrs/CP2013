@@ -5,13 +5,14 @@ import Models.Contact;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -58,7 +59,7 @@ public class ContactUI extends Application {
      * @param primaryStage
      * @throws Exception
      */
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
         primaryStage.setTitle("CP2013 Appointment Scheduler - Contacts");
         BorderPane contactPane = new BorderPane();
 
@@ -88,6 +89,32 @@ public class ContactUI extends Application {
         //Force the ContactController to get the latest and greatest contacts
         c.getContactsFromServer();
 
+        table.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+            @Override
+            public void handle(javafx.scene.input.MouseEvent mouseEvent) {
+
+                if (mouseEvent.getClickCount() > 1) {
+
+                    try {
+                        TableView view = (TableView) mouseEvent.getSource();
+
+                        Contact c = (Contact) view.getSelectionModel().getSelectedItem();
+                        System.out.println(c.getContFirstName());
+                        ContactFormUI contactFormUI = new ContactFormUI(c);
+                        try {
+                            contactFormUI.start(new Stage());
+                        } catch (Exception e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
+                    } catch (NullPointerException ex) {
+
+                    }
+
+
+                }
+            }
+        });
+
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 10, 10, 10));
@@ -97,4 +124,5 @@ public class ContactUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }
