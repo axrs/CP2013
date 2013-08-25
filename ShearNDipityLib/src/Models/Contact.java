@@ -10,6 +10,14 @@ package Models;
 public class Contact {
 
     /**
+     * Contact Default Constructor
+     */
+    public Contact(String contForename, String contSurname) {
+        this.contForename = contForename;
+        this.contSurname = contSurname;
+    }
+
+    /**
      * Contact First Name
      */
     private String contForename;

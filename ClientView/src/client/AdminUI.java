@@ -1,5 +1,6 @@
 package client;
 
+import Models.Contact;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,28 +59,40 @@ public class AdminUI extends Application {
                 newServiceProviderPane.setPadding(new Insets(5, 5, 5, 5));
                 newServiceProviderPane.setMinWidth(400);
 
-                TextField fornameInput = new TextField();
+                final TextField fornameInput = new TextField();
                 fornameInput.setMaxWidth(100);
 
-                TextField surnameInput = new TextField();
+                final TextField surnameInput = new TextField();
                 surnameInput.setMaxWidth(100);
 
-                TextField phoneInput = new TextField();
+                final TextField phoneInput = new TextField();
                 phoneInput.setMaxWidth(100);
 
-                TextField emailInput = new TextField();
+                final TextField emailInput = new TextField();
                 emailInput.setMaxWidth(100);
 
-                TextField addressInput = new TextField();
-                addressInput.setMaxSize(100, 30);
+                final TextField addrStreetInput = new TextField();
+                addrStreetInput.setMaxSize(100, 30);
 
-                TextField dateStartedInput = new TextField();
+                final TextField addrSuburbInput = new TextField();
+                addrSuburbInput.setMaxWidth(100);
+
+                final TextField addrCityInput = new TextField();
+                addrCityInput.setMaxWidth(100);
+
+                final TextField addrZipInput = new TextField();
+                addrZipInput.setMaxWidth(100);
+
+                final TextField addrStateInput = new TextField();
+                addrStateInput.setMaxWidth(100);
+
+                final TextField dateStartedInput = new TextField();
                 dateStartedInput.setMaxWidth(100);
 
-                TextField dateTerminatedInput = new TextField();
+                final TextField dateTerminatedInput = new TextField();
                 dateTerminatedInput.setMaxWidth(100);
 
-                TextArea bio = new TextArea();
+                final TextArea bio = new TextArea();
                 bio.setMaxSize(250, 100);
 
                 Label hours = new Label("Available Hours");
@@ -97,8 +110,20 @@ public class AdminUI extends Application {
                 newServiceProviderPane.add(new Label("Email:"), 0, 3);
                 newServiceProviderPane.add(emailInput, 1, 3);
 
-                newServiceProviderPane.add(new Label("Address:"), 0, 4);
-                newServiceProviderPane.add(addressInput, 1, 4);
+                newServiceProviderPane.add(new Label("Street:"), 0, 4);
+                newServiceProviderPane.add(addrStreetInput, 1, 4);
+
+                newServiceProviderPane.add(new Label("Suburb:"), 0, 5);
+                newServiceProviderPane.add(addrSuburbInput, 1, 5);
+
+                newServiceProviderPane.add(new Label("City:"), 0, 6);
+                newServiceProviderPane.add(addrCityInput, 1, 6);
+
+                newServiceProviderPane.add(new Label("Post Code:"), 0, 7);
+                newServiceProviderPane.add(addrZipInput, 1, 7);
+
+                newServiceProviderPane.add(new Label("State:"), 0, 8);
+                newServiceProviderPane.add(addrStateInput, 1, 8);
 
                 newServiceProviderPane.add(new Label("Date Employed: "), 2, 0);
                 newServiceProviderPane.add(dateStartedInput, 3, 0);
@@ -108,7 +133,7 @@ public class AdminUI extends Application {
                 newServiceProviderPane.add(new Label("Biography: "), 2, 2);
                 newServiceProviderPane.add(bio, 3, 2, 1, 3);
 
-                newServiceProviderPane.add(hours, 0, 5, 3, 1);
+                newServiceProviderPane.add(hours, 0, 9, 3, 1);
 
                 GridPane daysPane = new GridPane();
                 daysPane.setHgap(5);
@@ -131,8 +156,8 @@ public class AdminUI extends Application {
                 daysPane.add(sunday, 7, 0);
 
                 daysPane.add(new Label("Start Time"), 0, 1);
-                daysPane.add(new Label("End Time"), 0, 2);
-                daysPane.add(new Label("Start Time"), 0, 3);
+                daysPane.add(new Label("Break Start Time"), 0, 2);
+                daysPane.add(new Label("Break End Time"), 0, 3);
                 daysPane.add(new Label("End Time"), 0, 4);
 
                 final ArrayList<TextField> availableHours = new ArrayList<TextField>();
@@ -146,7 +171,7 @@ public class AdminUI extends Application {
                 }
                 Button submit = new Button("Submit");
                 daysPane.add(submit, 0, 7);
-                newServiceProviderPane.add(daysPane, 0, 6, 4, 1);
+                newServiceProviderPane.add(daysPane, 0, 10, 4, 1);
 
                 mainPane.setCenter(newServiceProviderPane);
 
@@ -154,6 +179,22 @@ public class AdminUI extends Application {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         //TODO implement collection of data to send to controller
+                        System.out.println(fornameInput.getText());
+                        if (!fornameInput.getText().equals("") && !surnameInput.getText().equals("")){
+                            Contact contact = new Contact(fornameInput.getText(), surnameInput.getText());
+                            contact.setContEmail(emailInput.getText());
+                            contact.setContPhone(phoneInput.getText());
+                            contact.setContAddrStreet(addrStreetInput.getText());
+                            contact.setContAddrSubutb(addrSuburbInput.getText());
+                            contact.setContAddrZip(addrZipInput.getText());
+                            contact.setContAddrCity(addrCityInput.getText());
+                            contact.setContAddrState(addrStateInput.getText());
+
+                            System.out.println(contact);
+
+
+                        }
+
                     }
                 });
             }
@@ -184,8 +225,20 @@ public class AdminUI extends Application {
                 TextField emailInput = new TextField();
                 emailInput.setMaxWidth(100);
 
-                TextField addressInput = new TextField();
-                addressInput.setMaxWidth(100);
+                TextField addrStreetInput = new TextField();
+                addrStreetInput.setMaxWidth(100);
+
+                TextField addrSuburbInput = new TextField();
+                addrSuburbInput.setMaxWidth(100);
+
+                TextField addrCityInput = new TextField();
+                addrCityInput.setMaxWidth(100);
+
+                TextField addrZipInput = new TextField();
+                addrZipInput.setMaxWidth(100);
+
+                TextField addrStateInput = new TextField();
+                addrStateInput.setMaxWidth(100);
 
                 TextField dateStartedInput = new TextField();
                 dateStartedInput.setMaxWidth(100);
@@ -211,8 +264,20 @@ public class AdminUI extends Application {
                 editServiceProviderPane.add(new Label("Email:"), 0, 4);
                 editServiceProviderPane.add(emailInput, 1, 4);
 
-                editServiceProviderPane.add(new Label("Address:"), 0, 5);
-                editServiceProviderPane.add(addressInput, 1, 5);
+                editServiceProviderPane.add(new Label("Street:"), 0, 5);
+                editServiceProviderPane.add(addrStreetInput, 1, 5);
+
+                editServiceProviderPane.add(new Label("Suburb:"), 0, 6);
+                editServiceProviderPane.add(addrSuburbInput, 1, 6);
+
+                editServiceProviderPane.add(new Label("City:"), 0, 7);
+                editServiceProviderPane.add(addrCityInput, 1, 7);
+
+                editServiceProviderPane.add(new Label("Post Code:"), 0, 8);
+                editServiceProviderPane.add(addrZipInput, 1, 8);
+
+                editServiceProviderPane.add(new Label("State:"), 0, 9);
+                editServiceProviderPane.add(addrStateInput, 1, 9);
 
                 editServiceProviderPane.add(new Label("Date Employed: "), 2, 0);
                 editServiceProviderPane.add(dateStartedInput, 3, 0);
@@ -243,8 +308,8 @@ public class AdminUI extends Application {
                 daysPane.add(sunday, 7, 0);
 
                 daysPane.add(new Label("Start Time"), 0, 1);
-                daysPane.add(new Label("End Time"), 0, 2);
-                daysPane.add(new Label("Start Time"), 0, 3);
+                daysPane.add(new Label("Break Start Time"), 0, 2);
+                daysPane.add(new Label("Break End Time"), 0, 3);
                 daysPane.add(new Label("End Time"), 0, 4);
 
                 final ArrayList<TextField> availableHours = new ArrayList<TextField>();
@@ -259,7 +324,7 @@ public class AdminUI extends Application {
 
                 Button submit = new Button("Submit");
                 daysPane.add(submit, 0, 7);
-                editServiceProviderPane.add(daysPane, 0, 6, 4, 1);
+                editServiceProviderPane.add(daysPane, 0, 10, 4, 1);
 
                 name.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -282,4 +347,5 @@ public class AdminUI extends Application {
             }
         });
     }
+
 }

@@ -148,7 +148,7 @@ public class UserUI extends Application {
                 submit.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        //TODO implement sending of data to
+                        //TODO implement sending of data to DB
                     }
                 });
             }
