@@ -44,7 +44,7 @@ public class Contact {
     /**
      * Address Suburb
      */
-    private String contAddrSubutb;
+    private String contAddrSuburb;
     /**
      * Address City
      */
@@ -199,17 +199,17 @@ public class Contact {
      *
      * @return contacts address suburb
      */
-    public String getContAddrSubutb() {
-        return contAddrSubutb;
+    public String getContAddrSuburb() {
+        return contAddrSuburb;
     }
 
     /**
      * Sets the contacts address suburb
      *
-     * @param contAddrSubutb address suburb
+     * @param contAddrSuburb address suburb
      */
-    public void setContAddrSubutb(String contAddrSubutb) {
-        this.contAddrSubutb = contAddrSubutb;
+    public void setContAddrSuburb(String contAddrSuburb) {
+        this.contAddrSuburb = contAddrSuburb;
     }
 
     /**

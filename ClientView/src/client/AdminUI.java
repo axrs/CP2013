@@ -10,12 +10,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.util.ArrayList;
 
@@ -189,7 +187,7 @@ public class AdminUI extends Application {
                             contact.setContEmail(emailInput.getText());
                             contact.setContPhone(phoneInput.getText());
                             contact.setContAddrStreet(addrStreetInput.getText());
-                            contact.setContAddrSubutb(addrSuburbInput.getText());
+                            contact.setContAddrSuburb(addrSuburbInput.getText());
                             contact.setContAddrZip(addrZipInput.getText());
                             contact.setContAddrCity(addrCityInput.getText());
                             contact.setContAddrState(addrStateInput.getText());
@@ -350,7 +348,7 @@ public class AdminUI extends Application {
                             contact.setContEmail(emailInput.getText());
                             contact.setContPhone(phoneInput.getText());
                             contact.setContAddrStreet(addrStreetInput.getText());
-                            contact.setContAddrSubutb(addrSuburbInput.getText());
+                            contact.setContAddrSuburb(addrSuburbInput.getText());
                             contact.setContAddrZip(addrZipInput.getText());
                             contact.setContAddrCity(addrCityInput.getText());
                             contact.setContAddrState(addrStateInput.getText());

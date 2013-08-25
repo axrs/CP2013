@@ -3,19 +3,11 @@ package client;
 import Controllers.ContactController;
 import Models.Contact;
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
@@ -53,7 +45,7 @@ public class ContactFormUI extends Application {
         final TextField addrStreetInput = new TextField(contact.getContAddrStreet());
         addrStreetInput.setMaxWidth(100);
 
-        final TextField addrSuburbInput = new TextField(contact.getContAddrSubutb());
+        final TextField addrSuburbInput = new TextField(contact.getContAddrSuburb());
         addrSuburbInput.setMaxWidth(100);
 
         final TextField addrCityInput = new TextField(contact.getContAddrCity());
@@ -106,14 +98,14 @@ public class ContactFormUI extends Application {
                     contact.setContEmail(emailInput.getText());
                     contact.setContPhone(phoneInput.getText());
                     contact.setContAddrStreet(addrStreetInput.getText());
-                    contact.setContAddrSubutb(addrSuburbInput.getText());
+                    contact.setContAddrSuburb(addrSuburbInput.getText());
                     contact.setContAddrZip(addrZipInput.getText());
                     contact.setContAddrCity(addrCityInput.getText());
                     contact.setContAddrState(addrStateInput.getText());
 
                     if (contact.getContId() != 0) {
                         ContactController.getInstance().updateContact(contact);
-                        System.out.println(contact.getContAddrStreet());
+                        System.out.println(contact.getContAddrSuburb());
                         ContactController.getInstance().getContactFromServer(contact.getContId());
 
                     } else {
