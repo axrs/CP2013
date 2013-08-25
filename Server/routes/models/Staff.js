@@ -26,7 +26,7 @@ module.exports = function (database) {
                                     result.servHrs = times;
                                     allStaff = allStaff.concat(result);
                                     if (allStaff.length == total) {
-                                        console.log('Sending all staff objects');
+                                        console.log(allStaff);
                                         callback(false, allStaff);
                                     }
                                 });
@@ -34,48 +34,120 @@ module.exports = function (database) {
                         },
                         function (err, results) {
                             total = results;
-                            console.log("Set Total");
-                            if (total == 0){
-                                callback(true,allStaff);
+                            if (total == 0) {
+                                callback(true, allStaff);
                             }
                         }
                     );
                 });
             }
+
             getAllStaff();
         },
         findById: function (id, callback) {
-            //Get service provider with id
-            //Get service provider times
-            //Merge results and return
-            database.serialize(function () {
-                database.get('SELECT * FROM service_provider ' +
-                    'LEFT JOIN contact ' +
-                    'WHERE service_provider.contId = contact.contId AND service_provider.servId = ?;', id, function (error, result) {
-                    if (!error) {
-                        database.all('SELECT servHrsDay, servHrsStart, servHrsBreakStart,servHrsBreakEnd,servHrsEnd' +
-                            ' FROM service_hours WHERE servId = ? ORDER BY servHrsDay ASC;',
-                            result.servId,
-                            function (err, times) {
-                                if (!err) {
+
+
+            function getStaff() {
+                database.serialize(function () {
+
+                    database.each('SELECT * FROM service_provider LEFT JOIN contact WHERE service_provider.contId = contact.contId AND service_provider.servId = ?;', id, function (err, result) {
+                            database.serialize(function () {
+                                database.all('SELECT servHrsDay, servHrsStart, servHrsBreakStart,servHrsBreakEnd,servHrsEnd FROM service_hours WHERE servId=?;', result.servId, function (err, times) {
                                     result.servHrs = times;
                                     callback(false, result);
-                                } else {
-                                    callback(true, null);
-                                }
-                            });
-                    } else {
-                        callback(true, null);
-                    }
+                                });
+                            })
+                        },
+                        function (err, results) {
+                            if (err) {
+                                callback(true, null);
+                            }
+                            if (!results) {
+                                callback(false, null);
+                            }
+                        }
+                    );
                 });
+            }
 
-            });
-        },
-        matchName: function (name, surname, callback) {
-            database.get('SELECT * FROM service_provider LEFT JOIN contact WHERE service_provider.contId = contact.contId AND contForename = ? AND contSurname = ?;', [name, surname], callback);
+            getStaff();
+
         },
         count: function (callback) {
             database.get('SELECT count(*) FROM service_provider', null, callback);
+        },
+        update: function (id, data, callback) {
+
+            function updateBaseContactTable(contactId, nextMethod) {
+                console.log('Updating Contact Table.');
+                var contactModel = require('./Contact.js')(database);
+                contactModel.update(contactId, data, nextMethod);
+            }
+
+            function updateServiceProviderTable(nextMethod) {
+                console.log('Updating Provider Table.');
+
+                var statement = database.prepare(
+                    'UPDATE service_provider SET servBio = ?, servPortrait = ?, servInitiated = ?, servTerminated = ? WHERE servId = ?;'
+                );
+                statement.run(
+                    [
+                        data.servBio,
+                        data.servPortrait,
+                        data.servInitiated,
+                        data.servTerminated,
+                        (typeof data.servIsActive === 'undefined') ? 1 : data.servIsActive,
+                        id
+                    ], nextMethod);
+            }
+
+
+            function deleteProviderWorkHours(nextMethod) {
+                console.log('Deleting Provider Hours Table.');
+                database.run('DELETE FROM service_hours WHERE servId = ?', id, nextMethod)
+            }
+
+            function insertProviderWorkHours(nextMethod) {
+                console.log('Entering new provider hours.');
+                var stmt = database.prepare(
+                    'INSERT INTO service_hours ' +
+                        '(servId, servHrsDay, servHrsStart, servHrsBreakStart, servHrsBreakEnd, servHrsEnd) ' +
+                        ' VALUES (?,?,?,?,?,?);'
+                );
+                console.log(data.servHrs);
+                for (var i = 0; i < data.servHrs.length; i++) {
+                    stmt.run(
+                        [
+                            id,
+                            i,
+                            data.servHrs[i].servHrsStart,
+                            data.servHrs[i].servHrsBreakStart,
+                            data.servHrs[i].servHrsBreakEnd,
+                            data.servHrs[i].servHrsEnd,
+                        ]);
+                }
+                stmt.finalize(nextMethod);
+            }
+
+            function updateServiceProvider() {
+                database.serialize(function () {
+                    {
+                        updateBaseContactTable(data.contId, function (contactError, result) {
+                            updateServiceProviderTable(function (providerError, result) {
+                                deleteProviderWorkHours(function (deleteError) {
+                                    insertProviderWorkHours(function (insertError) {
+                                        callback(false, null);
+
+                                    });
+                                });
+                            });
+                        });
+                    }
+                })
+            }
+
+            updateServiceProvider();
+
         },
         insert: function (data, callback) {
             var contactModel = require('./Contact.js')(database);
@@ -111,15 +183,15 @@ module.exports = function (database) {
                                                     );
 
                                                     console.log(data);
-                                                    for (var i = 0; i < data.servHours.length; i++) {
+                                                    for (var i = 0; i < data.servHrs.length; i++) {
                                                         stmt.run(
                                                             [
                                                                 serviceResults.servId,
                                                                 i,
-                                                                data.servHours[i].servHrsStart,
-                                                                data.servHours[i].servHrsBreakStart,
-                                                                data.servHours[i].servHrsBreakEnd,
-                                                                data.servHours[i].servHrsEnd,
+                                                                data.servHrs[i].servHrsStart,
+                                                                data.servHrs[i].servHrsBreakStart,
+                                                                data.servHrs[i].servHrsBreakEnd,
+                                                                data.servHrs[i].servHrsEnd,
                                                             ]);
                                                     }
                                                     stmt.finalize();

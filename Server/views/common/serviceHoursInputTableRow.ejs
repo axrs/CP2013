@@ -1,0 +1,42 @@
+<%
+var weekdays = new Array(7);
+weekdays[0] = "Monday";
+weekdays[1] = "Tuesday";
+weekdays[2] = "Wednesday";
+weekdays[3] = "Thursday";
+weekdays[4] = "Friday";
+weekdays[5] = "Saturday";
+weekdays[6] = "Sunday";
+
+%>
+<tr>
+    <td><%= weekdays[day] %></td>
+    <td class="bootstrap-timepicker">
+        <input type="text"
+               name="model[servHrs][<%= day %>][servHrsStart]"
+               class="timepicker input-small"
+               value="<% if(isEditing){ %><%= model.servHrs[day].servHrsStart %><% } %>"
+                >
+    </td>
+    <td class="bootstrap-timepicker">
+        <input type="text"
+               name="model[servHrs][<%= day %>][servHrsBreakStart]"
+               class="timepicker input-small"
+               value="<% if(isEditing){ %><%= model.servHrs[day].servHrsBreakStart %><% } %>"
+                >
+    </td>
+    <td class="bootstrap-timepicker">
+        <input type="text"
+               name="model[servHrs][<%= day %>][servHrsBreakEnd]"
+               class="timepicker input-small"
+               value="<% if(isEditing){ %><%= model.servHrs[day].servHrsBreakEnd %><% } %>"
+                >
+    </td>
+    <td class="bootstrap-timepicker">
+        <input type="text"
+               name="model[servHrs][<%= day %>][servHrsEnd]"
+               class="timepicker input-small"
+               value="<% if(isEditing){ %><%= model.servHrs[day].servHrsEnd %><% } %>"
+                >
+    </td>
+</tr>

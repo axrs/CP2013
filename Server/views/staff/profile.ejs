@@ -23,9 +23,11 @@
             </tr>
             </thead>
             <tbody>
-            <% model.servHrs.forEach(function(hours){ %>
+            <%
+            var i =0;
+            for (var day = 0; day < 7; day++){ %>
             <% include serviceHoursTableRow %>
-            <%}) %>
+            <%} %>
         </table>
     </div>
     <!--/span-->
