@@ -10,6 +10,23 @@
         </h1>
 
         <% include ../common/contactProfile %>
+
+        <h2>Appointment Availabilities</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Day</th>
+                <th>Shift Start</th>
+                <th>Break Start</th>
+                <th>Break End</th>
+                <th>Shift End</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% model.servHrs.forEach(function(hours){ %>
+            <% include serviceHoursTableRow %>
+            <%}) %>
+        </table>
     </div>
     <!--/span-->
 </div>

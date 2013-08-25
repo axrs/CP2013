@@ -1,0 +1,18 @@
+<%
+var weekdays = new Array(7);
+weekdays[0] = "Monday";
+weekdays[1] = "Tuesday";
+weekdays[2] = "Wednesday";
+weekdays[3] = "Thursday";
+weekdays[4] = "Friday";
+weekdays[5] = "Saturday";
+weekdays[6] = "Sunday";
+
+%>
+<tr>
+    <td><%= weekdays[hours.servHrsDay] %></td>
+    <td><%= hours.servHrsStart %></td>
+    <td><%= hours.servHrsBreakStart %></td>
+    <td><%= hours.servHrsBreakEnd %></td>
+    <td><%= hours.servHrsEnd %></td>
+</tr>

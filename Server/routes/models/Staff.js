@@ -35,12 +35,13 @@ module.exports = function (database) {
                         function (err, results) {
                             total = results;
                             console.log("Set Total");
+                            if (total == 0){
+                                callback(true,allStaff);
+                            }
                         }
                     );
                 });
             }
-
-
             getAllStaff();
         },
         findById: function (id, callback) {
@@ -114,11 +115,11 @@ module.exports = function (database) {
                                                         stmt.run(
                                                             [
                                                                 serviceResults.servId,
-                                                                i + 1,
-                                                                data.servHours[i].start,
-                                                                data.servHours[i].break,
-                                                                data.servHours[i].breakEnd,
-                                                                data.servHours[i].end,
+                                                                i,
+                                                                data.servHours[i].servHrsStart,
+                                                                data.servHours[i].servHrsBreakStart,
+                                                                data.servHours[i].servHrsBreakEnd,
+                                                                data.servHours[i].servHrsEnd,
                                                             ]);
                                                     }
                                                     stmt.finalize();

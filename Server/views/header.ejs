@@ -1,3 +1,17 @@
+<%
+
+if(!String.prototype.startsWith){
+String.prototype.startsWith = function (str) {
+return !this.indexOf(str);
+}
+}
+var currentItem = req.url.toLowerCase();
+
+var weekday=new Array("Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday");
+
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,16 +40,6 @@
     <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="/ico/favicon.png">
 </head>
-
-<%
-
-if(!String.prototype.startsWith){
-String.prototype.startsWith = function (str) {
-return !this.indexOf(str);
-}
-}
-var currentItem = req.url.toLowerCase();
-%>
 
 
 <body>
