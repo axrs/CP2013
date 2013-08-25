@@ -33,7 +33,8 @@ module.exports = {
 
         return function (req, res, next) {
 
-            var contact = req.body.model;
+            var contact = req.body;
+	    req.body.model = contact;
 
             if (contact && contact.contForename && contact.contSurname) {
                 Model.matchName(contact.contForename, contact.contSurname, function (err, record) {
@@ -52,8 +53,9 @@ module.exports = {
      */
     validateExistingAPIContact: function (Model) {
         return function (req, res, next) {
-            var contact = req.body.model;
+            var contact = req.body;
 
+	    req.body.model = contact;
             if (contact && contact.contId && contact.contForename && contact.contSurname) {
                 Model.findById(req.params.id, function (err, record) {
                     if (err) res.statusCodes.apiStatus500(req, res);
