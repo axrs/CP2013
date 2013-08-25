@@ -1,5 +1,6 @@
 package client;
 
+import Controllers.ContactController;
 import Models.Contact;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -190,9 +191,10 @@ public class AdminUI extends Application {
                             contact.setContAddrCity(addrCityInput.getText());
                             contact.setContAddrState(addrStateInput.getText());
 
-                            System.out.println(contact);
+                            System.out.println(contact.toString());
 
-
+                            ContactController c = ContactController.getInstance();
+                            c.createContact(contact);
                         }
 
                     }
@@ -213,37 +215,37 @@ public class AdminUI extends Application {
                 ObservableList<String> serviceProviders = FXCollections.observableArrayList("Jane", "Jessica", "Joanne");
                 final ComboBox name = new ComboBox(serviceProviders);
 
-                TextField fornameInput = new TextField();
+                final TextField fornameInput = new TextField();
                 fornameInput.setMaxWidth(100);
 
-                TextField surnameInput = new TextField();
+                final TextField surnameInput = new TextField();
                 surnameInput.setMaxWidth(100);
 
-                TextField phoneInput = new TextField();
+                final TextField phoneInput = new TextField();
                 phoneInput.setMaxWidth(100);
 
-                TextField emailInput = new TextField();
+                final TextField emailInput = new TextField();
                 emailInput.setMaxWidth(100);
 
-                TextField addrStreetInput = new TextField();
+                final TextField addrStreetInput = new TextField();
                 addrStreetInput.setMaxWidth(100);
 
-                TextField addrSuburbInput = new TextField();
+                final TextField addrSuburbInput = new TextField();
                 addrSuburbInput.setMaxWidth(100);
 
-                TextField addrCityInput = new TextField();
+                final TextField addrCityInput = new TextField();
                 addrCityInput.setMaxWidth(100);
 
-                TextField addrZipInput = new TextField();
+                final TextField addrZipInput = new TextField();
                 addrZipInput.setMaxWidth(100);
 
-                TextField addrStateInput = new TextField();
+                final TextField addrStateInput = new TextField();
                 addrStateInput.setMaxWidth(100);
 
-                TextField dateStartedInput = new TextField();
+                final TextField dateStartedInput = new TextField();
                 dateStartedInput.setMaxWidth(100);
 
-                TextField dateTerminatedInput = new TextField();
+                final TextField dateTerminatedInput = new TextField();
                 dateTerminatedInput.setMaxWidth(100);
 
                 TextArea bio = new TextArea();
@@ -339,6 +341,21 @@ public class AdminUI extends Application {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         //TODO implement collection of data to send to controller
+                        if (!fornameInput.getText().equals("") && !surnameInput.getText().equals("")){
+                            Contact contact = new Contact(fornameInput.getText(), surnameInput.getText());
+                            contact.setContEmail(emailInput.getText());
+                            contact.setContPhone(phoneInput.getText());
+                            contact.setContAddrStreet(addrStreetInput.getText());
+                            contact.setContAddrSubutb(addrSuburbInput.getText());
+                            contact.setContAddrZip(addrZipInput.getText());
+                            contact.setContAddrCity(addrCityInput.getText());
+                            contact.setContAddrState(addrStateInput.getText());
+
+                            System.out.println(contact.toString());
+
+                            ContactController c = ContactController.getInstance();
+                            c.updateContact(contact);
+                        }
                     }
                 });
 
