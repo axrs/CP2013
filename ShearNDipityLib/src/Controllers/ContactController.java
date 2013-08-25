@@ -147,6 +147,16 @@ public class ContactController {
         runnerThread.start();
     }
 
+    public void createContact(Contact contact) {
+        RESTRunner runner = new RESTRunner();
+        runner.addListner(new CreateContactResultListener());
+        runner.setRequest(Config.getInstance().getServer() + "/api/contacts");
+        runner.setMethod("PUT");
+        runner.setMessage(new Gson().toJson(contact, Contact.class));
+        Thread runnerThread = new Thread(runner, "Creating Contact");
+        runnerThread.start();
+    }
+
     /**
      * Add a response subscriber
      *
@@ -286,7 +296,23 @@ public class ContactController {
         }
     }
 
-    /**
+    private class CreateContactResultListener implements RESTRunner.ResultsListener {
+        @Override
+        public void results(RESTRunner.Result result) {
+            //Print the outputs for now
+            System.out.println("Create single contact : " + result.getStatus());
+            System.out.println(result.getResponse());
+
+            //Remove the listener from the contact object
+            ((RESTRunner) result.getSource()).removeListener(this);
+
+            if (result.getStatus() != 201) return;
+
+            getContactsFromServer();
+        }
+    }
+
+        /**
      * Contacts Updated Event
      */
     public class ContactsUpdated extends EventObject {
