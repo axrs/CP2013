@@ -7,7 +7,9 @@ import java.sql.Time;
  * User: mindikingsun
  * Date: 25/08/13
  * Time: 5:53 PM
- * To change this template use File | Settings | File Templates.
+ *
+ * ServiceHours used by a ServiceProvider, to set available times for making appointments. Days are numbered from 0-6,
+ * Monday being 0 and Sunday being 6.
  */
 public class ServiceHours {
 

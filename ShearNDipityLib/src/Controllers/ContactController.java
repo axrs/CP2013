@@ -316,7 +316,7 @@ public class ContactController {
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
 
-            if (result.getStatus() != 201 || result.getStatus() != 202) return;
+            if (result.getStatus() != 201 && result.getStatus() != 202) return;
 
             //Update Contacts with new information
             getContactsFromServer();

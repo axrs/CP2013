@@ -5,10 +5,7 @@ package Models;
  * User: mindikingsun
  * Date: 25/08/13
  * Time: 5:40 PM
- * To change this template use File | Settings | File Templates.
- */
-
-/**
+ *
  * ServiceProvider, extends Contact to for a service provider.  Each Service Provider must have an Initiated value.
  * Each Service Provider requires ServiceHours, in the form of an array of ServiceHours objects.
  */
