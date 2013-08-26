@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS appointment_type (
  * APPOINTMENT
  -=-=-=-=-=-=-=-=-=-=*/
 CREATE TABLE IF NOT EXISTS appointment(
+    appId INTEGER PRIMARY KEY AUTOINCREMENT,
     appTypeId INTEGER,
     contId INTEGER,
     servId INTEGER,

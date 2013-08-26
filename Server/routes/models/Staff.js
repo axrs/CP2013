@@ -86,13 +86,14 @@ module.exports = function (database) {
                 var statement = database.prepare(
                     'UPDATE service_provider SET servBio = ?, servPortrait = ?, servInitiated = ?, servTerminated = ? WHERE servId = ?;'
                 );
+                console.log(data);
+
                 statement.run(
                     [
                         data.servBio,
                         data.servPortrait,
                         data.servInitiated,
                         data.servTerminated,
-                        (typeof data.servIsActive === 'undefined') ? 1 : data.servIsActive,
                         id
                     ], nextMethod);
             }

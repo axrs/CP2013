@@ -1,5 +1,12 @@
-<div class="span4">
-    <h2><%= model.contForename %> <%= model.contSurname %></h2>
-    <p><%= model.servBio %></p>
-    <p><a class="btn" href="/staff/<%= model.servId %>">View details &raquo;</a></p>
+<div class="span8">
+    <h2><%= model.contForename %> <%= model.contSurname %>
+        <a class="btn btn-primary pull-right" href="/staff/<%= model.servId %>">
+            <i class="icon-edit icon-white"></i>
+            Edit
+        </a>
+    </h2>
+    <hr>
+    <p><%- model.servBio.replace(/\n([ \t]*\n)+/g, '</p><p>').replace('\n', '<br/>') %></p>
+    <hr>
 </div><!--/span-->
+<div class="clearfix"></div>

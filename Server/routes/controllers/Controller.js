@@ -55,7 +55,7 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
             res.render(viewPath + '/form',
                 {
                     status: 200,
-                    header: 'New' + modelType
+                    header: 'New ' + modelType
                 }
             )
         },
@@ -64,7 +64,7 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
                 res.render(viewPath + '/form',
                     {
                         status: 200,
-                        header: 'New' + modelType,
+                        header: 'New ' + modelType,
                         model: req.body.model
                     });
             } else {
@@ -85,7 +85,7 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
             res.render(viewPath + '/form',
                 {
                     status: 200,
-                    header: 'Editing' + modelType,
+                    header: 'Editing ' + modelType,
                     model: req.model
                 })
         },
@@ -94,7 +94,7 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
                 res.render(viewPath + '/form',
                     {
                         status: 200,
-                        header: 'Editing' + modelType,
+                        header: 'Editing ' + modelType,
                         model: req.body.model
                     });
             } else {
