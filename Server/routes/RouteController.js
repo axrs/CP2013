@@ -11,120 +11,27 @@
  * 20130819 - Inital Release
  */
 
-module.exports = function (app) {
-
-    //Required Modules
-    var config = require('../config.js')
-        , sqlite3 = require('sqlite3');
-
-    var db = new sqlite3.Database(config.sqlite.dbPath);
-
-    /**
-     * Exposes the request and response parameters to the express templating system
-     * @param req
-     * @param res
-     * @param next
-     */
-    exposeLocals = function (req, res, next) {
-        res.locals.res = res;
-        res.locals.req = req;
-        res.viewPath = config.views.path;
-        res.statusCodes = require('./libs/StatusHelpers.js');
-        next();
-    };
 
 
-    //Reference Models and controllers
-    var coreController = require('./CoreController.js')()
-        , modelMiddleware = require('./middleware/ModelMiddleware.js')
-        , contact = require('./models/Contact.js')(db)
-        , contactController = require('./Controller.js')(contact,config.views.path + 'contacts','contacts','Contacts')
-        , contactMiddleware = require('./middleware/ContactMiddleware.js')
-        , staff = require('./models/Staff.js')(db)
-        , staffController = require('./Controller.js')(staff,config.views.path + 'staff','staff','Staff')
-        , staffMiddleware = require('./middleware/StaffMiddleware.js');
 
-    app.locals.deleteButton = require('./libs/helpers').deleteButton;
+//Expose the core server for all controllers
+app = module.exports.app = module.parent.exports.app;
 
-    //Core routing
-    app.get('/', exposeLocals, coreController.index);
+var coreController = require('./CoreController.js')();
 
-    //Contact routing
-    app.get('/contacts', exposeLocals, contactController.index);
-    app.get('/contacts/new', exposeLocals, contactController.new);
-    app.get('/contacts/:id([0-9]+)', exposeLocals, modelMiddleware.loadFromDatabase(contact), contactController.show);
-    app.post('/contacts', exposeLocals, contactMiddleware.validateContactForm, contactController.create);
-    app.get('/contacts/:id([0-9]+)/edit', exposeLocals, modelMiddleware.loadFromDatabase(contact), contactController.edit);
-    app.put('/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateContactForm, contactController.update);
+app.get('/', app.exposeLocals, coreController.index);
 
-    //Contact API routing
-    app.get('/api/contacts', exposeLocals, contactController.apiIndex);
-    app.get('/api/contacts/:id([0-9]+)', exposeLocals, modelMiddleware.loadFromDatabase(contact, true), contactController.apiShow);
-    app.put('/api/contacts', exposeLocals, contactMiddleware.validateAPIContact(contact), contactController.apiCreate);
-    app.put('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateExistingAPIContact(contact), contactController.apiUpdate);
+require('./ContactController.js');
+require('./StaffController.js');
 
-    //Staff routing
-    app.get('/staff',
-        exposeLocals,
-        staffController.index
-    );
-    app.get('/staff/new',
-        exposeLocals,
-        staffController.new
-    );
-    app.get('/staff/:id([0-9]+)',
-        exposeLocals,
-        modelMiddleware.loadFromDatabase(staff),
-        staffController.show
-    );
-    app.post('/staff',
-        exposeLocals,
-        contactMiddleware.validateContactForm,
-        staffMiddleware.validateStaffForm,
-        staffController.create
-    );
-    app.get('/staff/:id([0-9]+)/edit',
-        exposeLocals,
-        modelMiddleware.loadFromDatabase(staff),
-        staffController.edit
-    );
-    app.put('/staff/:id([0-9]+)',
-        exposeLocals,
-        staffMiddleware.validateStaffForm,
-        staffController.update
-    );
-
-    //Staff API routing
-    app.get('/api/staff',
-        exposeLocals,
-        staffController.apiIndex
-    );
-    app.get('/api/staff/:id([0-9]+)',
-        exposeLocals,
-        modelMiddleware.loadFromDatabase(staff,true),
-        staffController.apiShow
-    );
-    app.put('/staff',
-        exposeLocals,
-        contactMiddleware.validateAPIContact(contact),
-        staffMiddleware.validateAPIStaff(staff),
-        staffController.apiCreate
-    );
-    app.put('/api/staff/:id([0-9]+)',
-        exposeLocals,
-        contactMiddleware.validateExistingAPIContact(contact),
-        staffMiddleware.validateExistingAPIStaff(staff),
-        staffController.apiUpdate
-    );
-
-    //The 404 Route (ALWAYS Keep this as the last route)
-    app.use(function (req, res) {
-        exposeLocals(req, res, function () {
-            res.status(404);
-            res.render('404',
-                {
-                    header: 'Error 404 - Resource Not Found'
-                });
-        });
+//The 404 Route (ALWAYS Keep this as the last route)
+app.use(function (req, res) {
+    app.exposeLocals(req, res, function () {
+        res.status(404);
+        res.render('404',
+            {
+                header: 'Error 404 - Resource Not Found'
+            });
     });
-}
+});
+

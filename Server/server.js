@@ -5,7 +5,10 @@ var express = require('express')
     , path = require('path')
     , http = require('http')
     , config = require('./config.js')
-    , expressValidator = require('express-validator');
+    , expressValidator = require('express-validator')
+    , sqlite3 = require('sqlite3')
+    , db = new sqlite3.Database(config.sqlite.dbPath);
+
 
 //Initialise the express server application
 var app = exports.app = express();
@@ -25,12 +28,29 @@ app.configure(function () {
 });
 
 
-//Connect routes
-require('./routes/RouteController.js')(app);
-
 /**
  * Initialise the HTTP listening server
  */
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Server started listening on port ' + app.get('port'));
 });
+
+
+/*
+ * Exports the express app for other modules to use
+ * all route matches go the routes.js file
+ */
+module.exports.app = app;
+module.exports.app.config = config;
+module.exports.app.db = db;
+
+module.exports.app.exposeLocals = function (req, res, next) {
+    res.locals.res = res;
+    res.locals.req = req;
+    res.viewPath = config.views.path;
+    res.statusCodes = require('./libs/StatusHelpers.js');
+    next();
+};
+
+//Connect routes
+require('./routes/RouteController.js');

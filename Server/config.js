@@ -4,7 +4,7 @@ module.exports = {
     sqlite: {
         dbPath: path.resolve(__dirname, './database/shears.db')
     },
-    views:{
+    views: {
         path: path.resolve(__dirname, './views') + '/'
     },
     server: {
