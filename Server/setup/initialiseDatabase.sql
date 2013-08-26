@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS service_hours(
 CREATE TABLE IF NOT EXISTS appointment_type (
     appTypeId INTEGER PRIMARY KEY AUTOINCREMENT,
     appTypeDescription VARCHAR,
-    appTypeDuration VARCHAR,
+    appTypeDuration TIME,
     appTypeAllDay BINARY DEFAULT 0
 );
 
