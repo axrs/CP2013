@@ -24,6 +24,7 @@ app.get('/staff/:id([0-9]+)',
     modelMiddleware.loadFromDatabase(staff),
     staffController.show
 );
+
 app.post('/staff',
     app.exposeLocals,
     contactMiddleware.validateContactForm,
@@ -40,7 +41,6 @@ app.put('/staff/:id([0-9]+)',
     staffMiddleware.validateStaffForm,
     staffController.update
 );
-
 //Staff API routing
 app.get('/api/staff',
     app.exposeLocals,
@@ -63,3 +63,6 @@ app.put('/api/staff/:id([0-9]+)',
     staffMiddleware.validateExistingAPIStaff(staff),
     staffController.apiUpdate
 );
+
+
+
