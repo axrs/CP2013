@@ -142,6 +142,9 @@ module.exports = function (database) {
             updateServiceProvider();
 
         },
+
+
+        //TODO: Cleanup this method
         insert: function (data, callback) {
             var contactModel = require('./Contact.js')(database);
             data.contCompany = 'Shear-N-Dipity';
