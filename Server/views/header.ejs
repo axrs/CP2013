@@ -27,6 +27,8 @@ var weekday=new Array("Monday", "Tuesday", "Wednesday","Thursday","Friday","Satu
     <link href="/css/overkill.css" rel="stylesheet">
     <link href="/css/datepicker.css" rel="stylesheet">
     <link href="/css/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href='/css/fullcalendar.css' rel='stylesheet' />
+    <link href='/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -54,13 +56,7 @@ var weekday=new Array("Monday", "Tuesday", "Wednesday","Thursday","Friday","Satu
                     <span class="icon-bar"></span>
                 </button>
                 <a class="brand" href="/">Shear-N-Dipity</a>
-
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <% include topNavigation %>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
+                <% include topNavigation %>
             </div>
         </div>
     </div>

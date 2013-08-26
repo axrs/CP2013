@@ -1,3 +1,25 @@
-<li class="<% if(currentItem === '/'){ %> active <% } %>"><a href="/">Home</a></li>
-<li class="<% if(currentItem.startsWith('/contacts')){ %> active <% } %>"><a href="/contacts">Contacts</a></li>
-<li class="<% if(currentItem.startsWith('/staff')){ %> active <% } %>"><a href="/staff">Our Staff</a></li>
+<div class="nav-collapse collapse">
+    <ul class="nav">
+        <li class="<% if(currentItem === '/'){ %> active <% } %>"><a href="/">Home</a></li>
+        <li class="<% if(currentItem.startsWith('/contacts')){ %> active <% } %>"><a href="/contacts">Contacts</a></li>
+        <li class="<% if(currentItem.startsWith('/staff')){ %> active <% } %>"><a href="/staff">Our Staff</a></li>
+
+        <li id="fat-menu" class="dropdown">
+            <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Appointments <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/">View Appointments</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/">Types</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav pull-right">
+
+    </ul>
+</div>
+<!--/.nav-collapse -->
+
+
+
+
+
