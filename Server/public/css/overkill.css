@@ -49,9 +49,12 @@ body {
     }
 }
 
-#wrap > .container, #wrap > .container-fluid {
-    padding-top: 60px;
+@media (min-width: 980px){
+    #wrap > .container, #wrap > .container-fluid {
+        padding-top: 60px;
+    }
 }
+
 
 .container .credit {
     margin: 20px 0;

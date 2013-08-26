@@ -17,12 +17,12 @@
 //Expose the core server for all controllers
 app = module.exports.app = module.parent.exports.app;
 
-var coreController = require('./CoreController.js')();
+var coreController = require('./CoreRoutes.js')();
 
 app.get('/', app.exposeLocals, coreController.index);
 
-require('./ContactController.js');
-require('./StaffController.js');
+require('./ContactRoutes.js');
+require('./StaffRoutes.js');
 
 //The 404 Route (ALWAYS Keep this as the last route)
 app.use(function (req, res) {
