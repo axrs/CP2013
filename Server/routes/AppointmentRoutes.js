@@ -1,7 +1,7 @@
 app = module.parent.exports.app;
 
 var appointments = require('./models/Appointment.js')(app.db)
-    , appointmentMiddleware = require('./middleware/appointmentMiddleware.js');
+    , appointmentMiddleware = require('./middleware/AppointmentMiddleware.js');
 
 
 
