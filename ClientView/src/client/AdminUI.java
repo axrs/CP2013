@@ -1,7 +1,9 @@
 package client;
 
 import Controllers.ContactController;
+import Controllers.ServiceProviderController;
 import Models.Contact;
+import Models.ServiceProvider;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,8 +12,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -26,7 +30,19 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class AdminUI extends Application {
-    private final ObservableList<Contact> data = FXCollections.observableArrayList();
+    private final ObservableList<ServiceProvider> data = FXCollections.observableArrayList();
+
+    private TableView<ServiceProvider> staffTable = new TableView<ServiceProvider>();
+
+    private void initialiseTableColumns() {
+        TableColumn firstNameColumn = new TableColumn("First Name");
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contFirstName"));
+
+        TableColumn surnameColumn = new TableColumn("Last Name");
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contSurname"));
+
+        staffTable.getColumns().addAll(firstNameColumn, surnameColumn);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -35,23 +51,62 @@ public class AdminUI extends Application {
 
         //---Set up main screen.
         final BorderPane mainPane = new BorderPane();
-        MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("Actions");
 
-        MenuItem newServiceProvider = new MenuItem("Add new Service Provider");
-        MenuItem editServiceProvider = new MenuItem("Edit Service Provider");
+        final Label label = new Label("Staff Listing");
+        label.setFont(new Font("Arial", 20));
 
-        menu.getItems().add(newServiceProvider);
-        menu.getItems().add(editServiceProvider);
+        initialiseTableColumns();
+        staffTable.setItems(data);
 
-        menuBar.getMenus().add(menu);
-        mainPane.setTop(menuBar);
+        ServiceProviderController serviceProviderController = ServiceProviderController.getInstance();
 
-        Scene scene = new Scene(mainPane, 600, 400);
+        serviceProviderController.addUpdatedListener(new ServiceProviderController.ServiceProvidersUpdatedListener() {
+            @Override
+            public void updated(ServiceProviderController.ServiceProvidersUpdated event) {
+                data.clear();
+                data.addAll(ServiceProviderController.getInstance().getServiceProvider().values());
+            }
+        });
+
+        serviceProviderController.getServiceProvidersFromServer();
+
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPadding(new Insets(10, 10, 10, 10));
+        vbox.getChildren().addAll(label, staffTable);
+        mainPane.setCenter(vbox);
+        Scene scene = new Scene(mainPane, 750, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        //---Set up new service provider scene
+        staffTable.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+            @Override
+            public void handle(javafx.scene.input.MouseEvent mouseEvent) {
+
+                if (mouseEvent.getClickCount() > 1) {
+
+                    try {
+                        TableView view = (TableView) mouseEvent.getSource();
+
+                        ServiceProvider c = (ServiceProvider) view.getSelectionModel().getSelectedItem();
+                        System.out.println(c.getContFirstName());
+                        ServiceProviderFormUI contactFormUI = new ServiceProviderFormUI(c);
+                        try {
+                            contactFormUI.start(new Stage());
+                        } catch (Exception e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
+                    } catch (NullPointerException ex) {
+
+                    }
+
+
+                }
+            }
+        });
+
+
+        /*//---Set up new service provider scene
         newServiceProvider.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -88,17 +143,7 @@ public class AdminUI extends Application {
                 final TextField addrStateInput = new TextField();
                 addrStateInput.setMaxWidth(100);
 
-                final TextField dateStartedInput = new TextField();
-                dateStartedInput.setMaxWidth(100);
 
-                final TextField dateTerminatedInput = new TextField();
-                dateTerminatedInput.setMaxWidth(100);
-
-                final TextArea bio = new TextArea();
-                bio.setMaxSize(250, 100);
-
-                Label hours = new Label("Available Hours");
-                hours.setFont(new Font("Arial", 30));
 
                 newServiceProviderPane.add(new Label("First Name:"), 0, 0);
                 newServiceProviderPane.add(fornameInput, 1, 0);
@@ -137,40 +182,7 @@ public class AdminUI extends Application {
 
                 newServiceProviderPane.add(hours, 0, 9, 3, 1);
 
-                GridPane daysPane = new GridPane();
-                daysPane.setHgap(5);
-                daysPane.setVgap(5);
 
-                Label monday = new Label("Monday");
-                Label tuesday = new Label("Tuesday");
-                Label wednesday = new Label("Wednesday");
-                Label thursday = new Label("Thursday");
-                Label friday = new Label("Friday");
-                Label saturday = new Label("Saturday");
-                Label sunday = new Label("Sunday");
-
-                daysPane.add(monday, 1, 0);
-                daysPane.add(tuesday, 2, 0);
-                daysPane.add(wednesday, 3, 0);
-                daysPane.add(thursday, 4, 0);
-                daysPane.add(friday, 5, 0);
-                daysPane.add(saturday, 6, 0);
-                daysPane.add(sunday, 7, 0);
-
-                daysPane.add(new Label("Start Time"), 0, 1);
-                daysPane.add(new Label("Break Start Time"), 0, 2);
-                daysPane.add(new Label("Break End Time"), 0, 3);
-                daysPane.add(new Label("End Time"), 0, 4);
-
-                final ArrayList<TextField> availableHours = new ArrayList<TextField>();
-                int i = 0;
-                for (int row = 1; row < 5; row++) {
-                    for (int col = 1; col < 8; col++) {
-                        availableHours.add(i, new TextField());
-                        daysPane.add(availableHours.get(i), col, row);
-                        i++;
-                    }
-                }
                 Button submit = new Button("Submit");
                 daysPane.add(submit, 0, 7);
                 newServiceProviderPane.add(daysPane, 0, 10, 4, 1);
@@ -364,7 +376,7 @@ public class AdminUI extends Application {
                 mainPane.setCenter(editServiceProviderPane);
 
             }
-        });
+        });*/
     }
 
 }

@@ -19,25 +19,44 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
 
         primaryStage.setTitle("CP2013 Appointment Scheduler");
 
         BorderPane mainPane = new BorderPane();
         MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("Actions");
-        MenuItem userMenu = new MenuItem("User");
-        MenuItem adminMenu = new MenuItem("Admin");
-        MenuItem contactMenu = new MenuItem("Contact");
+        Menu fileMenu = new Menu("File");
+        Menu contactMenu = new Menu("Contacts");
+        Menu staffMenu = new Menu("Staff");
+
+        MenuItem quitMenu = new MenuItem("Quit");
+
+        MenuItem addressBookMenu = new MenuItem("Address Book");
+        MenuItem newContactMenu = new MenuItem("New Contact");
+
+        MenuItem adminMenu = new MenuItem("Staff Listing");
+        MenuItem newServiceProviderMenu = new MenuItem("New Staff Member");
+
         MenuItem aboutMenu = new MenuItem("About");
 
-        menu.getItems().add(userMenu);
-        menu.getItems().add(adminMenu);
-        menu.getItems().add(contactMenu);
-        menu.getItems().add(aboutMenu);
-        menuBar.getMenus().add(menu);
+        fileMenu.getItems().add(quitMenu);
+        fileMenu.getItems().add(0,aboutMenu);
+        contactMenu.getItems().add(addressBookMenu);
+        contactMenu.getItems().add(newContactMenu);
+        staffMenu.getItems().add(adminMenu);
+        staffMenu.getItems().add(newServiceProviderMenu);
+        menuBar.getMenus().add(fileMenu);
+        menuBar.getMenus().add(contactMenu);
+        menuBar.getMenus().add(staffMenu);
 
         mainPane.setTop(menuBar);
+
+        quitMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                primaryStage.close();
+            }
+        });
 
         aboutMenu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -56,10 +75,24 @@ public class Main extends Application {
             }
         });
 
-        userMenu.setOnAction(new EventHandler<ActionEvent>() {
+
+        addressBookMenu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                UserUI userUI = new UserUI();
+                ContactUI contactUI = new ContactUI();
+                Stage userStage = new Stage();
+                try {
+                    contactUI.start(userStage);
+                } catch (Exception e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
+            }
+        });
+
+        newContactMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ContactFormUI userUI = new ContactFormUI();
                 Stage userStage = new Stage();
                 try {
                     userUI.start(userStage);
@@ -82,18 +115,19 @@ public class Main extends Application {
             }
         });
 
-        contactMenu.setOnAction(new EventHandler<ActionEvent>() {
+        newServiceProviderMenu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                ContactUI contactUI = new ContactUI();
-                Stage userStage = new Stage();
+                ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
+                Stage stage = new Stage();
                 try {
-                    contactUI.start(userStage);
+                    serviceProviderFormUI.start(stage);
                 } catch (Exception e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
             }
         });
+
 
         Agenda agenda = new Agenda();
         mainPane.setCenter(agenda);

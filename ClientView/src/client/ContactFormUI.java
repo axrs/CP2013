@@ -30,6 +30,8 @@ public class ContactFormUI extends Application {
 
     public void start(final Stage primaryStage) throws Exception {
 
+        primaryStage.setTitle("CP2013 Appointment Scheduler - New Contact");
+
         final TextField fornameInput = new TextField(contact.getContFirstName());
         fornameInput.setMaxWidth(100);
 
@@ -92,7 +94,7 @@ public class ContactFormUI extends Application {
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (!fornameInput.getText().equals("") && !surnameInput.getText().equals("")){
+                if (!fornameInput.getText().equals(null) && !surnameInput.getText().equals(null)){
                     contact.setContForename(fornameInput.getText());
                     contact.setContSurname(surnameInput.getText());
                     contact.setContEmail(emailInput.getText());

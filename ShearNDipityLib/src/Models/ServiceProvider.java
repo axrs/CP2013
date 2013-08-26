@@ -20,7 +20,7 @@ public class ServiceProvider extends Contact {
     private ServiceHours[] serviceHours;
 
     public ServiceProvider() {
-        initialiseServiceHours();
+//        initialiseServiceHours();
     }
 
     public ServiceProvider(String contForename, String contSurname, String servInitiated) {
