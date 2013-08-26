@@ -1,8 +1,8 @@
 app = module.parent.exports.app;
 
 var modelMiddleware = require('./middleware/ModelMiddleware.js')
-    , types = require('./models/AppointmentTypeMiddleware.js')(app.db)
-    , controller = require('./controllers/Controller.js')(types, app.config.views.path + 'types', 'types', 'Appointment Types')
+    , types = require('./models/AppointmentType.js')(app.db)
+    , controller = require('./controllers/Controller.js')(types, app.config.views.path + 'types', 'appointments/types', 'Appointment Type')
     , middleware = require('./middleware/AppointmentTypeMiddleware.js');
 
 

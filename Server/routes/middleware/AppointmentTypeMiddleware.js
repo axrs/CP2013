@@ -7,10 +7,11 @@ module.exports = {
     validateAppointmentTypeForm: function (req, res, next) {
         req.assert('model.appTypeDescription', 'An appointment type description is required.').notEmpty();
         req.assert('model.appTypeDuration', 'An appointment duration is required.').notEmpty();
+        req.body.model.appTypeAllDay = (typeof req.body.model.appTypeAllDay == 'undefined')? 0 : 1;
         next();
     },
 
-    validateAPIAppointmentType: function (Model) {
+    validateAPIAppointmentType: function () {
         return function (req, res, next) {
 
             var appointmentType = req.body;

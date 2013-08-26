@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS user (
     userId INTEGER,
     userName VARCHAR NOT NULL UNIQUE,
     userPass VARCHAR NOT NULL,
-    userIsAdmin BINARY DEFAULT 0,
+    userIsAdmin BOOLEAN DEFAULT 0,
     FOREIGN KEY(userId) REFERENCES contact(contId)
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS service_provider (
     servPortrait VARCHAR,
     servInitiated DATE NOT NULL,
     servTerminated DATE,
-    servIsActive BINARY DEFAULT 1,
+    servIsActive BOOLEAN DEFAULT 1,
     FOREIGN KEY(contId) REFERENCES contact(contId)
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS appointment_type (
     appTypeId INTEGER PRIMARY KEY AUTOINCREMENT,
     appTypeDescription VARCHAR,
     appTypeDuration TIME,
-    appTypeAllDay BINARY DEFAULT 0
+    appTypeAllDay BOOLEAN DEFAULT 0
 );
 
 /*-=-=-=-=-=-=-=-=-=-=  

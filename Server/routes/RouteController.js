@@ -23,6 +23,7 @@ app.get('/', app.exposeLocals, coreController.index);
 
 require('./ContactRoutes.js');
 require('./StaffRoutes.js');
+require('./AppointmentTypeRoutes.js');
 
 //The 404 Route (ALWAYS Keep this as the last route)
 app.use(function (req, res) {
