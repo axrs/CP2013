@@ -1,11 +1,15 @@
 package Models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mindikingsun
  * Date: 25/08/13
  * Time: 5:40 PM
- *
+ * <p/>
  * ServiceProvider, extends Contact to for a service provider.  Each Service Provider must have an Initiated value.
  * Each Service Provider requires ServiceHours, in the form of an array of ServiceHours objects.
  */
@@ -15,7 +19,7 @@ public class ServiceProvider extends Contact {
     private String servBio;
     private String servPortrait;
     private String servInitiated;
-    private String serTerminated;
+    private String servTerminated;
     private String servIsActive;
     private ServiceHours[] serviceHours;
 
@@ -53,6 +57,19 @@ public class ServiceProvider extends Contact {
         this.servPortrait = servPortrait;
     }
 
+    public Date getServInitiatedDate() {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(this.servInitiated);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public void setServInitiatedDate(Date date) {
+        this.servInitiated = new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+
     public String getServInitiated() {
         return servInitiated;
     }
@@ -61,12 +78,24 @@ public class ServiceProvider extends Contact {
         this.servInitiated = servInitiated;
     }
 
-    public String getSerTerminated() {
-        return serTerminated;
+    public Date getServTerminatedDate() {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(this.servTerminated);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
-    public void setSerTerminated(String serTerminated) {
-        this.serTerminated = serTerminated;
+    public void setServTerminatedDate(Date date) {
+        this.servTerminated = new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    public String getServTerminated() {
+        return servTerminated;
+    }
+
+    public void setServTerminated(String servTerminated) {
+        this.servTerminated = servTerminated;
     }
 
     public String getServIsActive() {

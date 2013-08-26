@@ -26,7 +26,6 @@ module.exports = function (database) {
                                     result.servHrs = times;
                                     allStaff = allStaff.concat(result);
                                     if (allStaff.length == total) {
-                                        console.log(allStaff);
                                         callback(false, allStaff);
                                     }
                                 });
@@ -79,14 +78,11 @@ module.exports = function (database) {
         update: function (id, data, callback) {
 
             function updateBaseContactTable(contactId, nextMethod) {
-                console.log('Updating Contact Table.');
                 var contactModel = require('./Contact.js')(database);
                 contactModel.update(contactId, data, nextMethod);
             }
 
             function updateServiceProviderTable(nextMethod) {
-                console.log('Updating Provider Table.');
-
                 var statement = database.prepare(
                     'UPDATE service_provider SET servBio = ?, servPortrait = ?, servInitiated = ?, servTerminated = ? WHERE servId = ?;'
                 );
@@ -103,18 +99,15 @@ module.exports = function (database) {
 
 
             function deleteProviderWorkHours(nextMethod) {
-                console.log('Deleting Provider Hours Table.');
                 database.run('DELETE FROM service_hours WHERE servId = ?', id, nextMethod)
             }
 
             function insertProviderWorkHours(nextMethod) {
-                console.log('Entering new provider hours.');
                 var stmt = database.prepare(
                     'INSERT INTO service_hours ' +
                         '(servId, servHrsDay, servHrsStart, servHrsBreakStart, servHrsBreakEnd, servHrsEnd) ' +
                         ' VALUES (?,?,?,?,?,?);'
                 );
-                console.log(data.servHrs);
                 for (var i = 0; i < data.servHrs.length; i++) {
                     stmt.run(
                         [
@@ -156,7 +149,6 @@ module.exports = function (database) {
             database.serialize(function () {
                 contactModel.insert(data, function (contactInsertionError) {
                     if (!contactInsertionError) {
-                        console.log('Getting Last Contact Id...')
                         database.get('SELECT contId FROM contact ORDER BY rowid DESC LIMIT 1;', function (lastInsertedIdError, results) {
                             if (!lastInsertedIdError) {
                                 var statement = database.prepare(
@@ -182,7 +174,6 @@ module.exports = function (database) {
                                                             ' VALUES (?,?,?,?,?,?);'
                                                     );
 
-                                                    console.log(data);
                                                     for (var i = 0; i < data.servHrs.length; i++) {
                                                         stmt.run(
                                                             [

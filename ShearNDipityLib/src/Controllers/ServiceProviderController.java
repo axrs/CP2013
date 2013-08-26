@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.Config;
-import Models.Contact;
 import Models.ServiceProvider;
 import com.google.gson.Gson;
 
@@ -16,9 +15,9 @@ import java.util.HashMap;
  * User: mindikingsun
  * Date: 25/08/13
  * Time: 6:29 PM
- *
+ * <p/>
  * ServiceProvider Controller
- *
+ * <p/>
  * Singleton ServiceProvider controller class tasked at interacting with the REST API server and managing
  * any known ServiceProvider in memory.
  * Notes:
@@ -62,6 +61,7 @@ public class ServiceProviderController {
         }
         return instance;
     }
+
     /**
      * Attempts to get a service provider with the specified service provider id
      *
@@ -90,6 +90,7 @@ public class ServiceProviderController {
         }
         return sp;
     }
+
     /**
      * Returns the total number of service provider
      *
@@ -115,7 +116,7 @@ public class ServiceProviderController {
      *
      * @return
      */
-    public HashMap<Integer, ServiceProvider> getServiceProvider() {
+    public HashMap<Integer, ServiceProvider> getServiceProviders() {
         HashMap<Integer, ServiceProvider> map = null;
         try {
             serviceProviderLocker.acquire();
@@ -135,7 +136,7 @@ public class ServiceProviderController {
      */
     public void getServiceProvidersFromServer() {
         RESTRunner runner = new RESTRunner();
-        runner.addListner(new GetServiceProviderResultListener());
+        runner.addListner(new GetServiceProvidersResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/staff");
         Thread runnerThread = new Thread(runner, "Getting Service Providers");
         runnerThread.start();
@@ -208,6 +209,7 @@ public class ServiceProviderController {
             listeners[i].added(event);
         }
     }
+
     /**
      * Contact Controller Updated Contacts Listener
      */
@@ -313,6 +315,7 @@ public class ServiceProviderController {
             getServiceProvidersFromServer();
         }
     }
+
     /**
      * ServiceProviders Updated Event
      */
@@ -338,7 +341,4 @@ public class ServiceProviderController {
             return serviceProvider;
         }
     }
-
-
-
 }

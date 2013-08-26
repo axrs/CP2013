@@ -64,7 +64,7 @@ public class AdminUI extends Application {
             @Override
             public void updated(ServiceProviderController.ServiceProvidersUpdated event) {
                 data.clear();
-                data.addAll(ServiceProviderController.getInstance().getServiceProvider().values());
+                data.addAll(ServiceProviderController.getInstance().getServiceProviders().values());
             }
         });
 

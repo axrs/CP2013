@@ -1,8 +1,6 @@
 package client;
 
-import Controllers.ContactController;
 import Controllers.ServiceProviderController;
-import Models.Contact;
 import Models.ServiceProvider;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -173,7 +171,7 @@ public class ServiceProviderFormUI extends Application {
                     serviceProvider.setContAddrCity(addrCityInput.getText());
                     serviceProvider.setContAddrState(addrStateInput.getText());
                     serviceProvider.setServInitiated(dateStartedInput.getText());
-                    serviceProvider.setSerTerminated(dateTerminatedInput.getText());
+                    serviceProvider.setServTerminated(dateTerminatedInput.getText());
                     serviceProvider.setServBio(bio.getText());
                     //TODO implement putting service hours in here
 

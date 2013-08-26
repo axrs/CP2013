@@ -19,8 +19,6 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
          */
         index: function (req, res) {
             model.all(function (err, results) {
-                    console.log('PROVIDERS');
-                    console.log(results);
                     res.render(viewPath + '/index',
                         {
                             status: 200,

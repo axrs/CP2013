@@ -5,7 +5,7 @@ package Models;
  * User: mindikingsun
  * Date: 25/08/13
  * Time: 9:15 PM
- *
+ * <p/>
  * Each appointment will require an appointment type.  The type will dictate the amount of time
  * required for it to fit into the scheduler.
  */

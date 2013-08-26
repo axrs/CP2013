@@ -8,7 +8,7 @@ import java.sql.Time;
  * User: mindikingsun
  * Date: 25/08/13
  * Time: 9:22 PM
- *
+ * <p/>
  * Appointment class - Requires all fields set upon creation. appTypeId, contId and servId are all foreign keys for the
  * database and the appointment can not be displayed without the time or date.
  */

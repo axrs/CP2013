@@ -64,12 +64,58 @@ module.exports = function (app) {
     app.put('/api/contacts/:id([0-9]+)', exposeLocals, contactMiddleware.validateExistingAPIContact(contact), contactController.apiUpdate);
 
     //Staff routing
-    app.get('/staff', exposeLocals, staffController.index);
-    app.get('/staff/new', exposeLocals, staffController.new);
-    app.get('/staff/:id([0-9]+)', exposeLocals, modelMiddleware.loadFromDatabase(staff), staffController.show);
-    app.post('/staff', exposeLocals, contactMiddleware.validateContactForm, staffMiddleware.validateStaffForm, staffController.create);
-    app.get('/staff/:id([0-9]+)/edit', exposeLocals, modelMiddleware.loadFromDatabase(staff), staffController.edit);
-    app.put('/staff/:id([0-9]+)', exposeLocals, staffMiddleware.validateStaffForm, staffController.update);
+    app.get('/staff',
+        exposeLocals,
+        staffController.index
+    );
+    app.get('/staff/new',
+        exposeLocals,
+        staffController.new
+    );
+    app.get('/staff/:id([0-9]+)',
+        exposeLocals,
+        modelMiddleware.loadFromDatabase(staff),
+        staffController.show
+    );
+    app.post('/staff',
+        exposeLocals,
+        contactMiddleware.validateContactForm,
+        staffMiddleware.validateStaffForm,
+        staffController.create
+    );
+    app.get('/staff/:id([0-9]+)/edit',
+        exposeLocals,
+        modelMiddleware.loadFromDatabase(staff),
+        staffController.edit
+    );
+    app.put('/staff/:id([0-9]+)',
+        exposeLocals,
+        staffMiddleware.validateStaffForm,
+        staffController.update
+    );
+
+    //Staff API routing
+    app.get('/api/staff',
+        exposeLocals,
+        staffController.apiIndex
+    );
+    app.get('/api/staff/:id([0-9]+)',
+        exposeLocals,
+        modelMiddleware.loadFromDatabase(staff,true),
+        staffController.apiShow
+    );
+    app.put('/staff',
+        exposeLocals,
+        contactMiddleware.validateAPIContact(contact),
+        staffMiddleware.validateAPIStaff(staff),
+        staffController.apiCreate
+    );
+    app.put('/api/staff/:id([0-9]+)',
+        exposeLocals,
+        contactMiddleware.validateExistingAPIContact(contact),
+        staffMiddleware.validateExistingAPIStaff(staff),
+        staffController.apiUpdate
+    );
 
     //The 404 Route (ALWAYS Keep this as the last route)
     app.use(function (req, res) {

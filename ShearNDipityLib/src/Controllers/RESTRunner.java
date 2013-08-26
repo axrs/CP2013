@@ -160,7 +160,7 @@ public class RESTRunner implements Runnable {
                 connection.setRequestProperty("Accept", "application/json");         //must be json
 
 
-                if (method != "GET" && method != "DELETE"){
+                if (method != "GET" && method != "DELETE") {
                     //Write message to server over socket
                     OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                     writer.write(message);
@@ -240,6 +240,7 @@ public class RESTRunner implements Runnable {
             this.status = status;
             this.response = response;
         }
+
         public int getStatus() {
             return status;
         }
