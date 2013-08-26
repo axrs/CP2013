@@ -52,7 +52,7 @@ module.exports = function (database) {
 
                     var date = '';
                     while (startDate < endDate) {
-                        date = startDate.toISOString().substring(0, 10).replace('T', ' ');
+                        date = startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2);
                         console.log('Getting events for: ' + date);
 
                         database.all(
@@ -108,6 +108,7 @@ module.exports = function (database) {
                     }
                 });
             }
+
             getEventsRange();
         }
     }

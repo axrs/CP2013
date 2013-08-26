@@ -54,7 +54,7 @@ module.exports = {
 
                     for (var i = 0; i < results.length; i += 2) {
                         var slot = {};
-                        slot.title = 'Available';
+                        slot.title = '';
                         slot.start = results[i].date + ' ' + results[i].timeSlot;
                         slot.end = results[i+1].date + ' ' + results[i + 1].timeSlot;
                         slot.allDay = false;

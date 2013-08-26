@@ -43,7 +43,7 @@
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: ''
+                    right: 'agendaWeek,agendaDay'
                 },
                 editable: false,
                 columnFormat: {
@@ -52,24 +52,26 @@
                     day: ''
                 },
                 events: function (start, end, callback) {
-                    var startString = start.toISOString().substring(0, 10).replace('T', ' ');
-                    var endString = end.toISOString().substring(0, 10).replace('T', ' ');
-                    $.ajax({
+                    if (start < new Date())
+                        start = new Date();
 
-                        url: '/api/staff/1/available/'+startString +'/' + endString,
+                    var startString = start.getFullYear() +'-' + ("0" + (start.getMonth() + 1)).slice(-2)+'-' + ("0" + start.getDate()).slice(-2);
+                    var endString = end.getFullYear() +'-' + ("0" + (end.getMonth() + 1)).slice(-2)+'-' + ("0" + end.getDate()).slice(-2);
+                    $.ajax({
+                        url: '/api/staff/1/available/' + startString + '/' + endString,
                         success: function (doc) {
-                            var events = [];
-                            $(doc).each(function () {
-                                events.push({
-                                    title: $(this).attr('title'),
-                                    start: $(this).attr('start'),
-                                    end: $(this).attr('end'),
-                                    allDay: $(this).attr('allDay')
-                                });
-                            });
+                            var events = doc;
                             callback(events);
                         }
                     });
+                },
+                viewRender: function (view, element) {
+                    var minDate = new Date();
+                    if (view.start <= minDate) {
+                        $('#calendar .fc-button-prev').addClass('fc-state-disabled');
+                    } else {
+                        $('#calendar .fc-button-prev').removeClass('fc-state-disabled')
+                    }
                 }
 
             });
