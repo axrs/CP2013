@@ -24,11 +24,11 @@ var actionParam = isEditing ? '/appointments/types/' + model.appTypeId : '/appoi
                 </div>
                 <label class="control-label" for="appTypeDuration">Duration</label>
 
-                <div class="controls bootstrap-timepicker">
+                <div class="controls">
                     <input id="appTypeDuration"
                            type="text"
                            name="model[appTypeDuration]"
-                           class="timepicker input-small"
+                           class="timepicker8 input-small"
                            value="<% if(isEditing){ %><%= model.appTypeDuration %><% }else{ %>00:00<% } %>"
                             >
                 </div>

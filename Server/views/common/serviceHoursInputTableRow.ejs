@@ -11,28 +11,28 @@ weekdays[6] = "Saturday";
 %>
 <tr>
     <td><%= weekdays[day] %></td>
-    <td class="bootstrap-timepicker">
+    <td>
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsStart]"
                class="timepicker input-small"
                value="<% if(isEditing && typeof model.servHrs[day] != 'undefined' && typeof model.servHrs[day].servHrsStart != 'undefined'){ %><%= model.servHrs[day].servHrsStart %><% } %>"
                 >
     </td>
-    <td class="bootstrap-timepicker">
+    <td>
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsBreakStart]"
                class="timepicker input-small"
                value="<% if(isEditing && typeof model.servHrs[day] != 'undefined' && typeof model.servHrs[day].servHrsBreakStart != 'undefined'){ %><%= model.servHrs[day].servHrsBreakStart %><% } %>"
                 >
     </td>
-    <td class="bootstrap-timepicker">
+    <td>
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsBreakEnd]"
                class="timepicker input-small"
                value="<% if(isEditing && typeof model.servHrs[day] != 'undefined' && typeof model.servHrs[day].servHrsBreakEnd != 'undefined'){ %><%= model.servHrs[day].servHrsBreakEnd %><% } %>"
                 >
     </td>
-    <td class="bootstrap-timepicker">
+    <td>
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsEnd]"
                class="timepicker input-small"

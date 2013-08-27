@@ -1,0 +1,18 @@
+<%
+var isEditing  = (typeof model != 'undefined' && model.appId != 'undefined' ) ? true : false;
+var buttonLabel = isEditing ? 'Update' : 'Book';
+var formTitle = isEditing ? 'Updating Appointment: ' + model.appId : 'New Appointment';
+var actionParam = isEditing ? '/appointments/' + model.appId : '/appointments';
+%>
+
+<% include ../header %>
+<div class="row-fluid">
+    <% include toolbox %>
+
+    <div class="span9">
+        <% include ../common/calendarBookingForm %>
+    </div>
+
+</div>
+<!--/span-->
+<% include ../footer %>

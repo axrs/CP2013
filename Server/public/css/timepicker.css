@@ -62,4 +62,4 @@ table.reserve-time-table {position:relative; border:none;
 .reserve-time-dropdown td.time-cell .active {border:1px black solid;}
 .reserve-time-dropdown td.time-cell .user_active {}
 
-.timepicker-span {position: relative;}
+.timepicker-span {position: relative; float:none !important;}
