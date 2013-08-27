@@ -1,7 +1,9 @@
 package Models;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -24,7 +26,7 @@ public class ServiceProvider extends Contact {
     private ServiceHours[] serviceHours;
 
     public ServiceProvider() {
-//        initialiseServiceHours();
+        initialiseServiceHours();
     }
 
     public ServiceProvider(String contForename, String contSurname, String servInitiated) {
@@ -107,8 +109,9 @@ public class ServiceProvider extends Contact {
     }
 
     private void initialiseServiceHours() {
+        serviceHours = new ServiceHours[7];
         for (int i = 0; i < 7; i++) {
-            serviceHours[i] = new ServiceHours();
+            serviceHours[i] = new ServiceHours(servId, i);
         }
     }
 
