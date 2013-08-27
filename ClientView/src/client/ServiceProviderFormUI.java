@@ -1,6 +1,7 @@
 package client;
 
 import Controllers.ServiceProviderController;
+import Models.ServiceHours;
 import Models.ServiceProvider;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,7 +15,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sun.misc.Regexp;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -27,6 +33,7 @@ import java.util.ArrayList;
  */
 public class ServiceProviderFormUI extends Application {
     private ServiceProvider serviceProvider = new ServiceProvider();
+    final ArrayList<TextField> availableHours = new ArrayList<TextField>();
 
     public ServiceProviderFormUI() {
     }
@@ -143,11 +150,13 @@ public class ServiceProviderFormUI extends Application {
         daysPane.add(new Label("Break End Time"), 0, 3);
         daysPane.add(new Label("End Time"), 0, 4);
 
-        final ArrayList<TextField> availableHours = new ArrayList<TextField>();
+
         int i = 0;
-        for (int row = 1; row < 5; row++) {
-            for (int col = 1; col < 8; col++) {
-                availableHours.add(i, new TextField());
+        int timeNo = 0;
+        for (int col = 1; col < 8; col++) {
+
+            for (int row = 1; row < 5; row++) {
+                availableHours.add(i, new TextField(getTime(i)));
                 daysPane.add(availableHours.get(i), col, row);
                 i++;
             }
@@ -173,7 +182,13 @@ public class ServiceProviderFormUI extends Application {
                     serviceProvider.setServInitiated(dateStartedInput.getText());
                     serviceProvider.setServTerminated(dateTerminatedInput.getText());
                     serviceProvider.setServBio(bio.getText());
-                    //TODO implement putting service hours in here
+                    for (int i = 0; i < 28; i+=4){
+                        serviceProvider.getByDay(i % 7).setServHrsStart(buildTime(availableHours.get(i).getText()));
+                        System.out.println(i);
+                        serviceProvider.getByDay(i % 7).setServHrsBreakStart(buildTime(availableHours.get(i + 1).getText()));
+                        serviceProvider.getByDay(i % 7).setServHrsBreakEnd(buildTime(availableHours.get(i + 2).getText()));
+                        serviceProvider.getByDay(i % 7).setServHrsEnd(buildTime(availableHours.get(i + 3).getText()));
+                    }
 
                     if (serviceProvider.getContId() != 0) {
                         ServiceProviderController.getInstance().updateServiceProvider(serviceProvider);
@@ -193,6 +208,32 @@ public class ServiceProviderFormUI extends Application {
         Scene scene = new Scene(editContactForm, 1200, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private Time buildTime(String text) {
+        String time = text.equals("N/A") ? "00:00" : text;
+        return Time.valueOf(time+":00");
+    }
+
+    private String getTime(int i) {
+        int timeNo = i % 4;
+        int dayNo = i % 7;
+        switch (timeNo){
+            case 0:
+                    System.out.println("Time on day "+ dayNo);
+                System.out.println(serviceProvider.getByDay(dayNo).getServHrsStart().toString());
+                    return serviceProvider.getByDay(dayNo).getServHrsStart().toString();
+
+            case 1: return serviceProvider.getByDay(dayNo).getServHrsBreakStart().toString();
+
+            case 2: return serviceProvider.getByDay(dayNo).getServHrsBreakEnd().toString();
+
+            case 3: return serviceProvider.getByDay(dayNo).getServHrsEnd().toString();
+
+            default: return "N/A";
+
+        }
+
     }
 
 }
