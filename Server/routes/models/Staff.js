@@ -43,6 +43,9 @@ module.exports = function (database) {
 
             getAllStaff();
         },
+        allIds: function(callback){
+            database.all('SELECT servId FROM service_provider;', callback);
+        },
         findById: function (id, callback) {
 
 
@@ -84,7 +87,7 @@ module.exports = function (database) {
 
             function updateServiceProviderTable(nextMethod) {
                 var statement = database.prepare(
-                    'UPDATE service_provider SET servBio = ?, servPortrait = ?, servInitiated = ?, servTerminated = ? WHERE servId = ?;'
+                    'UPDATE service_provider SET servBio = ?, servPortrait = ?, servInitiated = ?, servTerminated = ?, servColor = ? WHERE servId = ?;'
                 );
                 console.log(data);
 
@@ -94,6 +97,7 @@ module.exports = function (database) {
                         data.servPortrait,
                         data.servInitiated,
                         data.servTerminated,
+                        (typeof data.servColor === 'undefined') ? '#002a80' : data.servColor,
                         id
                     ], nextMethod);
             }
@@ -157,8 +161,8 @@ module.exports = function (database) {
                             if (!lastInsertedIdError) {
                                 var statement = database.prepare(
                                     'INSERT INTO service_provider ' +
-                                        '(contId, servBio, servPortrait, servInitiated, servIsActive) ' +
-                                        ' VALUES (?,?,?,?,?);'
+                                        '(contId, servBio, servPortrait, servInitiated, servColor, servIsActive) ' +
+                                        ' VALUES (?,?,?,?,?,?);'
                                 );
                                 statement.run(
                                     [
@@ -166,6 +170,7 @@ module.exports = function (database) {
                                         data.servBio,
                                         data.servPortrait,
                                         data.servInitiated,
+                                        (typeof data.servColor === 'undefined') ? '#002a80' : data.servColor,
                                         (typeof data.servIsActive === 'undefined') ? 1 : data.servIsActive,
                                     ],
                                     function (providerInsertionError) {

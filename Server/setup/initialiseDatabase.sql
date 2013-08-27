@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS service_provider (
     servInitiated DATE NOT NULL,
     servTerminated DATE,
     servIsActive BOOLEAN DEFAULT 1,
+    servColor VARCHAR DEFAULT '#006dcc',
     FOREIGN KEY(contId) REFERENCES contact(contId)
 );
 

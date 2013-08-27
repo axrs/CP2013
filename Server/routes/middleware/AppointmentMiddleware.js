@@ -31,6 +31,8 @@ module.exports = {
                     for (var i = 0; i < results.length; i += 2) {
                         var slot = {};
                         slot.title = 'Available';
+                        slot.servId = results[i].servId;
+                        slot.color = results[i].servColor;
                         slot.start = req.params.date + ' ' + results[i].timeSlot;
                         slot.end = req.params.date + ' ' + results[i + 1].timeSlot;
                         slot.allDay = false;
@@ -55,6 +57,8 @@ module.exports = {
                     for (var i = 0; i < results.length; i += 2) {
                         var slot = {};
                         slot.title = '';
+                        slot.servId = results[i].servId;
+                        slot.color = results[i].servColor;
                         slot.start = results[i].date + ' ' + results[i].timeSlot;
                         slot.end = results[i+1].date + ' ' + results[i + 1].timeSlot;
                         slot.allDay = false;
@@ -67,7 +71,32 @@ module.exports = {
                 }
             });
         }
+    },
+    availabilitiesRange: function(Model){
+        return function (req, res, next) {
+
+            Model.getAllProviderAvailabilitiesRange(req.params.start,req.params.end, function (err, results) {
+
+                if (results) {
+                    var model = [];
+                    for (var i = 0; i < results.length; i += 2) {
+                        var slot = {};
+                        slot.title = '';
+                        slot.servId = results[i].servId;
+                        slot.color = results[i].servColor;
+
+                        slot.start = results[i].date + ' ' + results[i].timeSlot;
+                        slot.end = results[i+1].date + ' ' + results[i + 1].timeSlot;
+                        slot.allDay = false;
+                        model = model.concat(slot);
+                    }
+                    req.model = model;
+                    console.log(model);
+                    next();
+                } else {
+                    res.statusCodes.apiStatus500(req, res);
+                }
+            });
+        }
     }
-
-
 }

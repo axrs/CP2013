@@ -31,14 +31,19 @@
             showMeridian: false
         });
 
+        var sources = [];
 
         if ($('#calendar').length > 0) {
+            var sources = [];
+
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
 
             $('#calendar').fullCalendar({
+
+
                 defaultView: 'agendaWeek',
                 header: {
                     left: 'prev,next today',
@@ -55,16 +60,17 @@
                     if (start < new Date())
                         start = new Date();
 
-                    var startString = start.getFullYear() +'-' + ("0" + (start.getMonth() + 1)).slice(-2)+'-' + ("0" + start.getDate()).slice(-2);
-                    var endString = end.getFullYear() +'-' + ("0" + (end.getMonth() + 1)).slice(-2)+'-' + ("0" + end.getDate()).slice(-2);
+                    var startString = start.getFullYear() + '-' + ("0" + (start.getMonth() + 1)).slice(-2) + '-' + ("0" + start.getDate()).slice(-2);
+                    var endString = end.getFullYear() + '-' + ("0" + (end.getMonth() + 1)).slice(-2) + '-' + ("0" + end.getDate()).slice(-2);
                     $.ajax({
-                        url: '/api/staff/1/available/' + startString + '/' + endString,
+                        url: '/api/staff/available/' + startString + '/' + endString,
                         success: function (doc) {
                             var events = doc;
                             callback(events);
                         }
                     });
                 },
+
                 viewRender: function (view, element) {
                     var minDate = new Date();
                     if (view.start <= minDate) {
