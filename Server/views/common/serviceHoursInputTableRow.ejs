@@ -15,28 +15,28 @@ weekdays[6] = "Saturday";
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsStart]"
                class="timepicker input-small"
-               value="<% if(isEditing && typeof model.servHrs[day].servHrsStart != 'undefined'){ %><%= model.servHrs[day].servHrsStart %><% } %>"
+               value="<% if(isEditing && model.servHrs[day] && model.servHrs[day].servHrsStart){ %><%= model.servHrs[day].servHrsStart %><% } %>"
                 >
     </td>
     <td class="bootstrap-timepicker">
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsBreakStart]"
                class="timepicker input-small"
-               value="<% if(isEditing && typeof model.servHrs[day].servHrsBreakStart != 'undefined'){ %><%= model.servHrs[day].servHrsBreakStart %><% } %>"
+               value="<% if(isEditing && model.servHrs[day] && model.servHrs[day].servHrsBreakStart){ %><%= model.servHrs[day].servHrsBreakStart %><% } %>"
                 >
     </td>
     <td class="bootstrap-timepicker">
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsBreakEnd]"
                class="timepicker input-small"
-               value="<% if(isEditing && typeof model.servHrs[day].servHrsBreakEnd != 'undefined'){ %><%= model.servHrs[day].servHrsBreakEnd %><% } %>"
+               value="<% if(isEditing && model.servHrs[day] && model.servHrs[day].servHrsBreakEnd){ %><%= model.servHrs[day].servHrsBreakEnd %><% } %>"
                 >
     </td>
     <td class="bootstrap-timepicker">
         <input type="text"
                name="model[servHrs][<%= day %>][servHrsEnd]"
                class="timepicker input-small"
-               value="<% if(isEditing && typeof model.servHrs[day].servHrsEnd != 'undefined'){ %><%= model.servHrs[day].servHrsEnd %><% } %>"
+               value="<% if(isEditing && model.servHrs[day] && model.servHrs[day].servHrsEnd){ %><%= model.servHrs[day].servHrsEnd %><% } %>"
                 >
     </td>
 </tr>
