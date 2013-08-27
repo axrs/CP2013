@@ -10,8 +10,15 @@ weekdays[6] = "Saturday";
 %>
 <tr>
     <td><%= weekdays[day] %></td>
-    <td><% if(typeof model.servHrs[day].servHrsStart != 'undefined'){ %><%= model.servHrs[day].servHrsStart %><% } %></td>
-    <td><% if(typeof model.servHrs[day].servHrsBreakStart != 'undefined'){ %><%= model.servHrs[day].servHrsBreakStart %><% } %></td>
-    <td><% if(typeof model.servHrs[day].servHrsBreakEnd != 'undefined'){ %><%= model.servHrs[day].servHrsBreakEnd %><% } %></td>
-    <td><% if(typeof model.servHrs[day].servHrsEnd != 'undefined'){ %><%= model.servHrs[day].servHrsEnd %><% } %></td>
+    <% if (typeof model.servHrs[day] != undefined) { %>
+    <td><% if(typeof model.servHrs[day].servHrsStart != 'undefined'){ %><%= model.servHrs[day].servHrsStart %><% }else { %>00:00<%} %></td>
+    <td><% if(typeof model.servHrs[day].servHrsBreakStart != 'undefined'){ %><%= model.servHrs[day].servHrsBreakStart %><% }else { %>00:00<%} %></td>
+    <td><% if(typeof model.servHrs[day].servHrsBreakEnd != 'undefined'){ %><%= model.servHrs[day].servHrsBreakEnd %><% }else { %>00:00<%} %></td>
+    <td><% if(typeof model.servHrs[day].servHrsEnd != 'undefined'){ %><%= model.servHrs[day].servHrsEnd %><% }else { %>00:00<%} %></td>
+    <% } else { %>
+    <td>00:00</td>
+    <td>00:00</td>
+    <td>00:00</td>
+    <td>00:00</td>
+    <% } %>
 </tr>
