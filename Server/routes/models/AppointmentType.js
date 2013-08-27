@@ -3,14 +3,14 @@ module.exports = function (database) {
         all: function (callback) {
             database.all(
                 'SELECT appointment_type.appTypeId, appTypeDescription, appTypeDuration, appTypeAllDay, ' +
-                    '(CASE total WHEN total > 0 THEN total ELSE 0 END) as total ' +
+                    '(CASE total WHEN total THEN total ELSE 0 END) as total ' +
                     'FROM appointment_type ' +
                     'LEFT JOIN (SELECT count(*) as total, appTypeId FROM appointment GROUP BY appTypeId) as a ' +
                     ' ON appointment_type.appTypeId = a.appTypeId;', callback);
         },
         findById: function (id, callback) {
             database.get('SELECT appointment_type.appTypeId, appTypeDescription, appTypeDuration, appTypeAllDay, ' +
-                '(CASE total WHEN total > 0 THEN total ELSE 0 END) as total ' +
+                '(CASE total WHEN total THEN total ELSE 0 END) as total ' +
                 'FROM appointment_type ' +
                 'LEFT JOIN (SELECT count(*) as total, appTypeId FROM appointment GROUP BY appTypeId) as a ' +
                 ' ON appointment_type.appTypeId = a.appTypeId WHERE appointment_type.appTypeId = ?;', id, callback);

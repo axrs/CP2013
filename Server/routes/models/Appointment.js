@@ -3,18 +3,19 @@ module.exports = function (database) {
         all: function (callback) {
             database.all(
                 'SELECT * FROM appointment ' +
-                'LEFT JOIN service_provider ' +
-                'LEFT JOIN contact' +
-                'LEFT JOIN appointment_type', callback);
+                    'LEFT JOIN service_provider ' +
+                    'LEFT JOIN contact ' +
+                    'LEFT JOIN appointment_type ', callback);
         },
         findById: function (id, callback) {
-            database.get('', id, callback);
-        },
-        matchName: function (name, surname, callback) {
-            database.get('', [name, surname], callback);
+            database.get('SELECT * FROM appointment ' +
+                'LEFT JOIN service_provider ' +
+                'LEFT JOIN contact ' +
+                'LEFT JOIN appointment_type ' +
+                'WHERE appId = ?', id, callback);
         },
         count: function (callback) {
-            database.get('', null, callback);
+            database.get('SELECT count(*) FROM appointment;', null, callback);
         },
         insert: function (data, callback) {
             var statement = database.prepare('INSERT INTO appointment (appTypeId, contId, servId, appDate, appTime) ' +
@@ -31,12 +32,28 @@ module.exports = function (database) {
             );
         },
         update: function (id, data, callback) {
-            var statement = database.prepare('');
+            var statement = database.prepare(
+                'UPDATE appointment SET appTypeId = ?, contId = ?, servId = ?, appDate = ?, appTime = ? ' +
+                    'WHERE appId = ?');
             statement.run(
                 [
+                    data.appTypeId,
+                    data.contId,
+                    data.servId,
+                    data.appDate,
+                    data.appTime,
+                    id
                 ],
                 callback
             );
+        },
+        delete: function (id, callback) {
+            var statement = database.prepare('DELETE FROM appointment WHERE appId = ?;');
+            statement.run(
+                [
+                    id
+                ],
+                callback);
         }
     }
 }

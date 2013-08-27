@@ -1,22 +1,11 @@
 <% include ../header %>
 <div class="row-fluid">
     <% include toolbox %>
-    <div class="span7">
-        <h1>Appointments</h1>
-    </div>
-
-    <% if (typeof allModels == 'undefined' || allModels.length == 0) {%>
     <div class="span9">
-        <p></p>
-    </div>
-    <%} else {%>
-    <div class="span2">
-        <p class="text-right">Total: <%- allModels.length %></p>
-    </div>
+        <h1>Scheduled Appointments</h1>
 
-        <% allModels.forEach(function(model){ %>
-        <%}) %>
+        <div id='appCalendar' class='span12'></div>
 
-    <%} %>
+    </div>
 </div>
 <% include ../footer %>

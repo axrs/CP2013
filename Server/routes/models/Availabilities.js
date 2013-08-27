@@ -56,33 +56,33 @@ module.exports = function (database) {
 
                         database.all(
                             'SELECT timeSlot, a.servId, servColor, ? as date ' +
-                            'FROM ( ' +
-                            '    SELECT timeSlot, servId,  count(*) as occurances ' +
-                            '    FROM ( ' +
-                            '        SELECT time(servHrsStart) as timeSlot, servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
-                            '    UNION ALL ' +
-                            '        SELECT time(servHrsBreakStart) as timeSlot, servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
-                            '    UNION ALL ' +
-                            '        SELECT time(servHrsBreakEnd) as timeSlot , servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
-                            '    UNION ALL ' +
-                            '        SELECT time(servHrsEnd) as timeSlot, servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
-                            '    UNION ALL ' +
-                            '        SELECT time(appTime) as timeSlot, servId ' +
-                            '        FROM appointment as a' +
-                            '        LEFT JOIN appointment_type as b ON b.appTypeId = a.appTypeId ' +
-                            '        WHERE servId = ? AND appDate = ? ' +
-                            '    UNION ALL ' +
-                            '        SELECT time(strftime(\'%s\',appTime) + strftime(\'%s\',appTypeDuration), \'unixepoch\') as timeSlot, servId ' +
-                            '        FROM appointment as a ' +
-                            '        LEFT JOIN appointment_type as b ON b.appTypeId = a.appTypeId ' +
-                            '        WHERE servId = ? AND appDate = ? ' +
-                            '    ) ' +
-                            '    GROUP BY timeSlot ' +
-                            '    ORDER BY timeSlot ' +
-                            ') as a ' +
-                            'LEFT JOIN service_provider ON service_provider.servId = a.servId ' +
-                            'WHERE occurances = 1;',
-                        [
+                                'FROM ( ' +
+                                '    SELECT timeSlot, servId,  count(*) as occurances ' +
+                                '    FROM ( ' +
+                                '        SELECT time(servHrsStart) as timeSlot, servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
+                                '    UNION ALL ' +
+                                '        SELECT time(servHrsBreakStart) as timeSlot, servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
+                                '    UNION ALL ' +
+                                '        SELECT time(servHrsBreakEnd) as timeSlot , servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
+                                '    UNION ALL ' +
+                                '        SELECT time(servHrsEnd) as timeSlot, servId FROM service_hours WHERE servId = ? and servHrsDay = strftime(\'%w\',?) ' +
+                                '    UNION ALL ' +
+                                '        SELECT time(appTime) as timeSlot, servId ' +
+                                '        FROM appointment as a' +
+                                '        LEFT JOIN appointment_type as b ON b.appTypeId = a.appTypeId ' +
+                                '        WHERE servId = ? AND appDate = ? ' +
+                                '    UNION ALL ' +
+                                '        SELECT time(strftime(\'%s\',appTime) + strftime(\'%s\',appTypeDuration), \'unixepoch\') as timeSlot, servId ' +
+                                '        FROM appointment as a ' +
+                                '        LEFT JOIN appointment_type as b ON b.appTypeId = a.appTypeId ' +
+                                '        WHERE servId = ? AND appDate = ? ' +
+                                '    ) ' +
+                                '    GROUP BY timeSlot ' +
+                                '    ORDER BY timeSlot ' +
+                                ') as a ' +
+                                'LEFT JOIN service_provider ON service_provider.servId = a.servId ' +
+                                'WHERE occurances = 1;',
+                            [
                                 date,
                                 id, date, //servHrsStart
                                 id, date, //servHrsBreakStart
@@ -192,6 +192,20 @@ module.exports = function (database) {
             }
 
             getEventsRange();
+        },
+        getAllProviderAppointmentsRange: function (start, end, callback) {
+
+            var sql = 'SELECT a.appId, a.appTypeId, a.contId, a.servId, a.appDate, a.appTime, ' +
+                '       appTypeDescription, appTypeDuration, contSurname, contForename, servSurname, servForename, servColor, ' +
+                '       time(strftime(\'%s\',appTime) + strftime(\'%s\',appTypeDuration), \'unixepoch\') as appEndTime ' +
+                'FROM appointment as a ' +
+                'LEFT JOIN appointment_type as at ON a.appTypeId = at.appTypeId ' +
+                'LEFT JOIN contact as c ON a.contId = c.contId ' +
+                'LEFT JOIN (SELECT contForename as servForename, contSurname as servSurname, servId, servColor ' +
+                '           FROM service_provider LEFT JOIN contact ON contact.contId = service_provider.contId) ' +
+                '           as sp ON sp.servId = a.servId ' +
+                'WHERE appDate BETWEEN ? AND ?';
+            database.all(sql,[start,end], callback);
         }
     }
 }

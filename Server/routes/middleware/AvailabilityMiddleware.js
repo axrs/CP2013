@@ -46,10 +46,10 @@ module.exports = {
             });
         }
     },
-    availabilitiesRangeById: function(Model){
+    availabilitiesRangeById: function (Model) {
         return function (req, res, next) {
 
-            Model.getProviderAvailabilitiesRange(req.params.id, req.params.start,req.params.end, function (err, results) {
+            Model.getProviderAvailabilitiesRange(req.params.id, req.params.start, req.params.end, function (err, results) {
 
                 if (results) {
                     var model = [];
@@ -60,7 +60,7 @@ module.exports = {
                         slot.servId = results[i].servId;
                         slot.color = results[i].servColor;
                         slot.start = results[i].date + ' ' + results[i].timeSlot;
-                        slot.end = results[i+1].date + ' ' + results[i + 1].timeSlot;
+                        slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
                         slot.allDay = false;
                         model = model.concat(slot);
                     }
@@ -72,10 +72,10 @@ module.exports = {
             });
         }
     },
-    availabilitiesRange: function(Model){
+    availabilitiesRange: function (Model) {
         return function (req, res, next) {
 
-            Model.getAllProviderAvailabilitiesRange(req.params.start,req.params.end, function (err, results) {
+            Model.getAllProviderAvailabilitiesRange(req.params.start, req.params.end, function (err, results) {
 
                 if (results) {
                     var model = [];
@@ -86,12 +86,38 @@ module.exports = {
                         slot.color = results[i].servColor;
 
                         slot.start = results[i].date + ' ' + results[i].timeSlot;
-                        slot.end = results[i+1].date + ' ' + results[i + 1].timeSlot;
+                        slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
                         slot.allDay = false;
                         model = model.concat(slot);
                     }
                     req.model = model;
-                    console.log(model);
+                    next();
+                } else {
+                    res.statusCodes.apiStatus500(req, res);
+                }
+            });
+        }
+    },
+    appointmentsRange: function (Model) {
+        return function (req, res, next) {
+
+            Model.getAllProviderAppointmentsRange(req.params.start, req.params.end, function (err, results) {
+                if (results) {
+                    var model = [];
+                    for (var i = 0; i < results.length; i++) {
+                        var slot = {};
+                        slot.appId = results[i].appId;
+                        slot.title = results[i].appTypeDescription + ' for ' + results[i].contForename + ' ' + results[i].contSurname;
+                        slot.servId = results[i].servId;
+                        slot.contId = results[i].contId;
+                        slot.color = results[i].servColor;
+                        slot.staff = results[i].servForename + ' ' + results[i].servSurname;
+                        slot.start = results[i].appDate + ' ' + results[i].appTime;
+                        slot.end = results[i].appDate + ' ' + results[i].appEndTime;
+                        slot.allDay = false;
+                        model = model.concat(slot);
+                    }
+                    req.model = model;
                     next();
                 } else {
                     res.statusCodes.apiStatus500(req, res);
