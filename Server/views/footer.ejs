@@ -9,7 +9,7 @@
 </div>
 <script src="/js/jquery-1.10.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap-timepicker.min.js"></script>
+<script src="/js/timepicker.js"></script>
 
 <script src="/js/bootstrap-datepicker.js"></script>
 
@@ -22,14 +22,16 @@
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd'
         });
+
         $('.timepicker').timepicker({
-            defaultTime: 'value',
-            minuteStep: 15,
-            showInputs: false,
-            disableFocus: true,
-            template: 'dropdown',
-            showMeridian: false
+            step:15,
+            at_row:8,
+            active_from:'00:00',
+            active_to:'23:45',
+            alarm_from: '00:00',
+            alarm_to: '00:00'
         });
+
 
         var sources = [];
 

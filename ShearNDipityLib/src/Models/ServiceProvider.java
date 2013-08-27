@@ -1,9 +1,7 @@
 package Models;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -24,6 +22,7 @@ public class ServiceProvider extends Contact {
     private String servTerminated;
     private String servIsActive;
     private ServiceHours[] serviceHours;
+    private String servColor;
 
     public ServiceProvider() {
         initialiseServiceHours();
@@ -33,6 +32,14 @@ public class ServiceProvider extends Contact {
         super(contForename, contSurname);    //To change body of overridden methods use File | Settings | File Templates.
         this.servInitiated = servInitiated;
         initialiseServiceHours();
+    }
+
+    public String getServColor() {
+        return servColor;
+    }
+
+    public String setServColor(String color) {
+        servColor = color;
     }
 
     public int getServId() {
@@ -70,7 +77,6 @@ public class ServiceProvider extends Contact {
     public void setServInitiatedDate(Date date) {
         this.servInitiated = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
-
 
     public String getServInitiated() {
         return servInitiated;
@@ -118,7 +124,6 @@ public class ServiceProvider extends Contact {
     public ServiceHours getByDay(int dayNum) {
         return this.serviceHours[dayNum];
     }
-
 
     public void serByDay(int dayNum, ServiceHours servHours) {
         this.serviceHours[dayNum] = servHours;

@@ -1,7 +1,7 @@
 app = module.parent.exports.app;
 
-var appointments = require('./models/Appointment.js')(app.db)
-    , appointmentMiddleware = require('./middleware/AppointmentMiddleware.js')
+var appointments = require('./models/Availabilities.js')(app.db)
+    , appointmentMiddleware = require('./middleware/AvailabilityMiddleware.js')
     , staff = require('./models/Staff.js')(app.db);
 
 app.get('/api/staff/:id([0-9]+)/available/:date([0-9]{4}-[0-9]{2}-[0-9]{2})',

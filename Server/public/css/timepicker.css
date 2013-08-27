@@ -1,0 +1,65 @@
+/*
+ * Css styles for jQuery pugin timepicker
+ * Autor: Pavel Grebennikov
+ * Mail: nekwave@gmail.com
+*/
+
+input.timepicker_input {
+
+    cursor: pointer;
+}
+
+.reserve-time-dropdown{
+    display: block;
+    margin:0; 
+    padding: 15px 5px; 
+    background: white; 
+    position: relative; 
+    -webkit-border-radius:4px; 
+       -moz-border-radius: 4px; 
+	        border-radius:4px;
+    box-shadow:0px 1px 3px rgba(0,0,0,0.25);
+	border: 1px solid rgba(153, 153, 153, 0.6);	
+
+}
+.reserve-time-dropdown:after,.reserve-time-dropdown:before{
+    bottom: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.reserve-time-dropdown:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 5px;
+    left: 50%;
+    margin-left: -5px;
+}
+.reserve-time-dropdown:before {
+    border-color: rgba(153, 153, 153, 0);
+    border-bottom-color: #999;
+    border-width: 6px;
+    left: 50%;
+    margin-left: -6px;
+}
+
+
+table.reserve-time-table {position:relative; border:none;
+                          text-shadow: none;
+                          color: #333;}
+.reserve-time-dropdown td.time-cell{
+    padding: 5px;
+    background: white;
+    text-align: center;
+}
+.reserve-time-dropdown td.time-cell a{padding:5px; text-decoration:none; border-radius: 5px;}
+.reserve-time-dropdown td.time-cell a:hover{}
+.reserve-time-dropdown td.time-cell a.no-reserve-time{color:#bbb; cursor:not-allowed;}
+.reserve-time-dropdown td.time-cell a.possible-reserve-time{background: #f49100; color:#fff;}
+.reserve-time-dropdown td.time-cell .active {border:1px black solid;}
+.reserve-time-dropdown td.time-cell .user_active {}
+
+.timepicker-span {position: relative;}
