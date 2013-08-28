@@ -96,6 +96,10 @@ public class ServiceProviderFormUI extends Application {
     }
 
     public ServiceProviderFormUI() {
+        serviceProvider = new ServiceProvider();
+        serviceProvider.initialiseServiceHours();
+
+        data.addAll(serviceProvider.getServHrs());
     }
 
     public ServiceProviderFormUI(ServiceProvider c){

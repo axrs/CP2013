@@ -21,6 +21,8 @@ public class ServiceProvider extends Contact {
     private String servInitiated;
     private String servTerminated;
     private String servIsActive;
+    private String servColor;
+
     private List<ServiceHours> servHrs;
 
     public ServiceProvider() {
@@ -114,7 +116,7 @@ public class ServiceProvider extends Contact {
         this.servIsActive = servIsActive;
     }
 
-    private void initialiseServiceHours() {
+    public void initialiseServiceHours() {
         servHrs = new ArrayList<ServiceHours>(7);
         for (int i = 0; i < 7; i++) {
             servHrs.add(i, new ServiceHours(i));
