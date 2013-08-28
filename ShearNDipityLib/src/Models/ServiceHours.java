@@ -1,6 +1,7 @@
 package Models;
 
 import java.sql.Time;
+import java.text.DateFormatSymbols;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,36 +14,26 @@ import java.sql.Time;
  */
 public class ServiceHours {
 
-    private int servId;
     private int servHrsDay;
-    private Time servHrsStart;
-    private Time servHrsBreakStart;
-    private Time servHrsBreakEnd;
-    private Time servHrsEnd;
+    private String servHrsStart;
+    private String servHrsBreakStart;
+    private String servHrsBreakEnd;
+    private String servHrsEnd;
+    private String servHrsDayName;
 
     public ServiceHours() {
     }
 
-    public ServiceHours(int servId, int servHrsDay) {
-        this.servId = servId;
+    public ServiceHours(int servHrsDay) {
         this.servHrsDay = servHrsDay;
     }
 
-    public ServiceHours(int servId, int servHrsDay, Time servHrsStart, Time servHrsBreakStart, Time servHrsBreakEnd, Time servHrsEnd) {
-        this.servId = servId;
+    public ServiceHours(int servHrsDay, String servHrsStart, String servHrsBreakStart, String servHrsBreakEnd, String servHrsEnd) {
         this.servHrsDay = servHrsDay;
         this.servHrsStart = servHrsStart;
         this.servHrsBreakStart = servHrsBreakStart;
         this.servHrsBreakEnd = servHrsBreakEnd;
         this.servHrsEnd = servHrsEnd;
-    }
-
-    public int getServId() {
-        return servId;
-    }
-
-    public void setServId(int servId) {
-        this.servId = servId;
     }
 
     public int getServHrsDay() {
@@ -53,35 +44,40 @@ public class ServiceHours {
         this.servHrsDay = servHrsDay;
     }
 
-    public Time getServHrsStart() {
+    public String getServHrsStart() {
         return servHrsStart;
     }
 
-    public void setServHrsStart(Time servHrsStart) {
+    public void setServHrsStart(String servHrsStart) {
         this.servHrsStart = servHrsStart;
     }
 
-    public Time getServHrsBreakStart() {
+    public String getServHrsBreakStart() {
         return servHrsBreakStart;
     }
 
-    public void setServHrsBreakStart(Time servHrsBreakStart) {
+    public void setServHrsBreakStart(String servHrsBreakStart) {
         this.servHrsBreakStart = servHrsBreakStart;
     }
 
-    public Time getServHrsBreakEnd() {
+    public String getServHrsBreakEnd() {
         return servHrsBreakEnd;
     }
 
-    public void setServHrsBreakEnd(Time servHrsBreakEnd) {
+    public void setServHrsBreakEnd(String servHrsBreakEnd) {
         this.servHrsBreakEnd = servHrsBreakEnd;
     }
 
-    public Time getServHrsEnd() {
+    public String getServHrsEnd() {
         return servHrsEnd;
     }
 
-    public void setServHrsEnd(Time servHrsEnd) {
+    public void setServHrsEnd(String servHrsEnd) {
         this.servHrsEnd = servHrsEnd;
+    }
+
+    public String getServHrsDayName(){
+
+        return new DateFormatSymbols().getWeekdays()[servHrsDay+1];
     }
 }

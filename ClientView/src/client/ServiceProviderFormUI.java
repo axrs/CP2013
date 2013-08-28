@@ -1,17 +1,19 @@
 package client;
 
 import Controllers.ServiceProviderController;
+import Models.Contact;
 import Models.ServiceHours;
 import Models.ServiceProvider;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -34,12 +36,71 @@ import java.util.ArrayList;
 public class ServiceProviderFormUI extends Application {
     private ServiceProvider serviceProvider = new ServiceProvider();
     final ArrayList<TextField> availableHours = new ArrayList<TextField>();
+    private final ObservableList<ServiceHours> data = FXCollections.observableArrayList();
+    private TableView<ServiceHours> table = new TableView<ServiceHours>();
+
+    private void initialiseTableColumns() {
+        TableColumn dayColumn = new TableColumn("Weekday");
+        dayColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsDayName"));
+
+        TableColumn shiftStartColumn = new TableColumn("Shift Start");
+        shiftStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsStart"));
+        shiftStartColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        shiftStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
+                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
+                        cellEditEvent.getTablePosition().getRow())
+                ).setServHrsStart(cellEditEvent.getNewValue());
+            }
+        });
+
+        TableColumn breakStartColumn = new TableColumn("Break Start");
+        breakStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsBreakStart"));
+        breakStartColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        breakStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
+                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
+                        cellEditEvent.getTablePosition().getRow())
+                ).setServHrsBreakStart(cellEditEvent.getNewValue());
+            }
+        });
+
+        TableColumn breakEndColumn = new TableColumn("Break End");
+        breakEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsBreakEnd"));
+        breakEndColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        breakEndColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
+                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
+                        cellEditEvent.getTablePosition().getRow())
+                ).setServHrsBreakEnd(cellEditEvent.getNewValue());
+            }
+        });
+
+        TableColumn shiftEndColumn = new TableColumn("Shift End");
+        shiftEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsEnd"));
+
+        shiftEndColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        shiftEndColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
+                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
+                        cellEditEvent.getTablePosition().getRow())
+                ).setServHrsEnd(cellEditEvent.getNewValue());
+
+            }
+        });
+        table.getColumns().addAll(dayColumn, shiftStartColumn, breakStartColumn,breakEndColumn, shiftEndColumn);
+    }
 
     public ServiceProviderFormUI() {
     }
 
     public ServiceProviderFormUI(ServiceProvider c){
         serviceProvider = c;
+        data.addAll(serviceProvider.getServHrs());
     }
 
     public void start(final Stage primaryStage) throws Exception {
@@ -81,6 +142,7 @@ public class ServiceProviderFormUI extends Application {
 
         final TextArea bio = new TextArea(serviceProvider.getServBio());
         bio.setMaxSize(250, 100);
+        bio.setWrapText(true);
 
         Label hours = new Label("Available Hours");
         hours.setFont(new Font("Arial", 30));
@@ -129,29 +191,11 @@ public class ServiceProviderFormUI extends Application {
         daysPane.setHgap(5);
         daysPane.setVgap(5);
 
-        Label monday = new Label("Monday");
-        Label tuesday = new Label("Tuesday");
-        Label wednesday = new Label("Wednesday");
-        Label thursday = new Label("Thursday");
-        Label friday = new Label("Friday");
-        Label saturday = new Label("Saturday");
-        Label sunday = new Label("Sunday");
+        initialiseTableColumns();
+        table.setEditable(true);
+        table.setItems(data);
 
-        daysPane.add(monday, 1, 0);
-        daysPane.add(tuesday, 2, 0);
-        daysPane.add(wednesday, 3, 0);
-        daysPane.add(thursday, 4, 0);
-        daysPane.add(friday, 5, 0);
-        daysPane.add(saturday, 6, 0);
-        daysPane.add(sunday, 7, 0);
-
-        daysPane.add(new Label("Start Time"), 0, 1);
-        daysPane.add(new Label("Break Start Time"), 0, 2);
-        daysPane.add(new Label("Break End Time"), 0, 3);
-        daysPane.add(new Label("End Time"), 0, 4);
-
-
-        int i = 0;
+  /*      int i = 0;
         int timeNo = 0;
         for (int col = 1; col < 8; col++) {
 
@@ -160,8 +204,8 @@ public class ServiceProviderFormUI extends Application {
                 daysPane.add(availableHours.get(i), col, row);
                 i++;
             }
-        }
-        editContactForm.add(daysPane,0,10,4,1);
+        }*/
+        editContactForm.add(table,0,10,4,1);
         Button submit = new Button("Submit");
 
         editContactForm.add(submit, 0,11);
@@ -182,17 +226,11 @@ public class ServiceProviderFormUI extends Application {
                     serviceProvider.setServInitiated(dateStartedInput.getText());
                     serviceProvider.setServTerminated(dateTerminatedInput.getText());
                     serviceProvider.setServBio(bio.getText());
-                    for (int i = 0; i < 28; i+=4){
-                        serviceProvider.getByDay(i % 7).setServHrsStart(buildTime(availableHours.get(i).getText()));
-                        System.out.println(i);
-                        serviceProvider.getByDay(i % 7).setServHrsBreakStart(buildTime(availableHours.get(i + 1).getText()));
-                        serviceProvider.getByDay(i % 7).setServHrsBreakEnd(buildTime(availableHours.get(i + 2).getText()));
-                        serviceProvider.getByDay(i % 7).setServHrsEnd(buildTime(availableHours.get(i + 3).getText()));
-                    }
+
 
                     if (serviceProvider.getContId() != 0) {
                         ServiceProviderController.getInstance().updateServiceProvider(serviceProvider);
-                        System.out.println(serviceProvider.getContAddrSuburb());
+                        System.out.println(serviceProvider.toString());
                         ServiceProviderController.getInstance().getServiceProviderFromServer(serviceProvider.getContId());
 
                     } else {
