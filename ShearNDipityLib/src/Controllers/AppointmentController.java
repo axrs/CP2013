@@ -1,13 +1,13 @@
 package Controllers;
 
+import Models.*;
 import Models.Appointment;
-import Models.Config;
-import Models.Appointment;
-import Models.Contact;
 import com.google.gson.Gson;
 
 import javax.swing.event.EventListenerList;
 import java.util.Date;
+import java.util.EventListener;
+import java.util.EventObject;
 import java.util.HashMap;
 
 /**
@@ -33,6 +33,9 @@ public class AppointmentController {
     private HashMap<Integer, Appointment> appointments;
     private Mutex appointmentsLocker;
     private Date lastUpdate;
+    private String startDate;
+    private String endDate;
+    private Availability[] availabilities;
 
     /**
      * Singleton constructor.  Not able to be overridden
@@ -55,6 +58,15 @@ public class AppointmentController {
         Thread runnerThread = new Thread(runner, "Getting Appointments");
         runnerThread.start();
     }
+
+    public void getAvailabilitiesFromServer() {
+        RESTRunner runner = new RESTRunner();
+        runner.addListner(new GetAvailabilitiesResultListener());
+        runner.setRequest(Config.getInstance().getServer() + "/api/staff/available/" + startDate + "/" + endDate);
+        Thread runnerThread = new Thread(runner, "Getting Availabilities");
+        runnerThread.start();
+    }
+
 
     /**
      * REST Server Results event listener.
@@ -91,8 +103,100 @@ public class AppointmentController {
             }
 
             //Trigger the ContactController collection updated
-          //  triggerUpdated(new ContactsUpdated(this));
+            triggerUpdated(new AppointmentsUpdated(this));
         }
+    }
+
+    /**
+     * REST Server Results event listener.
+     * Implemented specifically to handle processing 'GET all Contacts' requests
+     */
+    private class GetAvailabilitiesResultListener implements RESTRunner.ResultsListener {
+        @Override
+        public void results(RESTRunner.Result result) {
+
+            //Print the outputs for now
+            System.out.println("Get All Availabilities Request : " + result.getStatus());
+            System.out.println(result.getResponse());
+
+            //Remove the listener from the contact object
+            ((RESTRunner) result.getSource()).removeListener(this);
+
+            if (result.getStatus() != 200) return;
+            //Process results
+            try {
+                appointmentsLocker.acquire();
+                try {
+                    Availability[] results = new Gson().fromJson(result.getResponse(), Availability[].class);
+
+                    for (int i = 0; i < results.length; i++) {
+                        Availability a = results[i];
+                        availabilities[i] = a;
+                    }
+
+                } finally {
+                    appointmentsLocker.release();
+                }
+            } catch (InterruptedException ie) {
+            }
+
+            //Trigger the ContactController collection updated
+              triggerUpdated(new AvailabilitiesUpdated(this));
+        }
+    }
+
+    /**
+     * Appointments Updated Event
+     */
+    public class AppointmentsUpdated extends EventObject {
+        public AppointmentsUpdated(Object source) {
+            super(source);
+        }
+    }
+
+    /**
+     * Availablities Updated Event
+     */
+    public class AvailabilitiesUpdated extends EventObject {
+        public AvailabilitiesUpdated(Object source) {
+            super(source);
+        }
+    }
+
+    /**
+     * Notifies all event listeners of the Appointments Controller that there has been a Appointments update
+     *
+     * @param event
+     */
+    private void triggerUpdated(AppointmentsUpdated event) {
+        AppointmentsUpdatedListener[] listeners = subscribers.getListeners(AppointmentsUpdatedListener.class);
+        for (int i = 0; i < listeners.length; i++) {
+            listeners[i].updated(event);
+        }
+    }
+
+    /**
+     * Notifies all event listeners of the Appointments Controller that there has been a Appointments update
+     *
+     * @param event
+     */
+    private void triggerUpdated(AvailabilitiesUpdated event) {
+        AvailabilitiesUpdatedListener[] listeners = subscribers.getListeners(AvailabilitiesUpdatedListener.class);
+        for (int i = 0; i < listeners.length; i++) {
+            listeners[i].updated(event);
+        }
+    }
+
+
+    /**
+     * Contact Controller Updated Contacts Listener
+     */
+    public interface AppointmentsUpdatedListener extends EventListener {
+        public void updated(AppointmentsUpdated event);
+    }
+
+    public interface AvailabilitiesUpdatedListener extends EventListener {
+        public void updated(AvailabilitiesUpdated event);
     }
 
 }
