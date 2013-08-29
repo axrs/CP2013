@@ -12,58 +12,64 @@ import jfxtras.labs.scene.control.Agenda;
 
 public class Main extends Application {
 
+    private final MenuBar menuBar = new MenuBar();
+
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void buildFileMenu() {
+        Menu fileMenu = new Menu("File");
+        MenuItem aboutMenuItem = new MenuItem("About");
+        MenuItem exitMenuItem = new MenuItem("Quit");
+        fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), exitMenuItem);
+        menuBar.getMenus().add(fileMenu);
+
+        exitMenuItem.setOnAction(onMenuQuitClick());
+        aboutMenuItem.setOnAction(onMenuAboutClick());
+
+    }
+
+    private void buildContactMenu() {
+        Menu contactMenu = new Menu("Contacts");
+        MenuItem contactAddressBookMenuItem = new MenuItem("Address Book");
+        MenuItem newContactMenuItem = new MenuItem("New Contact");
+        contactMenu.getItems().addAll(contactAddressBookMenuItem, new SeparatorMenuItem(), newContactMenuItem);
+        menuBar.getMenus().add(contactMenu);
+
+        contactAddressBookMenuItem.setOnAction(onContactAddressBookMenuClick());
+        newContactMenuItem.setOnAction(onNewContactMenuClick());
+
+    }
+
+    private void buildStaffMenu() {
+        Menu staffMenu = new Menu("Staff");
+        MenuItem staffAddressBookMenuItem = new MenuItem("Staff Listing");
+        MenuItem newStaffMemberMenuItem = new MenuItem("New Staff Member");
+        staffMenu.getItems().addAll(staffAddressBookMenuItem, new SeparatorMenuItem(), newStaffMemberMenuItem);
+        menuBar.getMenus().add(staffMenu);
+
+        staffAddressBookMenuItem.setOnAction(onStaffAddressBookMenuClick());
+        newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
     }
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
 
         primaryStage.setTitle("CP2013 Appointment Scheduler");
-
         BorderPane mainPane = new BorderPane();
-        MenuBar menuBar = new MenuBar();
-        Menu fileMenu = new Menu("File");
-        Menu contactMenu = new Menu("Contacts");
-        Menu staffMenu = new Menu("Staff");
-
-        MenuItem exitMenuItem = new MenuItem("Quit");
-
-        MenuItem contactAddressBookMenuItem = new MenuItem("Address Book");
-        MenuItem newContactMenuItem = new MenuItem("New Contact");
-
-        MenuItem staffAddressBookMenuItem = new MenuItem("Staff Listing");
-        MenuItem newStaffMemberMenuItem = new MenuItem("New Staff Member");
-
-        MenuItem aboutMenuItem = new MenuItem("About");
-
-        fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), exitMenuItem);
-        contactMenu.getItems().addAll(contactAddressBookMenuItem, newContactMenuItem);
-        staffMenu.getItems().addAll(staffAddressBookMenuItem, newStaffMemberMenuItem);
-        menuBar.getMenus().addAll(fileMenu, contactMenu, staffMenu);
-
         mainPane.setTop(menuBar);
 
-        exitMenuItem.setOnAction(onMenuQuitClick(primaryStage));
-
-        aboutMenuItem.setOnAction(onMenuAboutClick());
-
-
-        contactAddressBookMenuItem.setOnAction(onContactAddressBookMenuClick());
-
-        newContactMenuItem.setOnAction(onNewContactMenuClick());
-
-        staffAddressBookMenuItem.setOnAction(onStaffAddressBookMenuClick());
-
-        newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
-
+        buildFileMenu();
+        buildContactMenu();
+        buildStaffMenu();
 
         Agenda agenda = new Agenda();
         mainPane.setCenter(agenda);
 
         agenda.appointments();
 
-        Scene scene = new Scene(mainPane, 600, 400);
+        Scene scene = new Scene(mainPane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -72,13 +78,7 @@ public class Main extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
-                Stage stage = new Stage();
-                try {
-                    serviceProviderFormUI.start(stage);
-                } catch (Exception e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
+                tryStageStart(new ServiceProviderFormUI());
             }
         };
     }
@@ -87,28 +87,24 @@ public class Main extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                AdminUI adminUI = new AdminUI();
-                Stage adminStage = new Stage();
-                try {
-                    adminUI.start(adminStage);
-                } catch (Exception e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
+                tryStageStart(new StaffAddressBookView());
             }
         };
+    }
+
+    private void tryStageStart(Application window) {
+        try {
+            window.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private EventHandler<ActionEvent> onNewContactMenuClick() {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                ContactFormUI userUI = new ContactFormUI();
-                Stage userStage = new Stage();
-                try {
-                    userUI.start(userStage);
-                } catch (Exception e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
+                tryStageStart(new ContactFormView());
             }
         };
     }
@@ -117,13 +113,7 @@ public class Main extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                ContactUI contactUI = new ContactUI();
-                Stage userStage = new Stage();
-                try {
-                    contactUI.start(userStage);
-                } catch (Exception e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                }
+                tryStageStart(new ContactAddressBookView());
             }
         };
     }
@@ -147,11 +137,10 @@ public class Main extends Application {
         };
     }
 
-    private EventHandler<ActionEvent> onMenuQuitClick(final Stage primaryStage) {
+    private EventHandler<ActionEvent> onMenuQuitClick() {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                primaryStage.close();
                 Platform.exit();
             }
         };
