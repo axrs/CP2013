@@ -118,7 +118,7 @@ public class ServiceProvider extends Contact {
     public void initialiseServiceHours() {
         servHrs = new ArrayList<ServiceHours>(7);
         for (int i = 0; i < 7; i++) {
-            servHrs.add(i, new ServiceHours(i));
+            servHrs.add(i, new ServiceHours(i,"00:00","00:00","00:00","00:00"));
         }
     }
 

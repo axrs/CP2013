@@ -44,6 +44,7 @@ public class ServiceProviderFormUI extends Application {
         dayColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsDayName"));
 
         TableColumn shiftStartColumn = new TableColumn("Shift Start");
+        shiftStartColumn.setMinWidth(50);
         shiftStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsStart"));
         shiftStartColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         shiftStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
@@ -56,6 +57,7 @@ public class ServiceProviderFormUI extends Application {
         });
 
         TableColumn breakStartColumn = new TableColumn("Break Start");
+        breakStartColumn.setMinWidth(50);
         breakStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsBreakStart"));
         breakStartColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         breakStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
@@ -68,6 +70,7 @@ public class ServiceProviderFormUI extends Application {
         });
 
         TableColumn breakEndColumn = new TableColumn("Break End");
+        breakEndColumn.setMinWidth(50);
         breakEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsBreakEnd"));
         breakEndColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         breakEndColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
@@ -81,7 +84,7 @@ public class ServiceProviderFormUI extends Application {
 
         TableColumn shiftEndColumn = new TableColumn("Shift End");
         shiftEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsEnd"));
-
+        shiftEndColumn.setMinWidth(50);
         shiftEndColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         shiftEndColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
             @Override
