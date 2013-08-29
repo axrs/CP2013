@@ -22,8 +22,6 @@ import jfxtras.labs.scene.control.CalendarPicker;
  */
 public class UserUI extends Application {
 
-
-
     @Override
     public void start(Stage primaryStage) throws Exception {
 
