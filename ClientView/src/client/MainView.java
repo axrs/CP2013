@@ -7,6 +7,7 @@ import Models.ScheduledAppointment;
 import Models.ServiceProvider;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -76,6 +77,24 @@ public class MainView extends Application {
         BorderPane mainPane = new BorderPane();
         mainPane.setTop(menuBar);
 
+        agendaView.selectedAppointments().addListener(new ListChangeListener<Agenda.Appointment>() {
+            @Override
+            public void onChanged(Change<? extends Agenda.Appointment> change) {
+                if (agendaView.selectedAppointments().size() > 1) {
+                    Agenda.Appointment single = agendaView.selectedAppointments().get(agendaView.selectedAppointments().size() - 1);
+                    agendaView.selectedAppointments().clear();
+                    agendaView.selectedAppointments().add(single);
+                }
+                if (agendaView.selectedAppointments().size() == 1) {
+                    Agenda.Appointment app = agendaView.selectedAppointments().get(0);
+
+                    if (app instanceof ReadOnlyAppointmentImpl) {
+                        System.out.println("You selected appointment with the ID of: " + ((ReadOnlyAppointmentImpl) app).getAppId());
+                    }
+                }
+            }
+        });
+
         buildFileMenu();
         buildContactMenu();
         buildStaffMenu();
@@ -109,14 +128,16 @@ public class MainView extends Application {
                                     cal.setTime(schedItem.getStartDate());
                                     Calendar startTime = (Calendar) cal.clone();
 
-                                    Agenda.AppointmentImpl a =
-                                            new Agenda.AppointmentImpl();
+                                    ReadOnlyAppointmentImpl a =
+                                            new ReadOnlyAppointmentImpl();
                                     a.withStartTime(startTime)
                                             .withEndTime(endTime)
                                             .withSummary(schedItem.getTitle())
                                             .withDescription(schedItem.getStaff())
                                             .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId()))
                                     ;
+
+                                    a.setAppId(schedItem.getAppId());
                                     agendaView.appointments().addAll(a);
 
                                 } catch (ParseException e) {
@@ -154,13 +175,14 @@ public class MainView extends Application {
                     @Override
                     public void run() {
                         agendaView.appointmentGroups().clear();
-
+                        int i = 0;
                         HashMap<Integer, ServiceProvider> map = ServiceProviderController.getInstance().getServiceProviders();
                         for (int id : map.keySet()) {
                             ServiceProvider sp = map.get(id);
-                            Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group");
-                            grp.setDescription(String.valueOf(id));
+                            Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));
+                            grp.setDescription(sp.getContFirstName() + " " + sp.getContSurname());
                             agendaView.appointmentGroups().add(grp);
+                            i++;
                         }
                     }
                 });
