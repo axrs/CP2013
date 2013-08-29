@@ -21,6 +21,15 @@ public class ServiceProvider extends Contact {
     private String servInitiated;
     private String servTerminated;
     private String servIsActive;
+
+    public String getServColor() {
+        return servColor;
+    }
+
+    public void setServColor(String servColor) {
+        this.servColor = servColor;
+    }
+
     private String servColor;
 
     private List<ServiceHours> servHrs;

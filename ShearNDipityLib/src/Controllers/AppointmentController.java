@@ -1,10 +1,13 @@
 package Controllers;
 
-import Models.*;
 import Models.Appointment;
+import Models.Availability;
+import Models.Config;
+import Models.ScheduledAppointment;
 import com.google.gson.Gson;
 
 import javax.swing.event.EventListenerList;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.EventListener;
 import java.util.EventObject;
@@ -15,9 +18,9 @@ import java.util.HashMap;
  * User: mindikingsun
  * Date: 25/08/13
  * Time: 9:41 PM
- *
- *  Appointment Controller
- *
+ * <p/>
+ * Appointment Controller
+ * <p/>
  * Singleton Appointment controller class tasked at interacting with the REST API server and managing
  * any known Appointment in memory.
  * Notes:
@@ -48,24 +51,24 @@ public class AppointmentController {
             lastUpdate = new Date();
             appointments = new HashMap<Integer, Appointment>();
         }
-        if ((new Date().getTime() - lastUpdate.getTime()) > 60000) {
-            getAppointmentsFromServer();
-        }
     }
 
     public static AppointmentController getInstance() {
         //If a static instance of the controller doesn't exist, make it.
         if (instance == null) {
             instance = new AppointmentController();
-            instance.getAppointmentsFromServer();
         }
         return instance;
     }
 
-    public void getAppointmentsFromServer() {
+    public void getAppointmentsFromServer(Date dateRangeStart, Date dateRangeEnd) {
+
+        startDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeStart);
+        endDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeEnd);
+
         RESTRunner runner = new RESTRunner();
         runner.addListner(new GetAppointmentsResultListener());
-        runner.setRequest(Config.getInstance().getServer() + "/api/appointments");
+        runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments/" + startDate + "/" + endDate);
         Thread runnerThread = new Thread(runner, "Getting Appointments");
         runnerThread.start();
     }
@@ -88,6 +91,73 @@ public class AppointmentController {
         runnerThread.start();
     }
 
+    /**
+     * Notifies all event listeners of the Appointments Controller that there has been a Appointments update
+     *
+     * @param event
+     */
+    private void triggerUpdated(AppointmentsUpdated event) {
+        AppointmentsUpdatedListener[] listeners = subscribers.getListeners(AppointmentsUpdatedListener.class);
+        for (int i = 0; i < listeners.length; i++) {
+            listeners[i].updated(event);
+        }
+    }
+
+    /**
+     * Notifies all event listeners of the Appointments Controller that there has been a Appointments update
+     *
+     * @param event
+     */
+    private void triggerUpdated(AvailabilitiesUpdated event) {
+        AvailabilitiesUpdatedListener[] listeners = subscribers.getListeners(AvailabilitiesUpdatedListener.class);
+        for (int i = 0; i < listeners.length; i++) {
+            listeners[i].updated(event);
+        }
+    }
+
+    /**
+     * Add a response subscriber
+     *
+     * @param listener
+     */
+    public void addUpdatedListener(AppointmentsUpdatedListener listener) {
+        subscribers.add(AppointmentsUpdatedListener.class, listener);
+    }
+
+    /**
+     * Remove a response subscriber
+     *
+     * @param listener
+     */
+    public void removeUpdatedListener(AppointmentsUpdatedListener listener) {
+        subscribers.remove(AppointmentsUpdatedListener.class, listener);
+    }
+
+    public HashMap<Integer, Appointment> getAppointments() {
+        HashMap<Integer, Appointment> map = null;
+        try {
+            appointmentsLocker.acquire();
+            try {
+                map = appointments;
+            } finally {
+                appointmentsLocker.release();
+            }
+        } catch (InterruptedException ie) {
+
+        }
+        return map;
+    }
+
+    /**
+     * Contact Controller Updated Contacts Listener
+     */
+    public interface AppointmentsUpdatedListener extends EventListener {
+        public void updated(AppointmentsUpdated event);
+    }
+
+    public interface AvailabilitiesUpdatedListener extends EventListener {
+        public void updated(AvailabilitiesUpdated event);
+    }
 
     /**
      * REST Server Results event listener.
@@ -109,14 +179,13 @@ public class AppointmentController {
             try {
                 appointmentsLocker.acquire();
                 try {
-                    appointments.clear();
-                    Appointment[] results = new Gson().fromJson(result.getResponse(), Appointment[].class);
+                    //We don't clear appointments this time as we only want to update what we receive.
+                    ScheduledAppointment[] results = new Gson().fromJson(result.getResponse(), ScheduledAppointment[].class);
 
                     for (int i = 0; i < results.length; i++) {
                         Appointment a = results[i];
                         appointments.put(a.getAppId(), a);
                     }
-
                 } finally {
                     appointmentsLocker.release();
                 }
@@ -162,7 +231,7 @@ public class AppointmentController {
             }
 
             //Trigger the ContactController collection updated
-              triggerUpdated(new AvailabilitiesUpdated(this));
+            triggerUpdated(new AvailabilitiesUpdated(this));
         }
     }
 
@@ -178,8 +247,6 @@ public class AppointmentController {
 
             if (result.getStatus() != 201 && result.getStatus() != 202) return;
 
-            //Update Appointments with new information
-            getAppointmentsFromServer();
         }
     }
 
@@ -199,42 +266,6 @@ public class AppointmentController {
         public AvailabilitiesUpdated(Object source) {
             super(source);
         }
-    }
-
-    /**
-     * Notifies all event listeners of the Appointments Controller that there has been a Appointments update
-     *
-     * @param event
-     */
-    private void triggerUpdated(AppointmentsUpdated event) {
-        AppointmentsUpdatedListener[] listeners = subscribers.getListeners(AppointmentsUpdatedListener.class);
-        for (int i = 0; i < listeners.length; i++) {
-            listeners[i].updated(event);
-        }
-    }
-
-    /**
-     * Notifies all event listeners of the Appointments Controller that there has been a Appointments update
-     *
-     * @param event
-     */
-    private void triggerUpdated(AvailabilitiesUpdated event) {
-        AvailabilitiesUpdatedListener[] listeners = subscribers.getListeners(AvailabilitiesUpdatedListener.class);
-        for (int i = 0; i < listeners.length; i++) {
-            listeners[i].updated(event);
-        }
-    }
-
-
-    /**
-     * Contact Controller Updated Contacts Listener
-     */
-    public interface AppointmentsUpdatedListener extends EventListener {
-        public void updated(AppointmentsUpdated event);
-    }
-
-    public interface AvailabilitiesUpdatedListener extends EventListener {
-        public void updated(AvailabilitiesUpdated event);
     }
 
 }
