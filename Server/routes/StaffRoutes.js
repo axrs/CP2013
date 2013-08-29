@@ -51,7 +51,7 @@ app.get('/api/staff/:id([0-9]+)',
     modelMiddleware.loadFromDatabase(staff, true),
     staffController.apiShow
 );
-app.put('/staff',
+app.put('/api/staff',
     app.exposeLocals,
     contactMiddleware.validateAPIContact(contact),
     staffMiddleware.validateAPIStaff(staff),

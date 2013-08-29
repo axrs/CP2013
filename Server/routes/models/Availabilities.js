@@ -1,4 +1,6 @@
 module.exports = function (database) {
+	var oneDay = 24*60*60*1000; 
+
     return{
         getProviderAvailabilities: function (id, date, callback) {
             database.all(
@@ -112,9 +114,8 @@ module.exports = function (database) {
         getAllProviderAvailabilitiesRange: function (start, end, callback) {
             var events = [];
             var total = 0;
-
+            var endDate =new Date(new Date(end).getTime() + 1 *oneDay);
             var iteration = 0;
-            var endDate = new Date(end);
             var dateRange = (new Date(end) - new Date(start)) / (1000 * 60 * 60 * 24);
 
             var expectedIterations = 0;
@@ -124,7 +125,7 @@ module.exports = function (database) {
 
                     database.each('SELECT servId, servColor FROM service_provider;', function (err, row) {
                             database.serialize(function () {
-                                var startDate = new Date(start);
+                                var startDate = new Date(new Date(start).getTime() + 1*oneDay);;
                                 var date = '';
                                 while (startDate < endDate) {
                                     date = startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2);
