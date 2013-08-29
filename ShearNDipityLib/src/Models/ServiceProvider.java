@@ -2,7 +2,7 @@ package Models;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,25 +21,17 @@ public class ServiceProvider extends Contact {
     private String servInitiated;
     private String servTerminated;
     private String servIsActive;
-    private ServiceHours[] serviceHours;
     private String servColor;
 
+    private List<ServiceHours> servHrs;
+
     public ServiceProvider() {
-        initialiseServiceHours();
     }
 
     public ServiceProvider(String contForename, String contSurname, String servInitiated) {
         super(contForename, contSurname);    //To change body of overridden methods use File | Settings | File Templates.
         this.servInitiated = servInitiated;
         initialiseServiceHours();
-    }
-
-    public String getServColor() {
-        return servColor;
-    }
-
-    public String setServColor(String color) {
-        servColor = color;
     }
 
     public int getServId() {
@@ -62,6 +54,14 @@ public class ServiceProvider extends Contact {
         return servPortrait;
     }
 
+    public List<ServiceHours> getServHrs() {
+        return servHrs;
+    }
+
+    public void setServHrs(List<ServiceHours> servHrs) {
+        this.servHrs = servHrs;
+    }
+
     public void setServPortrait(String servPortrait) {
         this.servPortrait = servPortrait;
     }
@@ -77,6 +77,7 @@ public class ServiceProvider extends Contact {
     public void setServInitiatedDate(Date date) {
         this.servInitiated = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
+
 
     public String getServInitiated() {
         return servInitiated;
@@ -114,18 +115,19 @@ public class ServiceProvider extends Contact {
         this.servIsActive = servIsActive;
     }
 
-    private void initialiseServiceHours() {
-        serviceHours = new ServiceHours[7];
+    public void initialiseServiceHours() {
+        servHrs = new ArrayList<ServiceHours>(7);
         for (int i = 0; i < 7; i++) {
-            serviceHours[i] = new ServiceHours(servId, i);
+            servHrs.add(i, new ServiceHours(i,"00:00","00:00","00:00","00:00"));
         }
     }
 
     public ServiceHours getByDay(int dayNum) {
-        return this.serviceHours[dayNum];
+        return this.servHrs.get(dayNum);
     }
 
+
     public void serByDay(int dayNum, ServiceHours servHours) {
-        this.serviceHours[dayNum] = servHours;
+        this.servHrs.set(dayNum, servHours);
     }
 }
