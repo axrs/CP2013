@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jfxtras.labs.scene.control.Agenda;
@@ -29,36 +26,31 @@ public class Main extends Application {
         Menu contactMenu = new Menu("Contacts");
         Menu staffMenu = new Menu("Staff");
 
-        MenuItem quitMenu = new MenuItem("Quit");
+        MenuItem exitMenuItem = new MenuItem("Quit");
 
-        MenuItem addressBookMenu = new MenuItem("Address Book");
-        MenuItem newContactMenu = new MenuItem("New Contact");
+        MenuItem contactAddressBookMenuItem = new MenuItem("Address Book");
+        MenuItem newContactMenuItem = new MenuItem("New Contact");
 
-        MenuItem adminMenu = new MenuItem("Staff Listing");
-        MenuItem newServiceProviderMenu = new MenuItem("New Staff Member");
+        MenuItem staffAddressBookMenuItem = new MenuItem("Staff Listing");
+        MenuItem newStaffMemberMenuItem = new MenuItem("New Staff Member");
 
-        MenuItem aboutMenu = new MenuItem("About");
+        MenuItem aboutMenuItem = new MenuItem("About");
 
-        fileMenu.getItems().add(quitMenu);
-        fileMenu.getItems().add(0,aboutMenu);
-        contactMenu.getItems().add(addressBookMenu);
-        contactMenu.getItems().add(newContactMenu);
-        staffMenu.getItems().add(adminMenu);
-        staffMenu.getItems().add(newServiceProviderMenu);
-        menuBar.getMenus().add(fileMenu);
-        menuBar.getMenus().add(contactMenu);
-        menuBar.getMenus().add(staffMenu);
+        fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), exitMenuItem);
+        contactMenu.getItems().addAll(contactAddressBookMenuItem, newContactMenuItem);
+        staffMenu.getItems().addAll(staffAddressBookMenuItem, newStaffMemberMenuItem);
+        menuBar.getMenus().addAll(fileMenu, contactMenu, staffMenu);
 
         mainPane.setTop(menuBar);
 
-        quitMenu.setOnAction(new EventHandler<ActionEvent>() {
+        exitMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 primaryStage.close();
             }
         });
 
-        aboutMenu.setOnAction(new EventHandler<ActionEvent>() {
+        aboutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Stage aboutStage = new Stage();
@@ -76,7 +68,7 @@ public class Main extends Application {
         });
 
 
-        addressBookMenu.setOnAction(new EventHandler<ActionEvent>() {
+        contactAddressBookMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ContactUI contactUI = new ContactUI();
@@ -89,7 +81,7 @@ public class Main extends Application {
             }
         });
 
-        newContactMenu.setOnAction(new EventHandler<ActionEvent>() {
+        newContactMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ContactFormUI userUI = new ContactFormUI();
@@ -102,7 +94,7 @@ public class Main extends Application {
             }
         });
 
-        adminMenu.setOnAction(new EventHandler<ActionEvent>() {
+        staffAddressBookMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 AdminUI adminUI = new AdminUI();
@@ -115,7 +107,7 @@ public class Main extends Application {
             }
         });
 
-        newServiceProviderMenu.setOnAction(new EventHandler<ActionEvent>() {
+        newStaffMemberMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
