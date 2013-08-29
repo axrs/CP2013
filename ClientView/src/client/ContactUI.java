@@ -51,7 +51,6 @@ public class ContactUI extends Application {
         TableColumn companyColumn = new TableColumn("Company");
         companyColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contCompany"));
         table.getColumns().addAll(firstNameColumn, surnameColumn, companyColumn);
-
     }
 
     /**
@@ -70,16 +69,8 @@ public class ContactUI extends Application {
         initialiseTableColumns();
         table.setItems(data);
 
-        //Obtain a reference to the contact controller.
-        //Note: We do not use NEW as the ContactController is a singleton object.
-        //      (There is only ever one controller in existence, and it gets used by multiple interfaces).
-        final ContactController c = ContactController.getInstance();
-
-        //Create a simple listener on the ContactController.  Whenever the contact list updates we want the
-        //table view to update also.
-        c.addUpdatedListener(onContactsListUpdate());
-        //Force the ContactController to get the latest and greatest contacts
-        c.getContactsFromServer();
+        ContactController.getInstance().addUpdatedListener(onContactsListUpdate());
+        ContactController.getInstance().getContactsFromServer();
 
         table.setOnMouseClicked(onTableRowDoubleClick());
 
