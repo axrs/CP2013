@@ -36,6 +36,8 @@ public class AppointmentController {
     private String startDate;
     private String endDate;
     private Availability[] availabilities;
+    private ContactController contactController;
+    private ServiceProviderController serviceProviderController;
 
     /**
      * Singleton constructor.  Not able to be overridden
@@ -76,6 +78,16 @@ public class AppointmentController {
         runnerThread.start();
     }
 
+    public void createAppointment(Appointment appointment) {
+        RESTRunner runner = new RESTRunner();
+        runner.addListner(new ModifyAppointmentResultListener());
+        runner.setRequest(Config.getInstance().getServer() + "/api/appointments");
+        runner.setMethod("PUT");
+        runner.setMessage(new Gson().toJson(appointment, Appointment.class));
+        Thread runnerThread = new Thread(runner, "Creating Appointment");
+        runnerThread.start();
+    }
+
 
     /**
      * REST Server Results event listener.
@@ -102,7 +114,7 @@ public class AppointmentController {
 
                     for (int i = 0; i < results.length; i++) {
                         Appointment a = results[i];
-                        appointments.put(a.getContId(), a);
+                        appointments.put(a.getAppId(), a);
                     }
 
                 } finally {
@@ -151,6 +163,23 @@ public class AppointmentController {
 
             //Trigger the ContactController collection updated
               triggerUpdated(new AvailabilitiesUpdated(this));
+        }
+    }
+
+    private class ModifyAppointmentResultListener implements RESTRunner.ResultsListener {
+        @Override
+        public void results(RESTRunner.Result result) {
+            //Print the outputs for now
+            System.out.println("Modify single Appointment : " + result.getStatus());
+            System.out.println(result.getResponse());
+
+            //Remove the listener from the appointment object
+            ((RESTRunner) result.getSource()).removeListener(this);
+
+            if (result.getStatus() != 201 && result.getStatus() != 202) return;
+
+            //Update Appointments with new information
+            getAppointmentsFromServer();
         }
     }
 

@@ -14,6 +14,7 @@ import java.sql.Time;
  */
 public class Appointment {
 
+    private int appId;
     private int appTypeId;
     private int contId;
     private int servId;
@@ -23,12 +24,21 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(int appTypeId, int contId, int servId, Date appDate, Time appTime) {
+    public Appointment(int appId, int appTypeId, int contId, int servId, Date appDate, Time appTime) {
+        this.appId = appId;
         this.appTypeId = appTypeId;
         this.contId = contId;
         this.servId = servId;
         this.appDate = appDate;
         this.appTime = appTime;
+    }
+
+    public int getAppId() {
+        return appId;
+    }
+
+    public void setAppId(int appId) {
+        this.appId = appId;
     }
 
     public int getAppTypeId() {
