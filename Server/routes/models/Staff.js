@@ -43,7 +43,7 @@ module.exports = function (database) {
 
             getAllStaff();
         },
-        allIds: function(callback){
+        allIds: function (callback) {
             database.all('SELECT servId FROM service_provider;', callback);
         },
         findById: function (id, callback) {
@@ -93,7 +93,7 @@ module.exports = function (database) {
 
                 statement.run(
                     [
-                        data.servBio,
+                        (typeof data.servBio === 'undefined') ? '' : data.servBio,
                         data.servPortrait,
                         data.servInitiated,
                         data.servTerminated,
@@ -167,7 +167,7 @@ module.exports = function (database) {
                                 statement.run(
                                     [
                                         results.contId,
-                                        data.servBio,
+                                        (typeof data.servBio === 'undefined') ? '' : data.servBio,
                                         data.servPortrait,
                                         data.servInitiated,
                                         (typeof data.servColor === 'undefined') ? '#002a80' : data.servColor,
