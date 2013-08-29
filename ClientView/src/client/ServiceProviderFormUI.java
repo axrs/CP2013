@@ -144,7 +144,7 @@ public class ServiceProviderFormUI extends Application {
         final TextField dateStartedInput = new TextField(serviceProvider.getServInitiated());
         dateStartedInput.setMaxWidth(100);
 
-        final TextField dateTerminatedInput = new TextField(serviceProvider.getServInitiated());
+        final TextField dateTerminatedInput = new TextField(serviceProvider.getServTerminated());
         dateTerminatedInput.setMaxWidth(100);
 
         final TextArea bio = new TextArea(serviceProvider.getServBio());

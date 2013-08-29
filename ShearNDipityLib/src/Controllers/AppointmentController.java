@@ -51,6 +51,15 @@ public class AppointmentController {
         }
     }
 
+    public static AppointmentController getInstance() {
+        //If a static instance of the controller doesn't exist, make it.
+        if (instance == null) {
+            instance = new AppointmentController();
+            instance.getAppointmentsFromServer();
+        }
+        return instance;
+    }
+
     public void getAppointmentsFromServer() {
         RESTRunner runner = new RESTRunner();
         runner.addListner(new GetAppointmentsResultListener());

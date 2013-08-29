@@ -1,8 +1,12 @@
 package client;
 
+import Controllers.AppointmentController;
 import Controllers.ContactController;
+import Models.Appointment;
 import Models.Contact;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -87,9 +91,14 @@ public class ContactFormUI extends Application {
         editContactForm.add(new Label("State:"), 0, 9);
         editContactForm.add(addrStateInput, 1, 9);
 
+        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+        ListView<Appointment> appointmentListView = new ListView<Appointment>();
+
+        //appointments.add(AppointmentController.getInstance().getAppointmentsFromServer().values());
+
         Button submit = new Button("Submit");
 
-        editContactForm.add(submit, 0,10);
+        editContactForm.add(submit, 0,11);
 
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
