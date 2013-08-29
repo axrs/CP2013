@@ -15,10 +15,10 @@ import java.text.DateFormatSymbols;
 public class ServiceHours {
 
     private int servHrsDay;
-    private String servHrsStart;
-    private String servHrsBreakStart;
-    private String servHrsBreakEnd;
-    private String servHrsEnd;
+    private String servHrsStart = "00:00";
+    private String servHrsBreakStart = "00:00";
+    private String servHrsBreakEnd = "00:00";
+    private String servHrsEnd = "00:00";
     private String servHrsDayName;
 
     public ServiceHours() {

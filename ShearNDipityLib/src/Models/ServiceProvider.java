@@ -26,13 +26,12 @@ public class ServiceProvider extends Contact {
     private List<ServiceHours> servHrs;
 
     public ServiceProvider() {
-        //initialiseServiceHours();
     }
 
     public ServiceProvider(String contForename, String contSurname, String servInitiated) {
         super(contForename, contSurname);    //To change body of overridden methods use File | Settings | File Templates.
         this.servInitiated = servInitiated;
-        //initialiseServiceHours();
+        initialiseServiceHours();
     }
 
     public int getServId() {
