@@ -78,13 +78,16 @@ module.exports = {
                 if (results) {
                     var model = [];
                     for (var i = 0; i < results.length; i += 2) {
-                        var slot = results[i];
-                        slot.title = '';
-                        slot.color = results[i].servColor;
-                        slot.start = results[i].date + ' ' + results[i].timeSlot;
-                        slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
-                        slot.allDay = false;
-                        model = model.concat(slot);
+                        if (results[i + 1]) {
+                            var slot = results[i];
+                            slot.title = '';
+                            slot.color = results[i].servColor;
+                            slot.start = results[i].date + ' ' + results[i].timeSlot;
+                            slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
+                            slot.allDay = false;
+                            model = model.concat(slot);
+                        }
+
                     }
                     req.model = model;
                     next();
