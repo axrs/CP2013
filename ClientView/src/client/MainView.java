@@ -26,6 +26,7 @@ public class MainView extends Application {
 
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
+    private final Mutex dataMutex = new Mutex();
     private Boolean isViewingAvailabilities = false;
 
     public static void main(String[] args) {
@@ -93,6 +94,7 @@ public class MainView extends Application {
                     Agenda.Appointment app = agendaView.selectedAppointments().get(0);
 
                     if (app instanceof ReadOnlyAppointmentImpl) {
+                        tryStageStart(new AppoinmentFormView());
 
                         System.out.println("You selected appointment with the ID of: " + ((ReadOnlyAppointmentImpl) app).getAppId());
                     }
@@ -105,24 +107,9 @@ public class MainView extends Application {
         buildStaffMenu();
         mainPane.setCenter(agendaView);
 
-        ToggleButton availabilitiesToggle = new ToggleButton("Show Availabilities");
-        availabilitiesToggle.setOnAction(showAvailabilities());
-        mainPane.setBottom(availabilitiesToggle);
-
         Scene scene = new Scene(mainPane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    private EventHandler<ActionEvent> showAvailabilities() {
-        return new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                isViewingAvailabilities = !isViewingAvailabilities;
-
-            }
-        };
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
@@ -134,36 +121,42 @@ public class MainView extends Application {
                     @Override
                     public void run() {
 
-                        for (Agenda.Appointment app : agendaView.appointments()) {
-                            if (app instanceof ReadOnlyAppointmentImpl) {
-                                if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
-                                    agendaView.appointments().remove(app);
+                        try {
+                            dataMutex.acquire();
+                            for (Agenda.Appointment app : agendaView.appointments()) {
+                                if (app instanceof ReadOnlyAppointmentImpl) {
+                                    if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
+                                        agendaView.appointments().remove(app);
+                                    }
                                 }
                             }
-                        }
 
-                        for (Availability item : AppointmentController.getInstance().getAvailabilities()) {
+                            for (Availability item : AppointmentController.getInstance().getAvailabilities()) {
+                                Calendar cal = Calendar.getInstance();
+                                try {
+                                    cal.setTime(item.getEndDate());
+                                    Calendar endTime = (Calendar) cal.clone();
+                                    cal.setTime(item.getStartDate());
+                                    Calendar startTime = (Calendar) cal.clone();
 
-                            Calendar cal = Calendar.getInstance();
-                            try {
-                                cal.setTime(item.getEndDate());
-                                Calendar endTime = (Calendar) cal.clone();
-                                cal.setTime(item.getStartDate());
-                                Calendar startTime = (Calendar) cal.clone();
+                                    ReadOnlyAppointmentImpl a =
+                                            new ReadOnlyAppointmentImpl();
+                                    a.withStartTime(startTime);
+                                            a.withEndTime(endTime);
+                                            a.withSummary("Available");
+                                            a.withDescription("");
+                                            a.withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId()-1));
+                                    agendaView.appointments().add(a);
 
-                                ReadOnlyAppointmentImpl a =
-                                        new ReadOnlyAppointmentImpl();
-                                a.withStartTime(startTime)
-                                        .withEndTime(endTime)
-                                        .withSummary("Available")
-                                        .withDescription("")
-                                        .withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId()));
-                                agendaView.appointments().add(a);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
 
-                            } catch (ParseException e) {
-                                e.printStackTrace();
                             }
-
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        } finally {
+                            dataMutex.release();
                         }
                     }
                 });
@@ -179,43 +172,50 @@ public class MainView extends Application {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
+                        try {
+                            dataMutex.acquire();
 
-                        for (Agenda.Appointment app : agendaView.appointments()) {
-                            if (app instanceof ReadOnlyAppointmentImpl) {
-                                if (((ReadOnlyAppointmentImpl) app).getAppId() != 0) {
-                                    agendaView.appointments().remove(app);
+                            for (Agenda.Appointment app : agendaView.appointments()) {
+                                if (app instanceof ReadOnlyAppointmentImpl) {
+                                    if (((ReadOnlyAppointmentImpl) app).getAppId() != 0) {
+                                        agendaView.appointments().remove(app);
+                                    }
                                 }
                             }
-                        }
 
-                        for (Appointment item : AppointmentController.getInstance().getAppointments().values()) {
+                            for (Appointment item : AppointmentController.getInstance().getAppointments().values()) {
 
-                            if (item instanceof ScheduledAppointment) {
-                                ScheduledAppointment schedItem = (ScheduledAppointment) item;
+                                if (item instanceof ScheduledAppointment) {
+                                    ScheduledAppointment schedItem = (ScheduledAppointment) item;
 
-                                Calendar cal = Calendar.getInstance();
-                                try {
-                                    cal.setTime(schedItem.getEndDate());
-                                    Calendar endTime = (Calendar) cal.clone();
-                                    cal.setTime(schedItem.getStartDate());
-                                    Calendar startTime = (Calendar) cal.clone();
+                                    Calendar cal = Calendar.getInstance();
+                                    try {
+                                        cal.setTime(schedItem.getEndDate());
+                                        Calendar endTime = (Calendar) cal.clone();
+                                        cal.setTime(schedItem.getStartDate());
+                                        Calendar startTime = (Calendar) cal.clone();
 
-                                    ReadOnlyAppointmentImpl a =
-                                            new ReadOnlyAppointmentImpl();
-                                    a.withStartTime(startTime)
-                                            .withEndTime(endTime)
-                                            .withSummary(schedItem.getTitle())
-                                            .withDescription(schedItem.getStaff())
-                                            .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId()))
-                                    ;
+                                        ReadOnlyAppointmentImpl a =
+                                                new ReadOnlyAppointmentImpl();
+                                        a.withStartTime(startTime)
+                                                .withEndTime(endTime)
+                                                .withSummary(schedItem.getTitle())
+                                                .withDescription(schedItem.getStaff())
+                                                .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId()-1))
+                                        ;
 
-                                    a.setAppId(schedItem.getAppId());
-                                    agendaView.appointments().addAll(a);
+                                        a.setAppId(schedItem.getAppId());
+                                        agendaView.appointments().addAll(a);
 
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        } finally {
+                            dataMutex.release();
                         }
                     }
                 });
