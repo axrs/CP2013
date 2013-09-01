@@ -12,3 +12,6 @@ app.post('/appointments', app.exposeLocals, appointmentMiddleware.validateForm, 
 app.get('/appointments/:id([0-9]+)/edit', app.exposeLocals, middleware.loadFromDatabase(model), controller.edit);
 app.put('/appointments/:id([0-9]+)', app.exposeLocals, appointmentMiddleware.validateForm, controller.update);
 
+
+app.put('/api/staff/appointments', app.exposeLocals, appointmentMiddleware.validateAPIEntry, controller.create);
+
