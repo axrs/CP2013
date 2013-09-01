@@ -13,18 +13,17 @@ import java.sql.Time;
  * database and the appointment can not be displayed without the time or date.
  */
 public class Appointment {
-
     private int appId;
     private int appTypeId;
     private int contId;
     private int servId;
-    private Date appDate;
-    private Time appTime;
+    private String appDate;
+    private String appTime;
 
     public Appointment() {
     }
 
-    public Appointment(int appId, int appTypeId, int contId, int servId, Date appDate, Time appTime) {
+    public Appointment(int appId, int appTypeId, int contId, int servId, String appDate, String appTime) {
         this.appId = appId;
         this.appTypeId = appTypeId;
         this.contId = contId;
@@ -65,19 +64,19 @@ public class Appointment {
         this.servId = servId;
     }
 
-    public Date getAppDate() {
+    public String getAppDate() {
         return appDate;
     }
 
-    public void setAppDate(Date appDate) {
+    public void setAppDate(String appDate) {
         this.appDate = appDate;
     }
 
-    public Time getAppTime() {
+    public String getAppTime() {
         return appTime;
     }
 
-    public void setAppTime(Time appTime) {
+    public void setAppTime(String appTime) {
         this.appTime = appTime;
     }
 }

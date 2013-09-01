@@ -5,14 +5,15 @@ import Models.Contact;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -25,11 +26,11 @@ import javafx.stage.Stage;
  * Time: 9:30 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ContactUI extends Application {
+public class ContactAddressBookView extends Application {
 
 
     /**
-     * Table data source.  Individual per ContactUI Instance
+     * Table data source.  Individual per ContactAddressBookView Instance
      */
     private final ObservableList<Contact> data = FXCollections.observableArrayList();
     /**
@@ -50,7 +51,6 @@ public class ContactUI extends Application {
         TableColumn companyColumn = new TableColumn("Company");
         companyColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contCompany"));
         table.getColumns().addAll(firstNameColumn, surnameColumn, companyColumn);
-
     }
 
     /**
@@ -63,35 +63,31 @@ public class ContactUI extends Application {
         primaryStage.setTitle("CP2013 Appointment Scheduler - Contacts");
         BorderPane contactPane = new BorderPane();
 
-
         final Label label = new Label("Address Book");
         label.setFont(new Font("Arial", 20));
 
         initialiseTableColumns();
         table.setItems(data);
 
-        //Obtain a reference to the contact controller.
-        //Note: We do not use NEW as the ContactController is a singleton object.
-        //      (There is only ever one controller in existence, and it gets used by multiple interfaces).
-        final ContactController c = ContactController.getInstance();
+        ContactController.getInstance().addUpdatedListener(onContactsListUpdate());
+        ContactController.getInstance().getContactsFromServer();
 
-        //Create a simple listener on the ContactController.  Whenever the contact list updates we want the
-        //table view to update also.
-        c.addUpdatedListener(new ContactController.ContactsUpdatedListener() {
-            @Override
-            public void updated(ContactController.ContactsUpdated event) {
-                //Clear the table data source
-                data.clear();
-                //Add all known contacts to the data source.
-                data.addAll(ContactController.getInstance().getContacts().values());
-            }
-        });
-        //Force the ContactController to get the latest and greatest contacts
-        c.getContactsFromServer();
+        table.setOnMouseClicked(onTableRowDoubleClick());
 
-        table.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPadding(new Insets(10, 10, 10, 10));
+        vbox.getChildren().addAll(label, table);
+        contactPane.setCenter(vbox);
+        Scene scene = new Scene(contactPane, 300, 250);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private EventHandler<MouseEvent> onTableRowDoubleClick() {
+        return new EventHandler<MouseEvent>() {
             @Override
-            public void handle(javafx.scene.input.MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent) {
 
                 if (mouseEvent.getClickCount() > 1) {
 
@@ -100,7 +96,7 @@ public class ContactUI extends Application {
 
                         Contact c = (Contact) view.getSelectionModel().getSelectedItem();
                         System.out.println(c.getContFirstName());
-                        ContactFormUI contactFormUI = new ContactFormUI(c);
+                        ContactFormView contactFormUI = new ContactFormView(c);
                         try {
                             contactFormUI.start(new Stage());
                         } catch (Exception e) {
@@ -113,16 +109,19 @@ public class ContactUI extends Application {
 
                 }
             }
-        });
+        };
+    }
 
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 10, 10, 10));
-        vbox.getChildren().addAll(label, table);
-        contactPane.setCenter(vbox);
-        Scene scene = new Scene(contactPane, 300, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    private ContactController.ContactsUpdatedListener onContactsListUpdate() {
+        return new ContactController.ContactsUpdatedListener() {
+            @Override
+            public void updated(ContactController.ContactsUpdated event) {
+                //Clear the table data source
+                data.clear();
+                //Add all known contacts to the data source.
+                data.addAll(ContactController.getInstance().getContacts().values());
+            }
+        };
     }
 
 }

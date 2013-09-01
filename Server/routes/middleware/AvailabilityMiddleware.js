@@ -8,13 +8,16 @@ module.exports = {
                 model.date = req.params.date;
                 model.timeSlots = [];
                 for (var i = 0; i < results.length; i += 2) {
-                    var slot = {};
-                    slot.title = 'Available';
-                    slot.start = req.params.date + ' ' + results[i].timeSlot;
-                    slot.startTime = results[i].timeSlot;
-                    slot.end = req.params.date + ' ' + results[i + 1].timeSlot;
-                    slot.endTime = results[i + 1].timeSlot;
-                    model.timeSlots = model.timeSlots.concat(slot);
+                    if (results[i + 1]) {
+
+                        var slot = results[i];
+                        slot.title = 'Available';
+                        slot.start = req.params.date + ' ' + results[i].timeSlot;
+                        slot.startTime = results[i].timeSlot;
+                        slot.end = req.params.date + ' ' + results[i + 1].timeSlot;
+                        slot.endTime = results[i + 1].timeSlot;
+                        model.timeSlots = model.timeSlots.concat(slot);
+                    }
                 }
             });
             next();
@@ -29,14 +32,16 @@ module.exports = {
                     var model = [];
 
                     for (var i = 0; i < results.length; i += 2) {
-                        var slot = {};
-                        slot.title = 'Available';
-                        slot.servId = results[i].servId;
-                        slot.color = results[i].servColor;
-                        slot.start = req.params.date + ' ' + results[i].timeSlot;
-                        slot.end = req.params.date + ' ' + results[i + 1].timeSlot;
-                        slot.allDay = false;
-                        model = model.concat(slot);
+                        if (results[i + 1]) {
+
+                            var slot = results[i];
+                            slot.title = 'Available';
+                            slot.color = results[i].servColor;
+                            slot.start = req.params.date + ' ' + results[i].timeSlot;
+                            slot.end = req.params.date + ' ' + results[i + 1].timeSlot;
+                            slot.allDay = false;
+                            model = model.concat(slot);
+                        }
                     }
                     req.model = model;
                     next();
@@ -55,14 +60,19 @@ module.exports = {
                     var model = [];
 
                     for (var i = 0; i < results.length; i += 2) {
-                        var slot = {};
-                        slot.title = '';
-                        slot.servId = results[i].servId;
-                        slot.color = results[i].servColor;
-                        slot.start = results[i].date + ' ' + results[i].timeSlot;
-                        slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
-                        slot.allDay = false;
-                        model = model.concat(slot);
+                        if (results[i + 1]) {
+
+                            if (results[i + 1]) {
+
+                                var slot = results[i];
+                                slot.title = '';
+                                slot.color = results[i].servColor;
+                                slot.start = results[i].date + ' ' + results[i].timeSlot;
+                                slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
+                                slot.allDay = false;
+                                model = model.concat(slot);
+                            }
+                        }
                     }
                     req.model = model;
                     next();
@@ -80,15 +90,16 @@ module.exports = {
                 if (results) {
                     var model = [];
                     for (var i = 0; i < results.length; i += 2) {
-                        var slot = {};
-                        slot.title = '';
-                        slot.servId = results[i].servId;
-                        slot.color = results[i].servColor;
+                        if (results[i + 1]) {
+                            var slot = results[i];
+                            slot.title = '';
+                            slot.color = results[i].servColor;
+                            slot.start = results[i].date + ' ' + results[i].timeSlot;
+                            slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
+                            slot.allDay = false;
+                            model = model.concat(slot);
+                        }
 
-                        slot.start = results[i].date + ' ' + results[i].timeSlot;
-                        slot.end = results[i + 1].date + ' ' + results[i + 1].timeSlot;
-                        slot.allDay = false;
-                        model = model.concat(slot);
                     }
                     req.model = model;
                     next();
@@ -105,11 +116,8 @@ module.exports = {
                 if (results) {
                     var model = [];
                     for (var i = 0; i < results.length; i++) {
-                        var slot = {};
-                        slot.appId = results[i].appId;
+                        var slot = results[i];
                         slot.title = results[i].appTypeDescription + ' for ' + results[i].contForename + ' ' + results[i].contSurname;
-                        slot.servId = results[i].servId;
-                        slot.contId = results[i].contId;
                         slot.color = results[i].servColor;
                         slot.staff = results[i].servForename + ' ' + results[i].servSurname;
                         slot.start = results[i].appDate + ' ' + results[i].appTime;

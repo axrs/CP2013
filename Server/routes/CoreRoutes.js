@@ -23,6 +23,13 @@ module.exports = function () {
                     status: 200,
                     header: 'Home'
                 });
+        },
+        about: function (req, res) {
+            res.render(res.viewPath + 'about',
+                {
+                    status: 200,
+                    header: 'About'
+                });
         }
     }
 }

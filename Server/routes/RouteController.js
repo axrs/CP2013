@@ -4,6 +4,7 @@ app = module.exports.app = module.parent.exports.app;
 var coreController = require('./CoreRoutes.js')();
 
 app.get('/', app.exposeLocals, coreController.index);
+app.get('/about', app.exposeLocals, coreController.about);
 
 require('./ContactRoutes.js');
 require('./StaffRoutes.js');

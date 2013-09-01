@@ -22,13 +22,13 @@ import javafx.stage.Stage;
  * Time: 9:30 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ContactFormUI extends Application {
+public class ContactFormView extends Application {
     private Contact contact = new Contact();
 
-    public ContactFormUI() {
+    public ContactFormView() {
     }
 
-    public ContactFormUI(Contact c){
+    public ContactFormView(Contact c){
         contact = c;
     }
 
