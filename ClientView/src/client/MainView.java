@@ -97,8 +97,14 @@ public class MainView extends Application {
                     Agenda.Appointment app = agendaView.selectedAppointments().get(0);
 
                     if (app instanceof ReadOnlyAppointmentImpl) {
-                        System.out.println("Opening new window..");
-                        tryStageStart(new AppoinmentFormView());
+                        if (((ReadOnlyAppointmentImpl) app).getAppId() == null) {
+                            Appointment newApp = new Appointment();
+                            newApp.setAppDate(app.getStartTime().getTime());
+                            newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
+                            newApp.setAppTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
+                            tryStageStart(new AppoinmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()));
+                        }
+
 
                         System.out.println("You selected appointment with the ID of: " + ((ReadOnlyAppointmentImpl) app).getAppId());
                     }
@@ -146,10 +152,11 @@ public class MainView extends Application {
                                     ReadOnlyAppointmentImpl a =
                                             new ReadOnlyAppointmentImpl();
                                     a.withStartTime(startTime);
-                                            a.withEndTime(endTime);
-                                            a.withSummary("Available");
-                                            a.withDescription("");
-                                            a.withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId()-1));
+                                    a.withEndTime(endTime);
+                                    a.withSummary("Available");
+                                    a.withDescription("");
+                                    a.withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId() - 1));
+                                    a.setServId(item.getServId());
                                     agendaView.appointments().add(a);
 
                                 } catch (ParseException e) {
@@ -181,7 +188,7 @@ public class MainView extends Application {
 
                             for (Agenda.Appointment app : agendaView.appointments()) {
                                 if (app instanceof ReadOnlyAppointmentImpl) {
-                                    if (((ReadOnlyAppointmentImpl) app).getAppId() != 0) {
+                                    if (((ReadOnlyAppointmentImpl) app).getAppId() != null) {
                                         agendaView.appointments().remove(app);
                                     }
                                 }
@@ -205,7 +212,7 @@ public class MainView extends Application {
                                                 .withEndTime(endTime)
                                                 .withSummary(schedItem.getTitle())
                                                 .withDescription(schedItem.getStaff())
-                                                .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId()-1))
+                                                .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId() - 1))
                                         ;
 
                                         a.setAppId(schedItem.getAppId());
@@ -258,16 +265,24 @@ public class MainView extends Application {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        agendaView.appointmentGroups().clear();
-                        int i = 0;
-                        HashMap<Integer, ServiceProvider> map = ServiceProviderController.getInstance().getServiceProviders();
-                        for (int id : map.keySet()) {
-                            ServiceProvider sp = map.get(id);
-                            Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));
-                            grp.setDescription(sp.getContFirstName() + " " + sp.getContSurname());
-                            agendaView.appointmentGroups().add(grp);
-                            i++;
+                        try {
+                            dataMutex.acquire();
+                            agendaView.appointmentGroups().clear();
+                            int i = 0;
+                            HashMap<Integer, ServiceProvider> map = ServiceProviderController.getInstance().getServiceProviders();
+                            for (int id : map.keySet()) {
+                                ServiceProvider sp = map.get(id);
+                                Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));
+                                grp.setDescription(sp.getContFirstName() + " " + sp.getContSurname());
+                                agendaView.appointmentGroups().add(grp);
+                                i++;
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        } finally {
+                            dataMutex.release();
                         }
+
                     }
                 });
             }
@@ -328,7 +343,7 @@ public class MainView extends Application {
                 BorderPane borderPane = new BorderPane();
                 Label aboutText = new Label("Shear-n-dipity does haircuts and things like that.\n" +
                         " Get your hair cut now!\n" +
-                "Cause our fictitious Hairdressers are the bomb!");
+                        "Cause our fictitious Hairdressers are the bomb!");
 
                 borderPane.setCenter(aboutText);
 

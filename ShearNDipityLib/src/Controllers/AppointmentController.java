@@ -98,7 +98,6 @@ public class AppointmentController {
     }
 
     public void createAppointment(Appointment appointment) {
-
         RESTRunner runner = new RESTRunner();
         runner.addListner(new ModifyAppointmentResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments");

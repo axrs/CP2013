@@ -20,6 +20,7 @@ public class ReadOnlyAppointmentImpl implements Agenda.Appointment {
     final private ObjectProperty<String> locationObjectProperty = new SimpleObjectProperty<String>(this, "location");
     final private ObjectProperty<Agenda.AppointmentGroup> appointmentGroupObjectProperty = new SimpleObjectProperty<Agenda.AppointmentGroup>(this, "appointmentGroup");
     final private ObjectProperty<Integer> appIdObjectProperty = new SimpleObjectProperty<Integer>(this, "appId");
+    final private ObjectProperty<Integer> servIdObjectProperty = new SimpleObjectProperty<Integer>(this, "servId");
 
     public Integer getAppId() {
         return appIdObjectProperty.get();
@@ -171,6 +172,22 @@ public class ReadOnlyAppointmentImpl implements Agenda.Appointment {
     public ReadOnlyAppointmentImpl withAppointmentGroup(Agenda.AppointmentGroup value) {
         setAppointmentGroup(value);
         return this;
+    }
+
+    /**
+     * servId
+     *
+     */
+    public Integer getServId() {
+        return servIdObjectProperty.get();
+    }
+
+    public void setServId(Integer appIdObjectProperty) {
+        this.servIdObjectProperty.set(appIdObjectProperty);
+    }
+
+    public ObjectProperty<Integer> servIdProperty() {
+        return servIdObjectProperty;
     }
 
     public String toString() {

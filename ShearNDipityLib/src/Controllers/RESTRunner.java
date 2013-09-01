@@ -147,6 +147,7 @@ public class RESTRunner implements Runnable {
         //Attempt connection to the server
         try {
             if (!target.isEmpty()) {
+
                 URL url = new URL(target);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -167,6 +168,7 @@ public class RESTRunner implements Runnable {
                     writer.flush();
                     writer.close();
                 }
+
 
                 //Capture the server status code and response
                 result = new Result(this, connection.getResponseCode(), ReadStream(connection.getInputStream()));

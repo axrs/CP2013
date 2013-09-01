@@ -1,7 +1,8 @@
 package Models;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created with IntelliJ IDEA.
@@ -64,12 +65,24 @@ public class Appointment {
         this.servId = servId;
     }
 
-    public String getAppDate() {
+    public String getAppDateString() {
         return appDate;
     }
 
     public void setAppDate(String appDate) {
         this.appDate = appDate;
+    }
+
+    public Date getAppDate() {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(this.appDate);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public void setAppDate(java.util.Date date) {
+        this.appDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
     public String getAppTime() {
