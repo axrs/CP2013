@@ -88,6 +88,16 @@ public class AppointmentController {
         runnerThread.start();
     }
 
+    public void updateAppointment(Appointment appointment) {
+        RESTRunner runner = new RESTRunner();
+        runner.addListner(new ModifyAppointmentResultListener());
+        runner.setRequest(Config.getInstance().getServer() + "/api/contacts/" + String.valueOf(appointment.getAppId()));
+        runner.setMethod("PUT");
+        runner.setMessage(new Gson().toJson(appointment, Appointment.class));
+        Thread runnerThread = new Thread(runner, "Updating Appointment");
+        runnerThread.start();
+    }
+
 
     /**
      * REST Server Results event listener.
@@ -198,6 +208,22 @@ public class AppointmentController {
     public class AvailabilitiesUpdated extends EventObject {
         public AvailabilitiesUpdated(Object source) {
             super(source);
+        }
+    }
+    /**
+     * Appointment Added Event
+     */
+    public class AppointmentAdded extends EventObject {
+
+        private Appointment appointment;
+
+        public AppointmentAdded(Object source, Appointment appointment) {
+            super(source);
+            this.appointment = appointment;
+        }
+
+        public Appointment getAppointment() {
+            return appointment;
         }
     }
 
