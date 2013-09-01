@@ -25,6 +25,7 @@ public class MainView extends Application {
 
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
+    private Boolean isViewingAvailabilities = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -39,6 +40,7 @@ public class MainView extends Application {
 
         exitMenuItem.setOnAction(onMenuQuitClick());
         aboutMenuItem.setOnAction(onMenuAboutClick());
+
 
     }
 
@@ -89,6 +91,7 @@ public class MainView extends Application {
                     Agenda.Appointment app = agendaView.selectedAppointments().get(0);
 
                     if (app instanceof ReadOnlyAppointmentImpl) {
+
                         System.out.println("You selected appointment with the ID of: " + ((ReadOnlyAppointmentImpl) app).getAppId());
                     }
                 }
@@ -100,10 +103,24 @@ public class MainView extends Application {
         buildStaffMenu();
         mainPane.setCenter(agendaView);
 
+        ToggleButton availabilitiesToggle = new ToggleButton("Show Availabilities");
+        availabilitiesToggle.setOnAction(showAvailabilities());
+        mainPane.setBottom(availabilitiesToggle);
 
         Scene scene = new Scene(mainPane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private EventHandler<ActionEvent> showAvailabilities() {
+        return new EventHandler<ActionEvent>(){
+
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                isViewingAvailabilities =!isViewingAvailabilities;
+                onAgendaRangeCallback();
+            }
+        };
     }
 
     private AppointmentController.AppointmentsUpdatedListener onAppointmentsUpdated() {
@@ -158,14 +175,24 @@ public class MainView extends Application {
         return new Callback<Agenda.CalendarRange, Void>() {
             @Override
             public Void call(Agenda.CalendarRange calendarRange) {
+                if(isViewingAvailabilities){
+                    AppointmentController.getInstance().getAvailabilitiesFromServer(
+                            calendarRange.getStartCalendar().getTime(),
+                            calendarRange.getEndCalendar().getTime());
+
+                }
+                else{
                 AppointmentController.getInstance().getAppointmentsFromServer(
                         calendarRange.getStartCalendar().getTime(),
                         calendarRange.getEndCalendar().getTime()
                 );
+                }
                 return null;
             }
         };
     }
+
+
 
     private ServiceProviderController.ServiceProvidersUpdatedListener onServiceProviderUpdated() {
         return new ServiceProviderController.ServiceProvidersUpdatedListener() {

@@ -49,6 +49,23 @@ public class AppointmentTypeController {
             getAppointmentTypesFromServer();
         }
     }
+
+    public HashMap<Integer, AppointmentType> getAppointmentTypes() {
+        HashMap<Integer, AppointmentType> map = null;
+        try {
+            appointmentTypesLocker.acquire();
+            try {
+                map = appointmentTypes;
+            } finally {
+                appointmentTypesLocker.release();
+            }
+        } catch (InterruptedException ie) {
+
+        }
+        return map;
+    }
+
+
     /**
      * Method of obtaining the AppointmentTypeController instance
      *
