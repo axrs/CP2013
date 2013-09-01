@@ -73,7 +73,6 @@ public class AppoinmentFormView extends Application {
         int totalMinutes = 1440;
         int minuteCount = 0;
         for (int step = 0; step < totalMinutes / 15; step++) {
-            minuteCount += 15;
             if (minuteCount <= availableMinutes) {
                 Date steppedTime = new Date();
                 steppedTime.setTime(this.startTime.getTime() + (minuteCount * 60 * 1000));
@@ -82,6 +81,7 @@ public class AppoinmentFormView extends Application {
             } else {
                 break;
             }
+            minuteCount += 15;
         }
     }
 

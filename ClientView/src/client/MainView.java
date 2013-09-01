@@ -15,9 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import jfxtras.labs.dialogs.DialogFX;
 import jfxtras.labs.scene.control.Agenda;
 
 import java.text.ParseException;
@@ -29,6 +32,7 @@ public class MainView extends Application {
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
     private final Mutex dataMutex = new Mutex();
+    int appointmentLastClicked = 0;
     private Boolean isViewingAvailabilities = false;
 
     public static void main(String[] args) {
@@ -44,8 +48,6 @@ public class MainView extends Application {
 
         exitMenuItem.setOnAction(onMenuQuitClick());
         aboutMenuItem.setOnAction(onMenuAboutClick());
-
-
     }
 
     private void buildContactMenu() {
@@ -57,7 +59,6 @@ public class MainView extends Application {
 
         contactAddressBookMenuItem.setOnAction(onContactAddressBookMenuClick());
         newContactMenuItem.setOnAction(onNewContactMenuClick());
-
     }
 
     private void buildStaffMenu() {
@@ -93,20 +94,47 @@ public class MainView extends Application {
                     agendaView.selectedAppointments().clear();
                     agendaView.selectedAppointments().add(single);
                 }
+
                 if (agendaView.selectedAppointments().size() == 1) {
                     Agenda.Appointment app = agendaView.selectedAppointments().get(0);
+                    if (appointmentLastClicked == app.hashCode()) {
 
-                    if (app instanceof ReadOnlyAppointmentImpl) {
-                        if (((ReadOnlyAppointmentImpl) app).getAppId() == null) {
-                            Appointment newApp = new Appointment();
-                            newApp.setAppDate(app.getStartTime().getTime());
-                            newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
-                            newApp.setAppTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
-                            tryStageStart(new AppoinmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()));
+                        if (app instanceof ReadOnlyAppointmentImpl) {
+                            if (((ReadOnlyAppointmentImpl) app).getAppId() == null) {
+                                Appointment newApp = new Appointment();
+                                newApp.setAppDate(app.getStartTime().getTime());
+                                newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
+                                newApp.setAppTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
+                                tryStageStart(new AppoinmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()));
+                            }
+                        }
+                        appointmentLastClicked = 0;
+                    } else {
+                        appointmentLastClicked = app.hashCode();
+                    }
+                }
+            }
+        });
+
+        agendaView.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.BACK_SPACE || keyEvent.getCode() == KeyCode.DELETE) {
+                    if (agendaView.selectedAppointments().size() == 1) {
+                        Agenda.Appointment app = agendaView.selectedAppointments().get(0);
+
+                        if (app instanceof ReadOnlyAppointmentImpl && ((ReadOnlyAppointmentImpl) app).getAppId() != null) {
+                            DialogFX dialog = new DialogFX(DialogFX.Type.QUESTION);
+                            dialog.setMessage("Are you sure you wish to cancel this appointment");
+                            dialog.setTitleText("Confirm Cancellation");
+                            dialog.setModal(true);
+                            int result = dialog.showDialog();
+                            if (result == 0) {
+                                agendaView.appointments().remove(app);
+                                AppointmentController.getInstance().deleteAppointment(((ReadOnlyAppointmentImpl) app).getAppId());
+                            }
                         }
 
-
-                        System.out.println("You selected appointment with the ID of: " + ((ReadOnlyAppointmentImpl) app).getAppId());
                     }
                 }
             }
