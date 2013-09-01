@@ -14,13 +14,13 @@ public class AppointmentType {
 
     private int appTypeId;
     private String appTypeDescription;
-    private int appTypeDuration;
-    private boolean appTypeAllDay;
+    private String appTypeDuration;
+    private int appTypeAllDay;
 
     public AppointmentType() {
     }
 
-    public AppointmentType(int appTypeId, String appTypeDescription, int appTypeDuration, boolean appTypeAllDay) {
+    public AppointmentType(int appTypeId, String appTypeDescription, String appTypeDuration, int appTypeAllDay) {
         this.appTypeId = appTypeId;
         this.appTypeDescription = appTypeDescription;
         this.appTypeDuration = appTypeDuration;
@@ -36,6 +36,7 @@ public class AppointmentType {
     }
 
     public String getAppTypeDescription() {
+        System.out.println(appTypeDescription);
         return appTypeDescription;
     }
 
@@ -43,19 +44,19 @@ public class AppointmentType {
         this.appTypeDescription = appTypeDescription;
     }
 
-    public int getAppTypeDuration() {
+    public String getAppTypeDuration() {
         return appTypeDuration;
     }
 
-    public void setAppTypeDuration(int appTypeDuration) {
+    public void setAppTypeDuration(String appTypeDuration) {
         this.appTypeDuration = appTypeDuration;
     }
 
     public boolean isAppTypeAllDay() {
-        return appTypeAllDay;
+        return appTypeAllDay==1;
     }
 
     public void setAppTypeAllDay(boolean appTypeAllDay) {
-        this.appTypeAllDay = appTypeAllDay;
+        this.appTypeAllDay = appTypeAllDay ? 1:0;
     }
 }

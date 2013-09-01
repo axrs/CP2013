@@ -10,7 +10,10 @@ import Models.ServiceProvider;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import jfxtras.labs.scene.control.CalendarTextField;
 
@@ -39,16 +42,34 @@ public class AppoinmentFormView extends Application {
         stage.setTitle("CP2013 Appointment Scheduler - Appointment");
 
         ComboBox serviceProvider = new ComboBox();
-        serviceProvider.setItems(serviceProviderObservableList);
+        for (int i = 0; i < serviceProviderObservableList.size(); i++)
+            serviceProvider.getItems().add(i, serviceProviderObservableList.get(i).getContFirstName());
 
         ComboBox appointmentType = new ComboBox();
-        appointmentType.setItems(appointmentTypeObservableList);
+        for (int i = 0; i < appointmentTypeObservableList.size(); i++)
+            appointmentType.getItems().add(i, appointmentTypeObservableList.get(i).getAppTypeDescription());
 
         ComboBox contact = new ComboBox();
         contact.setItems(contactObservableList);
 
         CalendarTextField date = new CalendarTextField();
 
+        GridPane mainPane = new GridPane();
+        mainPane.add(new Label("Service Provider: "), 0, 0);
+        mainPane.add(serviceProvider,0,1);
+
+        mainPane.add(new Label("Appointment Type: "), 0, 2);
+        mainPane.add(appointmentType, 0, 3);
+
+        mainPane.add(new Label("Client: "), 0, 4);
+        mainPane.add(contact, 0, 5);
+
+        mainPane.add(new Label("Date: "), 0, 6);
+        mainPane.add(date, 0, 7);
+
+        Scene scene = new Scene(mainPane,600,400);
+        stage.setScene(scene);
+        stage.show();
 
     }
 }

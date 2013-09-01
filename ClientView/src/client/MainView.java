@@ -1,6 +1,8 @@
 package client;
 
 import Controllers.AppointmentController;
+import Controllers.AppointmentTypeController;
+import Controllers.ContactController;
 import Controllers.ServiceProviderController;
 import Models.Appointment;
 import Models.Availability;
@@ -72,7 +74,8 @@ public class MainView extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         ServiceProviderController.getInstance().getServiceProvidersFromServer();
-
+        AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
+        ContactController.getInstance().getContactsFromServer();
         ServiceProviderController.getInstance().addUpdatedListener(onServiceProviderUpdated());
         agendaView.setCalendarRangeCallback(onAgendaRangeCallback());
         AppointmentController.getInstance().addUpdatedListener(onAppointmentsUpdated());
@@ -94,6 +97,7 @@ public class MainView extends Application {
                     Agenda.Appointment app = agendaView.selectedAppointments().get(0);
 
                     if (app instanceof ReadOnlyAppointmentImpl) {
+                        System.out.println("Opening new window..");
                         tryStageStart(new AppoinmentFormView());
 
                         System.out.println("You selected appointment with the ID of: " + ((ReadOnlyAppointmentImpl) app).getAppId());
