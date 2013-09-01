@@ -104,7 +104,7 @@ public class AppointmentTypeController {
         return appType;
     }
 
-    private void getAppointmentTypesFromServer() {
+    public void getAppointmentTypesFromServer() {
         RESTRunner runner = new RESTRunner();
         runner.addListner(new GetAppointmentTypesResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/appointments/types");

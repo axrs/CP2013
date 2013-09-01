@@ -322,8 +322,9 @@ public class MainView extends Application {
                 aboutStage.setTitle("About Peeps");
 
                 BorderPane borderPane = new BorderPane();
-                Label aboutText = new Label("Shear-n-dipity does haircuts and things like that\n" +
-                        " Get your hair cut now");
+                Label aboutText = new Label("Shear-n-dipity does haircuts and things like that.\n" +
+                        " Get your hair cut now!\n" +
+                "Cause our fictitious Hairdressers are the bomb!");
 
                 borderPane.setCenter(aboutText);
 
