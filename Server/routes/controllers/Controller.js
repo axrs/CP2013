@@ -109,6 +109,20 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
                 if (err) res.statusCodes.apiStatus500(req, res);
                 else res.statusCodes.apiStatus202(req, res);
             });
+        },
+        delete: function (req, res) {
+          
+                model.update(req.params.id, function (err) {
+                    if (err) res.statusCodes.status500(req, res, null);
+                    else res.redirect('/' + redirectRoot);
+                });
+
+        },
+        apiDelete: function (req, res) {
+            model.delete(req.params.id, function (err) {
+                if (err) res.statusCodes.apiStatus500(req, res);
+                else res.statusCodes.apiStatus202(req, res);
+            });
         }
     }
 }

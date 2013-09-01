@@ -11,7 +11,8 @@ app.get('/appointments/:id([0-9]+)', app.exposeLocals, middleware.loadFromDataba
 app.post('/appointments', app.exposeLocals, appointmentMiddleware.validateForm, controller.create);
 app.get('/appointments/:id([0-9]+)/edit', app.exposeLocals, middleware.loadFromDatabase(model), controller.edit);
 app.put('/appointments/:id([0-9]+)', app.exposeLocals, appointmentMiddleware.validateForm, controller.update);
-
+app.delete('/appointments/:id([0-9]+)', app.exposeLocals, controller.delete);
 
 app.put('/api/staff/appointments', app.exposeLocals, appointmentMiddleware.validateAPIEntry, controller.create);
 
+app.delete('/api/staff/appointments/:id([0-9]+)', app.exposeLocals, controller.apiDelete);
