@@ -3,6 +3,7 @@ package client;
 import Controllers.AppointmentController;
 import Controllers.ServiceProviderController;
 import Models.Appointment;
+import Models.Availability;
 import Models.ScheduledAppointment;
 import Models.ServiceProvider;
 import javafx.application.Application;
@@ -118,7 +119,7 @@ public class MainView extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 isViewingAvailabilities =!isViewingAvailabilities;
-                onAgendaRangeCallback();
+
             }
         };
     }
@@ -165,24 +166,58 @@ public class MainView extends Application {
                             }
 
                         }
-                    }
+
+                        for (Availability schedItem : AppointmentController.getInstance().getAvailabilities()) {
+
+                                Calendar cal = Calendar.getInstance();
+                                try {
+                                    cal.setTime(schedItem.getEnd());
+                                    Calendar endTime = (Calendar) cal.clone();
+                                    cal.setTime(schedItem.getStart());
+                                    Calendar startTime = (Calendar) cal.clone();
+
+                                    ReadOnlyAppointmentImpl a =
+                                            new ReadOnlyAppointmentImpl();
+                                    a.withStartTime(startTime)
+                                            .withEndTime(endTime)
+                                            .withSummary(schedItem.getTitle())
+                                            .withDescription(schedItem.getStaff())
+                                            .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId()))
+                                    ;
+
+                                    a.setAppId(schedItem.getAppId());
+                                    agendaView.appointments().addAll(a);
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+
+                        }
+
                 });
             }
         };
     }
 
     private Callback<Agenda.CalendarRange, Void> onAgendaRangeCallback() {
+        System.out.println("Running Callback");
         return new Callback<Agenda.CalendarRange, Void>() {
             @Override
             public Void call(Agenda.CalendarRange calendarRange) {
+
                 if(isViewingAvailabilities){
+                    System.out.println("Getting Availabilities");
                     AppointmentController.getInstance().getAvailabilitiesFromServer(
                             calendarRange.getStartCalendar().getTime(),
                             calendarRange.getEndCalendar().getTime());
 
                 }
                 else{
-                AppointmentController.getInstance().getAppointmentsFromServer(
+                    System.out.println("Getting Appointments");
+                    AppointmentController.getInstance().getAppointmentsFromServer(
                         calendarRange.getStartCalendar().getTime(),
                         calendarRange.getEndCalendar().getTime()
                 );

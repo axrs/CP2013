@@ -176,6 +176,10 @@ public class AppointmentController {
         return map;
     }
 
+    public Availability[] getAvailabilities() {
+        return availabilities;
+    }
+
     /**
      * Appointment Controller Updated Appointments Listener
      */
