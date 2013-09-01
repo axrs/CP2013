@@ -63,13 +63,18 @@ public class AppointmentController {
         startDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeStart);
         endDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeEnd);
 
+        getAppointmentsFromServer(startDate,endDate);
+        }
+
+
+    private void getAppointmentsFromServer(String start, String end){
         RESTRunner runner = new RESTRunner();
         runner.addListner(new GetAppointmentsResultListener());
-        runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments/" + startDate + "/" + endDate);
+        runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments/" + start + "/" + end);
         Thread runnerThread = new Thread(runner, "Getting Appointments");
         runnerThread.start();
-    }
 
+    }
     public void getAvailabilitiesFromServer(Date dateRangeStart, Date dateRangeEnd) {
 
         startDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeStart);
@@ -227,7 +232,7 @@ public class AppointmentController {
 
     /**
      * REST Server Results event listener.
-     * Implemented specifically to handle processing 'GET all Contacts' requests
+     * Implemented specifically to handle processing 'GET all Availabilities' requests
      */
     private class GetAvailabilitiesResultListener implements RESTRunner.ResultsListener {
         @Override
@@ -263,6 +268,46 @@ public class AppointmentController {
         }
     }
 
+    /**
+     * REST Server Results listener.
+     * Implemented specifically to handle processing 'GET Appointment with id' requests.
+     */
+    private class GetAppointmentResultListener implements RESTRunner.ResultsListener {
+        @Override
+        public void results(RESTRunner.Result result) {
+            //Print the outputs for now
+            System.out.println("Get Single Appointment Request : " + result.getStatus());
+            System.out.println(result.getResponse());
+
+            //Remove the listener from the appointment object
+            ((RESTRunner) result.getSource()).removeListener(this);
+
+            Appointment a = null;
+            if (result.getStatus() != 200) return;
+            //Process results
+            try {
+                appointmentsLocker.acquire();
+                try {
+                    a = new Gson().fromJson(result.getResponse(), Appointment.class);
+
+                    if (a.getContId() != 0) {
+                        appointments.put(a.getAppId(), a);
+                    }
+                } finally {
+                    appointmentsLocker.release();
+                }
+            } catch (InterruptedException ie) {
+            }
+
+            //Fire events for individual contact added, and all contacts list updated
+            if (a != null) {
+                triggerAdded(new AppointmentAdded(this, a));
+                triggerUpdated(new AppointmentsUpdated(this));
+            }
+        }
+    }
+
+
     private class ModifyAppointmentResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
@@ -274,6 +319,10 @@ public class AppointmentController {
             ((RESTRunner) result.getSource()).removeListener(this);
 
             if (result.getStatus() != 201 && result.getStatus() != 202) return;
+
+
+            //Update Contacts with new information
+            getAppointmentsFromServer(AppointmentController.getInstance().getStartDate(), AppointmentController.getInstance().getEndDate());
         }
     }
 
@@ -287,7 +336,7 @@ public class AppointmentController {
     }
 
     /**
-     * Availablities Updated Event
+     * Availabilities Updated Event
      */
     public class AvailabilitiesUpdated extends EventObject {
         public AvailabilitiesUpdated(Object source) {
@@ -306,8 +355,16 @@ public class AppointmentController {
             this.appointment = appointment;
         }
 
-        public Appointment getAppointment() {
+        public Appointment getAppointment(Date dateRangeStart, Date dateRangeEnd) {
             return appointment;
         }
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
     }
 }
