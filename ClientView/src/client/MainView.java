@@ -75,6 +75,7 @@ public class MainView extends Application {
         ServiceProviderController.getInstance().addUpdatedListener(onServiceProviderUpdated());
         agendaView.setCalendarRangeCallback(onAgendaRangeCallback());
         AppointmentController.getInstance().addUpdatedListener(onAppointmentsUpdated());
+        AppointmentController.getInstance().addUpdatedListener(onAvailabilitiesUpdated());
 
         primaryStage.setTitle("CP2013 Appointment Scheduler");
         BorderPane mainPane = new BorderPane();
@@ -114,12 +115,58 @@ public class MainView extends Application {
     }
 
     private EventHandler<ActionEvent> showAvailabilities() {
-        return new EventHandler<ActionEvent>(){
+        return new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent actionEvent) {
-                isViewingAvailabilities =!isViewingAvailabilities;
+                isViewingAvailabilities = !isViewingAvailabilities;
 
+            }
+        };
+    }
+
+    private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
+        return new AppointmentController.AvailabilitiesUpdatedListener() {
+
+            @Override
+            public void updated(AppointmentController.AvailabilitiesUpdated event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        for (Agenda.Appointment app : agendaView.appointments()) {
+                            if (app instanceof ReadOnlyAppointmentImpl) {
+                                if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
+                                    agendaView.appointments().remove(app);
+                                }
+                            }
+                        }
+
+                        for (Availability item : AppointmentController.getInstance().getAvailabilities()) {
+
+                            Calendar cal = Calendar.getInstance();
+                            try {
+                                cal.setTime(item.getEndDate());
+                                Calendar endTime = (Calendar) cal.clone();
+                                cal.setTime(item.getStartDate());
+                                Calendar startTime = (Calendar) cal.clone();
+
+                                ReadOnlyAppointmentImpl a =
+                                        new ReadOnlyAppointmentImpl();
+                                a.withStartTime(startTime)
+                                        .withEndTime(endTime)
+                                        .withSummary("Available")
+                                        .withDescription("")
+                                        .withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId()));
+                                agendaView.appointments().add(a);
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                });
             }
         };
     }
@@ -132,7 +179,14 @@ public class MainView extends Application {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        agendaView.appointments().clear();
+
+                        for (Agenda.Appointment app : agendaView.appointments()) {
+                            if (app instanceof ReadOnlyAppointmentImpl) {
+                                if (((ReadOnlyAppointmentImpl) app).getAppId() != 0) {
+                                    agendaView.appointments().remove(app);
+                                }
+                            }
+                        }
 
                         for (Appointment item : AppointmentController.getInstance().getAppointments().values()) {
 
@@ -161,42 +215,9 @@ public class MainView extends Application {
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-
-
                             }
-
                         }
-
-                        for (Availability schedItem : AppointmentController.getInstance().getAvailabilities()) {
-
-                                Calendar cal = Calendar.getInstance();
-                                try {
-                                    cal.setTime(schedItem.getEnd());
-                                    Calendar endTime = (Calendar) cal.clone();
-                                    cal.setTime(schedItem.getStart());
-                                    Calendar startTime = (Calendar) cal.clone();
-
-                                    ReadOnlyAppointmentImpl a =
-                                            new ReadOnlyAppointmentImpl();
-                                    a.withStartTime(startTime)
-                                            .withEndTime(endTime)
-                                            .withSummary(schedItem.getTitle())
-                                            .withDescription(schedItem.getStaff())
-                                            .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId()))
-                                    ;
-
-                                    a.setAppId(schedItem.getAppId());
-                                    agendaView.appointments().addAll(a);
-
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-
-
-                            }
-
-                        }
-
+                    }
                 });
             }
         };
@@ -208,26 +229,23 @@ public class MainView extends Application {
             @Override
             public Void call(Agenda.CalendarRange calendarRange) {
 
-                if(isViewingAvailabilities){
+                if (isViewingAvailabilities) {
                     System.out.println("Getting Availabilities");
                     AppointmentController.getInstance().getAvailabilitiesFromServer(
                             calendarRange.getStartCalendar().getTime(),
                             calendarRange.getEndCalendar().getTime());
 
-                }
-                else{
+                } else {
                     System.out.println("Getting Appointments");
                     AppointmentController.getInstance().getAppointmentsFromServer(
-                        calendarRange.getStartCalendar().getTime(),
-                        calendarRange.getEndCalendar().getTime()
-                );
+                            calendarRange.getStartCalendar().getTime(),
+                            calendarRange.getEndCalendar().getTime()
+                    );
                 }
                 return null;
             }
         };
     }
-
-
 
     private ServiceProviderController.ServiceProvidersUpdatedListener onServiceProviderUpdated() {
         return new ServiceProviderController.ServiceProvidersUpdatedListener() {

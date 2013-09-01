@@ -3,7 +3,7 @@ package Models;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.Locale;
 
 
 /**
@@ -16,8 +16,11 @@ import java.util.Date;
 public class Availability {
 
     private String title;
+    private String timeSlot;
     private int servId;
+    private String servColor;
     private String color;
+    private String date;
     private String start;
     private String end;
     private boolean allDay;
@@ -82,13 +85,10 @@ public class Availability {
         this.allDay = allDay;
     }
 
-    public Date convertToDate(String dts) {
-        Date date = new Date();
-        try {
-            date = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").parse(dts);
-        } catch (ParseException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-        return date;
+    public Date getStartDate() throws ParseException {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start);
+    }
+    public Date getEndDate() throws ParseException {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(end);
     }
 }

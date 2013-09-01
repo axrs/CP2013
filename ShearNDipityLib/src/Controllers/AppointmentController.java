@@ -1,6 +1,9 @@
 package Controllers;
 
-import Models.*;
+import Models.Appointment;
+import Models.Availability;
+import Models.Config;
+import Models.ScheduledAppointment;
 import com.google.gson.Gson;
 
 import javax.swing.event.EventListenerList;
@@ -35,7 +38,7 @@ public class AppointmentController {
     private Date lastUpdate;
     private String startDate;
     private String endDate;
-    private Availability[] availabilities;
+    private Availability[] availabilities = null;
     private ContactController contactController;
     private ServiceProviderController serviceProviderController;
 
@@ -63,11 +66,11 @@ public class AppointmentController {
         startDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeStart);
         endDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeEnd);
 
-        getAppointmentsFromServer(startDate,endDate);
-        }
+        getAppointmentsFromServer(startDate, endDate);
+        getAvailabilitiesFromServer(startDate, endDate);
+    }
 
-
-    private void getAppointmentsFromServer(String start, String end){
+    private void getAppointmentsFromServer(String start, String end) {
         RESTRunner runner = new RESTRunner();
         runner.addListner(new GetAppointmentsResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments/" + start + "/" + end);
@@ -75,14 +78,21 @@ public class AppointmentController {
         runnerThread.start();
 
     }
+
     public void getAvailabilitiesFromServer(Date dateRangeStart, Date dateRangeEnd) {
 
         startDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeStart);
         endDate = new SimpleDateFormat("yyyy-MM-dd").format(dateRangeEnd);
 
+        getAvailabilitiesFromServer(startDate, endDate);
+        getAppointmentsFromServer(startDate, endDate);
+    }
+
+    private void getAvailabilitiesFromServer(String start, String end) {
+
         RESTRunner runner = new RESTRunner();
         runner.addListner(new GetAvailabilitiesResultListener());
-        runner.setRequest(Config.getInstance().getServer() + "/api/staff/available/" + startDate + "/" + endDate);
+        runner.setRequest(Config.getInstance().getServer() + "/api/staff/available/" + start + "/" + end);
         Thread runnerThread = new Thread(runner, "Getting Availabilities");
         runnerThread.start();
     }
@@ -152,6 +162,14 @@ public class AppointmentController {
         subscribers.add(AppointmentsUpdatedListener.class, listener);
     }
 
+    public void addUpdatedListener(AvailabilitiesUpdatedListener listener) {
+        subscribers.add(AvailabilitiesUpdatedListener.class, listener);
+    }
+
+    public void removeUpdatedListener(AvailabilitiesUpdatedListener listener) {
+        subscribers.remove(AvailabilitiesUpdatedListener.class, listener);
+    }
+
     /**
      * Remove a response subscriber
      *
@@ -177,7 +195,26 @@ public class AppointmentController {
     }
 
     public Availability[] getAvailabilities() {
-        return availabilities;
+        Availability[] results = null;
+        try {
+            appointmentsLocker.acquire();
+            try {
+                results = availabilities;
+            } finally {
+                appointmentsLocker.release();
+            }
+        } catch (InterruptedException ie) {
+
+        }
+        return results;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
     }
 
     /**
@@ -187,6 +224,7 @@ public class AppointmentController {
         public void updated(AppointmentsUpdated event);
     }
 
+
     public interface AvailabilitiesUpdatedListener extends EventListener {
         public void updated(AvailabilitiesUpdated event);
     }
@@ -194,7 +232,6 @@ public class AppointmentController {
     public interface AppointmentAddedListener extends EventListener {
         public void added(AppointmentAdded event);
     }
-
 
     /**
      * REST Server Results event listener.
@@ -254,13 +291,9 @@ public class AppointmentController {
             try {
                 appointmentsLocker.acquire();
                 try {
-                    Availability[] results = new Gson().fromJson(result.getResponse(), Availability[].class);
 
-                    for (int i = 0; i < results.length; i++) {
-                        Availability a = results[i];
-                        availabilities[i] = a;
-                    }
-
+                    availabilities = new Gson().fromJson(result.getResponse(), Availability[].class);
+                    System.out.println(availabilities.length);
                 } finally {
                     appointmentsLocker.release();
                 }
@@ -311,7 +344,6 @@ public class AppointmentController {
         }
     }
 
-
     private class ModifyAppointmentResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
@@ -347,6 +379,7 @@ public class AppointmentController {
             super(source);
         }
     }
+
     /**
      * Contact Added Event
      */
@@ -362,13 +395,5 @@ public class AppointmentController {
         public Appointment getAppointment(Date dateRangeStart, Date dateRangeEnd) {
             return appointment;
         }
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
     }
 }
