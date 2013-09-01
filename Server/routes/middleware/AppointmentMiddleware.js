@@ -9,7 +9,6 @@ module.exports = {
     },
 	validateAPIEntry: function (Model){
 		return function (req, res, next) {
-
             		var appointment= req.body;
             		req.body.model = appointment;
 
