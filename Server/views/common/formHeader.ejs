@@ -11,10 +11,8 @@
 </p>
 <% } %>
 
-<div class="row-fluid">
-
-    <form class="form-horizontal" method="post" accept-charset="utf-8"
-          action="<%= actionParam %>">
-        <% if (isEditing) {%>
-        <input type="hidden" name="_method" value="put" id="_method"/>
-        <%}%>
+<form class="form-horizontal" method="post" accept-charset="utf-8"
+      action="<%= actionParam %>">
+    <% if (isEditing) {%>
+    <input type="hidden" name="_method" value="put" id="_method"/>
+    <%}%>
