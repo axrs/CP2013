@@ -27,6 +27,12 @@
             <dt>On</dt>
             <dd id="appointmentDate"></dd>
         </dl>
+        <div id="eventFormActions" class="row-fluid">
+            <form action="/appointments/" method="post" class="form-actions">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit" value="Delete" class="btn btn-warning pull-right" disabled>Cancel Appointment</button>
+            </form>
+        </div>
     </div>
 </div>
 <% include ../footer %>

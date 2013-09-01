@@ -111,8 +111,7 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
             });
         },
         delete: function (req, res) {
-          
-                model.update(req.params.id, function (err) {
+                model.delete(req.params.id, function (err) {
                     if (err) res.statusCodes.status500(req, res, null);
                     else res.redirect('/' + redirectRoot);
                 });

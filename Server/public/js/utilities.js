@@ -23,7 +23,6 @@ $(document).ready(function () {
             }
             $.getJSON('/api/appointments/types', function (data) {
                 $.each(data, function (val, type) {
-                    console.log(type);
                     $('#appointmentTypeList').append($('<option>', {
                         value: type.appTypeId,
                         text: type.appTypeDescription
@@ -183,6 +182,17 @@ $(document).ready(function () {
     }
 
 
+    function setDeleteAction(servId, enable) {
+        if ($('#eventDescription #eventFormActions').length == 1) {
+            $('#eventDescription #eventFormActions .form-actions')[0].setAttribute('action','/appointments/' + servId);
+            if (enable){
+                $('#eventDescription #eventFormActions .form-actions .btn.btn-warning')[0].removeAttribute('disabled');
+            }       else{
+                $('#eventDescription #eventFormActions .form-actions .btn.btn-warning')[0].setAttribute('disabled');
+            }
+        }
+    }
+
     if ($('#appCalendar').length > 0) {
         var date = new Date();
         var d = date.getDate();
@@ -225,6 +235,11 @@ $(document).ready(function () {
                 setContact(calEvent.contId);
                 setAppointmentDate(calEvent.start, calEvent.end);
                 setAppointmentType(calEvent.appTypeId);
+                if (calEvent.start >= new Date()){
+                    setDeleteAction(calEvent.appId,true);
+                }else{
+                    setDeleteAction(calEvent.appId,false);
+                }
             }
         });
     }
