@@ -98,6 +98,7 @@ public class AppointmentController {
     }
 
     public void createAppointment(Appointment appointment) {
+
         RESTRunner runner = new RESTRunner();
         runner.addListner(new ModifyAppointmentResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments");
@@ -108,12 +109,23 @@ public class AppointmentController {
     }
 
     public void updateAppointment(Appointment appointment) {
+
         RESTRunner runner = new RESTRunner();
         runner.addListner(new ModifyAppointmentResultListener());
         runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments" + String.valueOf(appointment.getAppId()));
         runner.setMethod("PUT");
         runner.setMessage(new Gson().toJson(appointment, Appointment.class));
         Thread runnerThread = new Thread(runner, "Updating Appointment");
+        runnerThread.start();
+    }
+
+    public void deleteAppointment(int appID) {
+
+        RESTRunner runner = new RESTRunner();
+        runner.addListner(new ModifyAppointmentResultListener());
+        runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments/" + appID);
+        runner.setMethod("DELETE");
+        Thread runnerThread = new Thread(runner, "Deleting Appointment");
         runnerThread.start();
     }
 
@@ -245,7 +257,7 @@ public class AppointmentController {
             System.out.println("Get All Appointments Request : " + result.getStatus());
             System.out.println(result.getResponse());
 
-            //Remove the listener from the contact object
+            //Remove the listener from the appointment object
             ((RESTRunner) result.getSource()).removeListener(this);
 
             if (result.getStatus() != 200) return;
@@ -283,7 +295,7 @@ public class AppointmentController {
             System.out.println("Get All Availabilities Request : " + result.getStatus());
             System.out.println(result.getResponse());
 
-            //Remove the listener from the contact object
+            //Remove the listener from the appointment object
             ((RESTRunner) result.getSource()).removeListener(this);
 
             if (result.getStatus() != 200) return;
@@ -336,7 +348,7 @@ public class AppointmentController {
             } catch (InterruptedException ie) {
             }
 
-            //Fire events for individual contact added, and all contacts list updated
+            //Fire events for individual appointment added, and all appointments list updated
             if (a != null) {
                 triggerAdded(new AppointmentAdded(this, a));
                 triggerUpdated(new AppointmentsUpdated(this));
@@ -356,8 +368,7 @@ public class AppointmentController {
 
             if (result.getStatus() != 201 && result.getStatus() != 202) return;
 
-
-            //Update Contacts with new information
+            //Update Appointments with new information
             getAppointmentsFromServer(AppointmentController.getInstance().getStartDate(), AppointmentController.getInstance().getEndDate());
         }
     }
@@ -381,7 +392,7 @@ public class AppointmentController {
     }
 
     /**
-     * Contact Added Event
+     * Appointment Added Event
      */
     public class AppointmentAdded extends EventObject {
 
