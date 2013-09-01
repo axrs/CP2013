@@ -125,7 +125,7 @@ $(document).ready(function () {
 
     if ($('#appointmentTypeList').length == 1) {
         $('#appointmentTypeList')[0].onchange = function () {
-            loadAppointmentTimes(lastEvent)
+            loadAppointmentTimes(lastEvent.start, lastEvent.end)
         }
     }
 
