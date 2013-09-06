@@ -105,7 +105,7 @@ public class MainView extends Application {
                                 newApp.setAppDate(app.getStartTime().getTime());
                                 newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
                                 newApp.setAppTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
-                                tryStageStart(new AppoinmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()));
+                                tryStageStart(new AppointmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()));
                             }
                         }
                         appointmentLastClicked = 0;
@@ -169,29 +169,32 @@ public class MainView extends Application {
                                 }
                             }
 
-                            for (Availability item : AppointmentController.getInstance().getAvailabilities()) {
-                                Calendar cal = Calendar.getInstance();
-                                try {
-                                    cal.setTime(item.getEndDate());
-                                    Calendar endTime = (Calendar) cal.clone();
-                                    cal.setTime(item.getStartDate());
-                                    Calendar startTime = (Calendar) cal.clone();
+                            if (agendaView.appointmentGroups().size() > 0) {
+                                for (Availability item : AppointmentController.getInstance().getAvailabilities()) {
+                                    Calendar cal = Calendar.getInstance();
+                                    try {
+                                        cal.setTime(item.getEndDate());
+                                        Calendar endTime = (Calendar) cal.clone();
+                                        cal.setTime(item.getStartDate());
+                                        Calendar startTime = (Calendar) cal.clone();
 
-                                    ReadOnlyAppointmentImpl a =
-                                            new ReadOnlyAppointmentImpl();
-                                    a.withStartTime(startTime);
-                                    a.withEndTime(endTime);
-                                    a.withSummary("Available");
-                                    a.withDescription("");
-                                    a.withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId() - 1));
-                                    a.setServId(item.getServId());
-                                    agendaView.appointments().add(a);
+                                        ReadOnlyAppointmentImpl a =
+                                                new ReadOnlyAppointmentImpl();
+                                        a.withStartTime(startTime);
+                                        a.withEndTime(endTime);
+                                        a.withSummary("Available");
+                                        a.withDescription("");
+                                        a.withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId() - 1));
+                                        a.setServId(item.getServId());
+                                        agendaView.appointments().add(a);
 
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
-
                             }
+
                         } catch (InterruptedException e) {
                             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                         } finally {
