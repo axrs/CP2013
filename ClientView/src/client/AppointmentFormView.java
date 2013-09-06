@@ -22,7 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import jfxtras.labs.scene.control.CalendarTextField;
-import scene.control.TimeComboBox;
+import client.scene.control.TimeComboBox;
 
 import java.util.Calendar;
 import java.util.Date;

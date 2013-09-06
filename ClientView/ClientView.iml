@@ -7,8 +7,8 @@
     </content>
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jfxtras-labs-2.2-r4" level="project" />
     <orderEntry type="module" module-name="ShearNDipityLib" />
+    <orderEntry type="library" name="jfxtras-labs-2.2-r5" level="project" />
   </component>
 </module>
 

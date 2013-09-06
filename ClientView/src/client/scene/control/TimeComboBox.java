@@ -1,4 +1,4 @@
-package scene.control;
+package client.scene.control;
 
 import javafx.scene.control.ComboBox;
 

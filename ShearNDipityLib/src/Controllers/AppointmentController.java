@@ -252,10 +252,6 @@ public class AppointmentController {
         @Override
         public void results(RESTRunner.Result result) {
 
-            //Print the outputs for now
-            System.out.println("Get All Appointments Request : " + result.getStatus());
-            System.out.println(result.getResponse());
-
             //Remove the listener from the appointment object
             ((RESTRunner) result.getSource()).removeListener(this);
 
@@ -290,10 +286,6 @@ public class AppointmentController {
         @Override
         public void results(RESTRunner.Result result) {
 
-            //Print the outputs for now
-            System.out.println("Get All Availabilities Request : " + result.getStatus());
-            System.out.println(result.getResponse());
-
             //Remove the listener from the appointment object
             ((RESTRunner) result.getSource()).removeListener(this);
 
@@ -304,7 +296,6 @@ public class AppointmentController {
                 try {
 
                     availabilities = new Gson().fromJson(result.getResponse(), Availability[].class);
-                    System.out.println(availabilities.length);
                 } finally {
                     appointmentsLocker.release();
                 }
@@ -323,9 +314,6 @@ public class AppointmentController {
     private class GetAppointmentResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
-            //Print the outputs for now
-            System.out.println("Get Single Appointment Request : " + result.getStatus());
-            System.out.println(result.getResponse());
 
             //Remove the listener from the appointment object
             ((RESTRunner) result.getSource()).removeListener(this);
@@ -358,10 +346,6 @@ public class AppointmentController {
     private class ModifyAppointmentResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
-            //Print the outputs for now
-            System.out.println("Modify single Appointment : " + result.getStatus());
-            System.out.println(result.getResponse());
-
             //Remove the listener from the appointment object
             ((RESTRunner) result.getSource()).removeListener(this);
 

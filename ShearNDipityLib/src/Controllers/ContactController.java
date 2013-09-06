@@ -236,11 +236,7 @@ public class ContactController {
         @Override
         public void results(RESTRunner.Result result) {
 
-            //Print the outputs for now
-            System.out.println("Get All Contacts Request : " + result.getStatus());
-            System.out.println(result.getResponse());
-
-            //Remove the listener from the contact object
+                   //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
 
             if (result.getStatus() != 200) return;
@@ -274,9 +270,6 @@ public class ContactController {
     private class GetContactResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
-            //Print the outputs for now
-            System.out.println("Get Single Contact Request : " + result.getStatus());
-            System.out.println(result.getResponse());
 
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
@@ -309,9 +302,6 @@ public class ContactController {
     private class ModifyContactResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
-            //Print the outputs for now
-            System.out.println("Modify single contact : " + result.getStatus());
-            System.out.println(result.getResponse());
 
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);

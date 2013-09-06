@@ -229,10 +229,6 @@ public class ServiceProviderController {
         @Override
         public void results(RESTRunner.Result result) {
 
-            //Print the outputs for now
-            System.out.println("Get All Service Providers Request : " + result.getStatus());
-            System.out.println(result.getResponse());
-
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
 
@@ -267,9 +263,6 @@ public class ServiceProviderController {
     private class GetServiceProviderResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
-            //Print the outputs for now
-            System.out.println("Get Single Service Provider Request : " + result.getStatus());
-            System.out.println(result.getResponse());
 
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
@@ -302,9 +295,6 @@ public class ServiceProviderController {
     private class ModifyServiceProviderResultListener implements RESTRunner.ResultsListener {
         @Override
         public void results(RESTRunner.Result result) {
-            //Print the outputs for now
-            System.out.println("Modify single Service Provider : " + result.getStatus());
-            System.out.println(result.getResponse());
 
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);

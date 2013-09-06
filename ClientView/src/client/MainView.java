@@ -20,7 +20,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import jfxtras.labs.dialogs.DialogFX;
+import jfxtras.labs.dialogs.MonologFX;
+import jfxtras.labs.dialogs.MonologFXButton;
 import jfxtras.labs.scene.control.Agenda;
 
 import java.text.ParseException;
@@ -124,12 +125,12 @@ public class MainView extends Application {
                         Agenda.Appointment app = agendaView.selectedAppointments().get(0);
 
                         if (app instanceof ReadOnlyAppointmentImpl && ((ReadOnlyAppointmentImpl) app).getAppId() != null) {
-                            DialogFX dialog = new DialogFX(DialogFX.Type.QUESTION);
+                            MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
                             dialog.setMessage("Are you sure you wish to cancel this appointment");
                             dialog.setTitleText("Confirm Cancellation");
                             dialog.setModal(true);
-                            int result = dialog.showDialog();
-                            if (result == 0) {
+                            MonologFXButton.Type type = dialog.showDialog();
+                            if (type == MonologFXButton.Type.YES) {
                                 agendaView.appointments().remove(app);
                                 AppointmentController.getInstance().deleteAppointment(((ReadOnlyAppointmentImpl) app).getAppId());
                             }
@@ -161,12 +162,16 @@ public class MainView extends Application {
 
                         try {
                             dataMutex.acquire();
-                            for (Agenda.Appointment app : agendaView.appointments()) {
-                                if (app instanceof ReadOnlyAppointmentImpl) {
-                                    if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
-                                        agendaView.appointments().remove(app);
+                            if (agendaView.appointments().size() > 0) {
+
+                                for (Agenda.Appointment app : agendaView.appointments()) {
+                                    if (app instanceof ReadOnlyAppointmentImpl) {
+                                        if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
+                                            agendaView.appointments().remove(app);
+                                        }
                                     }
                                 }
+
                             }
 
                             if (agendaView.appointmentGroups().size() > 0) {
@@ -217,6 +222,7 @@ public class MainView extends Application {
                         try {
                             dataMutex.acquire();
 
+                            if (agendaView.appointments().size() == 0) return;
                             for (Agenda.Appointment app : agendaView.appointments()) {
                                 if (app instanceof ReadOnlyAppointmentImpl) {
                                     if (((ReadOnlyAppointmentImpl) app).getAppId() != null) {
@@ -266,19 +272,16 @@ public class MainView extends Application {
     }
 
     private Callback<Agenda.CalendarRange, Void> onAgendaRangeCallback() {
-        System.out.println("Running Callback");
         return new Callback<Agenda.CalendarRange, Void>() {
             @Override
             public Void call(Agenda.CalendarRange calendarRange) {
 
                 if (isViewingAvailabilities) {
-                    System.out.println("Getting Availabilities");
                     AppointmentController.getInstance().getAvailabilitiesFromServer(
                             calendarRange.getStartCalendar().getTime(),
                             calendarRange.getEndCalendar().getTime());
 
                 } else {
-                    System.out.println("Getting Appointments");
                     AppointmentController.getInstance().getAppointmentsFromServer(
                             calendarRange.getStartCalendar().getTime(),
                             calendarRange.getEndCalendar().getTime()

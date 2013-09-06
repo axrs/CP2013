@@ -120,9 +120,6 @@ public class AppointmentTypeController {
         @Override
         public void results(RESTRunner.Result result) {
 
-            //Print the outputs for now
-            System.out.println("Get All Appointment Types Request : " + result.getStatus());
-            System.out.println(result.getResponse());
 
             //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
