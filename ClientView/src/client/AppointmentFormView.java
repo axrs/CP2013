@@ -2,7 +2,7 @@ package client;
 
 import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
-import Controllers.ContactController;
+import Controllers.ContactsController;
 import Controllers.ServiceProviderController;
 import Models.Appointment;
 import Models.AppointmentType;
@@ -46,7 +46,7 @@ public class AppointmentFormView extends Application {
     public AppointmentFormView() {
         serviceProviderObservableList.addAll(ServiceProviderController.getInstance().getServiceProviders().values());
         appointmentTypeObservableList.addAll(AppointmentTypeController.getInstance().getAppointmentTypes().values());
-        contactObservableList.addAll(ContactController.getInstance().getContacts().values());
+        contactObservableList.addAll(ContactsController.getInstance().getContacts().values());
     }
 
     public AppointmentFormView(Appointment app, Date startTime, Date endTime) {
@@ -58,7 +58,7 @@ public class AppointmentFormView extends Application {
 
         serviceProviderObservableList.addAll(ServiceProviderController.getInstance().getServiceProviders().values());
         appointmentTypeObservableList.addAll(AppointmentTypeController.getInstance().getAppointmentTypes().values());
-        contactObservableList.addAll(ContactController.getInstance().getContacts().values());
+        contactObservableList.addAll(ContactsController.getInstance().getContacts().values());
     }
 
     private void adjustMaximumTimeSelection() {
@@ -107,7 +107,7 @@ public class AppointmentFormView extends Application {
         contact.valueProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object o2) {
-                for (Contact type : ContactController.getInstance().getContacts().values()) {
+                for (Contact type : ContactsController.getInstance().getContacts().values()) {
                     if (String.format("%s %s", type.getContFirstName(), type.getContSurname()).equals(o2)) {
                         appointment.setContId(type.getContId());
                         break;

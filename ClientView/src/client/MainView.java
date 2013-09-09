@@ -2,7 +2,7 @@ package client;
 
 import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
-import Controllers.ContactController;
+import Controllers.ContactsController;
 import Controllers.ServiceProviderController;
 import Models.Appointment;
 import Models.Availability;
@@ -77,7 +77,7 @@ public class MainView extends Application {
     public void start(final Stage primaryStage) throws Exception {
         ServiceProviderController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
-        ContactController.getInstance().getContactsFromServer();
+        ContactsController.getInstance().getContactsFromServer();
         ServiceProviderController.getInstance().addUpdatedListener(onServiceProviderUpdated());
         agendaView.setCalendarRangeCallback(onAgendaRangeCallback());
         AppointmentController.getInstance().addUpdatedListener(onAppointmentsUpdated());

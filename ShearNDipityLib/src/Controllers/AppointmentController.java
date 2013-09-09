@@ -39,7 +39,7 @@ public class AppointmentController {
     private String startDate;
     private String endDate;
     private Availability[] availabilities = null;
-    private ContactController contactController;
+    private ContactsController contactController;
     private ServiceProviderController serviceProviderController;
 
     /**

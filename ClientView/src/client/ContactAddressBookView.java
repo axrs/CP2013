@@ -1,6 +1,7 @@
 package client;
 
 import Controllers.ContactController;
+import Controllers.ContactsController;
 import Models.Contact;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -69,8 +70,8 @@ public class ContactAddressBookView extends Application {
         initialiseTableColumns();
         table.setItems(data);
 
-        ContactController.getInstance().addUpdatedListener(onContactsListUpdate());
-        ContactController.getInstance().getContactsFromServer();
+        ContactsController.getInstance().addUpdatedListener(onContactsListUpdate());
+        ContactsController.getInstance().getContactsFromServer();
 
         table.setOnMouseClicked(onTableRowDoubleClick());
 
@@ -93,10 +94,10 @@ public class ContactAddressBookView extends Application {
 
                     try {
                         TableView view = (TableView) mouseEvent.getSource();
-
                         Contact c = (Contact) view.getSelectionModel().getSelectedItem();
-                        System.out.println(c.getContFirstName());
-                        ContactFormView contactFormUI = new ContactFormView(c);
+                        ContactFormView contactFormUI = new ContactFormView();
+
+                        ContactController controller = new ContactController(contactFormUI, c);
                         try {
                             contactFormUI.start(new Stage());
                         } catch (Exception e) {
@@ -112,14 +113,14 @@ public class ContactAddressBookView extends Application {
         };
     }
 
-    private ContactController.ContactsUpdatedListener onContactsListUpdate() {
-        return new ContactController.ContactsUpdatedListener() {
+    private ContactsController.ContactsUpdatedListener onContactsListUpdate() {
+        return new ContactsController.ContactsUpdatedListener() {
             @Override
-            public void updated(ContactController.ContactsUpdated event) {
+            public void updated(ContactsController.ContactsUpdated event) {
                 //Clear the table data source
                 data.clear();
                 //Add all known contacts to the data source.
-                data.addAll(ContactController.getInstance().getContacts().values());
+                data.addAll(ContactsController.getInstance().getContacts().values());
             }
         };
     }

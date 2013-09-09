@@ -1,22 +1,8 @@
 package Models;
 
-/**
- * Contact
- * <p/>
- * Generic representation of a typical contact
- * <p/>
- * Created by xander on 8/22/13.
- */
-public class Contact {
+import Controllers.ContactsController;
 
-    /**
-     * Contact Default Constructor
-     */
-    public Contact(String contForename, String contSurname) {
-        this.contForename = contForename;
-        this.contSurname = contSurname;
-    }
-
+public class Contact implements CRUDModel {
     /**
      * Contact First Name
      */
@@ -61,6 +47,14 @@ public class Contact {
      * Contact Id
      */
     private int contId;
+
+    /**
+     * Contact Default Constructor
+     */
+    public Contact(String contForename, String contSurname) {
+        this.contForename = contForename;
+        this.contSurname = contSurname;
+    }
 
     /**
      * Constructor
@@ -264,5 +258,71 @@ public class Contact {
      */
     public void setContAddrState(String contAddrState) {
         this.contAddrState = contAddrState;
+    }
+
+    private void replaceInstance(Contact c) {
+        contId = c.contId;
+        contForename = c.contForename;
+        contSurname = c.contSurname;
+        contEmail = c.contEmail;
+        contCompany = c.contCompany;
+        contPhone = c.contPhone;
+
+        contAddrStreet = c.contAddrStreet;
+        contAddrSuburb = c.contAddrSuburb;
+        contAddrCity = c.contAddrCity;
+        contAddrState = c.contAddrState;
+        contAddrZip = c.contAddrZip;
+
+    }
+
+    @Override
+    public boolean create() {
+        if (this.getContId() == 0) {
+            ContactsController.getInstance().createContact(this);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean retrieve(int id) {
+        Contact c = ContactsController.getInstance().getContact(id);
+
+        boolean result = (c != null);
+        if (result) {
+            replaceInstance(c);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean retrieve() {
+        boolean result = false;
+        Contact c = null;
+
+        if (this.getContId() != 0) {
+            c = ContactsController.getInstance().getContact(getContId());
+            result = (c != null);
+        }
+
+        if (result)
+            replaceInstance(c);
+        return result;
+    }
+
+    @Override
+    public boolean update() {
+        boolean result = true;
+        if (getContId() != 0) {
+            ContactsController.getInstance().updateContact(this);
+        } else {
+            result = create();
+        }
+        return result;
+    }
+
+    @Override
+    public boolean delete() {
+        return false;
     }
 }

@@ -143,7 +143,7 @@ public class AppointmentTypeController {
             } catch (InterruptedException ie) {
             }
 
-            //Trigger the ContactController collection updated
+            //Trigger the ContactsController collection updated
             triggerUpdated(new AppointmentTypesUpdated(this));
         }
     }

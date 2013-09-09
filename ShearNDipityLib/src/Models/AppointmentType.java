@@ -53,10 +53,10 @@ public class AppointmentType {
     }
 
     public boolean isAppTypeAllDay() {
-        return appTypeAllDay==1;
+        return appTypeAllDay == 1;
     }
 
     public void setAppTypeAllDay(boolean appTypeAllDay) {
-        this.appTypeAllDay = appTypeAllDay ? 1:0;
+        this.appTypeAllDay = appTypeAllDay ? 1 : 0;
     }
 }

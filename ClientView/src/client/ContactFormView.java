@@ -1,137 +1,292 @@
 package client;
 
-import Controllers.AppointmentController;
-import Controllers.ContactController;
-import Models.Appointment;
-import Models.Contact;
+import Interfaces.ContactView;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import jfxtras.labs.dialogs.MonologFX;
+import jfxtras.labs.dialogs.MonologFXButton;
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: Timface
- * Date: 17/08/13
- * Time: 9:30 AM
- * To change this template use File | Settings | File Templates.
- */
-public class ContactFormView extends Application {
-    private Contact contact = new Contact();
+public class ContactFormView extends Application implements ContactView {
+    final TextField forenameInput = new TextField();
+    final TextField surnameInput = new TextField();
+    final TextField companyInput = new TextField();
+    final TextField phoneInput = new TextField();
+    final TextField emailInput = new TextField();
+    final TextField addrStreetInput = new TextField();
+    final TextField addrSuburbInput = new TextField();
+    final TextField addrCityInput = new TextField();
+    final TextField addrZipInput = new TextField();
+    final TextField addrStateInput = new TextField();
+    final Button submitButton = new Button("Save");
+    final Button closeButton = new Button("Close");
+    boolean isDirty = false;
 
     public ContactFormView() {
     }
 
-    public ContactFormView(Contact c){
-        contact = c;
-    }
-
     public void start(final Stage primaryStage) throws Exception {
 
+        closeButton.setCancelButton(true);
+        closeButton.setOnAction(onCloseAction());
+        submitButton.setOnAction(onSaveAction());
+
         primaryStage.setTitle("CP2013 Appointment Scheduler - New Contact");
+        BorderPane border = new BorderPane();
 
-        final TextField fornameInput = new TextField(contact.getContFirstName());
-        fornameInput.setMaxWidth(100);
+        border.setCenter(setupFormInputs());
+        border.setBottom(setupActionButtons());
 
-        final TextField surnameInput = new TextField(contact.getContSurname());
-        surnameInput.setMaxWidth(100);
-
-        final TextField phoneInput = new TextField(contact.getContPhone());
-        phoneInput.setMaxWidth(100);
-
-        final TextField emailInput = new TextField(contact.getContEmail());
-        emailInput.setMaxWidth(100);
-
-        final TextField addrStreetInput = new TextField(contact.getContAddrStreet());
-        addrStreetInput.setMaxWidth(100);
-
-        final TextField addrSuburbInput = new TextField(contact.getContAddrSuburb());
-        addrSuburbInput.setMaxWidth(100);
-
-        final TextField addrCityInput = new TextField(contact.getContAddrCity());
-        addrCityInput.setMaxWidth(100);
-
-        final TextField addrZipInput = new TextField(contact.getContAddrZip());
-        addrZipInput.setMaxWidth(100);
-
-        final TextField addrStateInput = new TextField(contact.getContAddrState());
-        addrStateInput.setMaxWidth(100);
-
-        final GridPane editContactForm = new GridPane();
-        editContactForm.add(new Label("First Name:"), 0, 1);
-        editContactForm.add(fornameInput, 1, 1);
-
-        editContactForm.add(new Label("Last Name:"), 0, 2);
-        editContactForm.add(surnameInput, 1, 2);
-
-        editContactForm.add(new Label("Phone:"), 0, 3);
-        editContactForm.add(phoneInput, 1, 3);
-
-        editContactForm.add(new Label("Email:"), 0, 4);
-        editContactForm.add(emailInput, 1, 4);
-
-        editContactForm.add(new Label("Street:"), 0, 5);
-        editContactForm.add(addrStreetInput, 1, 5);
-
-        editContactForm.add(new Label("Suburb:"), 0, 6);
-        editContactForm.add(addrSuburbInput, 1, 6);
-
-        editContactForm.add(new Label("City:"), 0, 7);
-        editContactForm.add(addrCityInput, 1, 7);
-
-        editContactForm.add(new Label("Post Code:"), 0, 8);
-        editContactForm.add(addrZipInput, 1, 8);
-
-        editContactForm.add(new Label("State:"), 0, 9);
-        editContactForm.add(addrStateInput, 1, 9);
-
-        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
-        ListView<Appointment> appointmentListView = new ListView<Appointment>();
-
-        //appointments.add(AppointmentController.getInstance().getAppointmentsFromServer().values());
-
-        Button submit = new Button("Submit");
-
-        editContactForm.add(submit, 0,11);
-
-        submit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                if (!fornameInput.getText().equals(null) && !surnameInput.getText().equals(null)){
-                    contact.setContForename(fornameInput.getText());
-                    contact.setContSurname(surnameInput.getText());
-                    contact.setContEmail(emailInput.getText());
-                    contact.setContPhone(phoneInput.getText());
-                    contact.setContAddrStreet(addrStreetInput.getText());
-                    contact.setContAddrSuburb(addrSuburbInput.getText());
-                    contact.setContAddrZip(addrZipInput.getText());
-                    contact.setContAddrCity(addrCityInput.getText());
-                    contact.setContAddrState(addrStateInput.getText());
-
-                    if (contact.getContId() != 0) {
-                        ContactController.getInstance().updateContact(contact);
-                        System.out.println(contact.getContAddrSuburb());
-                        ContactController.getInstance().getContactFromServer(contact.getContId());
-
-                    } else {
-                        ContactController.getInstance().createContact(contact);
-                        ContactController.getInstance().getContactsFromServer();
-
-                    }
-                    primaryStage.close();
-                }
-            }
-        });
-
-        Scene scene = new Scene(editContactForm, 450, 300);
+        Scene scene = new Scene(border);
+        primaryStage.setOnCloseRequest(onClose());
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    public HBox setupActionButtons() {
+        HBox hbox = new HBox();
+        hbox.setPadding(new Insets(15, 12, 15, 12));
+        hbox.setSpacing(10);
+        hbox.setStyle("-fx-background-color: #dedede;");
+        hbox.setAlignment(Pos.BASELINE_RIGHT);
+
+        submitButton.setPrefSize(80, 20);
+        closeButton.setPrefSize(80, 20);
+        hbox.getChildren().addAll(submitButton, closeButton);
+
+        return hbox;
+    }
+
+    public GridPane setupFormInputs() {
+        GridPane grid = new GridPane();
+
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(10));
+
+        grid.addRow(0, new Label("First Name:"), forenameInput);
+
+        grid.addRow(1, new Label("Last Name:"), surnameInput);
+
+        grid.addRow(2, new Separator(), new Separator());
+
+        grid.addRow(3, new Label("Company:"), companyInput);
+
+        grid.addRow(4, new Label("Phone:"), phoneInput);
+
+        grid.addRow(5, new Label("Email:"), emailInput);
+
+        grid.addRow(6, new Separator(), new Separator());
+
+        grid.addRow(7, new Label("Street:"), addrStreetInput);
+
+        grid.addRow(8, new Label("Suburb:"), addrSuburbInput);
+
+        grid.addRow(9, new Label("City:"), addrCityInput);
+
+        grid.addRow(10, new Label("Post Code:"), addrZipInput);
+
+        grid.addRow(11, new Label("State:"), addrStateInput);
+
+
+        for (Node n : grid.getChildren()) {
+            if (n instanceof TextField) {
+                ((TextField) n).setPrefWidth(200);
+                ((TextField) n).setPrefHeight(20);
+            } else if (n instanceof Label) {
+                ((Label) n).setPrefWidth(75);
+                ((Label) n).setMinWidth(75);
+                ((Label) n).setTextAlignment(TextAlignment.RIGHT);
+                ((Label) n).setAlignment(Pos.BASELINE_RIGHT);
+            }
+        }
+
+        grid.addEventFilter(KeyEvent.KEY_RELEASED, setDirty());
+
+        return grid;
+    }
+
+    private EventHandler<WindowEvent> onClose() {
+        return new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                tryClose();
+            }
+        };
+    }
+
+    private EventHandler<ActionEvent> onSaveAction() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                isDirty = false;
+            }
+        };
+    }
+
+    private void tryClose() {
+        if (isDirty) {
+            MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
+            dialog.setMessage("There are changes pending on this form.  Are you sure you wish to close?");
+            dialog.setTitleText("Confirm Cancellation");
+            dialog.setModal(true);
+            MonologFXButton.Type type = dialog.showDialog();
+            if (type == MonologFXButton.Type.YES) {
+                ((Stage) closeButton.getScene().getWindow()).close();
+            }
+        } else {
+            ((Stage) closeButton.getScene().getWindow()).close();
+        }
+    }
+
+    private EventHandler<ActionEvent> onCloseAction() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                tryClose();
+            }
+        };
+    }
+
+    private EventHandler<KeyEvent> setDirty() {
+        return new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getTarget() instanceof TextField) {
+                    isDirty = true;
+                }
+            }
+        };
+    }
+
+    @Override
+    public String getForename() {
+        return forenameInput.getText();
+    }
+
+    @Override
+    public void setForename(String forename) {
+        forenameInput.setText(forename);
+    }
+
+    @Override
+    public String getSurname() {
+        return surnameInput.getText();
+    }
+
+    @Override
+    public void setSurname(String surname) {
+        surnameInput.setText(surname);
+    }
+
+    @Override
+    public String getCompany() {
+        return companyInput.getText();
+    }
+
+    @Override
+    public void setCompany(String company) {
+        companyInput.setText(company);
+    }
+
+    @Override
+    public String getEmail() {
+        return emailInput.getText();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        emailInput.setText(email);
+    }
+
+    @Override
+    public String getPhone() {
+        return phoneInput.getText();
+    }
+
+    @Override
+    public void setPhone(String phone) {
+        phoneInput.setText(phone);
+    }
+
+    @Override
+    public String getAddress() {
+        return addrStreetInput.getText();
+    }
+
+    @Override
+    public void setAddress(String address) {
+        addrStreetInput.setText(address);
+    }
+
+    @Override
+    public String getSuburb() {
+        return addrSuburbInput.getText();
+    }
+
+    @Override
+    public void setSuburb(String suburb) {
+        addrSuburbInput.setText(suburb);
+    }
+
+    @Override
+    public String getCity() {
+        return addrCityInput.getText();
+    }
+
+    @Override
+    public void setCity(String city) {
+        addrCityInput.setText(city);
+    }
+
+    @Override
+    public String getState() {
+        return addrStateInput.getText();
+    }
+
+    @Override
+    public void setState(String state) {
+        addrStateInput.setText(state);
+    }
+
+    @Override
+    public String getZip() {
+        return addrZipInput.getText();
+    }
+
+    @Override
+    public void setZip(String zip) {
+        addrZipInput.setText(zip);
+    }
+
+    @Override
+    public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
+        submitButton.addEventHandler(ActionEvent.ACTION, handler);
+    }
+
+    @Override
+    public void onError(String message) {
+        MonologFX infoDialog = new MonologFX(MonologFX.Type.INFO);
+        infoDialog.setMessage(message);
+        infoDialog.setModal(true);
+        infoDialog.showDialog();
+        isDirty = true;
+    }
 }
