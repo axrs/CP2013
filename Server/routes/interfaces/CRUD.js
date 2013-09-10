@@ -1,0 +1,1 @@
+var CRUD = new Interface('CRUD', ['list', 'create', 'retrieve', 'update', 'delete']);

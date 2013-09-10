@@ -1,7 +1,7 @@
 app = module.parent.exports.app;
 
 var modelMiddleware = require('./middleware/ModelMiddleware.js')
-    , contact = require('./models/Contact.js')(app.db)
+    , contact = require('./models/ContactModel.js')(app.db)
     , contactController = require('./controllers/Controller.js')(contact, app.config.views.path + 'contacts', 'contacts', 'Contacts')
     , contactMiddleware = require('./middleware/ContactMiddleware.js');
 

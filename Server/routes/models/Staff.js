@@ -81,7 +81,7 @@ module.exports = function (database) {
         update: function (id, data, callback) {
 
             function updateBaseContactTable(contactId, nextMethod) {
-                var contactModel = require('./Contact.js')(database);
+                var contactModel = require('./ContactModel.js')(database);
                 contactModel.update(contactId, data, nextMethod);
             }
 
@@ -151,7 +151,7 @@ module.exports = function (database) {
 
         //TODO: Cleanup this method
         insert: function (data, callback) {
-            var contactModel = require('./Contact.js')(database);
+            var contactModel = require('./ContactModel.js')(database);
             data.contCompany = 'Shear-N-Dipity';
 
             database.serialize(function () {
