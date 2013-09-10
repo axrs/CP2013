@@ -235,7 +235,7 @@ ContactModel.prototype.retrieve = function (id) {
         ContactModel._DAO.retrieve(this, id, function (err, result) {
             if (result.length == 1) {
                 console.log('ContactModel: retrieve(): ' + result);
-                return ContactModel._createFromArray(result);
+                return new ContactModel()._createFromArray(result);
             } else {
                 return null;
             }
@@ -252,7 +252,7 @@ ContactModel.prototype.retrieveAll = function (callback) {
 
             for (var i = 0; i < result.length; i++) {
                 console.log(result[i]);
-                results.push(new ContactModel().createFromArray(result[i]));
+                results.push(new ContactModel()._createFromArray(result[i]));
             }
             if (callback) {
                 callback(err, results);
@@ -264,7 +264,7 @@ ContactModel.prototype.retrieveAll = function (callback) {
     }
 };
 
-ContactModel.prototype.createFromArray = function (values) {
+ContactModel.prototype._createFromArray = function (values) {
     var contact = new ContactModel();
 
     contact.setId(values['_id']);
