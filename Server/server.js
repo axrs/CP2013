@@ -6,9 +6,7 @@ var express = require('express')
     , http = require('http')
     , config = require('./config.js')
     , expressValidator = require('express-validator')
-    , sqlite3 = require('sqlite3')
-    , db = new sqlite3.Database(config.sqlite.dbPath);
-
+    , mongoose = require('mongoose');
 
 //Initialise the express server application
 var app = exports.app = express();
@@ -35,14 +33,13 @@ http.createServer(app).listen(app.get('port'), function () {
     console.log('Server started listening on port ' + app.get('port'));
 });
 
-
 /*
  * Exports the express app for other modules to use
  * all route matches go the routes.js file
  */
 module.exports.app = app;
 module.exports.app.config = config;
-module.exports.app.db = db;
+module.exports.app.mongoDBConnection = mongoose.createConnection('mongodb://' + config.mongoDB.host + '/' + config.mongoDB.name);
 
 module.exports.app.exposeLocals = function (req, res, next) {
     res.locals.res = res;
@@ -53,4 +50,4 @@ module.exports.app.exposeLocals = function (req, res, next) {
 };
 
 //Connect routes
-require('./routes/RouteController.js');
+//require('./routes/RouteController.js');

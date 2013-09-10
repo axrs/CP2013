@@ -1,15 +1,3 @@
-/**
- * Contacts controller
- *
- * User: xander
- * Date: 8/12/13
- * Time: 10:23 PM
- *
- * Revisions:
- *
- */
-
-
 module.exports = function (model, viewPath, redirectRoot, modelType) {
     return{
         /**
@@ -111,10 +99,10 @@ module.exports = function (model, viewPath, redirectRoot, modelType) {
             });
         },
         delete: function (req, res) {
-                model.delete(req.params.id, function (err) {
-                    if (err) res.statusCodes.status500(req, res, null);
-                    else res.redirect('/' + redirectRoot);
-                });
+            model.delete(req.params.id, function (err) {
+                if (err) res.statusCodes.status500(req, res, null);
+                else res.redirect('/' + redirectRoot);
+            });
 
         },
         apiDelete: function (req, res) {

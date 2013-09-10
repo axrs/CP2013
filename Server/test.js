@@ -1,9 +1,19 @@
-var SQLiteController = require('./routes/controllers/SQLiteController').SQLiteController;
+var MongoDAO = require('./routes/managers/MongoDAO').MongoDAO;
 var ContactModel = require('./routes/models/ContactModel').ContactModel;
+var ContactController = require('./routes/controllers/ContactController').ContactController;
+var config = require('./config.js');
+var mongoose = require('mongoose');
+
+
+var conn = mongoose.createConnection('mongodb://' + config.mongoDB.host + '/' + config.mongoDB.name);
 
 var model = new ContactModel();
 model.setForename("Alexander");
 model.setSurname("Scott");
-var controller = new SQLiteController(null);
+var dao = new MongoDAO(conn);
 
-controller.create(model);
+var controller = new ContactController(dao, model, null);
+
+controller.getAll(function (err, result) {
+    console.log(result);
+});

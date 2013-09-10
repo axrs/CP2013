@@ -1,137 +1,143 @@
-var ContactModel = function () { // implements DatabaseItem
-    var _contId = 0,
-        _contForename = '',
-        _contSurname = '',
-        _contCompany = '',
-        _contPhone = '',
-        _contEmail = '',
-        _contAddrStreet = '',
-        _contAddrSuburb = '',
-        _contAddrCity = '',
-        _contAddrZip = '',
-        _contAddrState = '';
+var Interface = require('../interfaces/Interface').Interface
+    , DAO = require('../interfaces/DAO').DAO;
+
+var ContactModel = function () { // implements DatabaseItem, CRUD
+    var _contactId = '',
+        _forename = '',
+        _surname = '',
+        _company = '',
+        _phone = '',
+        _email = '',
+        _street = '',
+        _suburb = '',
+        _city = '',
+        _zip = '',
+        _state = '';
+
+    this.update = function () {
+        if (ContactModel._DAO && isStringAndNotEmpty(_contactId)) {
+            ContactModel._DAO.update(this, function (err, result) {
+                return result;
+            });
+        }
+    }
 
     function isStringAndNotEmpty(value) {
         return (typeof value == 'string' && value != '');
     }
 
-    function isInteger(value) {
-        return typeof value === 'number' && value % 1 == 0;
-    }
-
-
     this.setId = function (value) {
-        if (isInteger(value) && value > 0) {
-            _contId = value;
+        if (isStringAndNotEmpty(value)) {
+            _contactId = value;
         }
     };
 
-    this.getId = function () {
-        return _contId;
+    this.setEntityIndex = function (value) {
+        this.setId(value);
     };
 
-    this.getEntityIndex = function () {
-        return this.getId();
+    this.getId = function () {
+        return _contactId;
     };
 
     this.setForename = function (name) {
         if (isStringAndNotEmpty(name)) {
-            _contForename = name;
+            _forename = name;
         }
     };
 
     this.getForename = function () {
-        return _contForename;
+        return _forename;
     };
 
     this.setSurname = function (name) {
         if (isStringAndNotEmpty(name)) {
-            _contSurname = name;
+            _surname = name;
         }
     };
 
     this.getSurname = function () {
-        return _contSurname;
+        return _surname;
     };
 
     this.setCompany = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contCompany = value;
+            _company = value;
         }
     };
 
     this.getCompany = function () {
-        return _contCompany;
+        return _company;
     };
 
     this.setPhone = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contPhone = value;
+            _phone = value;
         }
     }
 
     this.getPhone = function () {
-        return _contPhone;
+        return _phone;
     };
 
     this.setStreetAddress = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contAddrStreet = value;
+            _street = value;
         }
     };
 
     this.getStreetAddress = function () {
-        return _contAddrStreet;
+        return _street;
     };
 
     this.setEmail = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contEmail = value;
+            _email = value;
         }
     };
 
     this.getEmail = function () {
-        return _contEmail;
+        return _email;
     };
 
     this.setSuburb = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contAddrSuburb = value;
+            _suburb = value;
         }
     };
 
     this.getSuburb = function () {
-        return _contAddrSuburb;
+        return _suburb;
     };
 
     this.setCity = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contAddrCity = value;
+            _city = value;
         }
     }
 
     this.getCity = function () {
-        return _contAddrCity;
+        return _city;
     }
 
     this.setZip = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contAddrZip = value;
+            _zip = value;
         }
     }
 
     this.getZip = function () {
-        return _contAddrZip;
+        return _zip;
     }
 
     this.setState = function (value) {
         if (isStringAndNotEmpty(value)) {
-            _contAddrState = value;
+            _state = value;
         }
     }
 
     this.getState = function () {
-        return  _contAddrState;
+        return  _state;
     }
 
     this.setAddress = function (street, suburb, city, post, state) {
@@ -144,32 +150,32 @@ var ContactModel = function () { // implements DatabaseItem
 
     this.toJSON = function () {
         return {
-            "contId": _contId,
-            "contForename": _contForename,
-            "contSurname": _contSurname,
-            "contCompany": _contCompany,
-            "contPhone": _contPhone,
-            "contEmail": _contEmail,
-            "contAddrStreet": _contAddrStreet,
-            "contAddrSuburb": _contAddrSuburb,
-            "contAddrZip": _contAddrZip,
-            "contAddrState": _contAddrState
+            "contId": _contactId,
+            "contForename": _forename,
+            "contSurname": _surname,
+            "contCompany": _company,
+            "contPhone": _phone,
+            "contEmail": _email,
+            "contAddrStreet": _street,
+            "contAddrSuburb": _suburb,
+            "contAddrZip": _zip,
+            "contAddrState": _state
         }
     };
 
-    this.getPropertyArray = function () {
+    this.getPropertyValues = function () {
         return [
-            _contId,
-            _contForename,
-            _contSurname,
-            _contPhone,
-            _contCompany,
-            _contEmail,
-            _contAddrStreet,
-            _contAddrSuburb,
-            _contAddrCity,
-            _contAddrZip,
-            _contAddrState
+            _contactId,
+            _forename,
+            _surname,
+            _phone,
+            _company,
+            _email,
+            _street,
+            _suburb,
+            _city,
+            _zip,
+            _state
         ]
     };
 };
@@ -177,90 +183,104 @@ var ContactModel = function () { // implements DatabaseItem
 
 /* STATIC METHODS */
 
+ContactModel._DAO = null;
+
 ContactModel.prototype.getEntityName = function () {
     return 'contact';
 };
 
+ContactModel.prototype.getEntityIndex = function () {
+    return 'contactId';
+};
+
 ContactModel.prototype.getEntitySchema = function () {
+    return {
+        contactId: String,
+        forename: String,
+        surname: String,
+        phone: String,
+        company: String,
+        email: String,
+        street: String,
+        suburb: String,
+        city: String,
+        zip: String,
+        state: String
+    };
+};
+
+ContactModel.prototype.getPropertyNames = function () {
     return [
-        'contId',
-        'contForename',
-        'contSurname',
-        'contPhone',
-        'contCompany',
-        'contEmail',
-        'contAddrStreet',
-        'contAddrSuburb',
-        'contAddrCity',
-        'contAddrZip',
-        'contAddrState'
+        'contactId',
+        'forename',
+        'surname',
+        'phone',
+        'company',
+        'email',
+        'street',
+        'suburb',
+        'city',
+        'zip',
+        'state'
     ];
 };
 
-module.exports.ContactModel = ContactModel;
+ContactModel.prototype.setDAO = function (manager) {
+    Interface.ensureImplements(manager, DAO);
+    ContactModel._DAO = manager;
+};
 
-/*
- module.exports = function (database) {
- return{
- all: function (callback) {
- database.all('SELECT * FROM contact ORDER BY contForename ASC, contSurname ASC;', callback);
- },
- findById: function (id, callback) {
- database.get('SELECT * FROM contact WHERE contId = ?;', id, callback);
- },
- matchName: function (name, surname, callback) {
- database.get('SELECT * FROM contact WHERE contForename = ? AND contSurname = ?;', [name, surname], callback);
- },
- count: function (callback) {
- database.get('SELECT count(*) FROM contact', null, callback);
- },
- insert: function (data, callback) {
- var statement = database.prepare(
- 'INSERT INTO contact ' +
- '(contForename, contSurname, contCompany, contPhone, contEmail, ' +
- 'contAddrStreet, contAddrSuburb, contAddrCity, contAddrZip, contAddrState)' +
- ' VALUES (?,?,?,?,?,' +
- '?,?,?,?,?);'
- );
- statement.run(
- [
- data.contForename,
- data.contSurname,
- (typeof data.contCompany === 'undefined') ? '' : data.contCompany,
- (typeof data.contPhone === 'undefined') ? '' : data.contPhone,
- (typeof data.contEmail === 'undefined') ? '' : data.contEmail,
- (typeof data.contAddrStreet === 'undefined') ? '' : data.contAddrStreet,
- (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSuburb,
- (typeof data.contAddrCity === 'undefined') ? '' : data.contAddrCity,
- (typeof data.contAddrZip === 'undefined') ? '' : data.contAddrZip,
- (typeof data.contAddrState === 'undefined') ? '' : data.contAddrState
- ],
- callback
- );
- },
- update: function (id, data, callback) {
- var statement = database.prepare(
- 'UPDATE contact SET contForename = ?, contSurname = ?, contCompany = ?, contPhone = ?, contEmail = ?, ' +
- 'contAddrStreet = ?, contAddrSuburb = ?, contAddrCity = ?, contAddrZip = ?, contAddrState = ? ' +
- 'WHERE contId = ?;'
- );
- statement.run(
- [
- data.contForename,
- data.contSurname,
- (typeof data.contCompany === 'undefined') ? '' : data.contCompany,
- (typeof data.contPhone === 'undefined') ? '' : data.contPhone,
- (typeof data.contEmail === 'undefined') ? '' : data.contEmail,
- (typeof data.contAddrStreet === 'undefined') ? '' : data.contAddrStreet,
- (typeof data.contAddrSuburb === 'undefined') ? '' : data.contAddrSuburb,
- (typeof data.contAddrCity === 'undefined') ? '' : data.contAddrCity,
- (typeof data.contAddrZip === 'undefined') ? '' : data.contAddrZip,
- (typeof data.contAddrState === 'undefined') ? '' : data.contAddrState,
- id
- ],
- callback
- );
- }
- }
- }
- */
+ContactModel.prototype.retrieve = function (id) {
+    if (id && ContactModel._DAO) {
+        ContactModel._DAO.retrieve(this, id, function (err, result) {
+            if (result.length == 1) {
+                console.log('ContactModel: retrieve(): ' + result);
+                return ContactModel._createFromArray(result);
+            } else {
+                return null;
+            }
+        });
+    } else {
+        return null;
+    }
+};
+
+ContactModel.prototype.retrieveAll = function (callback) {
+    if (ContactModel._DAO) {
+        ContactModel._DAO.retrieveAll(this, function (err, result) {
+            var results = [];
+
+            for (var i = 0; i < result.length; i++) {
+                console.log(result[i]);
+                results.push(new ContactModel().createFromArray(result[i]));
+            }
+            if (callback) {
+                callback(err, results);
+            }
+            return results;
+        });
+    } else {
+        return [];
+    }
+};
+
+ContactModel.prototype.createFromArray = function (values) {
+    var contact = new ContactModel();
+
+    contact.setId(values['_id']);
+    contact.setForename(values['forename']);
+    contact.setSurname(values['surname']);
+    contact.setPhone(values['phone']);
+    contact.setCompany(values['company']);
+    contact.setEmail(values['email']);
+    contact.setStreetAddress(values['street']);
+    contact.setSuburb(values['suburb']);
+    contact.setCity(values['city']);
+    contact.setZip(values['zip']);
+    contact.setState(values['state']);
+
+    return contact;
+};
+
+
+module.exports.ContactModel = ContactModel;

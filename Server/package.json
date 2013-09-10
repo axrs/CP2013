@@ -4,12 +4,14 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "mongoose": "x",
         "express": "x",
         "ejs": "x",
         "express-form": "0.8.x",
         "express-validator": "0.8.x",
         "socket.io": "x",
         "sqlite3": "x",
+        "node-uuid": "x",
         "underscore": "x"
     }
 }
