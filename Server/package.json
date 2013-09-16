@@ -1,17 +1,34 @@
 {
-    "name": "shear-n-dipity",
-    "description": "Shear-N-Dipity REST and Web Server",
+    "name": "Shear-N-Dipity",
     "version": "0.0.1",
     "private": true,
+    "description": "Shear-N-Dipity Server Application",
+    "main": "server.js",
+    "author": "Alexander Scott",
+    "scripts": {
+        "start": "node server.js"
+    },
     "dependencies": {
-        "mongoose": "x",
-        "express": "x",
-        "ejs": "x",
-        "express-form": "0.8.x",
-        "express-validator": "0.8.x",
-        "socket.io": "x",
-        "sqlite3": "x",
-        "node-uuid": "x",
-        "underscore": "x"
+        "express": "latest",
+        "fs-extra": "latest",
+        "underscore": "latest",
+        "colors": "latest",
+        "reload": "latest",
+        "passport": "latest",
+        "passport-local": "latest",
+        "passport-github": "latest",
+        "passport-google-oauth": "latest",
+        "underscore": "latest",
+        "async": "latest",
+        "view-helpers": "latest",
+        "forever": "latest",
+        "sqlite3": "latest"
+    },
+    "devDependencies": {
+        "testutil": "latest",
+        "superagent": "latest",
+        "reload": "latest",
+        "supertest": "latest",
+        "chai": "latest"
     }
 }
