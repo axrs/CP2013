@@ -1,9 +1,9 @@
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
-    config = require('./../config/config'),
+    config = projectRequire('config/config'),
     sqlite = require('sqlite3'),
     database = new sqlite.Database(config.db),
-    DAOFactory = require(config.moduleFolder + '/dao/sqlite-dao/SqliteDaoFactory'),
-    StatusCodes = require(config.moduleFolder + '/helpers/StatusHelpers.js');
+    DAOFactory = projectRequire('dao/sqlite-dao/SqliteDaoFactory'),
+    StatusCodes = projectRequire('helpers/StatusHelpers.js');
 
 var ContactDAO = new DAOFactory(database).getContactDAO();
 
@@ -20,7 +20,7 @@ module.exports = {
         });
     },
     create: function (req, res) {
-        var Contact = require(config.moduleFolder + '/models/Contact');
+        var Contact = projectRequire('models/Contact');
         var contact = new Contact();
         contact.fromJson(req.body);
 
@@ -52,7 +52,7 @@ module.exports = {
         }
     },
     update: function (req, res) {
-        var Contact = require(config.moduleFolder + '/models/Contact');
+        var Contact = projectRequire('models/Contact');
         var contact = new Contact();
 
         ContactDAO.retrieveById(req.params.id, function (err, result) {

@@ -1,7 +1,7 @@
-var Interface = require('./../../interfaces/Interface'),
-    SqliteDAO = require('./../../interfaces/SqliteDAO'),
+var Interface = projectRequire('interfaces/Interface'),
+    SqliteDAO = projectRequire('interfaces/SqliteDAO'),
     SqliteContactDAO = require('./SqliteContactDAO'),
-    DAOFactory = require('./../DaoFactory');
+    DAOFactory = projectRequire('dao/DaoFactory');
 
 function SqliteDAOFactory(databaseConnection) {
     Interface.ensureImplements(databaseConnection, SqliteDAO);
