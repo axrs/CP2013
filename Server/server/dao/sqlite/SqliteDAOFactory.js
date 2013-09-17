@@ -1,24 +1,17 @@
 var Interface = projectRequire('interfaces/Interface'),
     SqliteDAO = projectRequire('interfaces/SqliteDAO'),
     SqliteContactDAO = require('./SqliteContactDAO'),
-    DAOFactory = projectRequire('dao/DaoFactory');
+    DAOFactory = projectRequire('interfaces/DAOFactory');
 
-function extend(subClass, superClass) {
-    var F = function () {
-    };
-    F.prototype = superClass.prototype;
-    subClass.prototype = new F();
-    subClass.prototype.constructor = subClass;
-}
-
-extend(SqliteDAOFactory, DAOFactory);
-
-function SqliteDAOFactory(databaseConnection) {
+function SqliteDAOFactory(databaseConnection) { // extends DAOFactory
     Interface.ensureImplements(databaseConnection, SqliteDAO);
     var _connection = databaseConnection;
     this.getContactDAO = function () {
         return new SqliteContactDAO(_connection);
-    }
+    };
+    this.getUserDAO = function () {
+        throw new Error('getUserDAO: Not Implemented.');
+    };
 };
 
 module.exports = SqliteDAOFactory;
