@@ -4,7 +4,7 @@ var express = require('express'),
 
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
-    config = require('./config/config');
+    config = require('./server/config/config');
 //auth = require('./config/middlewares/authorization'),
 
 /*var models_path = __dirname + '/server/models';
@@ -14,8 +14,8 @@ fs.readdirSync(models_path).forEach(function (file) {
 //require('./config/passport')(passport);
 
 var app = express();
-require('./config/express')(app, null);
-require('./config/routes')(app, null, null);
+require('./server/config/express')(app, null);
+require('./server/config/routes')(app, null, null);
 
 app.listen(config.port);
 console.log('Express app started on port ' + config.port);

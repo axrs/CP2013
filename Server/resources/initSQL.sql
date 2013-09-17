@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS contact (
     suburb VARCHAR,
     city VARCHAR,
     zip VARCHAR,
-    state VARCHAR
+    state VARCHAR,
+    isActive BOOLEAN DEFAULT 1
 );
 
 /*-=-=-=-=-=-=-=-=-=-=

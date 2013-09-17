@@ -1,5 +1,5 @@
 var Contact = function () {
-    var id = '',
+    var id = 0,
         _forename = '',
         _surname = '',
         _company = '',
@@ -139,18 +139,36 @@ var Contact = function () {
 
     this.toJSON = function () {
         return {
-            "contId": id,
-            "contForename": _forename,
-            "contSurname": _surname,
-            "contCompany": _company,
-            "contPhone": _phone,
-            "contEmail": _email,
-            "contAddrStreet": _street,
+            "id": id,
+            "forename": _forename,
+            "surname": _surname,
+            "company": _company,
+            "phone": _phone,
+            "email": _email,
+            "street": _street,
             "contAddrSuburb": _suburb,
             "contAddrZip": _zip,
             "contAddrState": _state
         }
     };
+
+    this.fromJson = function (data) {
+        this.setId(data.id);
+        this.setForename(data.forename);
+        this.setSurname(data.surname);
+        this.setCompany(data.company);
+        this.setPhone(data.phone);
+        this.setEmail(data.email);
+        this.setStreet(data.street);
+        this.setSuburb(data.suburb);
+        this.setCity(data.city);
+        this.setZip(data.post);
+        this.setState(data.state);
+    }
+
+    this.isValid = function () {
+        return (isStringAndNotEmpty(_forename) && isStringAndNotEmpty(_surname));
+    }
 };
 
 module.exports = Contact;

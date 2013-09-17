@@ -4,15 +4,23 @@
 myApp.factory('RESTService',
     function ($http) {
         return {
-            get:function (url, callback) {
-                return $http({method:'GET', url:url}).
+            get: function (url, callback) {
+                return $http({method: 'GET', url: url}).
                     success(function (data, status, headers, config) {
                         callback(data);
-                        //console.log(data.json);
                     }).
                     error(function (data, status, headers, config) {
                         console.log("failed to retrieve data");
                     });
+            },
+            put: function (url, data) {
+                return $http.put(url, data);
+            },
+            post: function (url, data) {
+                return $http.post(url, data);
+            },
+            delete: function (url, callback) {
+                return $http({method: 'delete', url: url});
             }
         };
     }
@@ -30,26 +38,26 @@ myApp.factory('AuthService',
         var initialState = true;
 
         return {
-            initialState:function () {
+            initialState: function () {
                 return initialState;
             },
-            login:function (name, password) {
+            login: function (name, password) {
                 currentUser = name;
                 authorized = true;
                 //console.log("Logged in as " + name);
                 initialState = false;
             },
-            logout:function () {
+            logout: function () {
                 currentUser = null;
                 authorized = false;
             },
-            isLoggedIn:function () {
+            isLoggedIn: function () {
                 return authorized;
             },
-            currentUser:function () {
+            currentUser: function () {
                 return currentUser;
             },
-            authorized:function () {
+            authorized: function () {
                 return authorized;
             }
         };
