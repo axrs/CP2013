@@ -1,8 +1,9 @@
 var path = require('path'),
-    rootPath = path.normalize(__dirname + '/../../..');
+    rootPath = process.cwd();
 
 module.exports = {
     root: rootPath,
     publicFolder: rootPath + '/client',
+    moduleFolder: rootPath + '/server',
     port: process.env.PORT || 8080
 }
