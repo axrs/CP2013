@@ -27,6 +27,7 @@ myApp.controller('InboxCtrl', ['$scope', function ($scope) {
     };
 
 }]);
+
 myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
     $scope.action = 'Editing';
