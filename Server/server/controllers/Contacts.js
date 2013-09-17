@@ -2,7 +2,7 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     config = projectRequire('config/config'),
     sqlite = require('sqlite3'),
     database = new sqlite.Database(config.db),
-    DAOFactory = projectRequire('dao/sqlite-dao/SqliteDaoFactory'),
+    DAOFactory = projectRequire('dao/sqlite/SqliteDaoFactory'),
     StatusCodes = projectRequire('helpers/StatusHelpers.js');
 
 var ContactDAO = new DAOFactory(database).getContactDAO();
