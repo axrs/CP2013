@@ -3,7 +3,7 @@ var async = require('async'),
 
 
 module.exports = function (app, passport, auth) {
-    Contacts = require('../controllers/Contacts');
+    Contacts = require('./../controllers/Contacts');
     app.get('/api/contacts', Contacts.all);
     app.put('/api/contacts', Contacts.create);
     app.post('/api/contacts', Contacts.create);
