@@ -1,12 +1,11 @@
 [
-
     {
-        "company_name":"Acme, Inc",
+        "site_name":"Shear-N-Dipity",
+        "company_name":"CP2013 | Alexander Scott, Melinda Kingsun, Timothy Hart",
         "copyright_year":"2013",
         "hero_button":"Get Started",
         "landing_section_1":"Flexible",
         "landing_section_2":"Feature Rich",
         "landing_section_3":"Seed"
     }
-
 ]

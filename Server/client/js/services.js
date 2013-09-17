@@ -4,14 +4,8 @@
 myApp.factory('RESTService',
     function ($http) {
         return {
-            get: function (url, callback) {
-                return $http({method: 'GET', url: url}).
-                    success(function (data, status, headers, config) {
-                        callback(data);
-                    }).
-                    error(function (data, status, headers, config) {
-                        console.log("failed to retrieve data");
-                    });
+            get: function (url) {
+                return $http.get(url);
             },
             put: function (url, data) {
                 return $http.put(url, data);
@@ -19,7 +13,7 @@ myApp.factory('RESTService',
             post: function (url, data) {
                 return $http.post(url, data);
             },
-            delete: function (url, callback) {
+            delete: function (url) {
                 return $http({method: 'delete', url: url});
             }
         };

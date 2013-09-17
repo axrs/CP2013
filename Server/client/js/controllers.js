@@ -39,21 +39,8 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
 
     $scope.contact = null;
 
-    $scope.contacts = [];
-    $scope.total = 0
-
-    $rootScope.restService.get('/api/contacts', function (data) {
-        $scope.contacts = data;
-        $scope.total = $scope.contacts.length;
-    });
-
     $scope.process = function () {
         ($scope.contact.id == 0) ? $scope.create() : $scope.update();
-    };
-
-    $scope.select = function (selectedContact) {
-        $scope.contact = selectedContact;
-        $scope.action = 'Editing';
     };
 
     $scope.new = function () {
@@ -89,7 +76,7 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
 
     $scope.clear = function () {
         $scope.contact = null;
-        $scope.total = $scope.contacts.length;
+        $scope.selectedContacts.splice(0, 1);
     };
 
     $scope.delete = function () {
@@ -108,4 +95,87 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
                 });
         }
     };
+
+
+    /*
+     * Contact Grid Server Side Paging Example
+     */
+
+    $scope.filterOptions = {
+        filterText: "",
+        useExternalFilter: true
+    };
+    $scope.totalServerItems = 0;
+    $scope.pagingOptions = {
+        pageSizes: [50, 100, 150, 200, 250, 500],
+        pageSize: 50,
+        currentPage: 1
+    };
+    $scope.setPagingData = function (data, page, pageSize) {
+        var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+        $scope.contacts = pagedData;
+        $scope.totalServerItems = data.length;
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }
+    };
+    $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        setTimeout(function () {
+            var data;
+            if (searchText) {
+                var ft = searchText.toLowerCase();
+                $rootScope.restService.get('/api/contacts').success(function (largeLoad) {
+                    data = largeLoad.filter(function (item) {
+                        return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+                    });
+                    $scope.setPagingData(data, page, pageSize);
+                });
+            } else {
+                $rootScope.restService.get('/api/contacts').success(function (largeLoad) {
+                    $scope.setPagingData(largeLoad, page, pageSize);
+                });
+            }
+        }, 100);
+    };
+
+    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+
+    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+            $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+        }
+    }, true);
+    $scope.$watch('filterOptions', function (newVal, oldVal) {
+        if (newVal !== oldVal) {
+            $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+        }
+    }, true);
+
+    $scope.selectedContacts = [];
+
+    $scope.gridOptions = {
+        data: 'contacts',
+        enablePaging: true,
+        showFooter: true,
+        multiSelect: false,
+        totalServerItems: 'totalServerItems',
+        pagingOptions: $scope.pagingOptions,
+        filterOptions: $scope.filterOptions,
+        selectedItems: $scope.selectedContacts,
+        columnDefs: [
+            {field: 'forename', displayName: 'Name'},
+            {field: 'surname', displayName: 'Surname'},
+            {field: 'company', displayName: 'Company'}
+
+        ],
+        afterSelectionChange: function () {
+            if ($scope.selectedContacts.length == 1) {
+                $scope.contact = $scope.selectedContacts[0];
+                $scope.action = 'Editing';
+            } else {
+                $scope.contact = null;
+            }
+        }
+    };
+
 }]);

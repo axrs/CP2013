@@ -1,3 +1,7 @@
+.gridStyle {
+    height: 500px;
+}
+
 .sidebar-nav {
     padding: 9px 0;
 }
@@ -26,17 +30,18 @@ body {
     height: auto !important;
     height: 100%;
     /* Negative indent footer by it's height */
-    margin: 0 auto -60px;
+    margin: 0 auto -35px;
 }
 
 /* Set the fixed height of the footer here */
 #push,
 #footer {
-    height: 60px;
+    height: 35px;
 }
 
 #footer {
     background-color: #f5f5f5;
+    position: relative;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
@@ -57,7 +62,6 @@ body {
         padding-top: 60px;
     }
 }
-
 
 .container .credit {
     margin: 20px 0;

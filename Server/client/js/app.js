@@ -58,18 +58,9 @@ myApp.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTSer
 
     // async load constants
     $rootScope.constants = [];
-    $rootScope.restService.get('data/constants.json', function (data) {
-            $rootScope.constants = data[0];
-        }
-    );
-
-    // async load data do be used in table (playgound grid widget)
-    $rootScope.listData = [];
-    $rootScope.restService.get('data/generic-list.json', function (data) {
-            $rootScope.listData = data;
-        }
-    );
-
+    $rootScope.restService.get('data/constants.json').success(function (data) {
+        $rootScope.constants = data[0];
+    });
 
     // *****
     // Initialize authentication

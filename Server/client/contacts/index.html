@@ -1,4 +1,4 @@
-<div ng-controller="ContactsCtrl" class="container-fluid">
+<div ng-controller="ContactsCtrl" fade-in>
     <div class="row-fluid">
         <div class="span12">
             <div class="btn-group pull-right">
@@ -18,30 +18,11 @@
             <div ng-show="contact.id != null" ng-include="'contacts/contactForm.html'"></div>
         </div>
 
-        <div class="span6">
+        <div class="span6 gridStyle" ng-grid="gridOptions">
             <div class="input-prepend input-block-level">
                 <span class="add-on"><i class="icon icon-search"></i></span>
-                <input type="text" class="" placeholder="Search..." ng-model="search.$"/>
+                <input type="text" class="" placeholder="Search..." ng-model="filterOptions.filterText"/>
             </div>
-            <table class="table table-striped table-hover" id="contactOverview">
-                <thead>
-                <tr>
-                    <th><a href="" ng-click="predicate = 'forename'; reverse=!reverse">First Name</a>
-                        (<a href="" ng-click="predicate = '-forename'; reverse=!reverse">^</a>)
-                    </th>
-                    <th><a href="" ng-click="predicate = 'surname'; reverse=!reverse">Last Name</a></th>
-                    <th><a href="" ng-click="predicate = 'company'; reverse=!reverse">Company</a></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="c in contacts | filter:search | orderBy:predicate:reverse"
-                    ng-click="select(c)">
-                    <td>{{c.forename}}</td>
-                    <td>{{c.surname}}</td>
-                    <td>{{c.company}}</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
