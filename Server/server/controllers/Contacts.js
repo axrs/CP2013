@@ -5,85 +5,100 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     DAOFactory = projectRequire('dao/sqlite/SqliteDAOFactory'),
     StatusCodes = projectRequire('helpers/StatusHelpers.js');
 
+
 var ContactDAO = new DAOFactory(database).getContactDAO();
 
-module.exports = {
-    all: function (req, res) {
-        ContactDAO.retrieveAll(function (err, results) {
-            if (err) {
-                StatusCodes.status500(req, res);
-            } else {
-                res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.write(JSON.stringify(results));
-                res.end();
-            }
-        });
-    },
-    create: function (req, res) {
-        var Contact = projectRequire('models/Contact');
-        var contact = new Contact();
-        contact.fromJson(req.body);
-
-        if (!contact.isValid() || contact.getId() > 0) {
-            StatusCodes.status400(req, res);
+function all(req, res) {
+    ContactDAO.retrieveAll(function (err, results) {
+        if (err) {
+            StatusCodes.status500(req, res);
         } else {
-            ContactDAO.retrieveByName(contact.getForename(), contact.getSurname(), function (err, result) {
-                if (err) {
-                    StatusCodes.status500(req, res);
-                } else if (result) {
-                    StatusCodes.status409(req, res);
-                } else {
-
-                    ContactDAO.create(contact, function (err, result) {
-                        console.log(result);
-                        if (err) {
-                            StatusCodes.status500(req, res);
-                        } else {
-                            ContactDAO.lastInsertedContact(function (err, result) {
-                                res.writeHead(201, { 'Content-Type': 'application/json' });
-                                contact.fromJson(result);
-                                res.write(JSON.stringify(contact.toJSON()));
-                                res.end();
-                            });
-                        }
-                    });
-                }
-            });
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify(results));
+            res.end();
         }
-    },
-    update: function (req, res) {
-        var Contact = projectRequire('models/Contact');
-        var contact = new Contact();
+    });
+}
+function create(req, res) {
+    var Contact = projectRequire('models/Contact');
+    var contact = new Contact();
+    contact.fromJson(req.body);
 
-        ContactDAO.retrieveById(req.params.id, function (err, result) {
+    if (!contact.isValid() || contact.getId() > 0) {
+        StatusCodes.status400(req, res);
+    } else {
+        ContactDAO.retrieveByName(contact.getForename(), contact.getSurname(), function (err, result) {
             if (err) {
                 StatusCodes.status500(req, res);
+            } else if (result) {
+                StatusCodes.status409(req, res);
             } else {
-                contact.fromJson(result);
-                contact.fromJson(req.body);
-                ContactDAO.update(contact, function (err, result) {
+
+                ContactDAO.create(contact, function (err, result) {
+                    console.log(result);
                     if (err) {
                         StatusCodes.status500(req, res);
                     } else {
-                        res.writeHead(202, { 'Content-Type': 'application/json' });
-                        res.write(JSON.stringify(contact.toJSON()));
-                        res.end();
+                        ContactDAO.lastInsertedContact(function (err, result) {
+                            res.writeHead(201, { 'Content-Type': 'application/json' });
+                            contact.fromJson(result);
+                            res.write(JSON.stringify(contact.toJSON()));
+                            res.end();
+                        });
                     }
                 });
             }
         });
-        contact.fromJson(req.body);
-    },
-    remove: function (req, res) {
-        if (req.params.id > 0) {
-            ContactDAO.remove(req.params.id, function (err, result) {
-                if (err) StatusCodes.status500(req, res);
-                else {
-                    StatusCodes.status202(req, res);
+    }
+}
+function update(req, res) {
+    var Contact = projectRequire('models/Contact');
+    var contact = new Contact();
+
+    ContactDAO.retrieveById(req.params.id, function (err, result) {
+        if (err) {
+            StatusCodes.status500(req, res);
+        } else {
+            contact.fromJson(result);
+            contact.fromJson(req.body);
+            ContactDAO.update(contact, function (err, result) {
+                if (err) {
+                    StatusCodes.status500(req, res);
+                } else {
+                    res.writeHead(202, { 'Content-Type': 'application/json' });
+                    res.write(JSON.stringify(contact.toJSON()));
+                    res.end();
                 }
             });
-        } else {
-            StatusCodes.status400(req, res);
         }
+    });
+    contact.fromJson(req.body);
+}
+function remove(req, res) {
+    if (req.params.id > 0) {
+        ContactDAO.remove(req.params.id, function (err, result) {
+            if (err) StatusCodes.status500(req, res);
+            else {
+                StatusCodes.status202(req, res);
+            }
+        });
+    } else {
+        StatusCodes.status400(req, res);
     }
-};
+}
+
+function logRequest(req, res, next) {
+    console.log(req);
+    console.log(res);
+    req.on('data', function(d){
+       console.log(d);
+    });
+    next();
+}
+
+app = module.exports.app = module.parent.exports.app;
+
+app.get('/api/contacts', logRequest, all);
+app.put('/api/contacts', logRequest, create);
+app.post('/api/contacts', logRequest, create);
+app.delete('/api/contacts/:id', logRequest, remove);
