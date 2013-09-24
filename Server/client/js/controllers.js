@@ -74,6 +74,29 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
             });
     };
 
+    $scope.update = function () {
+        $rootScope.restService.put('/api/contacts/' + $scope.contact.id, $scope.contact).
+            success(function (data, status, headers, config) {
+                if (status == 202) {
+                    $scope.contact = data;
+                    $scope.clear();
+                }
+            }).
+            error(function (data, status, headers, config) {
+                switch (status) {
+                    case 400:
+                        $scope.alerts.push({type: 'error', title: 'Form Error:', msg: "A contact must have a First and Last name."});
+                        break;
+                    case 409:
+                        $scope.alerts.push({type: 'error', title: 'Conflict:', msg: "A contact with the specified name exists."});
+                        break;
+                    case 500:
+                        $scope.alerts.push({type: 'error', title: 'Database Error:', msg: "Error creating the contact."});
+                        break;
+                }
+            });
+    };
+
     $scope.clear = function () {
         $scope.contact = null;
         $scope.selectedContacts.splice(0, 1);
@@ -155,7 +178,7 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
 
     $scope.gridOptions = {
         data: 'contacts',
-        enablePaging: true,
+        enablePaging: false,
         showFooter: true,
         multiSelect: false,
         totalServerItems: 'totalServerItems',
@@ -164,9 +187,7 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
         selectedItems: $scope.selectedContacts,
         columnDefs: [
             {field: 'forename', displayName: 'Name'},
-            {field: 'surname', displayName: 'Surname'},
-            {field: 'company', displayName: 'Company'}
-
+            {field: 'surname', displayName: 'Surname'}
         ],
         afterSelectionChange: function () {
             if ($scope.selectedContacts.length == 1) {

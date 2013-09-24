@@ -1,7 +1,4 @@
-<div ng-show="contact.id" class="btn-group pull-right">
-    <a class="btn btn-danger" ng-click="delete()"><i class="icon-remove icon-white"></i> Remove</a>
-</div>
-<h2>{{action}}: {{contact.forename}} {{contact.surname}}</h2>
+<h2>{{action}}: {{contact.forename}} {{contact.surname}} <a class="btn btn-danger pull-right" ng-click="delete()"><i class="icon-remove icon-white"></i></a></h2>
 <div class="clearfix"></div>
 <fieldset>
     <legend>General</legend>
@@ -57,10 +54,9 @@
         </select>
         <input class="span2" type="text" placeholder="POST" ng-model="contact.post">
     </div>
-    <div class="form-actions span12">
+    <div class="controls controls-row">
         <button type="submit" class="btn btn-primary" ng-click="process()">Save</button>
         <button type="submit" class="btn btn-danger" ng-click="clear()">Cancel</button>
-
     </div>
 </fieldset>
 

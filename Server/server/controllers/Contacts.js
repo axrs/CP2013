@@ -33,7 +33,6 @@ function create(req, res) {
             } else if (result) {
                 StatusCodes.status409(req, res);
             } else {
-
                 ContactDAO.create(contact, function (err, result) {
                     console.log(result);
                     if (err) {
@@ -61,15 +60,20 @@ function update(req, res) {
         } else {
             contact.fromJson(result);
             contact.fromJson(req.body);
-            ContactDAO.update(contact, function (err, result) {
-                if (err) {
-                    StatusCodes.status500(req, res);
-                } else {
-                    res.writeHead(202, { 'Content-Type': 'application/json' });
-                    res.write(JSON.stringify(contact.toJSON()));
-                    res.end();
-                }
-            });
+
+            if (!contact.isValid() || contact.getId() <= 0) {
+                StatusCodes.status400(req, res);
+            } else {
+                ContactDAO.update(contact, function (err, result) {
+                    if (err) {
+                        StatusCodes.status500(req, res);
+                    } else {
+                        res.writeHead(202, { 'Content-Type': 'application/json' });
+                        res.write(JSON.stringify(contact.toJSON()));
+                        res.end();
+                    }
+                });
+            }
         }
     });
     contact.fromJson(req.body);
@@ -87,18 +91,11 @@ function remove(req, res) {
     }
 }
 
-function logRequest(req, res, next) {
-    console.log(req);
-    console.log(res);
-    req.on('data', function(d){
-       console.log(d);
-    });
-    next();
-}
-
 app = module.exports.app = module.parent.exports.app;
 
-app.get('/api/contacts', logRequest, all);
-app.put('/api/contacts', logRequest, create);
-app.post('/api/contacts', logRequest, create);
-app.delete('/api/contacts/:id', logRequest, remove);
+app.get('/api/contacts', app.logger, all);
+app.put('/api/contacts', app.logger, create);
+app.post('/api/contacts', app.logger, create);
+app.put('/api/contacts/:id', app.logger, update);
+app.post('/api/contacts/:id', app.logger, update);
+app.delete('/api/contacts/:id', app.logger, remove);

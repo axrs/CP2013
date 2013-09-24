@@ -1,13 +1,6 @@
 <div ng-controller="ContactsCtrl" fade-in>
     <div class="row-fluid">
-        <div class="span12">
-            <div class="btn-group pull-right">
-                <a class="btn btn-primary" ng-click="new()"><i class="icon-plus icon-white"></i> New Contact</a>
-            </div>
-            <h2>Address Book</h2>
-        </div>
-
-        <div class="span6 pull-right" ng-class="{well: contact.id != null}">
+        <div class="span8 pull-right" ng-class="{well: contact.id != null}">
             <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><h4>{{alert.title}}</h4>
                 {{alert.msg}}
             </alert>
@@ -18,7 +11,10 @@
             <div ng-show="contact.id != null" ng-include="'contacts/contactForm.html'"></div>
         </div>
 
-        <div class="span6 gridStyle" ng-grid="gridOptions">
+        <div class="span4 gridStyle" ng-grid="gridOptions">
+            <h3>Contacts <a class="btn btn-primary pull-right" ng-click="new()"><i class="icon-plus icon-white"></i></a>
+            </h3>
+
             <div class="input-prepend input-block-level">
                 <span class="add-on"><i class="icon icon-search"></i></span>
                 <input type="text" class="" placeholder="Search..." ng-model="filterOptions.filterText"/>

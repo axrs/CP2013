@@ -93,7 +93,8 @@ function SqliteContactDAO(database) { //implements ContactDAO
                     $suburb: contact.getSuburb(),
                     $city: contact.getCity(),
                     $state: contact.getState(),
-                    $zip: contact.getZip()
+                    $zip: contact.getZip(),
+                    $id: contact.getId()
                 },
                 callback
             );
