@@ -2,7 +2,6 @@ package client;
 
 import Interfaces.ServiceProviderView;
 import Models.ServiceHours;
-import Models.ServiceProvider;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
@@ -25,7 +25,6 @@ import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +38,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ServiceProviderFormUI extends Application implements ServiceProviderView {
-    final ArrayList<TextField> availableHours = new ArrayList<TextField>();
+    private final ObservableList<String> timesList = FXCollections.observableArrayList();
     final TextField forenameInput = new TextField();
     final TextField surnameInput = new TextField();
     final TextField companyInput = new TextField();
@@ -69,13 +68,14 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
         TableColumn shiftStartColumn = new TableColumn("Shift Start");
         shiftStartColumn.setMinWidth(50);
         shiftStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsStart"));
-        shiftStartColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        shiftStartColumn.setCellFactory(ComboBoxTableCell.forTableColumn(timesList));
         shiftStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
-                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
+                ( cellEditEvent.getTableView().getItems().get(
                         cellEditEvent.getTablePosition().getRow())
                 ).setServHrsStart(cellEditEvent.getNewValue());
+
             }
         });
 
@@ -126,19 +126,31 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
         closeButton.setOnAction(onCloseAction());
         submitButton.setOnAction(onSaveAction());
 
-        primaryStage.setTitle("CP2013 Appointment Scheduler - New Contact");
+        primaryStage.setTitle("CP2013 Appointment Scheduler - Edit/Create Service Provider");
         BorderPane border = new BorderPane();
 
         border.setCenter(setupFormInputs());
         border.setBottom(setupActionButtons());
 
         initialiseTableColumns();
+        table.setEditable(true);
+        createTimes();
 
         Scene scene = new Scene(border);
         primaryStage.setOnCloseRequest(onClose());
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void createTimes() {
+        for(int hour = 0; hour<=23; hour++){
+            for(int quarter = 0; quarter <= 3; quarter++){
+                String time = String.format("%02d:%02d", hour, (15*quarter));
+                timesList.add(time);
+                System.out.println(time);
+            }
+        }
     }
 
     public HBox setupActionButtons() {
@@ -197,10 +209,14 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
 
         grid.addColumn(2, new Label("Available Hours:"));
 
-        grid.add(table,2,1,1,8);
+        BorderPane tablePane = new BorderPane();
+
+        tablePane.setTop(table);
+
+        grid.add(tablePane, 2,1,1,15);
 
         table.setItems(servHours);
-
+        table.setMaxHeight(195);
 
         for (Node n : grid.getChildren()) {
             if (n instanceof TextField) {
