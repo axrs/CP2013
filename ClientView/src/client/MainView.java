@@ -4,10 +4,7 @@ import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
 import Controllers.ContactsController;
 import Controllers.ServiceProviderController;
-import Models.Appointment;
-import Models.Availability;
-import Models.ScheduledAppointment;
-import Models.ServiceProvider;
+import Models.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -37,6 +34,8 @@ public class MainView extends Application {
     private Boolean isViewingAvailabilities = false;
 
     public static void main(String[] args) {
+        CompositeLogger.getInstance().add(new ConsoleLogger());
+
         launch(args);
     }
 

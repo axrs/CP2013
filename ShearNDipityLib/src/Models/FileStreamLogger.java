@@ -13,26 +13,31 @@ public class FileStreamLogger extends AbstractLogger {
         _filePath = filePath;
     }
 
-    public void prepare() throws FileNotFoundException {
+    public void prepare() {
         if (_stream == null && !_filePath.isEmpty()) {
-            _stream = new FileOutputStream(_filePath, true);
+            try {
+                _stream = new FileOutputStream(_filePath, true);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void writeMessage() throws IOException {
+    public void writeMessage() {
         writeStream(getMessage().toString());
     }
 
-    private void writeStream(String message) throws IOException {
+    private void writeStream(String message) {
         if (_stream != null) {
-            _stream.write(message.getBytes());
+            try {
+                _stream.write(message.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void finalise() {
-        try {
-            writeStream("\n");
-        } catch (IOException e) {
-        }
+        writeStream("\n");
     }
 }

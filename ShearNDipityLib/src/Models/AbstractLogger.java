@@ -2,9 +2,6 @@ package Models;
 
 import Interfaces.ILogger;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public abstract class AbstractLogger implements ILogger {
     private LogMessage _message;
 
@@ -15,9 +12,9 @@ public abstract class AbstractLogger implements ILogger {
         finalise();
     }
 
-    public abstract void prepare() throws FileNotFoundException;
+    public abstract void prepare();
 
-    public abstract void writeMessage() throws IOException;
+    public abstract void writeMessage();
 
     public abstract void finalise();
 

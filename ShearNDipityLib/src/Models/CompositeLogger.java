@@ -2,6 +2,7 @@ package Models;
 
 import Interfaces.ILogger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CompositeLogger implements ILogger {
@@ -10,22 +11,22 @@ public class CompositeLogger implements ILogger {
     private List<ILogger> _loggers;
 
     protected CompositeLogger() {
+        _loggers = new ArrayList<ILogger>();
 
     }
 
-    @Override
-    public void log(LogMessage m) {
-
-        for (ILogger l : _loggers) {
-            l.log(m);
-        }
-    }
-
-    public CompositeLogger getInstance() {
+    public static CompositeLogger getInstance() {
         if (_instance == null) {
             _instance = new CompositeLogger();
         }
         return _instance;
+    }
+
+    @Override
+    public void log(LogMessage m) {
+        for (ILogger l : _loggers) {
+            l.log(m);
+        }
     }
 
     public void add(ILogger logger) {
