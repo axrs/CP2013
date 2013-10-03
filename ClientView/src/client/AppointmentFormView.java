@@ -3,7 +3,7 @@ package client;
 import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
 import Controllers.ContactsController;
-import Controllers.ServiceProviderController;
+import Controllers.ServiceProvidersController;
 import Models.Appointment;
 import Models.AppointmentType;
 import Models.Contact;
@@ -44,7 +44,7 @@ public class AppointmentFormView extends Application {
     private Date endTime;
 
     public AppointmentFormView() {
-        serviceProviderObservableList.addAll(ServiceProviderController.getInstance().getServiceProviders().values());
+        serviceProviderObservableList.addAll(ServiceProvidersController.getInstance().getServiceProviders().values());
         appointmentTypeObservableList.addAll(AppointmentTypeController.getInstance().getAppointmentTypes().values());
         contactObservableList.addAll(ContactsController.getInstance().getContacts().values());
     }
@@ -56,7 +56,7 @@ public class AppointmentFormView extends Application {
 
         timeSelection.setStartTime(startTime);
 
-        serviceProviderObservableList.addAll(ServiceProviderController.getInstance().getServiceProviders().values());
+        serviceProviderObservableList.addAll(ServiceProvidersController.getInstance().getServiceProviders().values());
         appointmentTypeObservableList.addAll(AppointmentTypeController.getInstance().getAppointmentTypes().values());
         contactObservableList.addAll(ContactsController.getInstance().getContacts().values());
     }

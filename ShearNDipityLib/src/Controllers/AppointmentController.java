@@ -40,7 +40,7 @@ public class AppointmentController {
     private String endDate;
     private Availability[] availabilities = null;
     private ContactsController contactController;
-    private ServiceProviderController serviceProviderController;
+    private ServiceProvidersController serviceProviderController;
 
     /**
      * Singleton constructor.  Not able to be overridden

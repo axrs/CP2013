@@ -3,7 +3,7 @@ package client;
 import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
 import Controllers.ContactsController;
-import Controllers.ServiceProviderController;
+import Controllers.ServiceProvidersController;
 import Models.Appointment;
 import Models.Availability;
 import Models.ScheduledAppointment;
@@ -75,10 +75,10 @@ public class MainView extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        ServiceProviderController.getInstance().getServiceProvidersFromServer();
+        ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();
-        ServiceProviderController.getInstance().addUpdatedListener(onServiceProviderUpdated());
+        ServiceProvidersController.getInstance().addUpdatedListener(onServiceProviderUpdated());
         agendaView.setCalendarRangeCallback(onAgendaRangeCallback());
         AppointmentController.getInstance().addUpdatedListener(onAppointmentsUpdated());
         AppointmentController.getInstance().addUpdatedListener(onAvailabilitiesUpdated());
@@ -292,10 +292,10 @@ public class MainView extends Application {
         };
     }
 
-    private ServiceProviderController.ServiceProvidersUpdatedListener onServiceProviderUpdated() {
-        return new ServiceProviderController.ServiceProvidersUpdatedListener() {
+    private ServiceProvidersController.ServiceProvidersUpdatedListener onServiceProviderUpdated() {
+        return new ServiceProvidersController.ServiceProvidersUpdatedListener() {
             @Override
-            public void updated(ServiceProviderController.ServiceProvidersUpdated event) {
+            public void updated(ServiceProvidersController.ServiceProvidersUpdated event) {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -303,7 +303,7 @@ public class MainView extends Application {
                             dataMutex.acquire();
                             agendaView.appointmentGroups().clear();
                             int i = 0;
-                            HashMap<Integer, ServiceProvider> map = ServiceProviderController.getInstance().getServiceProviders();
+                            HashMap<Integer, ServiceProvider> map = ServiceProvidersController.getInstance().getServiceProviders();
                             for (int id : map.keySet()) {
                                 ServiceProvider sp = map.get(id);
                                 Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));

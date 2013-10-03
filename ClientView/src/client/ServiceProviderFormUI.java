@@ -1,7 +1,7 @@
 package client;
 
-import Controllers.ServiceProviderController;
-import Models.Contact;
+import Controllers.ServiceProvidersController;
+import Interfaces.ServiceProviderView;
 import Models.ServiceHours;
 import Models.ServiceProvider;
 import javafx.application.Application;
@@ -10,20 +10,23 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import sun.misc.Regexp;
+import jfxtras.labs.dialogs.MonologFX;
 
 import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -33,11 +36,25 @@ import java.util.ArrayList;
  * Time: 9:30 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ServiceProviderFormUI extends Application {
+public class ServiceProviderFormUI extends Application implements ServiceProviderView{
     private ServiceProvider serviceProvider = new ServiceProvider();
     final ArrayList<TextField> availableHours = new ArrayList<TextField>();
     private final ObservableList<ServiceHours> data = FXCollections.observableArrayList();
     private TableView<ServiceHours> table = new TableView<ServiceHours>();
+    final TextField forenameInput = new TextField();
+    final TextField surnameInput = new TextField();
+    final TextField companyInput = new TextField();
+    final TextField phoneInput = new TextField();
+    final TextField emailInput = new TextField();
+    final TextField addrStreetInput = new TextField();
+    final TextField addrSuburbInput = new TextField();
+    final TextField addrCityInput = new TextField();
+    final TextField addrZipInput = new TextField();
+    final TextField addrStateInput = new TextField();
+    final TextField dateStartedInput = new TextField();
+    final TextField dateTerminatedInput = new TextField();
+    final TextArea bio = new TextArea();
+    boolean isDirty = false;
 
     private void initialiseTableColumns() {
         TableColumn dayColumn = new TableColumn("Weekday");
@@ -113,86 +130,9 @@ public class ServiceProviderFormUI extends Application {
     public void start(final Stage primaryStage) throws Exception {
 
         primaryStage.setTitle("CP2013 Appointment Scheduler - New Contact");
+        BorderPane border = new BorderPane();
 
-        final TextField fornameInput = new TextField(serviceProvider.getContFirstName());
-        fornameInput.setMaxWidth(100);
-
-        final TextField surnameInput = new TextField(serviceProvider.getContSurname());
-        surnameInput.setMaxWidth(100);
-
-        final TextField phoneInput = new TextField(serviceProvider.getContPhone());
-        phoneInput.setMaxWidth(100);
-
-        final TextField emailInput = new TextField(serviceProvider.getContEmail());
-        emailInput.setMaxWidth(100);
-
-        final TextField addrStreetInput = new TextField(serviceProvider.getContAddrStreet());
-        addrStreetInput.setMaxWidth(100);
-
-        final TextField addrSuburbInput = new TextField(serviceProvider.getContAddrSuburb());
-        addrSuburbInput.setMaxWidth(100);
-
-        final TextField addrCityInput = new TextField(serviceProvider.getContAddrCity());
-        addrCityInput.setMaxWidth(100);
-
-        final TextField addrZipInput = new TextField(serviceProvider.getContAddrZip());
-        addrZipInput.setMaxWidth(100);
-
-        final TextField addrStateInput = new TextField(serviceProvider.getContAddrState());
-        addrStateInput.setMaxWidth(100);
-
-        final TextField dateStartedInput = new TextField(serviceProvider.getServInitiated());
-        dateStartedInput.setMaxWidth(100);
-
-        final TextField dateTerminatedInput = new TextField(serviceProvider.getServTerminated());
-        dateTerminatedInput.setMaxWidth(100);
-
-        final TextArea bio = new TextArea(serviceProvider.getServBio());
-        bio.setMaxSize(250, 100);
-        bio.setWrapText(true);
-
-        Label hours = new Label("Available Hours");
-        hours.setFont(new Font("Arial", 30));
-
-        final GridPane editContactForm = new GridPane();
-        editContactForm.setPadding(new Insets(10,10,10,10));
-        editContactForm.setVgap(5);
-        editContactForm.setHgap(5);
-
-        editContactForm.add(new Label("First Name:"), 0, 1);
-        editContactForm.add(fornameInput, 1, 1);
-
-        editContactForm.add(new Label("Last Name:"), 0, 2);
-        editContactForm.add(surnameInput, 1, 2);
-
-        editContactForm.add(new Label("Phone:"), 0, 3);
-        editContactForm.add(phoneInput, 1, 3);
-
-        editContactForm.add(new Label("Email:"), 0, 4);
-        editContactForm.add(emailInput, 1, 4);
-
-        editContactForm.add(new Label("Street:"), 0, 5);
-        editContactForm.add(addrStreetInput, 1, 5);
-
-        editContactForm.add(new Label("Suburb:"), 0, 6);
-        editContactForm.add(addrSuburbInput, 1, 6);
-
-        editContactForm.add(new Label("City:"), 0, 7);
-        editContactForm.add(addrCityInput, 1, 7);
-
-        editContactForm.add(new Label("Post Code:"), 0, 8);
-        editContactForm.add(addrZipInput, 1, 8);
-
-        editContactForm.add(new Label("State:"), 0, 9);
-        editContactForm.add(addrStateInput, 1, 9);
-
-        editContactForm.add(new Label("Date Employed: "), 2, 1);
-        editContactForm.add(dateStartedInput, 3, 1);
-
-        editContactForm.add(new Label("Date Terminated: "), 2, 2);
-        editContactForm.add(dateTerminatedInput, 3, 2);
-        editContactForm.add(new Label("Biography: "), 2, 3);
-        editContactForm.add(bio, 3, 3, 1, 4);
+        border.setCenter(setupFormInputs());
 
         GridPane daysPane = new GridPane();
         daysPane.setHgap(5);
@@ -202,26 +142,13 @@ public class ServiceProviderFormUI extends Application {
         table.setEditable(true);
         table.setItems(data);
 
-  /*      int i = 0;
-        int timeNo = 0;
-        for (int col = 1; col < 8; col++) {
-
-            for (int row = 1; row < 5; row++) {
-                availableHours.add(i, new TextField(getTime(i)));
-                daysPane.add(availableHours.get(i), col, row);
-                i++;
-            }
-        }*/
-        editContactForm.add(table,0,10,4,1);
         Button submit = new Button("Submit");
-
-        editContactForm.add(submit, 0,11);
 
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (!fornameInput.getText().equals(null) && !surnameInput.getText().equals(null)){
-                    serviceProvider.setContForename(fornameInput.getText());
+                if (!forenameInput.getText().equals(null) && !surnameInput.getText().equals(null)){
+                    serviceProvider.setContForename(forenameInput.getText());
                     serviceProvider.setContSurname(surnameInput.getText());
                     serviceProvider.setContEmail(emailInput.getText());
                     serviceProvider.setContPhone(phoneInput.getText());
@@ -236,13 +163,13 @@ public class ServiceProviderFormUI extends Application {
 
 
                     if (serviceProvider.getContId() != 0) {
-                        ServiceProviderController.getInstance().updateServiceProvider(serviceProvider);
+                        ServiceProvidersController.getInstance().updateServiceProvider(serviceProvider);
                         System.out.println(serviceProvider.toString());
-                        ServiceProviderController.getInstance().getServiceProviderFromServer(serviceProvider.getContId());
+                        ServiceProvidersController.getInstance().getServiceProviderFromServer(serviceProvider.getContId());
 
                     } else {
-                        ServiceProviderController.getInstance().createServiceProvider(serviceProvider);
-                        ServiceProviderController.getInstance().getServiceProvidersFromServer();
+                        ServiceProvidersController.getInstance().createServiceProvider(serviceProvider);
+                        ServiceProvidersController.getInstance().getServiceProvidersFromServer();
 
                     }
                     primaryStage.close();
@@ -250,9 +177,84 @@ public class ServiceProviderFormUI extends Application {
             }
         });
 
-        Scene scene = new Scene(editContactForm, 1200, 500);
+        Scene scene = new Scene(border);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private Node setupFormInputs() {
+        GridPane grid = new GridPane();
+
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(10));
+
+        grid.addRow(0, new Label("First Name:"), forenameInput);
+
+        grid.addRow(1, new Label("Last Name:"), surnameInput);
+
+        grid.addRow(2, new Separator(), new Separator());
+
+        grid.addRow(3, new Label("Company:"), companyInput);
+
+        grid.addRow(4, new Label("Phone:"), phoneInput);
+
+        grid.addRow(5, new Label("Email:"), emailInput);
+
+        grid.addRow(6, new Separator(), new Separator());
+
+        grid.addRow(7, new Label("Street:"), addrStreetInput);
+
+        grid.addRow(8, new Label("Suburb:"), addrSuburbInput);
+
+        grid.addRow(9, new Label("City:"), addrCityInput);
+
+        grid.addRow(10, new Label("Post Code:"), addrZipInput);
+
+        grid.addRow(11, new Label("State:"), addrStateInput);
+
+        grid.addRow(12, new Separator(), new Separator());
+
+        grid.addRow(13, new Label("Date Employed:"), dateStartedInput);
+
+        grid.addRow(14, new Label("Date Terminated:"), dateTerminatedInput);
+
+        grid.addRow(15, new Label("Biography:"), bio);
+
+        grid.addRow(16, new Separator(), new Separator());
+
+
+
+        for (Node n : grid.getChildren()) {
+            if (n instanceof TextField) {
+                ((TextField) n).setPrefWidth(200);
+                ((TextField) n).setPrefHeight(20);
+            } else if (n instanceof Label) {
+                ((Label) n).setPrefWidth(100);
+                ((Label) n).setMinWidth(75);
+                ((Label) n).setTextAlignment(TextAlignment.RIGHT);
+                ((Label) n).setAlignment(Pos.BASELINE_RIGHT);
+            } else if (n instanceof TextArea){
+                ((TextArea) n).setWrapText(true);
+                ((TextArea) n).setPrefWidth(200);
+            }
+        }
+
+        grid.addEventFilter(KeyEvent.KEY_RELEASED, setDirty());
+
+        return grid;
+    }
+
+    private EventHandler<KeyEvent> setDirty() {
+        return new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getTarget() instanceof TextField) {
+                    isDirty = true;
+                }
+            }
+        };
     }
 
     private Time buildTime(String text) {
@@ -279,6 +281,151 @@ public class ServiceProviderFormUI extends Application {
 
         }
 
+    }
+
+    @Override
+    public String getForename() {
+        return forenameInput.getText();
+    }
+
+    @Override
+    public void setForename(String forename) {
+        forenameInput.setText(forename);
+    }
+
+    @Override
+    public String getSurname() {
+        return surnameInput.getText();
+    }
+
+    @Override
+    public void setSurname(String surname) {
+        surnameInput.setText(surname);
+    }
+
+    @Override
+    public String getCompany() {
+        return companyInput.getText();
+    }
+
+    @Override
+    public void setCompany(String company) {
+        companyInput.setText(company);
+    }
+
+    @Override
+    public String getEmail() {
+        return emailInput.getText();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        emailInput.setText(email);
+    }
+
+    @Override
+    public String getPhone() {
+        return phoneInput.getText();
+    }
+
+    @Override
+    public void setPhone(String phone) {
+        phoneInput.setText(phone);
+    }
+
+    @Override
+    public String getAddress() {
+        return addrStreetInput.getText();
+    }
+
+    @Override
+    public void setAddress(String address) {
+        addrStreetInput.setText(address);
+    }
+
+    @Override
+    public String getSuburb() {
+        return addrSuburbInput.getText();
+    }
+
+    @Override
+    public void setSuburb(String suburb) {
+        addrSuburbInput.setText(suburb);
+    }
+
+    @Override
+    public String getCity() {
+        return addrCityInput.getText();
+    }
+
+    @Override
+    public void setCity(String city) {
+        addrCityInput.setText(city);
+    }
+
+    @Override
+    public String getState() {
+        return addrStateInput.getText();
+    }
+
+    @Override
+    public void setState(String state) {
+        addrStateInput.setText(state);
+    }
+
+    @Override
+    public String getZip() {
+        return addrZipInput.getText();
+    }
+
+    @Override
+    public void setZip(String zip) {
+        addrZipInput.setText(zip);
+    }
+
+    @Override
+    public String getBio() {
+        return bio.getText();
+    }
+
+    @Override
+    public void setBio(String bio) {
+        this.bio.setText(bio);
+    }
+
+    @Override
+    public Date getDateEmployed(){
+        return new Date(dateStartedInput.getText());
+    }
+
+    @Override
+    public void setDateEmployed(Date dateEmployed){
+        dateStartedInput.setText(dateEmployed.toString());
+    }
+
+    @Override
+    public Date getDateTerminated(){
+        return new Date(dateTerminatedInput.getText());
+    }
+
+    @Override
+    public void setDateTerminated(Date dateTerminated) {
+        dateTerminatedInput.setText(dateTerminated.toString());
+    }
+
+
+    @Override
+    public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
+        //submitButton.addEventHandler(ActionEvent.ACTION, handler);
+    }
+
+    @Override
+    public void onError(String message) {
+        MonologFX infoDialog = new MonologFX(MonologFX.Type.INFO);
+        infoDialog.setMessage(message);
+        infoDialog.setModal(true);
+        infoDialog.showDialog();
+        isDirty = true;
     }
 
 }

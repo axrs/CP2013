@@ -1,6 +1,6 @@
 package client;
 
-import Controllers.ServiceProviderController;
+import Controllers.ServiceProvidersController;
 import Models.Contact;
 import Models.ServiceProvider;
 import javafx.application.Application;
@@ -54,7 +54,7 @@ public class StaffAddressBookView extends Application {
         staffTable.setItems(data);
         staffTable.setOnMouseClicked(onTableRowDoubleClick());
 
-        ServiceProviderController serviceProviderController = ServiceProviderController.getInstance();
+        ServiceProvidersController serviceProviderController = ServiceProvidersController.getInstance();
         serviceProviderController.addUpdatedListener(onStaffListUpdated());
         serviceProviderController.getServiceProvidersFromServer();
 
@@ -96,12 +96,12 @@ public class StaffAddressBookView extends Application {
         };
     }
 
-    private ServiceProviderController.ServiceProvidersUpdatedListener onStaffListUpdated() {
-        return new ServiceProviderController.ServiceProvidersUpdatedListener() {
+    private ServiceProvidersController.ServiceProvidersUpdatedListener onStaffListUpdated() {
+        return new ServiceProvidersController.ServiceProvidersUpdatedListener() {
             @Override
-            public void updated(ServiceProviderController.ServiceProvidersUpdated event) {
+            public void updated(ServiceProvidersController.ServiceProvidersUpdated event) {
                 data.clear();
-                data.addAll(ServiceProviderController.getInstance().getServiceProviders().values());
+                data.addAll(ServiceProvidersController.getInstance().getServiceProviders().values());
             }
         };
     }
