@@ -18,8 +18,8 @@ public class ServiceProvider extends Contact {
     private int servId;
     private String servBio;
     private String servPortrait;
-    private String servInitiated;
-    private String servTerminated;
+    private String servInitiated = "";
+    private String servTerminated = "";
     private String servIsActive;
 
     public String getServColor() {
@@ -35,6 +35,7 @@ public class ServiceProvider extends Contact {
     private List<ServiceHours> servHrs;
 
     public ServiceProvider() {
+        initialiseServiceHours();
     }
 
     public ServiceProvider(String contForename, String contSurname, String servInitiated) {
@@ -79,7 +80,7 @@ public class ServiceProvider extends Contact {
         try {
             return new SimpleDateFormat("yyyy-MM-dd").parse(this.servInitiated);
         } catch (ParseException e) {
-            return null;
+            return new Date();
         }
     }
 
@@ -100,7 +101,7 @@ public class ServiceProvider extends Contact {
         try {
             return new SimpleDateFormat("yyyy-MM-dd").parse(this.servTerminated);
         } catch (ParseException e) {
-            return null;
+            return new Date();
         }
     }
 

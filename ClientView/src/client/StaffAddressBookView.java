@@ -1,5 +1,6 @@
 package client;
 
+import Controllers.ServiceProviderController;
 import Controllers.ServiceProvidersController;
 import Models.Contact;
 import Models.ServiceProvider;
@@ -79,10 +80,10 @@ public class StaffAddressBookView extends Application {
                         TableView view = (TableView) mouseEvent.getSource();
 
                         ServiceProvider c = (ServiceProvider) view.getSelectionModel().getSelectedItem();
-                        System.out.println(c.getContFirstName());
-                        ServiceProviderFormUI contactFormUI = new ServiceProviderFormUI(c);
+                        ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
+                        ServiceProviderController controller = new ServiceProviderController(serviceProviderFormUI, c);
                         try {
-                            contactFormUI.start(new Stage());
+                            serviceProviderFormUI.start(new Stage());
                         } catch (Exception e) {
                             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                         }

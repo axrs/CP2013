@@ -1,6 +1,5 @@
 package client;
 
-import Controllers.ServiceProvidersController;
 import Interfaces.ServiceProviderView;
 import Models.ServiceHours;
 import Models.ServiceProvider;
@@ -19,14 +18,17 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
+import jfxtras.labs.dialogs.MonologFXButton;
 
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -36,11 +38,8 @@ import java.util.Date;
  * Time: 9:30 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ServiceProviderFormUI extends Application implements ServiceProviderView{
-    private ServiceProvider serviceProvider = new ServiceProvider();
+public class ServiceProviderFormUI extends Application implements ServiceProviderView {
     final ArrayList<TextField> availableHours = new ArrayList<TextField>();
-    private final ObservableList<ServiceHours> data = FXCollections.observableArrayList();
-    private TableView<ServiceHours> table = new TableView<ServiceHours>();
     final TextField forenameInput = new TextField();
     final TextField surnameInput = new TextField();
     final TextField companyInput = new TextField();
@@ -54,7 +53,14 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
     final TextField dateStartedInput = new TextField();
     final TextField dateTerminatedInput = new TextField();
     final TextArea bio = new TextArea();
+    final Button submitButton = new Button("Save");
+    final Button closeButton = new Button("Close");
+    private final ObservableList<ServiceHours> servHours = FXCollections.observableArrayList();
     boolean isDirty = false;
+    private TableView<ServiceHours> table = new TableView<ServiceHours>();
+
+    public ServiceProviderFormUI() {
+    }
 
     private void initialiseTableColumns() {
         TableColumn dayColumn = new TableColumn("Weekday");
@@ -112,74 +118,41 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
 
             }
         });
-        table.getColumns().addAll(dayColumn, shiftStartColumn, breakStartColumn,breakEndColumn, shiftEndColumn);
-    }
-
-    public ServiceProviderFormUI() {
-        serviceProvider = new ServiceProvider();
-        serviceProvider.initialiseServiceHours();
-
-        data.addAll(serviceProvider.getServHrs());
-    }
-
-    public ServiceProviderFormUI(ServiceProvider c){
-        serviceProvider = c;
-        data.addAll(serviceProvider.getServHrs());
+        table.getColumns().addAll(dayColumn, shiftStartColumn, breakStartColumn, breakEndColumn, shiftEndColumn);
     }
 
     public void start(final Stage primaryStage) throws Exception {
+        closeButton.setCancelButton(true);
+        closeButton.setOnAction(onCloseAction());
+        submitButton.setOnAction(onSaveAction());
 
         primaryStage.setTitle("CP2013 Appointment Scheduler - New Contact");
         BorderPane border = new BorderPane();
 
         border.setCenter(setupFormInputs());
-
-        GridPane daysPane = new GridPane();
-        daysPane.setHgap(5);
-        daysPane.setVgap(5);
+        border.setBottom(setupActionButtons());
 
         initialiseTableColumns();
-        table.setEditable(true);
-        table.setItems(data);
-
-        Button submit = new Button("Submit");
-
-        submit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                if (!forenameInput.getText().equals(null) && !surnameInput.getText().equals(null)){
-                    serviceProvider.setContForename(forenameInput.getText());
-                    serviceProvider.setContSurname(surnameInput.getText());
-                    serviceProvider.setContEmail(emailInput.getText());
-                    serviceProvider.setContPhone(phoneInput.getText());
-                    serviceProvider.setContAddrStreet(addrStreetInput.getText());
-                    serviceProvider.setContAddrSuburb(addrSuburbInput.getText());
-                    serviceProvider.setContAddrZip(addrZipInput.getText());
-                    serviceProvider.setContAddrCity(addrCityInput.getText());
-                    serviceProvider.setContAddrState(addrStateInput.getText());
-                    serviceProvider.setServInitiated(dateStartedInput.getText());
-                    serviceProvider.setServTerminated(dateTerminatedInput.getText());
-                    serviceProvider.setServBio(bio.getText());
-
-
-                    if (serviceProvider.getContId() != 0) {
-                        ServiceProvidersController.getInstance().updateServiceProvider(serviceProvider);
-                        System.out.println(serviceProvider.toString());
-                        ServiceProvidersController.getInstance().getServiceProviderFromServer(serviceProvider.getContId());
-
-                    } else {
-                        ServiceProvidersController.getInstance().createServiceProvider(serviceProvider);
-                        ServiceProvidersController.getInstance().getServiceProvidersFromServer();
-
-                    }
-                    primaryStage.close();
-                }
-            }
-        });
 
         Scene scene = new Scene(border);
+        primaryStage.setOnCloseRequest(onClose());
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public HBox setupActionButtons() {
+        HBox hbox = new HBox();
+        hbox.setPadding(new Insets(15, 12, 15, 12));
+        hbox.setSpacing(10);
+        hbox.setStyle("-fx-background-color: #dedede;");
+        hbox.setAlignment(Pos.BASELINE_RIGHT);
+
+        submitButton.setPrefSize(80, 20);
+        closeButton.setPrefSize(80, 20);
+        hbox.getChildren().addAll(submitButton, closeButton);
+
+        return hbox;
     }
 
     private Node setupFormInputs() {
@@ -222,8 +195,11 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
 
         grid.addRow(15, new Label("Biography:"), bio);
 
-        grid.addRow(16, new Separator(), new Separator());
+        grid.addColumn(2, new Label("Available Hours:"));
 
+        grid.add(table,2,1,1,8);
+
+        table.setItems(servHours);
 
 
         for (Node n : grid.getChildren()) {
@@ -235,7 +211,7 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
                 ((Label) n).setMinWidth(75);
                 ((Label) n).setTextAlignment(TextAlignment.RIGHT);
                 ((Label) n).setAlignment(Pos.BASELINE_RIGHT);
-            } else if (n instanceof TextArea){
+            } else if (n instanceof TextArea) {
                 ((TextArea) n).setWrapText(true);
                 ((TextArea) n).setPrefWidth(200);
             }
@@ -244,6 +220,48 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
         grid.addEventFilter(KeyEvent.KEY_RELEASED, setDirty());
 
         return grid;
+    }
+
+    private EventHandler<WindowEvent> onClose() {
+        return new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                tryClose();
+            }
+        };
+    }
+
+    private EventHandler<ActionEvent> onSaveAction() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                isDirty = false;
+            }
+        };
+    }
+
+    private void tryClose() {
+        if (isDirty) {
+            MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
+            dialog.setMessage("There are changes pending on this form.  Are you sure you wish to close?");
+            dialog.setTitleText("Confirm Cancellation");
+            dialog.setModal(true);
+            MonologFXButton.Type type = dialog.showDialog();
+            if (type == MonologFXButton.Type.YES) {
+                ((Stage) closeButton.getScene().getWindow()).close();
+            }
+        } else {
+            ((Stage) closeButton.getScene().getWindow()).close();
+        }
+    }
+
+    private EventHandler<ActionEvent> onCloseAction() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                tryClose();
+            }
+        };
     }
 
     private EventHandler<KeyEvent> setDirty() {
@@ -256,32 +274,35 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
             }
         };
     }
-
-    private Time buildTime(String text) {
+ /*   private Time buildTime(String text) {
         String time = text.equals("N/A") ? "00:00" : text;
-        return Time.valueOf(time+":00");
+        return Time.valueOf(time + ":00");
     }
 
     private String getTime(int i) {
         int timeNo = i % 4;
         int dayNo = i % 7;
-        switch (timeNo){
+        switch (timeNo) {
             case 0:
-                    System.out.println("Time on day "+ dayNo);
+                System.out.println("Time on day " + dayNo);
                 System.out.println(serviceProvider.getByDay(dayNo).getServHrsStart().toString());
-                    return serviceProvider.getByDay(dayNo).getServHrsStart().toString();
+                return serviceProvider.getByDay(dayNo).getServHrsStart().toString();
 
-            case 1: return serviceProvider.getByDay(dayNo).getServHrsBreakStart().toString();
+            case 1:
+                return serviceProvider.getByDay(dayNo).getServHrsBreakStart().toString();
 
-            case 2: return serviceProvider.getByDay(dayNo).getServHrsBreakEnd().toString();
+            case 2:
+                return serviceProvider.getByDay(dayNo).getServHrsBreakEnd().toString();
 
-            case 3: return serviceProvider.getByDay(dayNo).getServHrsEnd().toString();
+            case 3:
+                return serviceProvider.getByDay(dayNo).getServHrsEnd().toString();
 
-            default: return "N/A";
+            default:
+                return "N/A";
 
         }
 
-    }
+    }*/
 
     @Override
     public String getForename() {
@@ -394,17 +415,17 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
     }
 
     @Override
-    public Date getDateEmployed(){
+    public Date getDateEmployed() {
         return new Date(dateStartedInput.getText());
     }
 
     @Override
-    public void setDateEmployed(Date dateEmployed){
+    public void setDateEmployed(Date dateEmployed) {
         dateStartedInput.setText(dateEmployed.toString());
     }
 
     @Override
-    public Date getDateTerminated(){
+    public Date getDateTerminated() {
         return new Date(dateTerminatedInput.getText());
     }
 
@@ -413,10 +434,20 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
         dateTerminatedInput.setText(dateTerminated.toString());
     }
 
+    @Override
+    public List<ServiceHours> getServHours() {
+        return servHours;
+    }
+
+    @Override
+    public void setServHours(List<ServiceHours> servHours) {
+        this.servHours.clear();
+        this.servHours.addAll(servHours);
+    }
 
     @Override
     public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
-        //submitButton.addEventHandler(ActionEvent.ACTION, handler);
+        submitButton.addEventHandler(ActionEvent.ACTION, handler);
     }
 
     @Override

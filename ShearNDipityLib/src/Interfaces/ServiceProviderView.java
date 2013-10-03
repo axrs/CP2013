@@ -1,9 +1,11 @@
 package Interfaces;
 
+import Models.ServiceHours;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -65,6 +67,10 @@ public interface ServiceProviderView extends BaseView {
     public Date getDateTerminated();
 
     public void setDateTerminated(Date dateTerminated);
+
+    public List<ServiceHours> getServHours();
+
+    public void setServHours(List<ServiceHours> servHours);
 
     void addSaveActionEventHandler(EventHandler<ActionEvent> handler);
 

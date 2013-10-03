@@ -3,16 +3,16 @@ package client;
 import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
 import Controllers.ContactsController;
-<<<<<<< HEAD
+
 import Controllers.ServiceProvidersController;
 import Models.Appointment;
 import Models.Availability;
 import Models.ScheduledAppointment;
 import Models.ServiceProvider;
-=======
+
 import Controllers.ServiceProviderController;
 import Models.*;
->>>>>>> 239bff599c37919e448fc462cf7a985ca8fc9516
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -334,7 +334,9 @@ public class MainView extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                tryStageStart(new ServiceProviderFormUI());
+                ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
+                ServiceProviderController controller = new ServiceProviderController(serviceProviderFormUI, new ServiceProvider());
+                tryStageStart(serviceProviderFormUI);
             }
         };
     }

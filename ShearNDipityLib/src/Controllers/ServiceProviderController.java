@@ -2,11 +2,15 @@ package Controllers;
 
 import Interfaces.BaseController;
 import Interfaces.ServiceProviderView;
+import Models.ServiceHours;
 import Models.ServiceProvider;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,6 +27,7 @@ public class ServiceProviderController implements BaseController, ActionListener
     public ServiceProviderController(ServiceProviderView view, ServiceProvider model) {
         this.setModel(model);
         this.setView(view);
+        System.out.println("new controller");
     }
 
     public void setModel(ServiceProvider model) {
@@ -66,6 +71,7 @@ public class ServiceProviderController implements BaseController, ActionListener
             theView.setBio(theModel.getServBio());
             theView.setDateEmployed(theModel.getServInitiatedDate());
             theView.setDateTerminated(theModel.getServTerminatedDate());
+            theView.setServHours(theModel.getServHrs());
         }
     }
 
@@ -83,6 +89,7 @@ public class ServiceProviderController implements BaseController, ActionListener
         theModel.setContAddrZip(theView.getZip());
         theModel.setServInitiated(theView.getDateEmployed().toString());
         theModel.setServInitiated(theView.getDateTerminated().toString());
+        theModel.setServHrs(theView.getServHours());
         theModel.update();
     }
 
