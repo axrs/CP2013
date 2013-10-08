@@ -7,7 +7,10 @@ import Models.ScheduledAppointment;
 import Models.ServiceProvider;
 import Utilities.ILogListener;
 import Utilities.LogEventDispatcher;
-import Utilities.Loggers.DateTimeStrategyLogger;
+import Utilities.Loggers.DateTimeFormatStrategy;
+import Utilities.Loggers.ILogger;
+import Utilities.Loggers.StrategyLogger;
+import Utilities.Loggers.TimeFormatStrategy;
 import Utilities.Recorders.ConsoleRecorder;
 import Utilities.Recorders.DatedFileStreamRecorder;
 import Utilities.Recorders.SingletonCompositeRecorder;
@@ -33,6 +36,7 @@ import java.util.HashMap;
 
 public class MainView extends Application {
 
+    final StrategyLogger timeStampedLogger = new StrategyLogger(new ConsoleRecorder(), new TimeFormatStrategy());
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
     private final Mutex dataMutex = new Mutex();
@@ -44,17 +48,22 @@ public class MainView extends Application {
     }
 
     private void hookLogger() {
-        SingletonCompositeRecorder scr = SingletonCompositeRecorder.getInstance();
-        scr.add(new ConsoleRecorder());
-        scr.add(new DatedFileStreamRecorder("./logs"));
-        final DateTimeStrategyLogger logger = new DateTimeStrategyLogger(scr);
 
-        LogEventDispatcher.addListener(new ILogListener() {
+        SingletonCompositeRecorder scr = SingletonCompositeRecorder.getInstance();
+        scr.add(new DatedFileStreamRecorder("./logs"));
+        final StrategyLogger logger = new StrategyLogger(scr, new DateTimeFormatStrategy());
+
+        LogEventDispatcher.addListener(registerListener(timeStampedLogger));
+        LogEventDispatcher.addListener(registerListener(logger));
+    }
+
+    private ILogListener registerListener(final ILogger logger) {
+        return new ILogListener() {
             @Override
             public void onLog(String message) {
                 logger.log(message);
             }
-        });
+        };
     }
 
     private void buildFileMenu() {
@@ -92,6 +101,9 @@ public class MainView extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        hookLogger();
+
+
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();
@@ -362,7 +374,6 @@ public class MainView extends Application {
 
     private void tryStageStart(Application window) {
         try {
-            hookLogger();
             window.start(new Stage());
         } catch (Exception e) {
             e.printStackTrace();

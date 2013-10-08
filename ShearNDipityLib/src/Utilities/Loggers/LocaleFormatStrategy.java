@@ -1,18 +1,11 @@
 package Utilities.Loggers;
 
-import Utilities.Recorders.IRecorder;
-
 import java.text.DateFormat;
 import java.util.Date;
 
-public class LocaleStrategyLogger extends StrategyLogger {
+public class LocaleFormatStrategy implements IFormatStrategy {
 
-    public LocaleStrategyLogger(IRecorder recorder) {
-        super(recorder);
-    }
-
-    @Override
-    protected String format(String message) {
+    public String format(String message) {
         return String.format("%s\t%s", formatDate(), message);
     }
 

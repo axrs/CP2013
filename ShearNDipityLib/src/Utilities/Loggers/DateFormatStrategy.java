@@ -1,14 +1,9 @@
 package Utilities.Loggers;
 
-import Utilities.Recorders.IRecorder;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateStrategyLogger extends LocaleStrategyLogger {
-    public DateStrategyLogger(IRecorder recorder) {
-        super(recorder);
-    }
+public class DateFormatStrategy extends LocaleFormatStrategy {
 
     @Override
     String formatDate() {
