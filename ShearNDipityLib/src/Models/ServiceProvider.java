@@ -2,7 +2,9 @@ package Models;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -128,7 +130,7 @@ public class ServiceProvider extends Contact {
     public void initialiseServiceHours() {
         servHrs = new ArrayList<ServiceHours>(7);
         for (int i = 0; i < 7; i++) {
-            servHrs.add(i, new ServiceHours(i,"00:00","00:00","00:00","00:00"));
+            servHrs.add(i, new ServiceHours(i, "00:00", "00:00", "00:00", "00:00"));
         }
     }
 

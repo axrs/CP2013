@@ -117,6 +117,7 @@ public class ScheduledAppointment extends Appointment {
         System.out.println(start);
         return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start);
     }
+
     public Date getEndDate() throws ParseException {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(end);
     }

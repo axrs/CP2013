@@ -1,8 +1,5 @@
-package Models.Recorders;
+package Utilities.Recorders;
 
-import Interfaces.IRecorder;
-
-import java.io.FileOutputStream;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -19,28 +16,33 @@ NOTE: Introduction of Getters/Setters may create a race condition and hence requ
       access.  This additional implementation would break the Active Object Pattern.
  */
 
-public class ActiveFileRecorder implements IRecorder {
+public class ActiveRecorder implements IRecorder {
 
+    private IRecorder recorder;
+    private String filePath = "";
     private BlockingQueue<String> recordQueue = new LinkedBlockingQueue<String>();
 
-    public ActiveFileRecorder() {
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        FileOutputStream stream = new FileOutputStream(_filePath, true);
-                        _stream.write(message.getBytes());
-                        while (true) {
-                            //Try to take from the queue
-                            //Log to the filestream
+    public ActiveRecorder(IRecorder recorder) {
+        this.recorder = recorder;
+        new Thread(runRecorder()).start();
+    }
 
-
+    private Runnable runRecorder() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (recordQueue.size() > 0) {
+                        try {
+                            String logMessage = recordQueue.take();
+                            recorder.record(logMessage);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                        //Cleanup the file
                     }
                 }
-        ).start();
-
+            }
+        };
     }
 
     @Override

@@ -1,6 +1,5 @@
 package Models;
 
-import java.sql.Time;
 import java.text.DateFormatSymbols;
 
 /**
@@ -76,8 +75,8 @@ public class ServiceHours {
         this.servHrsEnd = servHrsEnd;
     }
 
-    public String getServHrsDayName(){
+    public String getServHrsDayName() {
 
-        return new DateFormatSymbols().getWeekdays()[servHrsDay+1];
+        return new DateFormatSymbols().getWeekdays()[servHrsDay + 1];
     }
 }

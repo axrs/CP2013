@@ -1,18 +1,16 @@
 package client;
 
-import Controllers.AppointmentController;
-import Controllers.AppointmentTypeController;
-import Controllers.ContactsController;
-
-import Controllers.ServiceProvidersController;
+import Controllers.*;
 import Models.Appointment;
 import Models.Availability;
 import Models.ScheduledAppointment;
 import Models.ServiceProvider;
-
-import Controllers.ServiceProviderController;
-import Models.*;
-
+import Utilities.ILogListener;
+import Utilities.LogEventDispatcher;
+import Utilities.Loggers.DateTimeStrategyLogger;
+import Utilities.Recorders.ConsoleRecorder;
+import Utilities.Recorders.DatedFileStreamRecorder;
+import Utilities.Recorders.SingletonCompositeRecorder;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -42,9 +40,21 @@ public class MainView extends Application {
     private Boolean isViewingAvailabilities = false;
 
     public static void main(String[] args) {
-        CompositeLogger.getInstance().add(new ConsoleLogger());
-
         launch(args);
+    }
+
+    private void hookLogger() {
+        SingletonCompositeRecorder scr = SingletonCompositeRecorder.getInstance();
+        scr.add(new ConsoleRecorder());
+        scr.add(new DatedFileStreamRecorder("./logs"));
+        final DateTimeStrategyLogger logger = new DateTimeStrategyLogger(scr);
+
+        LogEventDispatcher.addListener(new ILogListener() {
+            @Override
+            public void onLog(String message) {
+                logger.log(message);
+            }
+        });
     }
 
     private void buildFileMenu() {
@@ -352,6 +362,7 @@ public class MainView extends Application {
 
     private void tryStageStart(Application window) {
         try {
+            hookLogger();
             window.start(new Stage());
         } catch (Exception e) {
             e.printStackTrace();

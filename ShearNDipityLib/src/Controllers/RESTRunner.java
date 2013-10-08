@@ -8,6 +8,8 @@
 
 package Controllers;
 
+import Utilities.LogEventDispatcher;
+
 import javax.swing.event.EventListenerList;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -150,6 +152,8 @@ public class RESTRunner implements Runnable {
 
                 URL url = new URL(target);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                LogEventDispatcher.log("Attempting URL Connection to: " + target);
 
                 //Configure the HTTP connection
                 connection.setDoOutput(true);

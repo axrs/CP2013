@@ -88,6 +88,7 @@ public class Availability {
     public Date getStartDate() throws ParseException {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start);
     }
+
     public Date getEndDate() throws ParseException {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(end);
     }

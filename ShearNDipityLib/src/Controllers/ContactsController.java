@@ -236,7 +236,7 @@ public class ContactsController {
         @Override
         public void results(RESTRunner.Result result) {
 
-                   //Remove the listener from the contact object
+            //Remove the listener from the contact object
             ((RESTRunner) result.getSource()).removeListener(this);
 
             if (result.getStatus() != 200) return;

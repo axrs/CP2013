@@ -2,7 +2,6 @@ package Controllers;
 
 import Models.AppointmentType;
 import Models.Config;
-import Models.Contact;
 import com.google.gson.Gson;
 
 import javax.swing.event.EventListenerList;
@@ -16,17 +15,16 @@ import java.util.HashMap;
  * User: mindikingsun
  * Date: 29/08/13
  * Time: 12:09 PM
- *
+ * <p/>
  * Appointment Type Controller
- *
+ * <p/>
  * Singleton Appointment Type controller class tasked at interacting with the REST API server and managing
  * any known Appointment Type in memory.
- *
+ * <p/>
  * Notes:
  * As this class is of a singleton design pattern, Mutexes (or locks) are used throughout any method
  * which requires manipulating of the contact hash map.  If a Mutex is not used, cross thread exceptions
  * will occur.
-
  */
 public class AppointmentTypeController {
 

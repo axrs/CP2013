@@ -2,15 +2,10 @@ package Controllers;
 
 import Interfaces.BaseController;
 import Interfaces.ServiceProviderView;
-import Models.ServiceHours;
 import Models.ServiceProvider;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
