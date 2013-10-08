@@ -1,4 +1,4 @@
-package Utilities.Loggers;
+package Utilities.Loggers.FormatStrategies;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

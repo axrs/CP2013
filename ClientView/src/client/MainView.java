@@ -7,10 +7,10 @@ import Models.ScheduledAppointment;
 import Models.ServiceProvider;
 import Utilities.ILogListener;
 import Utilities.LogEventDispatcher;
-import Utilities.Loggers.DateTimeFormatStrategy;
+import Utilities.Loggers.FormatStrategies.DateTimeFormatStrategy;
 import Utilities.Loggers.ILogger;
 import Utilities.Loggers.StrategyLogger;
-import Utilities.Loggers.TimeFormatStrategy;
+import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Recorders.ConsoleRecorder;
 import Utilities.Recorders.DatedFileStreamRecorder;
 import Utilities.Recorders.SingletonCompositeRecorder;
@@ -48,7 +48,6 @@ public class MainView extends Application {
     }
 
     private void hookLogger() {
-
         SingletonCompositeRecorder scr = SingletonCompositeRecorder.getInstance();
         scr.add(new DatedFileStreamRecorder("./logs"));
         final StrategyLogger logger = new StrategyLogger(scr, new DateTimeFormatStrategy());
@@ -102,8 +101,6 @@ public class MainView extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         hookLogger();
-
-
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();

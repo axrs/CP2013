@@ -1,5 +1,6 @@
 package Utilities.Loggers;
 
+import Utilities.Loggers.FormatStrategies.IFormatStrategy;
 import Utilities.Recorders.IRecorder;
 
 public class StrategyLogger implements ILogger {
