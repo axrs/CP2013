@@ -3,7 +3,7 @@ package Utilities.Loggers;
 import Utilities.Recorders.IRecorder;
 
 public class BasicLogger implements ILogger {
-    private IRecorder recorder;
+    IRecorder recorder;
 
     public BasicLogger(IRecorder recorder) {
         this.recorder = recorder;
