@@ -1,6 +1,7 @@
 var Ring = require('ring');
 var Contact = require('./Contact.js');
 var ProviderHours = require('./ProviderHours.js');
+var Utilities = require('../utilities/Utilities.js');
 
 
 var Provider = Ring.create([Contact], {
@@ -22,7 +23,7 @@ var Provider = Ring.create([Contact], {
     },
 
     setId: function (value) {
-        if (this.isInteger(value) && value > 0) {
+        if (Utilities.isInteger(value) && value > 0) {
             this._providerId = value;
         }
     },
@@ -33,7 +34,7 @@ var Provider = Ring.create([Contact], {
         this.$super().setId(value);
     },
     setBiography: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._biography = value;
         }
     },
@@ -41,7 +42,7 @@ var Provider = Ring.create([Contact], {
         return this._biography;
     },
     setPortrait: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._portrait = value;
         }
     },
@@ -90,16 +91,7 @@ var Provider = Ring.create([Contact], {
             "hours": hours
         };
 
-        //Merge Data Sets
-        var data = {};
-        for (var property in contactData) {
-            data[property] = contactData[property];
-        }
-        for (var attrname in providerData) {
-            data[attrname] = providerData[attrname];
-        }
-
-        return data;
+        return Utilities.mergeObjectProperties([contactData, providerData]);
     }
 });
 

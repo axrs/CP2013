@@ -1,5 +1,5 @@
 var Ring = require('ring');
-var Address = require('./Address.js');
+var Utilities = require('../utilities/Utilities.js');
 
 var ProviderHours = Ring.create({
     _day: 0,
@@ -16,14 +16,8 @@ var ProviderHours = Ring.create({
         if (end)this.setEnd(end);
     },
 
-    isInteger: function (n) {
-        return typeof n === 'number' && parseFloat(n) == parseInt(n, 10) && !isNaN(n);
-    },
-    isTimeStamp: function (value) {
-        return '^(20|21|22|23|[01]\d|\d)((:[0-5]\d){1,2})$'.test(value);
-    },
     setDay: function (value) {
-        if (this.isInteger(value) && value >= 0 && value <= 6) {
+        if (Utilities.isInteger(value) && value >= 0 && value <= 6) {
             this._day = value;
         }
     },
@@ -32,7 +26,7 @@ var ProviderHours = Ring.create({
     },
 
     setStart: function (value) {
-        if (this.isTimeStamp(value)) {
+        if (Utilities.isTimeStamp(value)) {
             this._start = value;
         }
     },
@@ -41,7 +35,7 @@ var ProviderHours = Ring.create({
     },
 
     setBreakStart: function (value) {
-        if (this.isTimeStamp(value)) {
+        if (Utilities.isTimeStamp(value)) {
             this._breakStart = value;
         }
     },
@@ -50,7 +44,7 @@ var ProviderHours = Ring.create({
     },
 
     setBreakEnd: function (value) {
-        if (this.isTimeStamp(value)) {
+        if (Utilities.isTimeStamp(value)) {
             this._breakEnd = value;
         }
     },
@@ -59,7 +53,7 @@ var ProviderHours = Ring.create({
     },
 
     setEnd: function (value) {
-        if (this.isTimeStamp(value)) {
+        if (Utilities.isTimeStamp(value)) {
             this._end = value;
         }
     },

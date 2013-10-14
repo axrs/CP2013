@@ -1,5 +1,6 @@
 var Ring = require('ring');
 var Address = require('./Address.js');
+var Utilities = require('../utilities/Utilities.js');
 
 var Contact = Ring.create({
     _contactId: 0,
@@ -12,16 +13,8 @@ var Contact = Ring.create({
     _phone: '',
     _company: '',
 
-    isStringAndNotEmpty: function (value) {
-        return (typeof value == 'string' && value != '');
-    },
-
-    isInteger: function (n) {
-        return typeof n === 'number' && parseFloat(n) == parseInt(n, 10) && !isNaN(n);
-    },
-
     isValid: function () {
-        return (this.isStringAndNotEmpty(this._name) && this.isStringAndNotEmpty(this._surname));
+        return (Utilities.isStringAndNotEmpty(this._name) && Utilities.isStringAndNotEmpty(this._surname));
     },
 
     getId: function () {
@@ -29,13 +22,13 @@ var Contact = Ring.create({
     },
 
     setId: function (value) {
-        if (this.isInteger(value) && value > 0) {
+        if (Utilities.isInteger(value) && value > 0) {
             this._contactId = value;
         }
     },
 
     setSalutation: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._salutation = value;
         }
     },
@@ -49,13 +42,13 @@ var Contact = Ring.create({
     },
 
     setName: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._name = value;
         }
     },
 
     setMiddleName: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._middleName = value;
         }
     },
@@ -65,7 +58,7 @@ var Contact = Ring.create({
     },
 
     setSurname: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._surname = value;
         }
     },
@@ -107,7 +100,7 @@ var Contact = Ring.create({
     },
 
     setEmail: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._email = value;
         }
     },
@@ -117,7 +110,7 @@ var Contact = Ring.create({
     },
 
     setPhone: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._phone = value;
         }
     },
@@ -127,7 +120,7 @@ var Contact = Ring.create({
     },
 
     setCompany: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._company = value;
         }
     },

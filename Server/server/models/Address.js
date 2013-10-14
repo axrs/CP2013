@@ -1,4 +1,5 @@
 var Ring = require('ring');
+var Utilities = require('../utilities/Utilities.js');
 
 var Address = Ring.create({
     _address: '',
@@ -8,15 +9,8 @@ var Address = Ring.create({
     _state: '',
     _post: '',
 
-    isStringAndNotEmpty: function (value) {
-        return (typeof value == 'string' && value != '');
-    },
-
-    isInteger: function (n) {
-        return typeof n === 'number' && parseFloat(n) == parseInt(n, 10) && !isNaN(n);
-    },
     setAddress: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._address = value;
         }
     },
@@ -27,7 +21,7 @@ var Address = Ring.create({
         return this._city;
     },
     setCity: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._city = value;
         }
     },
@@ -35,7 +29,7 @@ var Address = Ring.create({
         return this._suburb;
     },
     setSuburb: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._suburb = value;
         }
     },
@@ -43,7 +37,7 @@ var Address = Ring.create({
         return this._country;
     },
     setCountry: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._country = value;
         }
     },
@@ -51,7 +45,7 @@ var Address = Ring.create({
         return this._state;
     },
     setState: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._state = value;
         }
     },
@@ -59,7 +53,7 @@ var Address = Ring.create({
         return this._post;
     },
     setPost: function (value) {
-        if (this.isStringAndNotEmpty(value)) {
+        if (Utilities.isStringAndNotEmpty(value)) {
             this._post = value;
         }
     },
