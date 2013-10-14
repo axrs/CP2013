@@ -9,6 +9,11 @@ var Contact = require('../models/Contact.js');
 
 var dao = new DAOFactory(database).getContactDAO();
 
+/**
+ * Retrieve all contacts from the DataSource
+ * @param req
+ * @param res
+ */
 function all(req, res) {
     dao.retrieveAll(function (err, results) {
         if (err) {
@@ -20,6 +25,11 @@ function all(req, res) {
         }
     });
 }
+/**
+ * Create a new Contact
+ * @param req
+ * @param res
+ */
 function create(req, res) {
     var contact = Contact.fromJSON(req.body);
 
@@ -48,6 +58,11 @@ function create(req, res) {
         });
     }
 }
+/**
+ * Update an existing contact
+ * @param req
+ * @param res
+ */
 function update(req, res) {
     var contact = new Contact();
 
@@ -74,6 +89,11 @@ function update(req, res) {
     });
     contact = Contact.fromJSON(req.body);
 }
+/**
+ * Remove a contact
+ * @param req
+ * @param res
+ */
 function remove(req, res) {
     if (req.params.id > 0) {
         dao.remove(req.params.id, function (err, result) {
@@ -89,6 +109,9 @@ function remove(req, res) {
 
 app = module.exports.app = module.parent.exports.app;
 
+/**
+ * API Routing
+ */
 app.get('/api/contacts', app.logger, all);
 app.put('/api/contacts', app.logger, create);
 app.post('/api/contacts', app.logger, create);

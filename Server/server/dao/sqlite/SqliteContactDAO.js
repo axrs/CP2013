@@ -2,58 +2,11 @@ var Ring = require('ring');
 var IContactDAO = require('../IContactDAO.js');
 var Contact = require('../../models/Contact.js');
 var LogDispatcher = require('../../utilities/LogEventDispatcher.js');
+var SqliteHelper = require('./SqliteHelper.js');
 
-var SqliteContactDAO = Ring.create([IContactDAO], {
-    _db: null,
+var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
     init: function (databaseConnection) {
-        this._db = databaseConnection;
-    },
-    query: function (sql, values, callback) {
-
-        if (values != null) {
-            var prepared = this._db.prepare(sql);
-
-            prepared.run(values, function (err, results) {
-                if (err) {
-                    LogDispatcher.log('Error running query.');
-                    LogDispatcher.log(err);
-                    LogDispatcher.log(sql + JSON.stringify(values));
-                }
-                callback(err, results);
-            });
-        }
-        else {
-            this._db.run(sql, function (err, results) {
-                if (err) {
-                    LogDispatcher.log('Error running query.');
-                    LogDispatcher.log(err);
-                    LogDispatcher.log(sql + JSON.stringify(values));
-                }
-                callback(err, results);
-            });
-        }
-    },
-    all: function (sql, values, callback) {
-        if (values != null) {
-            var prepared = this._db.prepare(sql);
-            prepared.all(values, function (err, results) {
-                if (err) {
-                    LogDispatcher.log('Error running query.');
-                    LogDispatcher.log(err);
-                    LogDispatcher.log(sql + JSON.stringify(values));
-                }
-                callback(err, results);
-            });
-        } else {
-            this._db.all(sql, function (err, results) {
-                if (err) {
-                    LogDispatcher.log('Error running query.');
-                    LogDispatcher.log(err);
-                    LogDispatcher.log(sql + JSON.stringify(values));
-                }
-                callback(err, results);
-            });
-        }
+        this.$super(databaseConnection);
     },
     create: function (contact, callback) {
         var sql = '' +
@@ -180,7 +133,7 @@ var SqliteContactDAO = Ring.create([IContactDAO], {
             }
         });
     },
-    lastInsertedContact: function (callback) {
+    lastInserted: function (callback) {
         var sql = 'SELECT * FROM Contact ORDER BY ContactId DESC LIMIT 1;';
 
         this.all(sql, null, function (err, result) {
@@ -192,7 +145,6 @@ var SqliteContactDAO = Ring.create([IContactDAO], {
         });
     }
 });
-
 
 SqliteContactDAO.ContactFromDatabase = function (row) {
     var c = new Contact();

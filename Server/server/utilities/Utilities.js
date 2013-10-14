@@ -42,9 +42,9 @@ module.exports.isTimeStamp = function (value) {
 
 module.exports.mergeObjectProperties = function (objects) {
     var merged = {};
-    for (var obj in objects) {
-        for (var prop in obj) {
-            merged[prop] = obj[prop];
+    for (var i = 0; i < objects.length; i++) {
+        for (var prop in objects[i]) {
+            merged[prop] = objects[i][prop];
         }
     }
     return merged;
