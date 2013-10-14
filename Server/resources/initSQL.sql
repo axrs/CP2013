@@ -21,63 +21,65 @@ CREATE TABLE IF NOT EXISTS Contact (
 /*-=-=-=-=-=-=-=-=-=-=
  * USERS
  -=-=-=-=-=-=-=-=-=-=*/
-CREATE TABLE IF NOT EXISTS user (
-  userId      INTEGER,
-  userName    VARCHAR NOT NULL UNIQUE,
-  userPass    VARCHAR NOT NULL,
-  userIsAdmin BOOLEAN DEFAULT 0,
-  FOREIGN KEY (userId) REFERENCES contact (contId)
+CREATE TABLE IF NOT EXISTS User (
+  UserId       INTEGER,
+  User         VARCHAR NOT NULL,
+  Password     VARCHAR NOT NULL,
+  isAdmin      BOOLEAN DEFAULT 0,
+  Strategy     VARCHAR DEFAULT 'local',
+  StrategyData VARCHAR,
+  FOREIGN KEY (UserId) REFERENCES Contact (ContactId)
 );
 
 /*-=-=-=-=-=-=-=-=-=-=
  * SERVICE PROVIDERS
  -=-=-=-=-=-=-=-=-=-=*/
-CREATE TABLE IF NOT EXISTS service_provider (
-  servId         INTEGER PRIMARY KEY AUTOINCREMENT,
-  contId         INTEGER,
-  servBio        VARCHAR,
-  servPortrait   VARCHAR,
-  servInitiated  DATE NOT NULL,
-  servTerminated DATE,
-  servIsActive   BOOLEAN DEFAULT 1,
-  servColor      VARCHAR DEFAULT '#006dcc',
-  FOREIGN KEY (contId) REFERENCES contact (contId)
+CREATE TABLE IF NOT EXISTS Provider (
+  ProviderId INTEGER PRIMARY KEY AUTOINCREMENT,
+  ContactId  INTEGER,
+  Biography  VARCHAR,
+  Portrait   VARCHAR,
+  Initiated  DATE NOT NULL,
+  Terminated DATE,
+  isActive   BOOLEAN DEFAULT 1,
+  Color      VARCHAR DEFAULT '#006dcc',
+  FOREIGN KEY (ContactId) REFERENCES Contact (ContactId)
 );
 
 /*-=-=-=-=-=-=-=-=-=-=
  * SERVICE HOURS
  -=-=-=-=-=-=-=-=-=-=*/
-CREATE TABLE IF NOT EXISTS service_hours (
-  servId            INTEGER,
-  servHrsDay        INTEGER NOT NULL,
-  servHrsStart      TIME    NOT NULL,
-  servHrsBreakStart TIME    NOT NULL,
-  servHrsBreakEnd   TIME    NOT NULL,
-  servHrsEnd        TIME    NOT NULL,
-  FOREIGN KEY (servId) REFERENCES service_provider (servId)
+CREATE TABLE IF NOT EXISTS Provider_Hours (
+  ProviderId INTEGER,
+  Day        INTEGER NOT NULL,
+  Start      TIME    NOT NULL,
+  BreakStart TIME    NOT NULL,
+  BreakEnd   TIME    NOT NULL,
+  End        TIME    NOT NULL,
+  FOREIGN KEY (ProviderId) REFERENCES Provider (ProviderId)
 );
 
 /*-=-=-=-=-=-=-=-=-=-=
  * APPOINTMENT TYPE
  -=-=-=-=-=-=-=-=-=-=*/
-CREATE TABLE IF NOT EXISTS appointment_type (
-  appTypeId          INTEGER PRIMARY KEY AUTOINCREMENT,
-  appTypeDescription VARCHAR,
-  appTypeDuration    TIME,
-  appTypeAllDay      BOOLEAN DEFAULT 0
+CREATE TABLE IF NOT EXISTS Appointment_Type (
+  TypeId      INTEGER PRIMARY KEY AUTOINCREMENT,
+  Description VARCHAR,
+  Duration    TIME,
+  isAllDay    BOOLEAN DEFAULT 0
 );
 
 /*-=-=-=-=-=-=-=-=-=-=
  * APPOINTMENT
  -=-=-=-=-=-=-=-=-=-=*/
-CREATE TABLE IF NOT EXISTS appointment (
-  appId     INTEGER PRIMARY KEY AUTOINCREMENT,
-  appTypeId INTEGER,
-  contId    INTEGER,
-  servId    INTEGER,
-  appDate   DATE NOT NULL,
-  appTime   TIME NOT NULL,
-  FOREIGN KEY (appTypeId) REFERENCES appointment_type (appTypeId),
-  FOREIGN KEY (contId) REFERENCES contact (contId),
-  FOREIGN KEY (servId) REFERENCES service_provider (servId)
+CREATE TABLE IF NOT EXISTS Appointment (
+  AppointmentId INTEGER PRIMARY KEY AUTOINCREMENT,
+  TypeId        INTEGER,
+  ContactId     INTEGER,
+  ProviderId    INTEGER,
+  Date          DATE NOT NULL,
+  Time          TIME NOT NULL,
+  FOREIGN KEY (AppointmentId) REFERENCES Appointment_Type (AppointmentId),
+  FOREIGN KEY (ContactId) REFERENCES Contact (ContactId),
+  FOREIGN KEY (ProviderId) REFERENCES Provider (ProviderId)
 );

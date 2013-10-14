@@ -18,18 +18,10 @@
         "passport-local": "latest",
         "passport-github": "latest",
         "passport-google-oauth": "latest",
-        "underscore": "latest",
         "async": "latest",
         "view-helpers": "latest",
         "forever": "latest",
         "sqlite3": "latest",
-	"ring": "latest"
-    },
-    "devDependencies": {
-        "testutil": "latest",
-        "superagent": "latest",
-        "reload": "latest",
-        "supertest": "latest",
-        "chai": "latest"
+        "ring": "latest"
     }
 }

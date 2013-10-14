@@ -1,5 +1,7 @@
 var Ring = require('ring');
 var SqliteContactDAO = require('./SqliteContactDAO.js');
+var SqliteUserDAO = require('./SqliteUserDAO.js');
+
 var IDAOFactory = require('../IDAOFactory.js');
 
 var SqliteDAOFactory = Ring.create([IDAOFactory], {
@@ -9,6 +11,9 @@ var SqliteDAOFactory = Ring.create([IDAOFactory], {
     },
     getContactDAO: function () {
         return new SqliteContactDAO(this._db);
+    },
+    getUserDAO: function () {
+        return new SqliteUserDAO(this._db);
     }
 });
 

@@ -146,7 +146,7 @@ var Contact = Ring.create({
             "address": this._address.getAddress(),
             "suburb": this._address.getSuburb(),
             "city": this._address.getCity(),
-            "country": this._address.getCountry,
+            "country": this._address.getCountry(),
             "state": this._address.getState(),
             "post": this._address.getPost()
         }

@@ -7,10 +7,10 @@ var StatusCodes = require('../helpers/StatusHelpers.js');
 var Contact = require('../models/Contact.js');
 
 
-var ContactDAO = new DAOFactory(database).getContactDAO();
+var dao = new DAOFactory(database).getContactDAO();
 
 function all(req, res) {
-    ContactDAO.retrieveAll(function (err, results) {
+    dao.retrieveAll(function (err, results) {
         if (err) {
             StatusCodes.status500(req, res);
         } else {
@@ -26,17 +26,17 @@ function create(req, res) {
     if (!contact.isValid() || contact.getId() > 0) {
         StatusCodes.status400(req, res);
     } else {
-        ContactDAO.retrieveByName(contact.getName(), contact.getSurname(), function (err, result) {
+        dao.retrieveByName(contact.getName(), contact.getSurname(), function (err, result) {
             if (err) {
                 StatusCodes.status500(req, res);
             } else if (result) {
                 StatusCodes.status409(req, res);
             } else {
-                ContactDAO.create(contact, function (err, result) {
+                dao.create(contact, function (err, result) {
                     if (err) {
                         StatusCodes.status500(req, res);
                     } else {
-                        ContactDAO.lastInsertedContact(function (err, result) {
+                        dao.lastInserted(function (err, result) {
                             res.writeHead(201, { 'Content-Type': 'application/json' });
                             contact = result;
                             res.write(JSON.stringify(contact));
@@ -51,7 +51,7 @@ function create(req, res) {
 function update(req, res) {
     var contact = new Contact();
 
-    ContactDAO.retrieveById(req.params.id, function (err, result) {
+    dao.retrieveById(req.params.id, function (err, result) {
         if (err) {
             StatusCodes.status500(req, res);
         } else {
@@ -60,7 +60,7 @@ function update(req, res) {
             if (!contact.isValid() || contact.getId() <= 0) {
                 StatusCodes.status400(req, res);
             } else {
-                ContactDAO.update(contact, function (err, result) {
+                dao.update(contact, function (err, result) {
                     if (err) {
                         StatusCodes.status500(req, res);
                     } else {
@@ -76,7 +76,7 @@ function update(req, res) {
 }
 function remove(req, res) {
     if (req.params.id > 0) {
-        ContactDAO.remove(req.params.id, function (err, result) {
+        dao.remove(req.params.id, function (err, result) {
             if (err) StatusCodes.status500(req, res);
             else {
                 StatusCodes.status202(req, res);

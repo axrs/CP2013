@@ -1,7 +1,7 @@
 var Ring = require('ring');
 
-var IContactDAO = Ring.create({
-    create: function (contact, callback) {
+var IUserDAO = Ring.create({
+    create: function (user, callback) {
         throw new Error('Method Not Implemented.');
     },
     retrieveAll: function (callback) {
@@ -10,24 +10,24 @@ var IContactDAO = Ring.create({
     retrieveById: function (id, callback) {
         throw new Error('Method Not Implemented.');
     },
-    retrieveByName: function (name, surname, callback) {
+    retrieveByUsername: function (username, callback) {
         throw new Error('Method Not Implemented.');
     },
-    retrieveRange: function (name, surname, callback) {
+    retrieveRange: function (username, callback) {
         throw new Error('Method Not Implemented.');
     },
-    update: function (contact, callback) {
+    update: function (user, callback) {
         throw new Error('Method Not Implemented.');
     },
-    remove: function (contact, callback) {
+    remove: function (user, callback) {
         throw new Error('Method Not Implemented.');
     },
     lastInsertedId: function (callback) {
         throw new Error('Method Not Implemented.');
     },
-    lastInserted: function (callback) {
+    lastInsertedUser: function (callback) {
         throw new Error('Method Not Implemented.');
     }
 });
 
-module.exports = IContactDAO;
+module.exports = IUserDAO;
