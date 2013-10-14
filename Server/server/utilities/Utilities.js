@@ -17,6 +17,15 @@ module.exports.isInteger = function (n) {
 };
 
 /**
+ * Checks if the passed value {n} is an integer larger than 0
+ * @param n object to be checked
+ * @returns {boolean} True if {n} is  an integer larger than 0
+ */
+module.exports.isIntegerAboveZero = function (n) {
+    return typeof n === 'number' && parseFloat(n) == parseInt(n, 10) && !isNaN(n) && n > 0;
+};
+
+/**
  * Checks if the passed in {value} is a timestamp in the format of 'hh:mm'
  * @param value object to be validated
  * @returns {boolean} True if the {value} matches the format
