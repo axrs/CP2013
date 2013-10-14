@@ -1,16 +1,8 @@
 {
-    "db": "./resources/shears.db",
     "app": {
-        "name": "Shear-N-Dipity"
+        "name": "Project Central"
     },
-    "github": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:8080/auth/github/callback"
-    },
-    "google": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:8080/auth/google/callback"
+    "database": {
+        "connectionString" : ""
     }
 }

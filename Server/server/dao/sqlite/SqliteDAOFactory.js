@@ -1,17 +1,15 @@
-var Interface = projectRequire('interfaces/Interface'),
-    SqliteDAO = projectRequire('interfaces/SqliteDAO'),
-    SqliteContactDAO = require('./SqliteContactDAO'),
-    DAOFactory = projectRequire('interfaces/DAOFactory');
+var Ring = require('ring');
+var SqliteContactDAO = require('./SqliteContactDAO.js');
+var IDAOFactory = require('../IDAOFactory.js');
 
-function SqliteDAOFactory(databaseConnection) { // extends DAOFactory
-    Interface.ensureImplements(databaseConnection, SqliteDAO);
-    var _connection = databaseConnection;
-    this.getContactDAO = function () {
-        return new SqliteContactDAO(_connection);
-    };
-    this.getUserDAO = function () {
-        throw new Error('getUserDAO: Not Implemented.');
-    };
-};
+var SqliteDAOFactory = Ring.create([IDAOFactory], {
+    _db: null,
+    init: function (databaseConnection) {
+        this._db = databaseConnection;
+    },
+    getContactDAO: function () {
+        return new SqliteContactDAO(this._db);
+    }
+});
 
 module.exports = SqliteDAOFactory;

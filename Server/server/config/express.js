@@ -12,7 +12,6 @@ module.exports = function (app, passport) {
     }));
 
     app.use(express.favicon());
-    app.use(express.static(config.publicFolder));
 
     if (process.env.NODE_ENV !== 'test') {
         app.use(express.logger('dev'));

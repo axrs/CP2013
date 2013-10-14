@@ -1,174 +1,175 @@
-var Contact = function () {
-    var id = 0,
-        _forename = '',
-        _surname = '',
-        _company = '',
-        _phone = '',
-        _email = '',
-        _street = '',
-        _suburb = '',
-        _city = '',
-        _zip = '',
-        _state = '';
+var Ring = require('ring');
+var Address = require('./Address.js');
 
-    function isStringAndNotEmpty(value) {
+var Contact = Ring.create({
+    _contactId: 0,
+    _salutation: '',
+    _name: '',
+    _middleName: '',
+    _surname: '',
+    _address: new Address(),
+    _email: '',
+    _phone: '',
+    _company: '',
+
+    isStringAndNotEmpty: function (value) {
         return (typeof value == 'string' && value != '');
-    }
+    },
 
-    function isInteger(n) {
+    isInteger: function (n) {
         return typeof n === 'number' && parseFloat(n) == parseInt(n, 10) && !isNaN(n);
-    }
+    },
 
-    this.setId = function (value) {
-        if (isInteger(value) && value > 0) {
-            id = value;
+    getId: function () {
+        return this._contactId;
+    },
+
+    setId: function (value) {
+        if (this.isInteger(value) && value > 0) {
+            this._contactId = value;
         }
-    };
+    },
 
-    this.getId = function () {
-        return id;
-    };
-
-    this.setForename = function (name) {
-        if (isStringAndNotEmpty(name)) {
-            _forename = name;
+    setSalutation: function (value) {
+        if (this.isStringAndNotEmpty(value)) {
+            this._salutation = value;
         }
-    };
+    },
 
-    this.getForename = function () {
-        return _forename;
-    };
+    getSalutation: function () {
+        return this._salutation;
+    },
 
-    this.setSurname = function (name) {
-        if (isStringAndNotEmpty(name)) {
-            _surname = name;
+    getName: function () {
+        return this._name;
+    },
+
+    setName: function (value) {
+        if (this.isStringAndNotEmpty(value)) {
+            this._name = value;
         }
-    };
+    },
 
-    this.getSurname = function () {
-        return _surname;
-    };
-
-    this.setCompany = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _company = value;
+    setMiddleName: function (value) {
+        if (this.isStringAndNotEmpty(value)) {
+            this._middleName = value;
         }
-    };
+    },
 
-    this.getCompany = function () {
-        return _company;
-    };
+    getMiddleName: function () {
+        return this._middleName;
+    },
 
-    this.setPhone = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _phone = value;
+    setSurname: function (value) {
+        if (this.isStringAndNotEmpty(value)) {
+            this._surname = value;
         }
-    }
+    },
 
-    this.getPhone = function () {
-        return _phone;
-    };
+    getSurname: function () {
+        return this._surname;
+    },
 
-    this.setStreet = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _street = value;
+    getAddress: function () {
+        return this._address.getAddress();
+    },
+    getSuburb: function () {
+        return this._address.getSuburb();
+    },
+    getCity: function () {
+        return this._address.getCity();
+    },
+    getCountry: function () {
+        return this._address.getCountry();
+    },
+    getState: function () {
+        return this._address.getState();
+    },
+    getPost: function () {
+        return this._address.getPost();
+    },
+    setAddress: function (street, suburb, city, country, state, post) {
+        this._address.setAddress(street);
+        this._address.setSuburb(suburb);
+        this._address.setCity(city);
+        this._address.setCountry(country);
+        this._address.setState(state);
+        this._address.setPost(post);
+    },
+
+
+    getEmail: function () {
+        return this._email;
+    },
+
+    setEmail: function (value) {
+        if (this.isStringAndNotEmpty(value)) {
+            this._email = value;
         }
-    };
+    },
 
-    this.getStreet = function () {
-        return _street;
-    };
+    getPhone: function () {
+        return this._phone;
+    },
 
-    this.setEmail = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _email = value;
+    setPhone: function (value) {
+        if (this.isStringAndNotEmpty(value)) {
+            this._phone = value;
         }
-    };
+    },
 
-    this.getEmail = function () {
-        return _email;
-    };
+    getCompany: function () {
+        return this._company;
+    },
 
-    this.setSuburb = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _suburb = value;
+    setCompany: function (value) {
+        if (this.isStringAndNotEmpty(value)) {
+            this._company = value;
         }
-    };
+    },
 
-    this.getSuburb = function () {
-        return _suburb;
-    };
-
-    this.setCity = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _city = value;
-        }
-    }
-
-    this.getCity = function () {
-        return _city;
-    }
-
-    this.setZip = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _zip = value;
-        }
-    }
-
-    this.getZip = function () {
-        return _zip;
-    }
-
-    this.setState = function (value) {
-        if (isStringAndNotEmpty(value)) {
-            _state = value;
-        }
-    }
-
-    this.getState = function () {
-        return  _state;
-    }
-
-    this.setAddress = function (street, suburb, city, post, state) {
-        this.setStreet(street);
-        this.setSuburb(suburb);
-        this.setCity(city);
-        this.setZip(post);
-        this.setState(state);
-    }
-
-    this.toJSON = function () {
+    toJSON: function () {
         return {
-            "id": id,
-            "forename": _forename,
-            "surname": _surname,
-            "company": _company,
-            "phone": _phone,
-            "email": _email,
-            "street": _street,
-            "contAddrSuburb": _suburb,
-            "contAddrZip": _zip,
-            "contAddrState": _state
+            "contactId": this._contactId,
+            "name": this._name,
+            "middleName": this._middleName,
+            "surname": this._surname,
+
+            "company": this._company,
+            "phone": this._phone,
+            "email": this._email,
+
+            "address": this._address.getAddress(),
+            "suburb": this._address.getSuburb(),
+            "city": this._address.getCity(),
+            "country": this._address.getCountry,
+            "state": this._address.getState(),
+            "post": this._address.getPost()
         }
-    };
-
-    this.fromJson = function (data) {
-        this.setId(data.id);
-        this.setForename(data.forename);
-        this.setSurname(data.surname);
-        this.setCompany(data.company);
-        this.setPhone(data.phone);
-        this.setEmail(data.email);
-        this.setStreet(data.street);
-        this.setSuburb(data.suburb);
-        this.setCity(data.city);
-        this.setZip(data.post);
-        this.setState(data.state);
     }
+});
 
-    this.isValid = function () {
-        return (isStringAndNotEmpty(_forename) && isStringAndNotEmpty(_surname));
-    }
+/**
+ *
+ * @param data
+ * @returns {Contact}
+ */
+Contact.fromJSON = function (data) {
+    var contact = new Contact();
+
+    contact.setId(data.contactId);
+    contact.setSalutation(data.salutation);
+    contact.setName(data.name);
+    contact.setMiddleName(data.middleName);
+    contact.setSurname(data.surname);
+
+    contact.setCompany(data.company);
+    contact.setPhone(data.phone);
+    contact.setEmail(data.email);
+
+
+    contact.setAddress(data.address, data.suburb, data.city, data.country, data.state, data.post);
+    return contact;
 };
 
 module.exports = Contact;

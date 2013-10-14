@@ -1,9 +1,10 @@
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
-    config = projectRequire('config/config'),
-    sqlite = require('sqlite3'),
-    database = new sqlite.Database(config.db),
-    DAOFactory = projectRequire('dao/sqlite/SqliteDAOFactory'),
-    StatusCodes = projectRequire('helpers/StatusHelpers.js');
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var sqlite = require('sqlite3');
+var config = require('../config/config.js');
+var database = new sqlite.Database(config.db);
+var DAOFactory = require('../dao/sqlite/SqliteDAOFactory.js');
+var StatusCodes = require('helpers/StatusHelpers.js');
+var Contact = require('../models/Contact.js');
 
 
 var ContactDAO = new DAOFactory(database).getContactDAO();
@@ -20,21 +21,19 @@ function all(req, res) {
     });
 }
 function create(req, res) {
-    var Contact = projectRequire('models/Contact');
     var contact = new Contact();
     contact.fromJson(req.body);
 
     if (!contact.isValid() || contact.getId() > 0) {
         StatusCodes.status400(req, res);
     } else {
-        ContactDAO.retrieveByName(contact.getForename(), contact.getSurname(), function (err, result) {
+        ContactDAO.retrieveByName(contact.getName(), contact.getSurname(), function (err, result) {
             if (err) {
                 StatusCodes.status500(req, res);
             } else if (result) {
                 StatusCodes.status409(req, res);
             } else {
                 ContactDAO.create(contact, function (err, result) {
-                    console.log(result);
                     if (err) {
                         StatusCodes.status500(req, res);
                     } else {
@@ -51,7 +50,6 @@ function create(req, res) {
     }
 }
 function update(req, res) {
-    var Contact = projectRequire('models/Contact');
     var contact = new Contact();
 
     ContactDAO.retrieveById(req.params.id, function (err, result) {

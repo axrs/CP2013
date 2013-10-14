@@ -22,7 +22,8 @@
         "async": "latest",
         "view-helpers": "latest",
         "forever": "latest",
-        "sqlite3": "latest"
+        "sqlite3": "latest",
+	"ring": "latest"
     },
     "devDependencies": {
         "testutil": "latest",
