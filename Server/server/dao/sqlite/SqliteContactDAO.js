@@ -83,9 +83,9 @@ var SqliteContactDAO = Ring.create([IContactDAO], {
 
     },
     retrieveAll: function (callback) {
-        var sql = 'SELECT * FROM Contact ORDER BY Name, Surname ASC;';
+        var sql = 'SELECT * FROM Contact WHERE isActive=1 ORDER BY Name, Surname ASC;';
         this.all(sql, null, function (err, result) {
-            if (result.length) {
+            if (result && result.length) {
                 var contacts = [];
                 for (var i = 0; i < result.length; i++) {
                     contacts.push(SqliteContactDAO.ContactFromDatabase(result[i]));
@@ -97,7 +97,7 @@ var SqliteContactDAO = Ring.create([IContactDAO], {
         });
     },
     retrieveById: function (id, callback) {
-        var sql = 'SELECT * FROM Contact WHERE ContactId = $id LIMIT 1;';
+        var sql = 'SELECT * FROM Contact WHERE ContactId=$id AND isActive=1 LIMIT 1 ;';
 
         this.all(sql, {$id: id}, function (err, result) {
             if (result.length) {
@@ -108,7 +108,7 @@ var SqliteContactDAO = Ring.create([IContactDAO], {
         });
     },
     retrieveByName: function (name, surname, callback) {
-        var sql = 'SELECT * FROM Contact WHERE Name = $name AND Surname = $surname LIMIT 1;';
+        var sql = 'SELECT * FROM Contact WHERE Name=$name AND Surname=$surname AND isActive=1 LIMIT 1;';
 
         this.all(sql, {$name: name, $surname: surname}, function (err, result) {
             if (result.length) {
@@ -163,9 +163,9 @@ var SqliteContactDAO = Ring.create([IContactDAO], {
             callback(err, null);
         });
     },
-    remove: function (contact, callback) {
+    remove: function (id, callback) {
         var sql = 'UPDATE Contact SET isActive=0 WHERE ContactId=$id;';
-        this.query(sql, null, function (err, result) {
+        this.query(sql, {$id: id}, function (err, result) {
             callback(err, null);
         });
     },
