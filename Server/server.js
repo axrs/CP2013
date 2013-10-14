@@ -1,17 +1,8 @@
-var express = require('express'),
-    fs = require('fs'),
-    passport = require('passport'),
-    CompositeLogger = require('./server/utilities/CompositeLogger'),
-    ConsoleLogger = require('./server/utilities/ConsoleLogger'),
-    FSLogger = require('./server/utilities/FileStreamLogger');
-
-var projectDir = __dirname + '/server/';
-module.exports = GLOBAL.projectRequire = function (module) {
-    return require(projectDir + module);
-}
-
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
-    config = require('./server/config/config');
+var express = require('express');
+var fs = require('fs');
+var passport = require('passport');
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var config = require('./server/config/config');
 //auth = require('./config/middlewares/authorization'),
 
 
@@ -22,19 +13,36 @@ require('./server/config/routes')(app, null, null);
 app.listen(config.port);
 console.log('Express app started on port ' + config.port);
 
-var loggers = new CompositeLogger();
-loggers.addLogger(new ConsoleLogger());
-loggers.addLogger(new FSLogger('./logs/request.log'));
 
-function logger(req, res, next) {
-    loggers.log(req.connection.remoteAddress);
-    req.on('data', function (d) {
-        //console.log(d);
-    });
+var StrategyLogger = require('./server/utilities/logger/StrategyLogger.js');
+var ConsoleRecorder = require('./server/utilities/recorder/ConsoleRecorder.js');
+var CompositeRecorder = require('./server/utilities/recorder/CompositeRecorder.js');
+var ActiveFileRecorder = require('./server/utilities/recorder/ActiveFileRecorder.js');
+var DateTimeFormatStrategy = require('./server/utilities/logger/strategy/DateTimeFormatStrategy.js');
+var LogEventDispatcher = require('./server/utilities/LogEventDispatcher.js');
+
+var cr = new CompositeRecorder();
+cr.addRecorder(new ConsoleRecorder());
+cr.addRecorder(new ActiveFileRecorder('./logs/general.log'));
+var l = new StrategyLogger(cr);
+l.setStrategy(new DateTimeFormatStrategy());
+
+LogEventDispatcher.getInstance().on('log', function (message) {
+    l.log(message);
+});
+
+var recorders = new CompositeRecorder();
+recorders.addRecorder(new ActiveFileRecorder('./logs/request.log'));
+var loggers = new StrategyLogger(recorders);
+loggers.setStrategy(new DateTimeFormatStrategy());
+
+function logRequest(req, res, next) {
+    var message = req.connection.remoteAddress + "\t" + req.url;
+    loggers.log(message + "\t" + JSON.stringify(req.body));
     next();
 }
 
-app.logger = logger;
+app.logger = logRequest;
 
 module.exports.app = app;
 

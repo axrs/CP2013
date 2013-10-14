@@ -1,8 +1,6 @@
 {
+    "db": "./resources/shears-development.db",
     "app": {
         "name": "« Development » Project Central"
-    },
-    "database": {
-        "connectionString": "postgres://pgadmin:hiwzem0e@development:5432/project_central"
     }
 }

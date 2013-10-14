@@ -6,18 +6,15 @@ CREATE TABLE IF NOT EXISTS Contact (
   Name       VARCHAR NOT NULL,
   MiddleName VARCHAR,
   Surname    VARCHAR NOT NULL,
-
   Company    VARCHAR,
   Phone      VARCHAR,
   Email      VARCHAR,
-
   Address    VARCHAR,
   Suburb     VARCHAR,
   City       VARCHAR,
   Country    VARCHAR,
   Post       VARCHAR,
   State      VARCHAR,
-
   isActive   BOOLEAN DEFAULT 1
 );
 

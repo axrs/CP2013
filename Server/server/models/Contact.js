@@ -20,6 +20,10 @@ var Contact = Ring.create({
         return typeof n === 'number' && parseFloat(n) == parseInt(n, 10) && !isNaN(n);
     },
 
+    isValid: function () {
+        return (this.isStringAndNotEmpty(this._name) && this.isStringAndNotEmpty(this._surname));
+    },
+
     getId: function () {
         return this._contactId;
     },

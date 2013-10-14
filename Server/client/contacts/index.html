@@ -1,14 +1,14 @@
 <div ng-controller="ContactsCtrl" fade-in>
     <div class="row-fluid">
-        <div class="span8 pull-right" ng-class="{well: contact.id != null}">
+        <div class="span8 pull-right" ng-class="{well: contact.contactId != null}">
             <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><h4>{{alert.title}}</h4>
                 {{alert.msg}}
             </alert>
 
-            <div class="alert alert-info" ng-show="contact.id == null">
+            <div class="alert alert-info" ng-show="contact.contactId == null">
                 Select a contact to edit by clicking on a table row.
             </div>
-            <div ng-show="contact.id != null" ng-include="'contacts/contactForm.html'"></div>
+            <div ng-show="contact.contactId != null" ng-include="'contacts/contactForm.html'"></div>
         </div>
 
         <div class="span4 gridStyle" ng-grid="gridOptions">

@@ -3,7 +3,7 @@ var sqlite = require('sqlite3');
 var config = require('../config/config.js');
 var database = new sqlite.Database(config.db);
 var DAOFactory = require('../dao/sqlite/SqliteDAOFactory.js');
-var StatusCodes = require('helpers/StatusHelpers.js');
+var StatusCodes = require('../helpers/StatusHelpers.js');
 var Contact = require('../models/Contact.js');
 
 
@@ -21,8 +21,7 @@ function all(req, res) {
     });
 }
 function create(req, res) {
-    var contact = new Contact();
-    contact.fromJson(req.body);
+    var contact = Contact.fromJSON(req.body);
 
     if (!contact.isValid() || contact.getId() > 0) {
         StatusCodes.status400(req, res);
@@ -39,8 +38,8 @@ function create(req, res) {
                     } else {
                         ContactDAO.lastInsertedContact(function (err, result) {
                             res.writeHead(201, { 'Content-Type': 'application/json' });
-                            contact.fromJson(result);
-                            res.write(JSON.stringify(contact.toJSON()));
+                            contact = result;
+                            res.write(JSON.stringify(contact));
                             res.end();
                         });
                     }
@@ -56,8 +55,7 @@ function update(req, res) {
         if (err) {
             StatusCodes.status500(req, res);
         } else {
-            contact.fromJson(result);
-            contact.fromJson(req.body);
+            contact = Contact.fromJSON(req.body);
 
             if (!contact.isValid() || contact.getId() <= 0) {
                 StatusCodes.status400(req, res);
@@ -67,14 +65,14 @@ function update(req, res) {
                         StatusCodes.status500(req, res);
                     } else {
                         res.writeHead(202, { 'Content-Type': 'application/json' });
-                        res.write(JSON.stringify(contact.toJSON()));
+                        res.write(JSON.stringify(contact));
                         res.end();
                     }
                 });
             }
         }
     });
-    contact.fromJson(req.body);
+    contact = Contact.fromJSON(req.body);
 }
 function remove(req, res) {
     if (req.params.id > 0) {

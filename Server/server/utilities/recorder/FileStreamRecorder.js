@@ -17,7 +17,7 @@ var FileStreamRecorder = Ring.create([IRecorder], {
      */
     record: function (message) {
         if (this._stream != null) {
-            _stream.write(message + '\n');
+            this._stream.write(message + '\n');
         }
     }
 });

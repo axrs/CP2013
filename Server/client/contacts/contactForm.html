@@ -1,10 +1,10 @@
-<h2>{{action}}: {{contact.forename}} {{contact.surname}} <a class="btn btn-danger pull-right" ng-click="delete()"><i class="icon-remove icon-white"></i></a></h2>
+<h2>{{action}}: {{contact.name}} {{contact.surname}} <a class="btn btn-danger pull-right" ng-click="delete()"><i class="icon-remove icon-white"></i></a></h2>
 <div class="clearfix"></div>
 <fieldset>
     <legend>General</legend>
     <div class="controls controls-row">
         <label class="control-label">Name</label>
-        <input type="text" placeholder="First Name" ng-model="contact.forename" required>
+        <input type="text" placeholder="Name" ng-model="contact.name" required>
         <input type="text" placeholder="Surname" ng-model="contact.surname" required>
     </div>
     <div class="controls">
@@ -29,7 +29,7 @@
     <legend>Address</legend>
     <div class="controls">
         <label class="control-label">Street</label>
-        <input class="span10" type="text" placeholder="123 Street Name" ng-model="contact.street">
+        <input class="span10" type="text" placeholder="123 Street Name" ng-model="contact.address">
     </div>
 
     <div class="controls">

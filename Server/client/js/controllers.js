@@ -1,33 +1,5 @@
 'use strict'
 
-myApp.controller('InboxCtrl', ['$scope', function ($scope) {
-
-    // modal
-    $scope.open = function () {
-        $scope.shouldBeOpen = true;
-    };
-
-    $scope.close = function () {
-        $scope.closeMsg = 'I was closed at: ' + new Date();
-        $scope.shouldBeOpen = false;
-    };
-    // end modal
-
-    $scope.recentMail = [
-        { type: 'unread', from: 'Phil Jenkins', msg: 'Your password will expire in 23 days' },
-        { type: 'unread', from: 'Paul Terry', msg: 'CRM system updated.' },
-        { type: 'read', from: 'Matt Lundquist', msg: 'Successfully deployed Oracle 11g' },
-        { type: 'read', from: 'Lindsay Dugan', msg: 'Closed support ticket #4455' },
-        { type: 'read', from: 'Lindsay Dugan', msg: 'Reminder: Offsite in San Diego (comicon)' }
-    ];
-
-    $scope.closeMail = function (index) {
-        //console.log("closing mail " + index);
-        $scope.recentMail.splice(index, 1);
-    };
-
-}]);
-
 myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
 
     $scope.action = 'Editing';
@@ -40,13 +12,13 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
     $scope.contact = null;
 
     $scope.process = function () {
-        ($scope.contact.id == 0) ? $scope.create() : $scope.update();
+        ($scope.contact.contactId == 0) ? $scope.create() : $scope.update();
     };
 
     $scope.new = function () {
         $scope.clear();
         $scope.contact = {};
-        $scope.contact.id = 0;
+        $scope.contact.contactId = 0;
         $scope.action = 'New';
     };
 
@@ -75,7 +47,7 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
     };
 
     $scope.update = function () {
-        $rootScope.restService.put('/api/contacts/' + $scope.contact.id, $scope.contact).
+        $rootScope.restService.put('/api/contacts/' + $scope.contact.contactId, $scope.contact).
             success(function (data, status, headers, config) {
                 if (status == 202) {
                     $scope.contact = data;
@@ -103,8 +75,8 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
     };
 
     $scope.delete = function () {
-        if ($scope.contact.id > 0) {
-            $rootScope.restService.delete('/api/contacts/' + $scope.contact.id).
+        if ($scope.contact.contactId > 0) {
+            $rootScope.restService.delete('/api/contacts/' + $scope.contact.contactId).
                 success(function (data, status, headers, config) {
                     var index = $scope.contacts.indexOf($scope.contact);
                     $scope.contacts.splice(index, 1);
@@ -186,7 +158,7 @@ myApp.controller('ContactsCtrl', ['$scope', '$rootScope', function ($scope, $roo
         filterOptions: $scope.filterOptions,
         selectedItems: $scope.selectedContacts,
         columnDefs: [
-            {field: 'forename', displayName: 'Name'},
+            {field: 'name', displayName: 'Name'},
             {field: 'surname', displayName: 'Surname'}
         ],
         afterSelectionChange: function () {

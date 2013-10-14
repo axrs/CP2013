@@ -8,7 +8,7 @@ var PostgresContactDAO = Ring.create([IContactDAO], {
     init: function (databaseConnection) {
         this._db = databaseConnection;
     },
-    createContactFromRow: function (row) {
+    ContactFromDatabase: function (row) {
         var c = new Contact();
         c.setId(row.ContactId);
         c.setName(row.Name);
@@ -44,7 +44,7 @@ var PostgresContactDAO = Ring.create([IContactDAO], {
             if (result.rowCount) {
                 var contacts = [];
                 for (var i = 0; i < result.rowCount; i++) {
-                    contacts.push(this.createContactFromRow(result.rows[i]));
+                    contacts.push(this.ContactFromDatabase(result.rows[i]));
                 }
                 callback(err, contacts);
             } else {
@@ -57,7 +57,7 @@ var PostgresContactDAO = Ring.create([IContactDAO], {
 
         this.query(sql, [id], function (err, result) {
             if (result.rowCount) {
-                callback(err, this.createContactFromRow(result.row[0]));
+                callback(err, this.ContactFromDatabase(result.row[0]));
             } else {
                 callback(err, null);
             }
@@ -68,7 +68,7 @@ var PostgresContactDAO = Ring.create([IContactDAO], {
 
         this.query(sql, [name, surname], function (err, result) {
             if (result.rowCount) {
-                callback(err, this.createContactFromRow(result.row[0]));
+                callback(err, this.ContactFromDatabase(result.row[0]));
             } else {
                 callback(err, null);
             }
@@ -82,7 +82,7 @@ var PostgresContactDAO = Ring.create([IContactDAO], {
             if (result.rowCount) {
                 var contacts = [];
                 for (var i = 0; i < result.rowCount; i++) {
-                    contacts.push(this.createContactFromRow(result.rows[i]));
+                    contacts.push(this.ContactFromDatabase(result.rows[i]));
                 }
                 callback(err, contacts);
             } else {
@@ -113,7 +113,7 @@ var PostgresContactDAO = Ring.create([IContactDAO], {
 
         this.query(sql, [], function (err, result) {
             if (result.rowCount) {
-                callback(err, this.createContactFromRow(result.row[0]));
+                callback(err, this.ContactFromDatabase(result.row[0]));
             } else {
                 callback(err, null);
             }
@@ -124,7 +124,7 @@ var PostgresContactDAO = Ring.create([IContactDAO], {
 
         this.query(sql, [], function (err, result) {
             if (result.rowCount) {
-                callback(err, this.createContactFromRow(result.row[0]));
+                callback(err, this.ContactFromDatabase(result.row[0]));
             } else {
                 callback(err, null);
             }

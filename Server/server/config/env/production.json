@@ -1,8 +1,6 @@
 {
+    "db": "./resources/shears.db",
     "app": {
         "name": "Project Central"
-    },
-    "database": {
-        "connectionString" : ""
     }
 }

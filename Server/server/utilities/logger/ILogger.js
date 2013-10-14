@@ -1,7 +1,7 @@
 var Ring = require('ring');
 
 /**
- * Logger Interface
+ * StrategyLogger Interface
  * @type {class}
  * @interface
  */
