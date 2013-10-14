@@ -23,7 +23,7 @@ var Provider = Ring.create([Contact], {
     },
 
     setId: function (value) {
-        if (Utilities.isInteger(value) && value > 0) {
+        if (Utilities.isIntegerAboveZero(value)) {
             this._providerId = value;
         }
     },
