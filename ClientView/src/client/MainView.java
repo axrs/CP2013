@@ -8,9 +8,9 @@ import Models.ServiceProvider;
 import Utilities.ILogListener;
 import Utilities.LogEventDispatcher;
 import Utilities.Loggers.FormatStrategies.DateTimeFormatStrategy;
+import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Loggers.ILogger;
 import Utilities.Loggers.StrategyLogger;
-import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Recorders.ConsoleRecorder;
 import Utilities.Recorders.DatedFileStreamRecorder;
 import Utilities.Recorders.SingletonCompositeRecorder;
@@ -18,6 +18,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -170,11 +171,42 @@ public class MainView extends Application {
         buildFileMenu();
         buildContactMenu();
         buildStaffMenu();
-        mainPane.setCenter(agendaView);
+
+        BorderPane centrePane = new BorderPane();
+        BorderPane topCentrePane = new BorderPane();
+
+        Button previousWeek = new Button("<< Previous Week");
+        Button nextWeek = new Button("Next Week >>");
+        previousWeek.setOnAction(changeTime(0));
+        nextWeek.setOnAction(changeTime(1));
+
+        topCentrePane.setLeft(previousWeek);
+        topCentrePane.setRight(nextWeek);
+
+        centrePane.setTop(topCentrePane);
+        centrePane.setCenter(agendaView);
+
+        mainPane.setCenter(centrePane);
 
         Scene scene = new Scene(mainPane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private EventHandler<ActionEvent> changeTime(final int i) {
+        EventHandler timeChanger = new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                if (i == 0) {
+                    //GO BACK
+                    System.out.println("Going back");
+                } else if (i == 1) {
+                    //GO FORWARD
+                    System.out.println("Back to the future");
+                }
+            }
+        };
+        return timeChanger;
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
