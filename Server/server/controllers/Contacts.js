@@ -66,7 +66,7 @@ function create(req, res) {
 function update(req, res) {
     var contact = new Contact();
 
-    dao.retrieveById(req.params.id, function (err, result) {
+    dao.retrieve(req.params.id, function (err, result) {
         if (err) {
             StatusCodes.status500(req, res);
         } else {

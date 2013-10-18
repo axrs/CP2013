@@ -22,7 +22,6 @@ var CompositeRecorder = Ring.create([IRecorder], {
      */
     removeRecorder: function (recorder) {
         if (Ring.instance(recorder, IRecorder)) {
-
             var index = this._recorders.indexOf(recorder);
             if (index) {
                 this._recorders.splice(index, 1);

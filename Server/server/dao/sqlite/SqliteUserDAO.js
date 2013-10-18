@@ -1,11 +1,9 @@
 var Ring = require('ring');
-var IUserDAO = require('../IUserDAO.js');
 var Contact = require('../../models/Contact.js');
-var LogDispatcher = require('../../utilities/LogEventDispatcher.js');
 var SqliteHelper = require('./SqliteHelper.js');
+var IUserDAO = require('../IUserDAO.js');
 
-var SqliteUserDAO = Ring.create([SqliteHelper, IContactDAO], {
-
+var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
     init: function (databaseConnection) {
         this.$super(databaseConnection);
     },

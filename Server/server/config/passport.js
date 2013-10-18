@@ -23,11 +23,11 @@ module.exports = function (passport) {
 
     //Use local strategy
     passport.use(new LocalStrategy({
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password'
         },
         function (userName, password, done) {
-            UserDAO.retrieveById(userName, function (err, user) {
+            UserDAO.retrieve(userName, function (err, user) {
                 if (err) {
                     return done(err);
                 }
