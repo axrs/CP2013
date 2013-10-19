@@ -8,10 +8,7 @@ import Models.ServiceProvider;
 import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
-import client.controllers.ApplicationExitCommand;
-import client.controllers.NewContactAddressBookCommand;
-import client.controllers.NewContactWindowCommand;
-import client.controllers.ShowAboutWindowCommand;
+import client.controllers.*;
 import client.controllers.recievers.ActionEventStrategy;
 import client.controllers.utilities.HookLoggerCommand;
 import javafx.application.Application;
@@ -49,7 +46,6 @@ public class MainView extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     private void buildFileMenu() {
@@ -81,7 +77,7 @@ public class MainView extends Application {
         staffMenu.getItems().addAll(staffAddressBookMenuItem, new SeparatorMenuItem(), newStaffMemberMenuItem);
         menuBar.getMenus().add(staffMenu);
 
-        staffAddressBookMenuItem.setOnAction(onStaffAddressBookMenuClick());
+        staffAddressBookMenuItem.setOnAction(new ActionEventStrategy(new ShowStaffAddressBookWindowCommand()));
         newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
     }
 
@@ -388,15 +384,6 @@ public class MainView extends Application {
         };
     }
 
-    private EventHandler<ActionEvent> onStaffAddressBookMenuClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                tryStageStart(new StaffAddressBookView());
-            }
-        };
-    }
-
     private void tryStageStart(Application window) {
         try {
             window.start(new Stage());
@@ -404,7 +391,6 @@ public class MainView extends Application {
             e.printStackTrace();
         }
     }
-
 
     static { // use system proxy settings when standalone application
         System.setProperty("java.net.useSystemProxies", "true");
