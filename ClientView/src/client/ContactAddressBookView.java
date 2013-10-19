@@ -19,14 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: Timface
- * Date: 17/08/13
- * Time: 9:30 AM
- * To change this template use File | Settings | File Templates.
- */
 public class ContactAddressBookView extends Application {
 
 
