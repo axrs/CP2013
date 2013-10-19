@@ -1,16 +1,16 @@
 package client;
 
 import Controllers.*;
-import Models.*;
-import Utilities.ILogListener;
-import Utilities.LogEventDispatcher;
-import Utilities.Loggers.FormatStrategies.DateTimeFormatStrategy;
+import Models.Appointment;
+import Models.Availability;
+import Models.ScheduledAppointment;
+import Models.ServiceProvider;
 import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
-import Utilities.Loggers.ILogger;
 import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
-import Utilities.Recorders.DatedFileStreamRecorder;
-import Utilities.Recorders.SingletonCompositeRecorder;
+import client.controllers.*;
+import client.controllers.recievers.ActionEventStrategy;
+import client.controllers.utilities.HookLoggerCommand;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -26,9 +26,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+<<<<<<< HEAD
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+=======
+>>>>>>> 6945ff23641f6682ad28df3ac18e5bd225a3089b
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -54,24 +57,6 @@ public class MainView extends Application {
         launch(args);
     }
 
-    private void hookLogger() {
-        SingletonCompositeRecorder scr = SingletonCompositeRecorder.getInstance();
-        scr.add(new DatedFileStreamRecorder("./logs"));
-        final StrategyLogger logger = new StrategyLogger(scr, new DateTimeFormatStrategy());
-
-        LogEventDispatcher.addListener(registerListener(timeStampedLogger));
-        LogEventDispatcher.addListener(registerListener(logger));
-    }
-
-    private ILogListener registerListener(final ILogger logger) {
-        return new ILogListener() {
-            @Override
-            public void onLog(String message) {
-                logger.log(message);
-            }
-        };
-    }
-
     private void buildFileMenu() {
         Menu fileMenu = new Menu("File");
         MenuItem aboutMenuItem = new MenuItem("About");
@@ -79,8 +64,8 @@ public class MainView extends Application {
         fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), exitMenuItem);
         menuBar.getMenus().add(fileMenu);
 
-        exitMenuItem.setOnAction(onMenuQuitClick());
-        aboutMenuItem.setOnAction(onMenuAboutClick());
+        exitMenuItem.setOnAction(new ActionEventStrategy(new ApplicationExitCommand()));
+        aboutMenuItem.setOnAction(new ActionEventStrategy(new ShowAboutWindowCommand()));
     }
 
     private void buildContactMenu() {
@@ -90,8 +75,8 @@ public class MainView extends Application {
         contactMenu.getItems().addAll(contactAddressBookMenuItem, new SeparatorMenuItem(), newContactMenuItem);
         menuBar.getMenus().add(contactMenu);
 
-        contactAddressBookMenuItem.setOnAction(onContactAddressBookMenuClick());
-        newContactMenuItem.setOnAction(onNewContactMenuClick());
+        contactAddressBookMenuItem.setOnAction(new ActionEventStrategy(new NewContactAddressBookCommand()));
+        newContactMenuItem.setOnAction(new ActionEventStrategy(new NewContactWindowCommand()));
     }
 
     private void buildStaffMenu() {
@@ -101,13 +86,13 @@ public class MainView extends Application {
         staffMenu.getItems().addAll(staffAddressBookMenuItem, new SeparatorMenuItem(), newStaffMemberMenuItem);
         menuBar.getMenus().add(staffMenu);
 
-        staffAddressBookMenuItem.setOnAction(onStaffAddressBookMenuClick());
+        staffAddressBookMenuItem.setOnAction(ActionEventStrategy.create(new ShowStaffAddressBookWindowCommand()));
         newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
     }
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        hookLogger();
+        new HookLoggerCommand().execute();
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();
@@ -408,15 +393,6 @@ public class MainView extends Application {
         };
     }
 
-    private EventHandler<ActionEvent> onStaffAddressBookMenuClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                tryStageStart(new StaffAddressBookView());
-            }
-        };
-    }
-
     private void tryStageStart(Application window) {
         try {
             window.start(new Stage());
@@ -425,6 +401,7 @@ public class MainView extends Application {
         }
     }
 
+<<<<<<< HEAD
     private EventHandler<ActionEvent> onNewContactMenuClick() {
         return new EventHandler<ActionEvent>() {
             @Override
@@ -478,17 +455,9 @@ public class MainView extends Application {
         };
     }
 
+=======
+>>>>>>> 6945ff23641f6682ad28df3ac18e5bd225a3089b
     static { // use system proxy settings when standalone application
         System.setProperty("java.net.useSystemProxies", "true");
-    }
-
-    private EventHandler<ActionEvent> onMenuQuitClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Platform.exit();
-                System.exit(0);
-            }
-        };
     }
 }
