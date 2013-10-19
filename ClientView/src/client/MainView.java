@@ -10,6 +10,7 @@ import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
 import client.controllers.*;
 import client.controllers.recievers.ActionEventStrategy;
+import client.controllers.recievers.WindowEventStrategy;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
 import javafx.application.Application;
@@ -24,7 +25,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
@@ -174,15 +174,7 @@ public class MainView extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }
-        });
+        primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
     }
 
