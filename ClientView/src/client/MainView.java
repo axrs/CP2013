@@ -20,6 +20,7 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -33,6 +34,7 @@ import jfxtras.labs.scene.control.Agenda;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class MainView extends Application {
@@ -175,13 +177,14 @@ public class MainView extends Application {
         BorderPane centrePane = new BorderPane();
         BorderPane topCentrePane = new BorderPane();
 
-        Button previousWeek = new Button("<< Previous Week");
-        Button nextWeek = new Button("Next Week >>");
-        previousWeek.setOnAction(changeTime(0));
-        nextWeek.setOnAction(changeTime(1));
+        Button previousWeek = new Button("« Previous");
+        Button nextWeek = new Button("Next »");
+        previousWeek.setOnAction(offsetAgendaView(-7));
+        nextWeek.setOnAction(offsetAgendaView(7));
 
         topCentrePane.setLeft(previousWeek);
         topCentrePane.setRight(nextWeek);
+        topCentrePane.setPadding(new Insets(5));
 
         centrePane.setTop(topCentrePane);
         centrePane.setCenter(agendaView);
@@ -193,17 +196,17 @@ public class MainView extends Application {
         primaryStage.show();
     }
 
-    private EventHandler<ActionEvent> changeTime(final int i) {
+    private EventHandler<ActionEvent> offsetAgendaView(final int days) {
         EventHandler timeChanger = new EventHandler() {
             @Override
             public void handle(Event event) {
-                if (i == 0) {
-                    //GO BACK
-                    System.out.println("Going back");
-                } else if (i == 1) {
-                    //GO FORWARD
-                    System.out.println("Back to the future");
-                }
+                Calendar displayedCalendar = agendaView.getDisplayedCalendar();
+                Date currentCalendarTime = displayedCalendar.getTime();
+                currentCalendarTime.setTime(currentCalendarTime.getTime() + (days * 24 * 60 * 60 * 1000));
+
+                displayedCalendar.setTime(currentCalendarTime);
+                agendaView.setDisplayedCalendar(displayedCalendar);
+                agendaView.refresh();
             }
         };
         return timeChanger;

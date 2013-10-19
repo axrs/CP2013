@@ -1,6 +1,7 @@
 package Models;
 
 import Interfaces.Command;
+import Utilities.LogEventDispatcher;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public abstract class RESTCommand implements Command {
             _connection.setRequestProperty("Accept", "application/json");         //must be json
 
             writeData(_connection);
-            CompositeLogger.getInstance().log("Connected...?");
+            LogEventDispatcher.log("Connected...?");
 
             response = new RESTResponse(_connection.getResponseCode(), ReadStream(_connection.getInputStream()));
 

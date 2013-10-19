@@ -1,7 +1,7 @@
 package Controllers;
 
 import Interfaces.Command;
-import Models.CompositeLogger;
+import Utilities.LogEventDispatcher;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -18,8 +18,7 @@ public class RESTService {
                         while (true)
                             if (commandQueue.size() > 0) {
                                 try {
-                                    CompositeLogger.getInstance().log("Attempting RESTService Request");
-
+                                    LogEventDispatcher.log("Attempting RESTService Request");
                                     commandQueue.take().execute();
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
