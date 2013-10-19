@@ -11,11 +11,11 @@ import Utilities.Recorders.ConsoleRecorder;
 import client.controllers.*;
 import client.controllers.recievers.ActionEventStrategy;
 import client.controllers.utilities.HookLoggerCommand;
+import client.controllers.utilities.OffsetAgendaViewCommand;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -32,7 +32,6 @@ import jfxtras.labs.scene.control.Agenda;
 
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class MainView extends Application {
@@ -159,8 +158,8 @@ public class MainView extends Application {
 
         Button previousWeek = new Button("« Previous");
         Button nextWeek = new Button("Next »");
-        previousWeek.setOnAction(offsetAgendaView(-7));
-        nextWeek.setOnAction(offsetAgendaView(7));
+        previousWeek.setOnAction(ActionEventStrategy.create(new OffsetAgendaViewCommand(agendaView, -7)));
+        nextWeek.setOnAction(ActionEventStrategy.create(new OffsetAgendaViewCommand(agendaView, 7)));
 
         topCentrePane.setLeft(previousWeek);
         topCentrePane.setRight(nextWeek);
@@ -183,22 +182,6 @@ public class MainView extends Application {
             }
         });
 
-    }
-
-    private EventHandler<ActionEvent> offsetAgendaView(final int days) {
-        EventHandler timeChanger = new EventHandler() {
-            @Override
-            public void handle(Event event) {
-                Calendar displayedCalendar = agendaView.getDisplayedCalendar();
-                Date currentCalendarTime = displayedCalendar.getTime();
-                currentCalendarTime.setTime(currentCalendarTime.getTime() + (days * 24 * 60 * 60 * 1000));
-
-                displayedCalendar.setTime(currentCalendarTime);
-                agendaView.setDisplayedCalendar(displayedCalendar);
-                agendaView.refresh();
-            }
-        };
-        return timeChanger;
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
