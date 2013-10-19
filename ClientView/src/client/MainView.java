@@ -174,6 +174,8 @@ public class MainView extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+
+
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
