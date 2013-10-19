@@ -1,10 +1,7 @@
 package client;
 
 import Controllers.*;
-import Models.Appointment;
-import Models.Availability;
-import Models.ScheduledAppointment;
-import Models.ServiceProvider;
+import Models.*;
 import Utilities.ILogListener;
 import Utilities.LogEventDispatcher;
 import Utilities.Loggers.FormatStrategies.DateTimeFormatStrategy;
@@ -23,11 +20,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -44,8 +36,6 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-
-import Models.Config;
 
 public class MainView extends Application {
 
@@ -469,9 +459,10 @@ public class MainView extends Application {
                 String html = GoogleMap.getHtml(Config.getInstance().getGeoLocation(),
                         Config.getInstance().getZoom(),
                         Config.getInstance().getTitle());
+
+                webEngine.loadContent(html);
                 System.out.println(html);
-                webEngine.load(html);
-                 borderPane.setCenter(webView);
+                borderPane.setCenter(webView);
 
                 aboutStage.setScene(new Scene(borderPane));
                 aboutStage.show();
