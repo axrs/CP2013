@@ -17,21 +17,12 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-<<<<<<< HEAD
-import javafx.scene.layout.GridPane;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-=======
->>>>>>> 6945ff23641f6682ad28df3ac18e5bd225a3089b
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -406,62 +397,6 @@ public class MainView extends Application {
         }
     }
 
-<<<<<<< HEAD
-    private EventHandler<ActionEvent> onNewContactMenuClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                tryStageStart(new ContactFormView());
-            }
-        };
-    }
-
-    private EventHandler<ActionEvent> onContactAddressBookMenuClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                tryStageStart(new ContactAddressBookView());
-            }
-        };
-    }
-
-    private EventHandler<ActionEvent> onMenuAboutClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Stage aboutStage = new Stage();
-                aboutStage.setTitle("About Peeps");
-
-                GridPane borderPane = new GridPane();
-                borderPane.setPadding(new Insets(5, 5, 5, 5));
-                borderPane.setHgap(5);
-
-                borderPane.addRow(0, new Label("Who We Are:"), new Label("Where We Be: "));
-
-                final WebView webView = new WebView();
-                final WebEngine webEngine = webView.getEngine();
-
-                String html = GoogleMap.getHtml(Config.getInstance().getGeoLocation(),
-                        Config.getInstance().getZoom(),
-                        Config.getInstance().getTitle());
-                System.out.println(html);
-                webEngine.loadContent(html);
-                webView.setMaxSize(300, 300);
-
-                Label aboutText = new Label("Shear-n-dipity does haircuts and things like that.\n" +
-                        " Get your hair cut now!\n" +
-                        "Cause our fictitious Hairdressers are the bomb!");
-                borderPane.addRow(1, aboutText, webView);
-                GridPane.setValignment(aboutText, VPos.TOP);
-
-                aboutStage.setScene(new Scene(borderPane));
-                aboutStage.show();
-            }
-        };
-    }
-
-=======
->>>>>>> 6945ff23641f6682ad28df3ac18e5bd225a3089b
     static { // use system proxy settings when standalone application
         System.setProperty("java.net.useSystemProxies", "true");
     }
