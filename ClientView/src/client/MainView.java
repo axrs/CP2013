@@ -77,7 +77,7 @@ public class MainView extends Application {
         staffMenu.getItems().addAll(staffAddressBookMenuItem, new SeparatorMenuItem(), newStaffMemberMenuItem);
         menuBar.getMenus().add(staffMenu);
 
-        staffAddressBookMenuItem.setOnAction(new ActionEventStrategy(new ShowStaffAddressBookWindowCommand()));
+        staffAddressBookMenuItem.setOnAction(ActionEventStrategy.create(new ShowStaffAddressBookWindowCommand()));
         newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
     }
 
