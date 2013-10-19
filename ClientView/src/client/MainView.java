@@ -2,15 +2,10 @@ package client;
 
 import Controllers.*;
 import Models.*;
-import Utilities.ILogListener;
-import Utilities.LogEventDispatcher;
-import Utilities.Loggers.FormatStrategies.DateTimeFormatStrategy;
 import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
-import Utilities.Loggers.ILogger;
 import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
-import Utilities.Recorders.DatedFileStreamRecorder;
-import Utilities.Recorders.SingletonCompositeRecorder;
+import client.controllers.utilities.HookLogger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -48,24 +43,7 @@ public class MainView extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
 
-    private void hookLogger() {
-        SingletonCompositeRecorder scr = SingletonCompositeRecorder.getInstance();
-        scr.add(new DatedFileStreamRecorder("./logs"));
-        final StrategyLogger logger = new StrategyLogger(scr, new DateTimeFormatStrategy());
-
-        LogEventDispatcher.addListener(registerListener(timeStampedLogger));
-        LogEventDispatcher.addListener(registerListener(logger));
-    }
-
-    private ILogListener registerListener(final ILogger logger) {
-        return new ILogListener() {
-            @Override
-            public void onLog(String message) {
-                logger.log(message);
-            }
-        };
     }
 
     private void buildFileMenu() {
@@ -103,7 +81,7 @@ public class MainView extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        hookLogger();
+        new HookLogger().execute();
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();

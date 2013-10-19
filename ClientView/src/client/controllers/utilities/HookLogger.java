@@ -1,4 +1,4 @@
-package client.controllers.untilities;
+package client.controllers.utilities;
 
 import Utilities.ILogListener;
 import Utilities.LogEventDispatcher;
@@ -11,23 +11,21 @@ import Utilities.Recorders.DatedFileStreamRecorder;
 import Utilities.Recorders.SingletonCompositeRecorder;
 import client.controllers.ICommand;
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: mindikingsun
- * Date: 19/10/13
- * Time: 2:03 PM
- * To change this template use File | Settings | File Templates.
- */
-public class HookLogger implements ICommand{
+public class HookLogger implements ICommand {
     final StrategyLogger timeStampedLogger = new StrategyLogger(new ConsoleRecorder(), new TimeFormatStrategy());
+    private String rootFolder = "./logs";
 
+    public void setRootFolder(String path) {
+        if (!path.isEmpty()) {
+            rootFolder = path;
+        }
+    }
 
     @Override
     public void execute() {
         {
             SingletonCompositeRecorder scr = SingletonCompositeRecorder.getInstance();
-            scr.add(new DatedFileStreamRecorder("./logs"));
+            scr.add(new DatedFileStreamRecorder(rootFolder));
             final StrategyLogger logger = new StrategyLogger(scr, new DateTimeFormatStrategy());
 
             LogEventDispatcher.addListener(registerListener(timeStampedLogger));
