@@ -5,6 +5,7 @@ import Models.*;
 import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
+import client.controllers.DisplayAboutView;
 import client.controllers.utilities.HookLogger;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -421,28 +422,7 @@ public class MainView extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Stage aboutStage = new Stage();
-                aboutStage.setTitle("About Peeps");
-
-                BorderPane borderPane = new BorderPane();
-                Label aboutText = new Label("Shear-n-dipity does haircuts and things like that.\n" +
-                        " Get your hair cut now!\n" +
-                        "Cause our fictitious Hairdressers are the bomb!");
-
-                borderPane.setTop(aboutText);
-
-                final WebView webView = new WebView();
-                final WebEngine webEngine = webView.getEngine();
-
-                String html = GoogleMap.getHtml(Config.getInstance().getGeoLocation(),
-                        Config.getInstance().getZoom(),
-                        Config.getInstance().getTitle());
-
-                webEngine.loadContent(html);
-                borderPane.setCenter(webView);
-
-                aboutStage.setScene(new Scene(borderPane));
-                aboutStage.show();
+                new DisplayAboutView().execute();
             }
         };
     }
