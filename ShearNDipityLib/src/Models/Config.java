@@ -62,7 +62,7 @@ public class Config {
     public int getZoom() {
         int zoom;
 
-        zoom = Integer.valueOf(properties.getProperty("GEOLOCATION_ZOOM", "18"));
+        zoom = Integer.valueOf(properties.getProperty("ZOOM", "18"));
         return zoom;
     }
 }

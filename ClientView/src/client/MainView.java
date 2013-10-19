@@ -17,12 +17,16 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -446,12 +450,11 @@ public class MainView extends Application {
                 Stage aboutStage = new Stage();
                 aboutStage.setTitle("About Peeps");
 
-                BorderPane borderPane = new BorderPane();
-                Label aboutText = new Label("Shear-n-dipity does haircuts and things like that.\n" +
-                        " Get your hair cut now!\n" +
-                        "Cause our fictitious Hairdressers are the bomb!");
+                GridPane borderPane = new GridPane();
+                borderPane.setPadding(new Insets(5, 5, 5, 5));
+                borderPane.setHgap(5);
 
-                borderPane.setTop(aboutText);
+                borderPane.addRow(0, new Label("Who We Are:"), new Label("Where We Be: "));
 
                 final WebView webView = new WebView();
                 final WebEngine webEngine = webView.getEngine();
@@ -459,9 +462,15 @@ public class MainView extends Application {
                 String html = GoogleMap.getHtml(Config.getInstance().getGeoLocation(),
                         Config.getInstance().getZoom(),
                         Config.getInstance().getTitle());
-
+                System.out.println(html);
                 webEngine.loadContent(html);
-                borderPane.setCenter(webView);
+                webView.setMaxSize(300, 300);
+
+                Label aboutText = new Label("Shear-n-dipity does haircuts and things like that.\n" +
+                        " Get your hair cut now!\n" +
+                        "Cause our fictitious Hairdressers are the bomb!");
+                borderPane.addRow(1, aboutText, webView);
+                GridPane.setValignment(aboutText, VPos.TOP);
 
                 aboutStage.setScene(new Scene(borderPane));
                 aboutStage.show();
