@@ -8,8 +8,10 @@ import Models.ServiceProvider;
 import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
-import client.controllers.recievers.ShowAboutWindowAction;
-import client.controllers.utilities.HookLogger;
+import client.controllers.ApplicationExitCommand;
+import client.controllers.ShowAboutWindowCommand;
+import client.controllers.recievers.ActionEventStrategy;
+import client.controllers.utilities.HookLoggerCommand;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -55,8 +57,8 @@ public class MainView extends Application {
         fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), exitMenuItem);
         menuBar.getMenus().add(fileMenu);
 
-        exitMenuItem.setOnAction(onMenuQuitClick());
-        aboutMenuItem.setOnAction(new ShowAboutWindowAction());
+        exitMenuItem.setOnAction(new ActionEventStrategy(new ApplicationExitCommand()));
+        aboutMenuItem.setOnAction(new ActionEventStrategy(new ShowAboutWindowCommand()));
     }
 
     private void buildContactMenu() {
@@ -83,7 +85,7 @@ public class MainView extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        new HookLogger().execute();
+        new HookLoggerCommand().execute();
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();
@@ -423,13 +425,5 @@ public class MainView extends Application {
         System.setProperty("java.net.useSystemProxies", "true");
     }
 
-    private EventHandler<ActionEvent> onMenuQuitClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Platform.exit();
-                System.exit(0);
-            }
-        };
-    }
+
 }

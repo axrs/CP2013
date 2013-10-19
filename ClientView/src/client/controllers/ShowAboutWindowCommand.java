@@ -9,7 +9,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-public class ShowAboutWindow implements ICommand {
+public class ShowAboutWindowCommand implements ICommand {
     private String title = "About Us";
     private String description =
             "Shear-N-Dipity does haircuts and things like that.\n" +

@@ -11,7 +11,7 @@ import Utilities.Recorders.DatedFileStreamRecorder;
 import Utilities.Recorders.SingletonCompositeRecorder;
 import client.controllers.ICommand;
 
-public class HookLogger implements ICommand {
+public class HookLoggerCommand implements ICommand {
     final StrategyLogger timeStampedLogger = new StrategyLogger(new ConsoleRecorder(), new TimeFormatStrategy());
     private String rootFolder = "./logs";
 
