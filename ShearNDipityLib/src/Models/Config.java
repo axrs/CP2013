@@ -46,7 +46,23 @@ public class Config {
         return config;
     }
 
+    public String getGeoLocation() {
+
+        return properties.getProperty("GEOLOCATION", "-19.245539, 146.79585");
+    }
+
     public String getServer() {
         return properties.getProperty("SERVER", "http://shear-n-dipity.com");
+    }
+
+    public String getTitle() {
+        return properties.getProperty("TITLE", "Shear-N-Dipity");
+    }
+
+    public int getZoom() {
+        int zoom;
+
+        zoom = Integer.valueOf(properties.getProperty("GEOLOCATION_ZOOM", "18"));
+        return zoom;
     }
 }

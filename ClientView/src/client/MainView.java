@@ -23,9 +23,16 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import jfxtras.labs.dialogs.MonologFX;
@@ -36,6 +43,8 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
+import Models.Config;
 
 public class MainView extends Application {
 
@@ -442,12 +451,26 @@ public class MainView extends Application {
                         " Get your hair cut now!\n" +
                         "Cause our fictitious Hairdressers are the bomb!");
 
-                borderPane.setCenter(aboutText);
+                borderPane.setTop(aboutText);
+
+                final WebView webView = new WebView();
+                final WebEngine webEngine = webView.getEngine();
+
+                String html = GoogleMap.getHtml(Config.getInstance().getGeoLocation(),
+                        Config.getInstance().getZoom(),
+                        Config.getInstance().getTitle());
+                System.out.println(html);
+                webEngine.load(html);
+                 borderPane.setCenter(webView);
 
                 aboutStage.setScene(new Scene(borderPane));
                 aboutStage.show();
             }
         };
+    }
+
+    static { // use system proxy settings when standalone application
+        System.setProperty("java.net.useSystemProxies", "true");
     }
 
     private EventHandler<ActionEvent> onMenuQuitClick() {
