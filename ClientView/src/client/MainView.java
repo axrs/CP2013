@@ -1,21 +1,21 @@
 package client;
 
-import Controllers.*;
+import Controllers.AppointmentController;
+import Controllers.AppointmentTypeController;
+import Controllers.ContactsController;
+import Controllers.ServiceProvidersController;
 import Models.Appointment;
 import Models.Availability;
 import Models.ScheduledAppointment;
 import Models.ServiceProvider;
-import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
-import Utilities.Loggers.StrategyLogger;
-import Utilities.Recorders.ConsoleRecorder;
 import client.controllers.*;
 import client.controllers.recievers.ActionEventStrategy;
+import client.controllers.recievers.WindowEventStrategy;
 import client.controllers.utilities.HookLoggerCommand;
+import client.controllers.utilities.OffsetAgendaViewCommand;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -24,7 +24,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
@@ -32,12 +31,10 @@ import jfxtras.labs.scene.control.Agenda;
 
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class MainView extends Application {
 
-    final StrategyLogger timeStampedLogger = new StrategyLogger(new ConsoleRecorder(), new TimeFormatStrategy());
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
     private final Mutex dataMutex = new Mutex();
@@ -78,7 +75,7 @@ public class MainView extends Application {
         menuBar.getMenus().add(staffMenu);
 
         staffAddressBookMenuItem.setOnAction(ActionEventStrategy.create(new ShowStaffAddressBookWindowCommand()));
-        newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
+        newStaffMemberMenuItem.setOnAction(ActionEventStrategy.create(new NewServiceProviderFormCommand()));
     }
 
     @Override
@@ -159,8 +156,8 @@ public class MainView extends Application {
 
         Button previousWeek = new Button("« Previous");
         Button nextWeek = new Button("Next »");
-        previousWeek.setOnAction(offsetAgendaView(-7));
-        nextWeek.setOnAction(offsetAgendaView(7));
+        previousWeek.setOnAction(ActionEventStrategy.create(new OffsetAgendaViewCommand(agendaView, -7)));
+        nextWeek.setOnAction(ActionEventStrategy.create(new OffsetAgendaViewCommand(agendaView, 7)));
 
         topCentrePane.setLeft(previousWeek);
         topCentrePane.setRight(nextWeek);
@@ -175,30 +172,8 @@ public class MainView extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }
-        });
+        primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
-    }
-
-    private EventHandler<ActionEvent> offsetAgendaView(final int days) {
-        EventHandler timeChanger = new EventHandler() {
-            @Override
-            public void handle(Event event) {
-                Calendar displayedCalendar = agendaView.getDisplayedCalendar();
-                Date currentCalendarTime = displayedCalendar.getTime();
-                currentCalendarTime.setTime(currentCalendarTime.getTime() + (days * 24 * 60 * 60 * 1000));
-
-                displayedCalendar.setTime(currentCalendarTime);
-                agendaView.setDisplayedCalendar(displayedCalendar);
-                agendaView.refresh();
-            }
-        };
-        return timeChanger;
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
@@ -369,17 +344,6 @@ public class MainView extends Application {
 
                     }
                 });
-            }
-        };
-    }
-
-    private EventHandler<ActionEvent> onNewStaffMenuClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
-                ServiceProviderController controller = new ServiceProviderController(serviceProviderFormUI, new ServiceProvider());
-                tryStageStart(serviceProviderFormUI);
             }
         };
     }
