@@ -29,7 +29,7 @@ public class GoogleMap {
                 "            var myOptions = {\n" +
                 "                zoom: " + String.valueOf(zoom) + ",\n" +
                 "                center: myLatlng,\n" +
-                "                mapTypeId: google.maps.MapTypeId.SATELLITE\n" +
+                "                mapTypeId: google.maps.MapTypeId.HYBRID\n" +
                 "            }\n" +
                 "            maps = new google.maps.Map(document.getElementById('map_canvas'), myOptions);\n" +
                 "            addMarker(myLatlng, maps);\n" +

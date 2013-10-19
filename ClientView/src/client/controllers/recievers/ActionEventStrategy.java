@@ -12,6 +12,10 @@ public class ActionEventStrategy implements EventHandler<ActionEvent> {
         this.command = command;
     }
 
+    public static ActionEventStrategy create(ICommand command) {
+        return new ActionEventStrategy(command);
+    }
+
     @Override
     public void handle(ActionEvent actionEvent) {
         command.execute();
