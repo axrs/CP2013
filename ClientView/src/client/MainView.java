@@ -9,6 +9,7 @@ import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
 import client.controllers.ApplicationExitCommand;
+import client.controllers.NewContactAddressBookCommand;
 import client.controllers.NewContactWindowCommand;
 import client.controllers.ShowAboutWindowCommand;
 import client.controllers.recievers.ActionEventStrategy;
@@ -69,7 +70,7 @@ public class MainView extends Application {
         contactMenu.getItems().addAll(contactAddressBookMenuItem, new SeparatorMenuItem(), newContactMenuItem);
         menuBar.getMenus().add(contactMenu);
 
-        contactAddressBookMenuItem.setOnAction(onContactAddressBookMenuClick());
+        contactAddressBookMenuItem.setOnAction(new ActionEventStrategy(new NewContactAddressBookCommand()));
         newContactMenuItem.setOnAction(new ActionEventStrategy(new NewContactWindowCommand()));
     }
 
@@ -404,14 +405,6 @@ public class MainView extends Application {
         }
     }
 
-    private EventHandler<ActionEvent> onContactAddressBookMenuClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                tryStageStart(new ContactAddressBookView());
-            }
-        };
-    }
 
     static { // use system proxy settings when standalone application
         System.setProperty("java.net.useSystemProxies", "true");
