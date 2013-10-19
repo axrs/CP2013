@@ -82,7 +82,7 @@ public class MainView extends Application {
         menuBar.getMenus().add(staffMenu);
 
         staffAddressBookMenuItem.setOnAction(onStaffAddressBookMenuClick());
-        newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
+        newStaffMemberMenuItem.setOnAction(new ActionEventStrategy(new NewContactAddressBookCommand()));
     }
 
     @Override
