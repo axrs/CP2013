@@ -44,7 +44,6 @@ public class ShowAboutWindowCommand implements ICommand {
         borderPane.setHgap(5);
 
         borderPane.addRow(0, new Label("Who We Are:"), new Label("Where We Be: "));
-        borderPane.setStyle("-fx-background-color: #FFEFCC;");
 
         final WebView webView = new WebView();
         final WebEngine webEngine = webView.getEngine();
