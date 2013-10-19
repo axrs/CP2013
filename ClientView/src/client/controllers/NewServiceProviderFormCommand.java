@@ -5,7 +5,7 @@ import client.controllers.ICommand;
 import client.controllers.NewStage;
 
 
-public class NewServiceProvideFormCommand extends NewStage implements ICommand {
+public class NewServiceProviderFormCommand extends NewStage implements ICommand {
     @Override
     public void execute() {
 

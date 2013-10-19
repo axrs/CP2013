@@ -1,13 +1,13 @@
 package client;
 
-import Controllers.*;
+import Controllers.AppointmentController;
+import Controllers.AppointmentTypeController;
+import Controllers.ContactsController;
+import Controllers.ServiceProvidersController;
 import Models.Appointment;
 import Models.Availability;
 import Models.ScheduledAppointment;
 import Models.ServiceProvider;
-import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
-import Utilities.Loggers.StrategyLogger;
-import Utilities.Recorders.ConsoleRecorder;
 import client.controllers.*;
 import client.controllers.recievers.ActionEventStrategy;
 import client.controllers.recievers.WindowEventStrategy;
@@ -16,7 +16,6 @@ import client.controllers.utilities.OffsetAgendaViewCommand;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -36,7 +35,6 @@ import java.util.HashMap;
 
 public class MainView extends Application {
 
-    final StrategyLogger timeStampedLogger = new StrategyLogger(new ConsoleRecorder(), new TimeFormatStrategy());
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
     private final Mutex dataMutex = new Mutex();
@@ -77,7 +75,7 @@ public class MainView extends Application {
         menuBar.getMenus().add(staffMenu);
 
         staffAddressBookMenuItem.setOnAction(ActionEventStrategy.create(new ShowStaffAddressBookWindowCommand()));
-        newStaffMemberMenuItem.setOnAction(onNewStaffMenuClick());
+        newStaffMemberMenuItem.setOnAction(ActionEventStrategy.create(new NewServiceProviderFormCommand()));
     }
 
     @Override
@@ -346,17 +344,6 @@ public class MainView extends Application {
 
                     }
                 });
-            }
-        };
-    }
-
-    private EventHandler<ActionEvent> onNewStaffMenuClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
-                ServiceProviderController controller = new ServiceProviderController(serviceProviderFormUI, new ServiceProvider());
-                tryStageStart(serviceProviderFormUI);
             }
         };
     }
