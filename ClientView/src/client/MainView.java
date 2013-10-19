@@ -461,7 +461,6 @@ public class MainView extends Application {
                         Config.getInstance().getTitle());
 
                 webEngine.loadContent(html);
-                System.out.println(html);
                 borderPane.setCenter(webView);
 
                 aboutStage.setScene(new Scene(borderPane));
