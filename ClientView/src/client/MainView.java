@@ -1,11 +1,14 @@
 package client;
 
 import Controllers.*;
-import Models.*;
+import Models.Appointment;
+import Models.Availability;
+import Models.ScheduledAppointment;
+import Models.ServiceProvider;
 import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
 import Utilities.Loggers.StrategyLogger;
 import Utilities.Recorders.ConsoleRecorder;
-import client.controllers.DisplayAboutView;
+import client.controllers.recievers.ShowAboutWindowAction;
 import client.controllers.utilities.HookLogger;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -19,8 +22,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
@@ -55,7 +56,7 @@ public class MainView extends Application {
         menuBar.getMenus().add(fileMenu);
 
         exitMenuItem.setOnAction(onMenuQuitClick());
-        aboutMenuItem.setOnAction(onMenuAboutClick());
+        aboutMenuItem.setOnAction(new ShowAboutWindowAction());
     }
 
     private void buildContactMenu() {
@@ -414,15 +415,6 @@ public class MainView extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 tryStageStart(new ContactAddressBookView());
-            }
-        };
-    }
-
-    private EventHandler<ActionEvent> onMenuAboutClick() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new DisplayAboutView().execute();
             }
         };
     }
