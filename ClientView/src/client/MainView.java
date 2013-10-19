@@ -34,6 +34,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
@@ -203,6 +204,15 @@ public class MainView extends Application {
         Scene scene = new Scene(mainPane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+
     }
 
     private EventHandler<ActionEvent> offsetAgendaView(final int days) {
@@ -478,6 +488,7 @@ public class MainView extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Platform.exit();
+                System.exit(0);
             }
         };
     }
