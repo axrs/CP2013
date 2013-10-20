@@ -13,6 +13,7 @@ import client.controllers.recievers.ActionEventStrategy;
 import client.controllers.recievers.WindowEventStrategy;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
+import client.scene.CoreScene;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -169,13 +170,11 @@ public class MainView extends Application {
 
         mainPane.setCenter(centrePane);
 
-        Scene scene = new Scene(mainPane, 800, 600);
+        Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
 
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
-        new ShowAboutWindowCommand().execute();
-
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
