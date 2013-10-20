@@ -9,30 +9,26 @@ import Models.Availability;
 import Models.ScheduledAppointment;
 import Models.ServiceProvider;
 import client.controllers.*;
-import client.controllers.recievers.ActionEventStrategy;
-import client.controllers.recievers.WindowEventStrategy;
+import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.adapters.WindowEventStrategy;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
 import client.scene.CoreScene;
+import client.scene.control.Agenda;
 import client.scene.control.ReadOnlyAppointmentImpl;
 import client.scene.control.SloganLabel;
-import client.stages.appointments.AppointmentFormView;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.ListChangeListener;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import jfxtras.labs.dialogs.MonologFX;
-import jfxtras.labs.dialogs.MonologFXButton;
-import jfxtras.labs.scene.control.Agenda;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,8 +40,6 @@ public class MainView extends Application {
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
     private final Mutex dataMutex = new Mutex();
-    int appointmentLastClicked = 0;
-    private Boolean isViewingAvailabilities = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -92,7 +86,6 @@ public class MainView extends Application {
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();
         ServiceProvidersController.getInstance().addUpdatedListener(onServiceProviderUpdated());
-        agendaView.setCalendarRangeCallback(onAgendaRangeCallback());
         AppointmentController.getInstance().addUpdatedListener(onAppointmentsUpdated());
         AppointmentController.getInstance().addUpdatedListener(onAvailabilitiesUpdated());
 
@@ -100,59 +93,6 @@ public class MainView extends Application {
         BorderPane mainPane = new BorderPane();
         mainPane.setTop(menuBar);
 
-        agendaView.selectedAppointments().addListener(new ListChangeListener<Agenda.Appointment>() {
-            @Override
-            public void onChanged(Change<? extends Agenda.Appointment> change) {
-                if (agendaView.selectedAppointments().size() > 1) {
-                    Agenda.Appointment single = agendaView.selectedAppointments().get(agendaView.selectedAppointments().size() - 1);
-                    agendaView.selectedAppointments().clear();
-                    agendaView.selectedAppointments().add(single);
-                }
-
-                if (agendaView.selectedAppointments().size() == 1) {
-                    Agenda.Appointment app = agendaView.selectedAppointments().get(0);
-                    if (appointmentLastClicked == app.hashCode()) {
-
-                        if (app instanceof ReadOnlyAppointmentImpl) {
-                            if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
-                                Appointment newApp = new Appointment();
-                                newApp.setAppDate(app.getStartTime().getTime());
-                                newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
-                                newApp.setAppTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
-                                new AppointmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()).show();
-                            }
-                        }
-                        appointmentLastClicked = 0;
-                    } else {
-                        appointmentLastClicked = app.hashCode();
-                    }
-                }
-            }
-        });
-
-        agendaView.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.BACK_SPACE || keyEvent.getCode() == KeyCode.DELETE) {
-                    if (agendaView.selectedAppointments().size() == 1) {
-                        Agenda.Appointment app = agendaView.selectedAppointments().get(0);
-
-                        if (app instanceof ReadOnlyAppointmentImpl && ((ReadOnlyAppointmentImpl) app).getAppId() != null) {
-                            MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
-                            dialog.setMessage("Are you sure you wish to cancel this appointment");
-                            dialog.setTitleText("Confirm Cancellation");
-                            dialog.setModal(true);
-                            MonologFXButton.Type type = dialog.showDialog();
-                            if (type == MonologFXButton.Type.YES) {
-                                agendaView.appointments().remove(app);
-                                AppointmentController.getInstance().deleteAppointment(((ReadOnlyAppointmentImpl) app).getAppId());
-                            }
-                        }
-
-                    }
-                }
-            }
-        });
 
         buildFileMenu();
         buildContactMenu();
@@ -191,7 +131,6 @@ public class MainView extends Application {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-
 
                         Iterator<Agenda.Appointment> iterator = agendaView.appointments().iterator();
                         ArrayList<Agenda.Appointment> removeList = new ArrayList();
@@ -296,27 +235,6 @@ public class MainView extends Application {
         };
     }
 
-    private Callback<Agenda.CalendarRange, Void> onAgendaRangeCallback() {
-        return new Callback<Agenda.CalendarRange, Void>() {
-            @Override
-            public Void call(Agenda.CalendarRange calendarRange) {
-
-                if (isViewingAvailabilities) {
-                    AppointmentController.getInstance().getAvailabilitiesFromServer(
-                            calendarRange.getStartCalendar().getTime(),
-                            calendarRange.getEndCalendar().getTime());
-
-                } else {
-                    AppointmentController.getInstance().getAppointmentsFromServer(
-                            calendarRange.getStartCalendar().getTime(),
-                            calendarRange.getEndCalendar().getTime()
-                    );
-                }
-                return null;
-            }
-        };
-    }
-
     private ServiceProvidersController.ServiceProvidersUpdatedListener onServiceProviderUpdated() {
         return new ServiceProvidersController.ServiceProvidersUpdatedListener() {
             @Override
@@ -324,23 +242,46 @@ public class MainView extends Application {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            dataMutex.acquire();
-                            agendaView.appointmentGroups().clear();
-                            int i = 0;
-                            HashMap<Integer, ServiceProvider> map = ServiceProvidersController.getInstance().getServiceProviders();
-                            for (int id : map.keySet()) {
-                                ServiceProvider sp = map.get(id);
-                                Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));
-                                grp.setDescription(sp.getContFirstName() + " " + sp.getContSurname());
-                                agendaView.appointmentGroups().add(grp);
-                                i++;
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } finally {
-                            dataMutex.release();
+                        agendaView.appointmentGroups().clear();
+                        int i = 0;
+                        ArrayList<Agenda.AppointmentGroup> addList = new ArrayList();
+
+
+                        ArrayList<String> styles = new ArrayList();
+
+
+                        HashMap<Integer, ServiceProvider> map = ServiceProvidersController.getInstance().getServiceProviders();
+                        for (int id : map.keySet()) {
+                            ServiceProvider sp = map.get(id);
+                            Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));
+                            grp.setDescription(sp.getContFirstName() + " " + sp.getContSurname());
+
+                            styles.add(
+                                    String.format(".%s {-fx-background-color: %s; } ",
+                                            grp.getStyleClass(),
+                                            sp.getServColor())
+                            );
+
+                            addList.add(grp);
+                            i++;
                         }
+                        try {
+                            File file = new File("./src/styles/agenda.css");
+                            file.getParentFile().mkdirs();
+
+                            PrintWriter writer = new PrintWriter(file, "UTF-8");
+                            for (String s : styles) {
+                                writer.println(s);
+                            }
+                            writer.close();
+
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        agendaView.appointmentGroups().addAll(addList);
+                        agendaView.getStylesheets().add("./styles/agenda.css");
 
                     }
                 });

@@ -1,4 +1,4 @@
-package client.controllers.recievers;
+package client.controllers.adapters;
 
 import client.controllers.ICommand;
 import javafx.event.EventHandler;

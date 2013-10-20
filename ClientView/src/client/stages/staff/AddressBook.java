@@ -5,7 +5,7 @@ import Models.Contact;
 import Models.ServiceProvider;
 import client.controllers.CloseStageCommand;
 import client.controllers.EditStaffWindowCommand;
-import client.controllers.recievers.ActionEventStrategy;
+import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import client.scene.control.SloganLabel;
