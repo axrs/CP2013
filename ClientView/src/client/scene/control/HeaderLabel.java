@@ -1,24 +1,19 @@
 package client.scene.control;
 
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 
-public class HeaderLabel extends Label {
+public class HeaderLabel extends ClassLabel {
     public HeaderLabel() {
-        setClass();
+        setClass("label-header");
     }
 
     public HeaderLabel(String s) {
         super(s);
-        setClass();
+        setClass("label-header");
     }
 
     public HeaderLabel(String s, Node node) {
         super(s, node);
-        setClass();
-    }
-
-    private void setClass() {
-        this.getStyleClass().add("label-header");
+        setClass("label-header");
     }
 }

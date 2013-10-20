@@ -1,22 +1,21 @@
 package client;
 
 import Interfaces.ContactView;
+import client.scene.CoreScene;
+import client.scene.control.FieldLabel;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
@@ -48,11 +47,10 @@ public class ContactFormView extends Application implements ContactView {
 
         primaryStage.setTitle("CP2013 Appointment Scheduler - New Contact");
         BorderPane border = new BorderPane();
-
         border.setCenter(setupFormInputs());
         border.setBottom(setupActionButtons());
 
-        Scene scene = new Scene(border);
+        Scene scene = new CoreScene(border);
         primaryStage.setOnCloseRequest(onClose());
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
@@ -61,15 +59,9 @@ public class ContactFormView extends Application implements ContactView {
 
     public HBox setupActionButtons() {
         HBox hbox = new HBox();
-        hbox.setPadding(new Insets(15, 12, 15, 12));
-        hbox.setSpacing(10);
-        hbox.setStyle("-fx-background-color: #dedede;");
+        hbox.getStyleClass().add("button_box");
         hbox.setAlignment(Pos.BASELINE_RIGHT);
-
-        submitButton.setPrefSize(80, 20);
-        closeButton.setPrefSize(80, 20);
         hbox.getChildren().addAll(submitButton, closeButton);
-
         return hbox;
     }
 
@@ -77,44 +69,41 @@ public class ContactFormView extends Application implements ContactView {
         GridPane grid = new GridPane();
 
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(10));
+        grid.getStyleClass().add("grid");
 
-        grid.addRow(0, new Label("First Name:"), forenameInput);
+        grid.addRow(0, new FieldLabel("First Name:"), forenameInput);
 
-        grid.addRow(1, new Label("Last Name:"), surnameInput);
+        grid.addRow(1, new FieldLabel("Last Name:"), surnameInput);
 
         grid.addRow(2, new Separator(), new Separator());
 
-        grid.addRow(3, new Label("Company:"), companyInput);
+        grid.addRow(3, new FieldLabel("Company:"), companyInput);
 
-        grid.addRow(4, new Label("Phone:"), phoneInput);
+        grid.addRow(4, new FieldLabel("Phone:"), phoneInput);
 
-        grid.addRow(5, new Label("Email:"), emailInput);
+        grid.addRow(5, new FieldLabel("Email:"), emailInput);
 
         grid.addRow(6, new Separator(), new Separator());
 
-        grid.addRow(7, new Label("Street:"), addrStreetInput);
+        grid.addRow(7, new FieldLabel("Street:"), addrStreetInput);
 
-        grid.addRow(8, new Label("Suburb:"), addrSuburbInput);
+        grid.addRow(8, new FieldLabel("Suburb:"), addrSuburbInput);
 
-        grid.addRow(9, new Label("City:"), addrCityInput);
+        grid.addRow(9, new FieldLabel("City:"), addrCityInput);
 
-        grid.addRow(10, new Label("Post Code:"), addrZipInput);
+        grid.addRow(10, new FieldLabel("Post Code:"), addrZipInput);
 
-        grid.addRow(11, new Label("State:"), addrStateInput);
+        grid.addRow(11, new FieldLabel("State:"), addrStateInput);
 
 
         for (Node n : grid.getChildren()) {
             if (n instanceof TextField) {
                 ((TextField) n).setPrefWidth(200);
                 ((TextField) n).setPrefHeight(20);
-            } else if (n instanceof Label) {
-                ((Label) n).setPrefWidth(75);
-                ((Label) n).setMinWidth(75);
-                ((Label) n).setTextAlignment(TextAlignment.RIGHT);
-                ((Label) n).setAlignment(Pos.BASELINE_RIGHT);
+            }
+            if (n instanceof FieldLabel) {
+                ((FieldLabel) n).setPrefWidth(80);
+                ((FieldLabel) n).setPrefHeight(20);
             }
         }
 

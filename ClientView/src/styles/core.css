@@ -5,10 +5,10 @@
 
 }
 
+
+
 .button {
     -fx-padding: 4 10;
-
-    -fx-min-width: 100pt;
     -fx-font-weight: bold;
     -fx-border-radius: 4;
     -fx-border-width: 1px;
@@ -32,7 +32,7 @@
     -fx-background-color: #838383;
 }
 
-.label, .label-header, .label-slogan {
+.label, .label-header, .label-slogan, .label-field {
     -fx-text-fill: #454545;
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
@@ -51,12 +51,23 @@
     -fx-border-style: hidden hidden dashed hidden;
 }
 
-.grid {
+.label-field {
+    -fx-text-alignment: right;
+    -fx-alignment: center-right;
+    -fx-font-weight: bold;
+    -fx-min-width: 100;
+    -fx-pref-width: 100;
+}
+
+.grid, .button_box {
     -fx-padding: 10;
     -fx-hgap: 10;
     -fx-vgap: 10;
+    -fx-spacing: 10;
 }
-
+.button_box {
+    -fx-background-color: #dedede;
+}
 /*
 .root {
 }

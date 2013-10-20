@@ -8,6 +8,7 @@ import Models.Appointment;
 import Models.AppointmentType;
 import Models.Contact;
 import Models.ServiceProvider;
+import client.scene.CoreScene;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -156,7 +157,7 @@ public class AppointmentFormView extends Application {
         mainPane.add(timeSelection, 1, 4);
 
         mainPane.add(submit, 0, 5);
-        Scene scene = new Scene(mainPane, 300, 200);
+        Scene scene = new CoreScene(mainPane, 300, 200);
         stage.setScene(scene);
         stage.show();
 

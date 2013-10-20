@@ -14,6 +14,7 @@ import client.controllers.recievers.WindowEventStrategy;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
 import client.scene.CoreScene;
+import client.scene.control.SloganLabel;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -162,6 +163,7 @@ public class MainView extends Application {
         nextWeek.setOnAction(ActionEventStrategy.create(new OffsetAgendaViewCommand(agendaView, 7)));
 
         topCentrePane.setLeft(previousWeek);
+        topCentrePane.setCenter(new SloganLabel("Appointments"));
         topCentrePane.setRight(nextWeek);
         topCentrePane.setPadding(new Insets(5));
 

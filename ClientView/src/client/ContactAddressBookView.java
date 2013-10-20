@@ -3,11 +3,14 @@ package client;
 import Controllers.ContactController;
 import Controllers.ContactsController;
 import Models.Contact;
+import client.scene.CoreScene;
+import client.scene.control.SloganLabel;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -56,8 +59,7 @@ public class ContactAddressBookView extends Application {
         primaryStage.setTitle("CP2013 Appointment Scheduler - Contacts");
         BorderPane contactPane = new BorderPane();
 
-        final Label label = new Label("Address Book");
-        label.setFont(new Font("Arial", 20));
+        final Label label = new SloganLabel("Address Book");
 
         initialiseTableColumns();
         table.setItems(data);
@@ -68,11 +70,11 @@ public class ContactAddressBookView extends Application {
         table.setOnMouseClicked(onTableRowDoubleClick());
 
         final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 10, 10, 10));
+        vbox.getStyleClass().add("grid");
         vbox.getChildren().addAll(label, table);
+        vbox.setAlignment(Pos.CENTER);
         contactPane.setCenter(vbox);
-        Scene scene = new Scene(contactPane, 300, 250);
+        Scene scene = new CoreScene(contactPane, 300, 250);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
