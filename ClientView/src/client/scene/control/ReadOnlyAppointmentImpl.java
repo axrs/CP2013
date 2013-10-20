@@ -22,6 +22,10 @@ public class ReadOnlyAppointmentImpl implements Agenda.Appointment {
     final private ObjectProperty<Integer> appIdObjectProperty = new SimpleObjectProperty<Integer>(this, "appId");
     final private ObjectProperty<Integer> servIdObjectProperty = new SimpleObjectProperty<Integer>(this, "servId");
 
+    public ReadOnlyAppointmentImpl() {
+        setAppId(0);
+    }
+
     public Integer getAppId() {
         return appIdObjectProperty.get();
     }

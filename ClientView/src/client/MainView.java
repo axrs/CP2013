@@ -34,8 +34,10 @@ import jfxtras.labs.dialogs.MonologFXButton;
 import jfxtras.labs.scene.control.Agenda;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class MainView extends Application {
 
@@ -112,7 +114,7 @@ public class MainView extends Application {
                     if (appointmentLastClicked == app.hashCode()) {
 
                         if (app instanceof ReadOnlyAppointmentImpl) {
-                            if (((ReadOnlyAppointmentImpl) app).getAppId() == null) {
+                            if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
                                 Appointment newApp = new Appointment();
                                 newApp.setAppDate(app.getStartTime().getTime());
                                 newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
@@ -190,51 +192,46 @@ public class MainView extends Application {
                     @Override
                     public void run() {
 
-                        try {
-                            dataMutex.acquire();
-                            if (agendaView.appointments().size() > 0) {
 
-                                for (Agenda.Appointment app : agendaView.appointments()) {
-                                    if (app instanceof ReadOnlyAppointmentImpl) {
-                                        if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
-                                            agendaView.appointments().remove(app);
-                                        }
-                                    }
-                                }
-
-                            }
-
-                            if (agendaView.appointmentGroups().size() > 0) {
-                                for (Availability item : AppointmentController.getInstance().getAvailabilities()) {
-                                    Calendar cal = Calendar.getInstance();
-                                    try {
-                                        cal.setTime(item.getEndDate());
-                                        Calendar endTime = (Calendar) cal.clone();
-                                        cal.setTime(item.getStartDate());
-                                        Calendar startTime = (Calendar) cal.clone();
-
-                                        ReadOnlyAppointmentImpl a =
-                                                new ReadOnlyAppointmentImpl();
-                                        a.withStartTime(startTime);
-                                        a.withEndTime(endTime);
-                                        a.withSummary("Available");
-                                        a.withDescription("");
-                                        a.withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId() - 1));
-                                        a.setServId(item.getServId());
-                                        agendaView.appointments().add(a);
-
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-
+                        Iterator<Agenda.Appointment> iterator = agendaView.appointments().iterator();
+                        ArrayList<Agenda.Appointment> removeList = new ArrayList();
+                        while (iterator.hasNext()) {
+                            Agenda.Appointment app = iterator.next();
+                            if (app instanceof ReadOnlyAppointmentImpl) {
+                                if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
+                                    removeList.add(app);
                                 }
                             }
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        } finally {
-                            dataMutex.release();
                         }
+                        agendaView.appointments().removeAll(removeList);
+                        ArrayList<Agenda.Appointment> addList = new ArrayList();
+
+                        if (agendaView.appointmentGroups().size() > 0) {
+                            for (Availability item : AppointmentController.getInstance().getAvailabilities()) {
+                                Calendar cal = Calendar.getInstance();
+                                try {
+                                    cal.setTime(item.getEndDate());
+                                    Calendar endTime = (Calendar) cal.clone();
+                                    cal.setTime(item.getStartDate());
+                                    Calendar startTime = (Calendar) cal.clone();
+
+                                    ReadOnlyAppointmentImpl a =
+                                            new ReadOnlyAppointmentImpl();
+                                    a.withStartTime(startTime);
+                                    a.withEndTime(endTime);
+                                    a.withSummary("Available");
+                                    a.withDescription("");
+                                    a.withAppointmentGroup(agendaView.appointmentGroups().get(item.getServId() - 1));
+                                    a.setServId(item.getServId());
+                                    addList.add(a);
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                        agendaView.appointments().addAll(addList);
                     }
                 });
             }
@@ -249,52 +246,50 @@ public class MainView extends Application {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            dataMutex.acquire();
-
-                            if (agendaView.appointments().size() == 0) return;
-                            for (Agenda.Appointment app : agendaView.appointments()) {
-                                if (app instanceof ReadOnlyAppointmentImpl) {
-                                    if (((ReadOnlyAppointmentImpl) app).getAppId() != null) {
-                                        agendaView.appointments().remove(app);
-                                    }
+                        Iterator<Agenda.Appointment> iterator = agendaView.appointments().iterator();
+                        ArrayList<Agenda.Appointment> removeList = new ArrayList();
+                        while (iterator.hasNext()) {
+                            Agenda.Appointment app = iterator.next();
+                            if (app instanceof ReadOnlyAppointmentImpl) {
+                                if (((ReadOnlyAppointmentImpl) app).getAppId() != 0) {
+                                    removeList.add(app);
                                 }
                             }
-
-                            for (Appointment item : AppointmentController.getInstance().getAppointments().values()) {
-
-                                if (item instanceof ScheduledAppointment) {
-                                    ScheduledAppointment schedItem = (ScheduledAppointment) item;
-
-                                    Calendar cal = Calendar.getInstance();
-                                    try {
-                                        cal.setTime(schedItem.getEndDate());
-                                        Calendar endTime = (Calendar) cal.clone();
-                                        cal.setTime(schedItem.getStartDate());
-                                        Calendar startTime = (Calendar) cal.clone();
-
-                                        ReadOnlyAppointmentImpl a =
-                                                new ReadOnlyAppointmentImpl();
-                                        a.withStartTime(startTime)
-                                                .withEndTime(endTime)
-                                                .withSummary(schedItem.getTitle())
-                                                .withDescription(schedItem.getStaff())
-                                                .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId() - 1))
-                                        ;
-
-                                        a.setAppId(schedItem.getAppId());
-                                        agendaView.appointments().addAll(a);
-
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        } finally {
-                            dataMutex.release();
                         }
+                        agendaView.appointments().removeAll(removeList);
+                        ArrayList<Agenda.Appointment> addList = new ArrayList();
+
+
+                        for (Appointment item : AppointmentController.getInstance().getAppointments().values()) {
+
+                            if (item instanceof ScheduledAppointment) {
+                                ScheduledAppointment schedItem = (ScheduledAppointment) item;
+
+                                Calendar cal = Calendar.getInstance();
+                                try {
+                                    cal.setTime(schedItem.getEndDate());
+                                    Calendar endTime = (Calendar) cal.clone();
+                                    cal.setTime(schedItem.getStartDate());
+                                    Calendar startTime = (Calendar) cal.clone();
+
+                                    ReadOnlyAppointmentImpl a =
+                                            new ReadOnlyAppointmentImpl();
+                                    a.withStartTime(startTime)
+                                            .withEndTime(endTime)
+                                            .withSummary(schedItem.getTitle())
+                                            .withDescription(schedItem.getStaff())
+                                            .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId() - 1))
+                                    ;
+
+                                    a.setAppId(schedItem.getAppId());
+                                    addList.add(a);
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        agendaView.appointments().addAll(addList);
                     }
                 });
             }
