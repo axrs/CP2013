@@ -16,8 +16,7 @@ import client.controllers.utilities.OffsetAgendaViewCommand;
 import client.scene.CoreScene;
 import client.scene.control.ReadOnlyAppointmentImpl;
 import client.scene.control.SloganLabel;
-import client.stages.AppointmentFormView;
-import client.Mutex;
+import client.stages.appointments.AppointmentFormView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -118,7 +117,7 @@ public class MainView extends Application {
                                 newApp.setAppDate(app.getStartTime().getTime());
                                 newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
                                 newApp.setAppTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
-                                tryStageStart(new AppointmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()));
+                                new AppointmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()).show();
                             }
                         }
                         appointmentLastClicked = 0;
@@ -343,7 +342,7 @@ public class MainView extends Application {
                                 i++;
                             }
                         } catch (InterruptedException e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                            e.printStackTrace();
                         } finally {
                             dataMutex.release();
                         }
@@ -352,14 +351,6 @@ public class MainView extends Application {
                 });
             }
         };
-    }
-
-    private void tryStageStart(Application window) {
-        try {
-            window.start(new Stage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     static { // use system proxy settings when standalone application
