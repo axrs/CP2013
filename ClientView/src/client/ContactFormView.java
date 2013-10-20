@@ -2,26 +2,24 @@ package client;
 
 import Interfaces.ContactView;
 import client.scene.CoreScene;
+import client.scene.control.ActionButtons;
 import client.scene.control.FieldLabel;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
 
-public class ContactFormView extends Application implements ContactView {
+public class ContactFormView extends Stage implements ContactView {
     final TextField forenameInput = new TextField();
     final TextField surnameInput = new TextField();
     final TextField companyInput = new TextField();
@@ -32,37 +30,23 @@ public class ContactFormView extends Application implements ContactView {
     final TextField addrCityInput = new TextField();
     final TextField addrZipInput = new TextField();
     final TextField addrStateInput = new TextField();
-    final Button submitButton = new Button("Save");
-    final Button closeButton = new Button("Close");
+    final ActionButtons buttons = new ActionButtons(true);
     boolean isDirty = false;
 
     public ContactFormView() {
-    }
+        buttons.setOnCloseAction(onCloseAction());
+        buttons.setOnSaveAction(onSaveAction());
+        setTitle("CP2013 Appointment Scheduler - New Contact");
 
-    public void start(final Stage primaryStage) throws Exception {
-
-        closeButton.setCancelButton(true);
-        closeButton.setOnAction(onCloseAction());
-        submitButton.setOnAction(onSaveAction());
-
-        primaryStage.setTitle("CP2013 Appointment Scheduler - New Contact");
         BorderPane border = new BorderPane();
         border.setCenter(setupFormInputs());
-        border.setBottom(setupActionButtons());
+        border.setBottom(buttons);
 
         Scene scene = new CoreScene(border);
-        primaryStage.setOnCloseRequest(onClose());
-        primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public HBox setupActionButtons() {
-        HBox hbox = new HBox();
-        hbox.getStyleClass().add("button_box");
-        hbox.setAlignment(Pos.BASELINE_RIGHT);
-        hbox.getChildren().addAll(submitButton, closeButton);
-        return hbox;
+        setOnCloseRequest(onClose());
+        setResizable(false);
+        setScene(scene);
+        show();
     }
 
     public GridPane setupFormInputs() {
@@ -138,10 +122,10 @@ public class ContactFormView extends Application implements ContactView {
             dialog.setModal(true);
             MonologFXButton.Type type = dialog.showDialog();
             if (type == MonologFXButton.Type.YES) {
-                ((Stage) closeButton.getScene().getWindow()).close();
+                this.close();
             }
         } else {
-            ((Stage) closeButton.getScene().getWindow()).close();
+            this.close();
         }
     }
 
@@ -267,7 +251,7 @@ public class ContactFormView extends Application implements ContactView {
 
     @Override
     public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
-        submitButton.addEventHandler(ActionEvent.ACTION, handler);
+        buttons.addSaveActionHandler(handler);
     }
 
     @Override

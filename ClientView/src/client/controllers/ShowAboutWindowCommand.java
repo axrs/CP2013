@@ -2,15 +2,15 @@ package client.controllers;
 
 import Models.Config;
 import client.GoogleMap;
+import client.controllers.recievers.ActionEventStrategy;
 import client.scene.CoreScene;
+import client.scene.control.ActionButtons;
 import client.scene.control.HeaderLabel;
 import client.scene.control.SloganLabel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.web.WebEngine;
@@ -95,18 +95,14 @@ public class ShowAboutWindowCommand implements ICommand {
         borderPane.add(new HeaderLabel("Where We Be"), 1, 1);
         borderPane.add(webView, 1, 2, 1, 3);
 
-        Button closeButton = new Button("Close");
-        closeButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                aboutStage.close();
-            }
-        });
+        ActionButtons actions = new ActionButtons(false);
+        actions.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(aboutStage)));
 
-        borderPane.add(closeButton, 0, 5, 2, 1);
-        GridPane.setHalignment(closeButton, HPos.RIGHT);
+        BorderPane border = new BorderPane();
+        border.setCenter(borderPane);
+        border.setBottom(actions);
 
-        aboutStage.setScene(new CoreScene(borderPane));
+        aboutStage.setScene(new CoreScene(border));
         aboutStage.show();
     }
 }

@@ -6,6 +6,6 @@ public class NewContactWindowCommand extends NewStage implements ICommand {
 
     @Override
     public void execute() {
-        tryStageStart(new ContactFormView());
+        new ContactFormView().show();
     }
 }

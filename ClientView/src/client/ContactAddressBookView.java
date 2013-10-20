@@ -1,15 +1,14 @@
 package client;
 
-import Controllers.ContactController;
 import Controllers.ContactsController;
 import Models.Contact;
+import client.controllers.EditContactWindowCommand;
 import client.scene.CoreScene;
 import client.scene.control.SloganLabel;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,7 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ContactAddressBookView extends Application {
@@ -85,23 +83,9 @@ public class ContactAddressBookView extends Application {
             public void handle(MouseEvent mouseEvent) {
 
                 if (mouseEvent.getClickCount() > 1) {
-
-                    try {
-                        TableView view = (TableView) mouseEvent.getSource();
-                        Contact c = (Contact) view.getSelectionModel().getSelectedItem();
-                        ContactFormView contactFormUI = new ContactFormView();
-
-                        ContactController controller = new ContactController(contactFormUI, c);
-                        try {
-                            contactFormUI.start(new Stage());
-                        } catch (Exception e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        }
-                    } catch (NullPointerException ex) {
-
-                    }
-
-
+                    TableView view = (TableView) mouseEvent.getSource();
+                    Contact c = (Contact) view.getSelectionModel().getSelectedItem();
+                    new EditContactWindowCommand(c).execute();
                 }
             }
         };

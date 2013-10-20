@@ -4,11 +4,13 @@ import Controllers.ServiceProviderController;
 import Controllers.ServiceProvidersController;
 import Models.Contact;
 import Models.ServiceProvider;
+import client.scene.CoreScene;
+import client.scene.control.SloganLabel;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -17,7 +19,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
@@ -47,9 +48,9 @@ public class StaffAddressBookView extends Application {
 
         primaryStage.setTitle("CP2013 Appointment Scheduler - Admin");
         final BorderPane mainPane = new BorderPane();
+        mainPane.getStyleClass().add("grid");
 
-        final Label label = new Label("Staff Listing");
-        label.setFont(new Font("Arial", 20));
+        final Label label = new SloganLabel("Staff Listing");
 
         initialiseTableColumns();
         staffTable.setItems(data);
@@ -60,12 +61,10 @@ public class StaffAddressBookView extends Application {
         serviceProviderController.getServiceProvidersFromServer();
 
         final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 10, 10, 10));
         vbox.getChildren().addAll(label, staffTable);
+        vbox.setAlignment(Pos.CENTER);
         mainPane.setCenter(vbox);
-        Scene scene = new Scene(mainPane, 300, 250);
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new CoreScene(mainPane, 300, 250));
         primaryStage.show();
     }
 
