@@ -81,6 +81,7 @@ public class MainView extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         new HookLoggerCommand().execute();
+
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();
@@ -173,6 +174,7 @@ public class MainView extends Application {
         primaryStage.show();
 
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
+        new ShowAboutWindowCommand().execute();
 
     }
 
