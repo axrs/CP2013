@@ -39,7 +39,6 @@ public class MainView extends Application {
 
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
-    private final Mutex dataMutex = new Mutex();
 
     public static void main(String[] args) {
         launch(args);
@@ -143,7 +142,7 @@ public class MainView extends Application {
                             }
                         }
                         agendaView.appointments().removeAll(removeList);
-                        ArrayList<Agenda.Appointment> addList = new ArrayList();
+                        ArrayList addList = new ArrayList();
 
                         if (agendaView.appointmentGroups().size() > 0) {
                             for (Availability item : AppointmentController.getInstance().getAvailabilities()) {

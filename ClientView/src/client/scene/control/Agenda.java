@@ -18,7 +18,6 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
         selectedAppointments().addListener(onAgendaSelection());
         setOnKeyReleased(onAgendaKeyPress());
         setCalendarRangeCallback(onAgendaRangeCallback());
-
     }
 
     private EventHandler<KeyEvent> onAgendaKeyPress() {
