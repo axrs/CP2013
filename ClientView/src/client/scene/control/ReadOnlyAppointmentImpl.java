@@ -1,4 +1,4 @@
-package client;
+package client.scene.control;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

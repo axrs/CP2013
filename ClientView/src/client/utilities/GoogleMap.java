@@ -1,4 +1,4 @@
-package client;
+package client.utilities;
 
 public class GoogleMap {
     public static String getHtml(String geoLocation, int zoom, String title) {

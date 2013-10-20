@@ -1,4 +1,4 @@
-package client;
+package client.stages;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;

@@ -1,4 +1,4 @@
-package client;
+package client.stages.contacts;
 
 import Interfaces.ContactView;
 import client.scene.CoreScene;
@@ -19,7 +19,7 @@ import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
 
-public class ContactFormView extends Stage implements ContactView {
+public class FormView extends Stage implements ContactView {
     final TextField forenameInput = new TextField();
     final TextField surnameInput = new TextField();
     final TextField companyInput = new TextField();
@@ -33,7 +33,7 @@ public class ContactFormView extends Stage implements ContactView {
     final ActionButtons buttons = new ActionButtons(true);
     boolean isDirty = false;
 
-    public ContactFormView() {
+    public FormView() {
         buttons.setOnCloseAction(onCloseAction());
         buttons.setOnSaveAction(onSaveAction());
         setTitle("CP2013 Appointment Scheduler - New Contact");

@@ -1,8 +1,11 @@
-package client;
+package client.stages.staff;
 
 import Interfaces.ServiceProviderView;
 import Models.ServiceHours;
-import javafx.application.Application;
+import client.controllers.CloseStageCommand;
+import client.controllers.recievers.ActionEventStrategy;
+import client.scene.CoreScene;
+import client.scene.control.ActionButtons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,27 +21,16 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: Timface
- * Date: 17/08/13
- * Time: 9:30 AM
- * To change this template use File | Settings | File Templates.
- */
-public class ServiceProviderFormUI extends Application implements ServiceProviderView {
-    private final ObservableList<String> timesList = FXCollections.observableArrayList();
+public class FormView extends Stage implements ServiceProviderView {
     final TextField forenameInput = new TextField();
     final TextField surnameInput = new TextField();
     final TextField companyInput = new TextField();
@@ -52,13 +44,31 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
     final TextField dateStartedInput = new TextField();
     final TextField dateTerminatedInput = new TextField();
     final TextArea bio = new TextArea();
-    final Button submitButton = new Button("Save");
-    final Button closeButton = new Button("Close");
+    private final ObservableList<String> timesList = FXCollections.observableArrayList();
     private final ObservableList<ServiceHours> servHours = FXCollections.observableArrayList();
     boolean isDirty = false;
+    ActionButtons buttons = new ActionButtons(true);
     private TableView<ServiceHours> table = new TableView<ServiceHours>();
 
-    public ServiceProviderFormUI() {
+    public FormView() {
+
+        buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
+        buttons.setOnSaveAction(onSaveAction());
+
+        setTitle("CP2013 Appointment Scheduler - Edit/Create Service Provider");
+        BorderPane border = new BorderPane();
+
+        border.setCenter(setupFormInputs());
+        border.setBottom(buttons);
+
+        initialiseTableColumns();
+        table.setEditable(true);
+        createTimes();
+
+        Scene scene = new CoreScene(border);
+        setOnCloseRequest(onClose());
+        setResizable(false);
+        setScene(scene);
     }
 
     private void initialiseTableColumns() {
@@ -72,7 +82,7 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
         shiftStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
-                ( cellEditEvent.getTableView().getItems().get(
+                (cellEditEvent.getTableView().getItems().get(
                         cellEditEvent.getTablePosition().getRow())
                 ).setServHrsStart(cellEditEvent.getNewValue());
 
@@ -121,50 +131,14 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
         table.getColumns().addAll(dayColumn, shiftStartColumn, breakStartColumn, breakEndColumn, shiftEndColumn);
     }
 
-    public void start(final Stage primaryStage) throws Exception {
-        closeButton.setCancelButton(true);
-        closeButton.setOnAction(onCloseAction());
-        submitButton.setOnAction(onSaveAction());
-
-        primaryStage.setTitle("CP2013 Appointment Scheduler - Edit/Create Service Provider");
-        BorderPane border = new BorderPane();
-
-        border.setCenter(setupFormInputs());
-        border.setBottom(setupActionButtons());
-
-        initialiseTableColumns();
-        table.setEditable(true);
-        createTimes();
-
-        Scene scene = new Scene(border);
-        primaryStage.setOnCloseRequest(onClose());
-        primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
     private void createTimes() {
-        for(int hour = 0; hour<=23; hour++){
-            for(int quarter = 0; quarter <= 3; quarter++){
-                String time = String.format("%02d:%02d", hour, (15*quarter));
+        for (int hour = 0; hour <= 23; hour++) {
+            for (int quarter = 0; quarter <= 3; quarter++) {
+                String time = String.format("%02d:%02d", hour, (15 * quarter));
                 timesList.add(time);
                 System.out.println(time);
             }
         }
-    }
-
-    public HBox setupActionButtons() {
-        HBox hbox = new HBox();
-        hbox.setPadding(new Insets(15, 12, 15, 12));
-        hbox.setSpacing(10);
-        hbox.setStyle("-fx-background-color: #dedede;");
-        hbox.setAlignment(Pos.BASELINE_RIGHT);
-
-        submitButton.setPrefSize(80, 20);
-        closeButton.setPrefSize(80, 20);
-        hbox.getChildren().addAll(submitButton, closeButton);
-
-        return hbox;
     }
 
     private Node setupFormInputs() {
@@ -213,7 +187,7 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
 
         tablePane.setTop(table);
 
-        grid.add(tablePane, 2,1,1,15);
+        grid.add(tablePane, 2, 1, 1, 15);
 
         table.setItems(servHours);
         table.setMaxHeight(195);
@@ -256,7 +230,8 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
         };
     }
 
-    private void tryClose() {
+    @Override
+    public void close() {
         if (isDirty) {
             MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
             dialog.setMessage("There are changes pending on this form.  Are you sure you wish to close?");
@@ -264,20 +239,15 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
             dialog.setModal(true);
             MonologFXButton.Type type = dialog.showDialog();
             if (type == MonologFXButton.Type.YES) {
-                ((Stage) closeButton.getScene().getWindow()).close();
+                super.close();
             }
         } else {
-            ((Stage) closeButton.getScene().getWindow()).close();
+            super.close();
         }
     }
 
-    private EventHandler<ActionEvent> onCloseAction() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                tryClose();
-            }
-        };
+    private void tryClose() {
+
     }
 
     private EventHandler<KeyEvent> setDirty() {
@@ -290,35 +260,6 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
             }
         };
     }
- /*   private Time buildTime(String text) {
-        String time = text.equals("N/A") ? "00:00" : text;
-        return Time.valueOf(time + ":00");
-    }
-
-    private String getTime(int i) {
-        int timeNo = i % 4;
-        int dayNo = i % 7;
-        switch (timeNo) {
-            case 0:
-                System.out.println("Time on day " + dayNo);
-                System.out.println(serviceProvider.getByDay(dayNo).getServHrsStart().toString());
-                return serviceProvider.getByDay(dayNo).getServHrsStart().toString();
-
-            case 1:
-                return serviceProvider.getByDay(dayNo).getServHrsBreakStart().toString();
-
-            case 2:
-                return serviceProvider.getByDay(dayNo).getServHrsBreakEnd().toString();
-
-            case 3:
-                return serviceProvider.getByDay(dayNo).getServHrsEnd().toString();
-
-            default:
-                return "N/A";
-
-        }
-
-    }*/
 
     @Override
     public String getForename() {
@@ -463,7 +404,7 @@ public class ServiceProviderFormUI extends Application implements ServiceProvide
 
     @Override
     public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
-        submitButton.addEventHandler(ActionEvent.ACTION, handler);
+        buttons.addSaveActionHandler(handler);
     }
 
     @Override

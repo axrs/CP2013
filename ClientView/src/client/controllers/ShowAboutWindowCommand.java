@@ -1,7 +1,7 @@
 package client.controllers;
 
 import Models.Config;
-import client.GoogleMap;
+import client.utilities.GoogleMap;
 import client.controllers.recievers.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;

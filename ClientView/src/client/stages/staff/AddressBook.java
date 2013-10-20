@@ -1,17 +1,18 @@
-package client;
+package client.stages.staff;
 
-import Controllers.ServiceProviderController;
 import Controllers.ServiceProvidersController;
 import Models.Contact;
 import Models.ServiceProvider;
+import client.controllers.CloseStageCommand;
+import client.controllers.EditStaffWindowCommand;
+import client.controllers.recievers.ActionEventStrategy;
 import client.scene.CoreScene;
+import client.scene.control.ActionButtons;
 import client.scene.control.SloganLabel;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,34 +22,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: Timface
- * Date: 17/08/13
- * Time: 9:28 AM
- * To change this template use File | Settings | File Templates.
- */
-public class StaffAddressBookView extends Application {
+public class AddressBook extends Stage {
     private final ObservableList<ServiceProvider> data = FXCollections.observableArrayList();
     private TableView<ServiceProvider> staffTable = new TableView<ServiceProvider>();
 
-    private void initialiseTableColumns() {
-        TableColumn firstNameColumn = new TableColumn("First Name");
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contFirstName"));
+    public AddressBook() {
 
-        TableColumn surnameColumn = new TableColumn("Last Name");
-        surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contSurname"));
-
-        staffTable.getColumns().addAll(firstNameColumn, surnameColumn);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-        primaryStage.setTitle("CP2013 Appointment Scheduler - Admin");
+        setTitle("CP2013 Appointment Scheduler - Admin");
         final BorderPane mainPane = new BorderPane();
-        mainPane.getStyleClass().add("grid");
 
         final Label label = new SloganLabel("Staff Listing");
 
@@ -60,12 +41,26 @@ public class StaffAddressBookView extends Application {
         serviceProviderController.addUpdatedListener(onStaffListUpdated());
         serviceProviderController.getServiceProvidersFromServer();
 
+        ActionButtons buttons = new ActionButtons(false);
+        buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
+
         final VBox vbox = new VBox();
+        vbox.getStyleClass().add("grid");
         vbox.getChildren().addAll(label, staffTable);
         vbox.setAlignment(Pos.CENTER);
         mainPane.setCenter(vbox);
-        primaryStage.setScene(new CoreScene(mainPane, 300, 250));
-        primaryStage.show();
+        mainPane.setBottom(buttons);
+        setScene(new CoreScene(mainPane, 300, 500));
+    }
+
+    private void initialiseTableColumns() {
+        TableColumn firstNameColumn = new TableColumn("First Name");
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contFirstName"));
+
+        TableColumn surnameColumn = new TableColumn("Last Name");
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contSurname"));
+
+        staffTable.getColumns().addAll(firstNameColumn, surnameColumn);
     }
 
     private EventHandler<MouseEvent> onTableRowDoubleClick() {
@@ -75,21 +70,10 @@ public class StaffAddressBookView extends Application {
 
                 if (mouseEvent.getClickCount() > 1) {
 
-                    try {
-                        TableView view = (TableView) mouseEvent.getSource();
+                    TableView view = (TableView) mouseEvent.getSource();
 
-                        ServiceProvider c = (ServiceProvider) view.getSelectionModel().getSelectedItem();
-                        ServiceProviderFormUI serviceProviderFormUI = new ServiceProviderFormUI();
-                        ServiceProviderController controller = new ServiceProviderController(serviceProviderFormUI, c);
-                        try {
-                            serviceProviderFormUI.start(new Stage());
-                        } catch (Exception e) {
-                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                        }
-                    } catch (NullPointerException ex) {
-
-                    }
-
+                    ServiceProvider c = (ServiceProvider) view.getSelectionModel().getSelectedItem();
+                    new EditStaffWindowCommand(c).execute();
 
                 }
             }

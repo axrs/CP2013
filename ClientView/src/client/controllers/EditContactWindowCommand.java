@@ -2,7 +2,7 @@ package client.controllers;
 
 import Controllers.ContactController;
 import Models.Contact;
-import client.ContactFormView;
+import client.stages.contacts.FormView;
 
 public class EditContactWindowCommand implements ICommand {
 
@@ -14,7 +14,7 @@ public class EditContactWindowCommand implements ICommand {
 
     @Override
     public void execute() {
-        ContactFormView contactFormUI = new ContactFormView();
+        FormView contactFormUI = new FormView();
         ContactController controller = new ContactController(contactFormUI, contact);
         contactFormUI.show();
     }

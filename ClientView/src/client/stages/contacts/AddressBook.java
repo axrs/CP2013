@@ -1,11 +1,13 @@
-package client;
+package client.stages.contacts;
 
 import Controllers.ContactsController;
 import Models.Contact;
+import client.controllers.CloseStageCommand;
 import client.controllers.EditContactWindowCommand;
+import client.controllers.recievers.ActionEventStrategy;
 import client.scene.CoreScene;
+import client.scene.control.ActionButtons;
 import client.scene.control.SloganLabel;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -20,17 +22,45 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ContactAddressBookView extends Application {
+public class AddressBook extends Stage {
 
 
     /**
-     * Table data source.  Individual per ContactAddressBookView Instance
+     * Table data source.  Individual per AddressBook Instance
      */
     private final ObservableList<Contact> data = FXCollections.observableArrayList();
     /**
      * Create a new table
      */
     private TableView<Contact> table = new TableView<Contact>();
+
+    public AddressBook() {
+        setTitle("CP2013 Appointment Scheduler - Contacts");
+        BorderPane contactPane = new BorderPane();
+
+        final Label label = new SloganLabel("Address Book");
+
+        initialiseTableColumns();
+        table.setItems(data);
+
+        ContactsController.getInstance().addUpdatedListener(onContactsListUpdate());
+        ContactsController.getInstance().getContactsFromServer();
+
+        table.setOnMouseClicked(onTableRowDoubleClick());
+
+        ActionButtons buttons = new ActionButtons(false);
+        buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
+
+        final VBox vbox = new VBox();
+        vbox.getStyleClass().add("grid");
+        vbox.getChildren().addAll(label, table);
+        vbox.setAlignment(Pos.CENTER);
+        contactPane.setCenter(vbox);
+        contactPane.setBottom(buttons);
+
+        Scene scene = new CoreScene(contactPane, 300, 500);
+        setScene(scene);
+    }
 
     /**
      * Initialises the table columns, binding each column to the respective model attributes
@@ -45,36 +75,6 @@ public class ContactAddressBookView extends Application {
         TableColumn companyColumn = new TableColumn("Company");
         companyColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contCompany"));
         table.getColumns().addAll(firstNameColumn, surnameColumn, companyColumn);
-    }
-
-    /**
-     * Starts the Contact UI interface
-     *
-     * @param primaryStage
-     * @throws Exception
-     */
-    public void start(final Stage primaryStage) throws Exception {
-        primaryStage.setTitle("CP2013 Appointment Scheduler - Contacts");
-        BorderPane contactPane = new BorderPane();
-
-        final Label label = new SloganLabel("Address Book");
-
-        initialiseTableColumns();
-        table.setItems(data);
-
-        ContactsController.getInstance().addUpdatedListener(onContactsListUpdate());
-        ContactsController.getInstance().getContactsFromServer();
-
-        table.setOnMouseClicked(onTableRowDoubleClick());
-
-        final VBox vbox = new VBox();
-        vbox.getStyleClass().add("grid");
-        vbox.getChildren().addAll(label, table);
-        vbox.setAlignment(Pos.CENTER);
-        contactPane.setCenter(vbox);
-        Scene scene = new CoreScene(contactPane, 300, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     private EventHandler<MouseEvent> onTableRowDoubleClick() {

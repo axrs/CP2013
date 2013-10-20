@@ -1,4 +1,4 @@
-package client;
+package client.stages;
 
 import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;

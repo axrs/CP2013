@@ -1,11 +1,11 @@
 package client.controllers;
 
-import client.ContactFormView;
+import client.stages.contacts.FormView;
 
 public class NewContactWindowCommand extends NewStage implements ICommand {
 
     @Override
     public void execute() {
-        new ContactFormView().show();
+        new FormView().show();
     }
 }
