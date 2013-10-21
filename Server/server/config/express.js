@@ -18,11 +18,20 @@ module.exports = function (server, passport) {
         server.use(express.logger('dev'));
     }
 
+    //CORS middleware
+    var allowCrossDomain = function (req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        next();
+    };
+
     server.configure(function () {
         server.use(express.cookieParser());
 
         server.use(express.bodyParser());
         server.use(express.methodOverride());
+        server.use(allowCrossDomain);
 
 
         server.use(
@@ -33,7 +42,6 @@ module.exports = function (server, passport) {
         );
         server.use(passport.initialize());
         server.use(passport.session());
-
         server.use(server.router);
     });
 };

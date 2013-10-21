@@ -1,0 +1,63 @@
+<h2>{{action}}: {{contact.name}} {{contact.surname}} <a class="btn btn-danger pull-right" ng-click="remove()"><i
+        class="icon-remove icon-white"></i></a></h2>
+<div class="clearfix"></div>
+<fieldset>
+    <legend>General</legend>
+    <div class="controls controls-row">
+        <label class="control-label">Name</label>
+        <input type="text" placeholder="Name" ng-model="contact.name" required>
+        <input type="text" placeholder="Surname" ng-model="contact.surname" required>
+    </div>
+    <div class="controls">
+        <label class="control-label">Company</label>
+        <input type="text" placeholder="Company" ng-model="contact.company">
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Details</legend>
+    <div class="control-group">
+        <div class="controls controls-row">
+            <label class="control-label">Email</label>
+            <input class="" type="email" placeholder="you@domain.com" ng-model="contact.email">
+            <label class="control-label">Phone</label>
+            <input class="" type="text" placeholder="(07) 0000 0000" ng-model="contact.phone">
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Address</legend>
+    <div class="controls">
+        <label class="control-label">Street</label>
+        <input class="span10" type="text" placeholder="123 Street Name" ng-model="contact.address">
+    </div>
+
+    <div class="controls">
+        <label class="control-label">Suburb</label>
+        <input class="span10" type="text" placeholder="Suburb" ng-model="contact.suburb">
+    </div>
+
+    <div class="controls controls-row">
+        <label class="control-label">City/Town</label>
+
+        <input class="span6" type="text" placeholder="City" ng-model="contact.city">
+        <select class="span2" ng-model="contact.state">
+            <option></option>
+            <option>ACT</option>
+            <option>NSW</option>
+            <option>NT</option>
+            <option>QLD</option>
+            <option>SA</option>
+            <option>TAS</option>
+            <option>VIC</option>
+            <option>WA</option>
+        </select>
+        <input class="span2" type="text" placeholder="POST" ng-model="contact.post">
+    </div>
+    <div class="controls controls-row">
+        <button type="submit" class="btn btn-primary" ng-click="process()">Save</button>
+        <button type="submit" class="btn btn-danger" ng-click="clear()">Cancel</button>
+    </div>
+</fieldset>
+
