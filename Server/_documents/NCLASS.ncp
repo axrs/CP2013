@@ -1,3 +1,286 @@
 <Project>
   <Name>NCLASS</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Recorders</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Interface">
+        <Name>ILogger</Name>
+        <Access>Public</Access>
+        <Location left="329" top="50" />
+        <Size width="163" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void log(String message)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>BasicLogger</Name>
+        <Access>Public</Access>
+        <Location left="329" top="208" />
+        <Size width="191" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">IRecorder recorder</Member>
+        <Member type="Constructor">public BasicLogger(IRecorder recorder)</Member>
+        <Member type="Method">public void log(String message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IRecorder</Name>
+        <Access>Public</Access>
+        <Location left="329" top="460" />
+        <Size width="177" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void record(String message)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>StrategyLogger</Name>
+        <Access>Public</Access>
+        <Location left="538" top="208" />
+        <Size width="339" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public StrategyLogger(IRecorder recorder, IFormatStrategy strategy)</Member>
+        <Member type="Constructor">public StrategyLogger(IRecorder recorder)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IFormatStrategy</Name>
+        <Access>Public</Access>
+        <Location left="1008" top="208" />
+        <Size width="185" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">string format(String message)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>DateFormatStrategy</Name>
+        <Access>Public</Access>
+        <Location left="1348" top="208" />
+        <Size width="185" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public string format(String message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DateTimeFormatStrategy</Name>
+        <Access>Public</Access>
+        <Location left="1348" top="321" />
+        <Size width="185" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public string format(String message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TimeFormatStrategy</Name>
+        <Access>Public</Access>
+        <Location left="1348" top="95" />
+        <Size width="185" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public string format(String message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FileStreamRecorder</Name>
+        <Access>Public</Access>
+        <Location left="329" top="756" />
+        <Size width="203" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">FileStream stream</Member>
+        <Member type="Constructor">public FileStreamRecorder(String filePath)</Member>
+        <Member type="Method">public void record(String message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FileRecorderProcess</Name>
+        <Access>Public</Access>
+        <Location left="756" top="756" />
+        <Size width="171" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">FileStreamRecorder recorder</Member>
+        <Member type="Event">public event EventHandler message</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConsoleRecorder</Name>
+        <Access>Public</Access>
+        <Location left="10" top="756" />
+        <Size width="177" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void record(String message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CompositeRecorder</Name>
+        <Access>Public</Access>
+        <Location left="10" top="460" />
+        <Size width="243" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Array recorders</Member>
+        <Member type="Method">public void addRecorder(IRecorder recorder)</Member>
+        <Member type="Method">public void record(String message)</Member>
+        <Member type="Method">public void removeRecorder(IRecorder recorder)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ActiveFileRecorder</Name>
+        <Access>Public</Access>
+        <Location left="756" top="460" />
+        <Size width="198" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public ActiveFileRecorder(String filePath)</Member>
+        <Member type="Method">public void record(String message)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LogEventDispatcher</Name>
+        <Access>Public</Access>
+        <Location left="10" top="208" />
+        <Size width="201" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public LogEventDispatcher getInstance()</Member>
+        <Member type="Method">public void log(String message)</Member>
+        <Member type="Event">public event String log</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EventEmitter</Name>
+        <Access>Public</Access>
+        <Location left="10" top="50" />
+        <Size width="163" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Realization" first="1" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="7" second="4">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="5" second="4">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="6" second="4">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="3" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="8" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="11" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>303</X>
+          <Y>517</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="11" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>302</X>
+          <Y>475</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="10" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="12" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="9" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="12" second="2">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="3" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="3" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="13" second="14">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>DAO</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>SqliteHelper</Name>
+        <Access>Public</Access>
+        <Location left="204" top="170" />
+        <Size width="332" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void query(String sql, Array parameters, Callback callback)</Member>
+        <Member type="Method">public void all(String sql, Array parameters, Callback callback)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IContactDAO</Name>
+        <Access>Public</Access>
+        <Location left="451" top="565" />
+        <Size width="163" height="210" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void create(Contact c)</Member>
+        <Member type="Method">void retrieve(int id)</Member>
+        <Member type="Method">void retrieveAll()</Member>
+        <Member type="Method">void update(Contact c)</Member>
+        <Member type="Method">void delete(Contact c)</Member>
+        <Member type="Method">void delete(int id)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ICRUD</Name>
+        <Access>Public</Access>
+        <Location left="451" top="861" />
+        <Size width="162" height="129" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void create()</Member>
+        <Member type="Method">void retrieve()</Member>
+        <Member type="Method">void update()</Member>
+        <Member type="Method">void delete()</Member>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="1" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
 </Project>

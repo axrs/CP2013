@@ -4,8 +4,7 @@ var SqliteUserDAO = require('./SqliteUserDAO.js');
 
 var IDAOFactory = require('../IDAOFactory.js');
 
-var SqliteDAOFactory = Ring.create([IDAOFactory], {
-    _db: null,
+var SqliteDAOFactory = Ring.create(IDAOFactory, {
     init: function (databaseConnection) {
         this._db = databaseConnection;
     },

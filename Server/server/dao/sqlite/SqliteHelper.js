@@ -1,7 +1,7 @@
 var Ring = require('ring');
 var LogDispatcher = require('../../utilities/LogEventDispatcher.js');
 
-var SqliteHelper = Ring.create([], {
+var SqliteHelper = Ring.create({
     _db: null,
     /**
      * Constructor

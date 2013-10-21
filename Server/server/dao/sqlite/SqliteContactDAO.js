@@ -50,7 +50,6 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
 
     },
 
-
     /**
      * Called after retrieving all contacts
      * @callback SqliteContactDAO~RetrieveAllCallback
