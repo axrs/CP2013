@@ -1,33 +1,39 @@
 var express = require('express'),
     config = require('./config');
+var MemoryStore = express.session.MemoryStore;
+var sessionStore = new MemoryStore();
+module.exports = function (server, passport) {
+    server.set('showStackError', true);
 
-module.exports = function (app, passport) {
-    app.set('showStackError', true);
-
-    app.use(express.compress({
+    server.use(express.compress({
         filter: function (req, res) {
             return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
         },
         level: 9
     }));
 
-    app.use(express.favicon());
-
-    app.use(express.static(config.publicFolder));
+    server.use(express.favicon());
 
     if (process.env.NODE_ENV !== 'test') {
-        app.use(express.logger('dev'));
+        server.use(express.logger('dev'));
     }
 
-    app.configure(function () {
-        app.use(express.cookieParser());
+    server.configure(function () {
+        server.use(express.cookieParser());
 
-        app.use(express.bodyParser());
-        app.use(express.methodOverride());
+        server.use(express.bodyParser());
+        server.use(express.methodOverride());
 
-        //app.use(passport.initialize());
-        //app.use(passport.session());
 
-        app.use(app.router);
+        server.use(
+            express.session({
+                secret: 'CutAboveTheRest',
+                maxAge: new Date(Date.now() + 3600000)
+            })
+        );
+        server.use(passport.initialize());
+        server.use(passport.session());
+
+        server.use(server.router);
     });
 };

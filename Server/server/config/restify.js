@@ -1,4 +1,5 @@
 var Restify = require('restify');
+var Util = require('util');
 
 var server = Restify.createServer({
     formatters: {
@@ -7,7 +8,7 @@ var server = Restify.createServer({
                 return body.stack;
             if (Buffer.isBuffer(body))
                 return body.toString('base64');
-            return util.inspect(body);
+            return Util.inspect(body);
         }
     }
 });

@@ -6,6 +6,6 @@
     "github": {
         "clientID": "595e60171ce27a1a7142",
         "clientSecret": "1daddb497d4c7e30250006ed42ab686592140203",
-        "callbackURL": "http://localhost:8080/auth/github/callback"
+        "callbackURL": "http://localhost:8081/api/auth/github/callback"
     }
 }

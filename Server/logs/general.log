@@ -276,3 +276,205 @@
 2013-10-21 12:44:47	127.0.0.1	/api/contacts	[]
 2013-10-21 12:45:19	127.0.0.1	/api/contacts	[]
 2013-10-21 12:45:24	127.0.0.1	/api/contacts	[]
+2013-10-21 13:16:09	127.0.0.1	/api/contacts	{"contactId":0,"name":"Frank","surname":"Enstein"}
+2013-10-21 14:52:34	Creating new GitHub User.
+2013-10-21 14:52:34	Existing GitHub User Logged In.
+2013-10-21 14:58:35	127.0.0.1	/api/contacts	[]
+2013-10-21 14:58:52	Creating new GitHub User.
+2013-10-21 14:58:52	Existing GitHub User Logged In.
+2013-10-21 14:58:59	127.0.0.1	/api/contacts	[]
+2013-10-21 15:02:58	127.0.0.1	/api/contacts	[]
+2013-10-21 15:03:10	Creating new GitHub User.
+2013-10-21 15:03:10	Existing GitHub User Logged In.
+2013-10-21 15:03:14	127.0.0.1	/api/contacts	[]
+2013-10-21 15:04:20	127.0.0.1	/api/contacts	[]
+2013-10-21 15:04:28	Creating new GitHub User.
+2013-10-21 15:04:28	Existing GitHub User Logged In.
+2013-10-21 15:04:28	Serialising User Session
+2013-10-21 15:04:34	127.0.0.1	/api/contacts	[]
+2013-10-21 15:12:52	127.0.0.1	/api/contacts	[]
+2013-10-21 15:12:53	127.0.0.1	/api/contacts	[]
+2013-10-21 15:13:01	Creating new GitHub User.
+2013-10-21 15:13:01	Existing GitHub User Logged In.
+2013-10-21 15:13:01	Serialising User Session
+2013-10-21 15:26:54	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:03	Creating new GitHub User.
+2013-10-21 15:27:03	Existing GitHub User Logged In.
+2013-10-21 15:27:03	Serialising User Session
+2013-10-21 15:27:08	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:08	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:09	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:21	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:25	127.0.0.1	/api/contacts	[]
+2013-10-21 15:32:11	127.0.0.1	/api/contacts	[]
+2013-10-21 15:32:19	Creating new GitHub User.
+2013-10-21 15:32:19	Existing GitHub User Logged In.
+2013-10-21 15:32:19	Serialising User Session
+2013-10-21 15:32:28	127.0.0.1	/api/contacts	[]
+2013-10-21 15:39:06	127.0.0.1	/api/contacts	[]
+2013-10-21 16:15:35	127.0.0.1	/api/contacts	[]
+2013-10-21 16:17:33	Creating new GitHub User.
+2013-10-21 16:17:33	Existing GitHub User Logged In.
+2013-10-21 16:17:33	Serialising User Session
+2013-10-21 16:18:24	Creating new GitHub User.
+2013-10-21 16:18:24	Existing GitHub User Logged In.
+2013-10-21 16:18:24	Serialising User Session
+2013-10-21 16:19:34	Creating new GitHub User.
+2013-10-21 16:19:34	Existing GitHub User Logged In.
+2013-10-21 16:19:34	Serialising User Session
+2013-10-21 16:29:30	Creating new GitHub User.
+2013-10-21 16:29:30	Existing GitHub User Logged In.
+2013-10-21 16:29:30	Serialising User Session
+2013-10-21 16:29:42	127.0.0.1	/api/contacts	[]
+2013-10-21 16:31:36	127.0.0.1	/api/contacts	[]
+2013-10-21 16:31:44	Creating new GitHub User.
+2013-10-21 16:31:44	Existing GitHub User Logged In.
+2013-10-21 16:31:44	Serialising User Session
+2013-10-21 16:31:51	127.0.0.1	/api/contacts	[]
+2013-10-21 16:34:21	Creating new GitHub User.
+2013-10-21 16:34:21	Existing GitHub User Logged In.
+2013-10-21 16:34:21	Serialising User Session
+2013-10-21 16:36:03	Creating new GitHub User.
+2013-10-21 16:36:03	Existing GitHub User Logged In.
+2013-10-21 16:36:03	Serialising User Session
+2013-10-21 16:37:00	Creating new GitHub User.
+2013-10-21 16:37:00	Existing GitHub User Logged In.
+2013-10-21 16:37:00	Serialising User Session
+2013-10-21 16:45:42	127.0.0.1	/api/contacts	{}
+2013-10-21 16:45:52	Creating new GitHub User.
+2013-10-21 16:45:52	Existing GitHub User Logged In.
+2013-10-21 16:45:52	Serialising User Session
+2013-10-21 16:45:56	127.0.0.1	/api/contacts	{}
+2013-10-21 16:46:39	127.0.0.1	/api/contacts	{}
+2013-10-21 16:46:40	127.0.0.1	/api/contacts	{}
+2013-10-21 16:46:45	Creating new GitHub User.
+2013-10-21 16:46:45	Existing GitHub User Logged In.
+2013-10-21 16:46:45	Serialising User Session
+2013-10-21 16:46:51	127.0.0.1	/api/contacts	{}
+2013-10-21 16:49:55	127.0.0.1	/api/contacts	{}
+2013-10-21 16:50:02	Creating new GitHub User.
+2013-10-21 16:50:02	Existing GitHub User Logged In.
+2013-10-21 16:50:02	Serialising User Session
+2013-10-21 16:50:16	Deserialising User Session
+2013-10-21 16:50:16	Error running query.
+2013-10-21 16:50:16	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:50:16	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":"1eb5bbf6-5833-475a-a548-6465ec987b6f","$strategy":"Any"}
+2013-10-21 16:51:44	127.0.0.1	/api/contacts	{}
+2013-10-21 16:51:49	Creating new GitHub User.
+2013-10-21 16:51:49	Existing GitHub User Logged In.
+2013-10-21 16:51:49	Serialising User Session
+2013-10-21 16:51:53	Deserialising User Session
+2013-10-21 16:51:53	Error running query.
+2013-10-21 16:51:53	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:51:53	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:52:36	127.0.0.1	/api/contacts	{}
+2013-10-21 16:52:44	Creating new GitHub User.
+2013-10-21 16:52:44	Existing GitHub User Logged In.
+2013-10-21 16:52:44	Serialising User Session
+2013-10-21 16:52:48	Deserialising User Session
+2013-10-21 16:52:48	Error running query.
+2013-10-21 16:52:48	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:52:48	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:54:18	127.0.0.1	/api/contacts	{}
+2013-10-21 16:54:23	Creating new GitHub User.
+2013-10-21 16:54:23	Existing GitHub User Logged In.
+2013-10-21 16:54:23	Serialising User Session
+2013-10-21 16:54:29	Deserialising User Session
+2013-10-21 16:54:29	Error running query.
+2013-10-21 16:54:29	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:54:29	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:55:34	127.0.0.1	/api/contacts	{}
+2013-10-21 16:55:40	Creating new GitHub User.
+2013-10-21 16:55:40	Existing GitHub User Logged In.
+2013-10-21 16:55:40	Serialising User Session
+2013-10-21 16:55:50	Deserialising User Session
+2013-10-21 16:55:50	Error running query.
+2013-10-21 16:55:50	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:55:50	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:57:59	127.0.0.1	/api/contacts	{}
+2013-10-21 16:58:04	Creating new GitHub User.
+2013-10-21 16:58:04	Existing GitHub User Logged In.
+2013-10-21 16:58:04	Serialising User Session
+2013-10-21 16:58:56	Creating new GitHub User.
+2013-10-21 16:58:56	Existing GitHub User Logged In.
+2013-10-21 16:58:56	Serialising User Session
+2013-10-21 17:00:04	Creating new GitHub User.
+2013-10-21 17:00:04	Existing GitHub User Logged In.
+2013-10-21 17:00:04	Serialising User Session
+2013-10-21 17:01:27	Creating new GitHub User.
+2013-10-21 17:01:27	Existing GitHub User Logged In.
+2013-10-21 17:01:27	Serialising User Session
+2013-10-21 17:02:14	Creating new GitHub User.
+2013-10-21 17:02:14	Existing GitHub User Logged In.
+2013-10-21 17:02:14	Serialising User Session
+2013-10-21 17:02:41	Creating new GitHub User.
+2013-10-21 17:02:41	Existing GitHub User Logged In.
+2013-10-21 17:02:41	Serialising User Session
+2013-10-21 17:03:29	Creating new GitHub User.
+2013-10-21 17:03:29	Existing GitHub User Logged In.
+2013-10-21 17:03:29	Serialising User Session
+2013-10-21 17:03:47	Creating new GitHub User.
+2013-10-21 17:03:47	Existing GitHub User Logged In.
+2013-10-21 17:03:47	Serialising User Session
+2013-10-21 17:04:11	Creating new GitHub User.
+2013-10-21 17:04:11	Existing GitHub User Logged In.
+2013-10-21 17:04:11	Serialising User Session
+2013-10-21 17:04:11	Serialising User Session
+2013-10-21 17:06:31	Existing GitHub User Logged In.
+2013-10-21 17:06:31	Serialising User Session
+2013-10-21 17:06:36	Deserialising User Session
+2013-10-21 17:06:36	Error running query.
+2013-10-21 17:06:36	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:06:36	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:07:35	127.0.0.1	/api/contacts	{}
+2013-10-21 17:07:41	Existing GitHub User Logged In.
+2013-10-21 17:07:41	Serialising User Session
+2013-10-21 17:07:53	Deserialising User Session
+2013-10-21 17:07:53	Error running query.
+2013-10-21 17:07:53	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:07:53	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:09:10	127.0.0.1	/api/contacts	{}
+2013-10-21 17:09:16	Existing GitHub User Logged In.
+2013-10-21 17:09:16	Serialising User Session
+2013-10-21 17:09:27	Deserialising User Session
+2013-10-21 17:09:27	Error running query.
+2013-10-21 17:09:27	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:09:27	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:10:40	Existing GitHub User Logged In.
+2013-10-21 17:10:40	Serialising User Session
+2013-10-21 17:10:47	Deserialising User Session
+2013-10-21 17:10:47	Error running query.
+2013-10-21 17:10:47	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:10:47	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:11:28	Existing GitHub User Logged In.
+2013-10-21 17:11:28	Serialising User Session
+2013-10-21 17:11:31	Deserialising User Session
+2013-10-21 17:11:31	Error running query.
+2013-10-21 17:11:31	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:11:31	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:12:56	Existing GitHub User Logged In.
+2013-10-21 17:12:56	Serialising User Session
+2013-10-21 17:12:59	Deserialising User Session
+2013-10-21 17:12:59	Error running query.
+2013-10-21 17:12:59	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:12:59	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:13:31	Existing GitHub User Logged In.
+2013-10-21 17:13:31	Serialising User Session
+2013-10-21 17:13:34	Deserialising User Session
+2013-10-21 17:13:34	127.0.0.1	/api/contacts	{}
+2013-10-21 17:14:12	127.0.0.1	/api/contacts	{}
+2013-10-21 17:14:25	Existing GitHub User Logged In.
+2013-10-21 17:14:25	Serialising User Session
+2013-10-21 17:14:27	Deserialising User Session
+2013-10-21 17:14:27	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:31	Existing GitHub User Logged In.
+2013-10-21 17:16:31	Serialising User Session
+2013-10-21 17:16:45	Deserialising User Session
+2013-10-21 17:16:45	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:55	Deserialising User Session
+2013-10-21 17:16:55	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:56	Deserialising User Session
+2013-10-21 17:16:56	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:57	Deserialising User Session
+2013-10-21 17:16:57	127.0.0.1	/api/contacts	{}
+2013-10-21 17:17:33	127.0.0.1	/api/contacts	{}

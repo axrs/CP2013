@@ -27,7 +27,9 @@ var SqliteHelper = Ring.create({
                     LogDispatcher.log(err);
                     LogDispatcher.log(sql + JSON.stringify(values));
                 }
-                callback(err, results);
+                if (callback) {
+                    callback(err, results);
+                }
             });
         }
         else {
@@ -37,7 +39,9 @@ var SqliteHelper = Ring.create({
                     LogDispatcher.log(err);
                     LogDispatcher.log(sql + JSON.stringify(values));
                 }
-                callback(err, results);
+                if (callback) {
+                    callback(err, results);
+                }
             });
         }
     },
@@ -52,11 +56,15 @@ var SqliteHelper = Ring.create({
             var prepared = this._db.prepare(sql);
             prepared.all(values, function (err, results) {
                 if (err) {
+                    console.log(err);
+
                     LogDispatcher.log('Error running query.');
                     LogDispatcher.log(err);
                     LogDispatcher.log(sql + JSON.stringify(values));
                 }
-                callback(err, results);
+                if (callback) {
+                    callback(err, results);
+                }
             });
         } else {
             this._db.all(sql, function (err, results) {
@@ -65,7 +73,9 @@ var SqliteHelper = Ring.create({
                     LogDispatcher.log(err);
                     LogDispatcher.log(sql + JSON.stringify(values));
                 }
-                callback(err, results);
+                if (callback) {
+                    callback(err, results);
+                }
             });
         }
     }

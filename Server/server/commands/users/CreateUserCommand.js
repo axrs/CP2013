@@ -1,45 +1,48 @@
 var Ring = require('ring');
-var Contact = require('../../models/Contact.js');
-var AbstractConcreteCommand = require('./AbstractContactCommand.js');
+var User = require('../../models/User.js');
+var AbstractUserCommand = require('./AbstractUserCommand.js');
 var StatusHelpers = require('../../helpers/StatusHelpers.js');
 
-var CreateContactCommand = Ring.create([AbstractConcreteCommand], {
-    _contact: null,
+var CreateUserCommand = Ring.create([AbstractUserCommand], {
+    _user: null,
     /**
-     *
-     * @param {Contact} contact
+     * @param {User} user
      * @param {IContactDAO} contactDAO
      */
-    init: function (contact, contactDAO) {
-        this._contact = contact;
+    init: function (user, contactDAO) {
+        this._user = user;
         this.$super(contactDAO);
     },
-
     /**
      *
-     * @param req
-     * @param res
+     * @param req Requester
+     * @param res Response
      */
     execute: function (req, res) {
+        var user = this._user;
         var dao = this._dao;
-        var contact = this._contact;
-        if (!contact.isValid() || contact.getId() > 0) {
+
+        if (!user.isValid() || user.getId() > 0) {
             StatusHelpers.status400(req, res);
         } else {
-            dao.retrieveByName(contact.getName(), contact.getSurname(), function (err, result) {
+            var id = user.getId();
+            if (user.getStrategy() != 'local') {
+                id = user.getStrategyId();
+            }
+            dao.retrieveById(id, user.getStrategy(), function (err, result) {
                 if (err) {
                     StatusHelpers.status500(req, res);
                 } else if (result) {
                     StatusHelpers.status409(req, res);
                 } else {
-                    dao.create(contact, function (err, result) {
+                    dao.create(user, function (err, result) {
                         if (err) {
                             StatusHelpers.status500(req, res);
                         } else {
                             dao.lastInserted(function (err, result) {
                                 res.writeHead(201, { 'Content-Type': 'application/json' });
-                                contact = result;
-                                res.write(JSON.stringify(contact));
+                                user = result;
+                                res.write(JSON.stringify(user));
                                 res.end();
                             });
                         }
@@ -50,4 +53,4 @@ var CreateContactCommand = Ring.create([AbstractConcreteCommand], {
     }
 });
 
-module.exports = CreateContactCommand;
+module.exports = CreateUserCommand;

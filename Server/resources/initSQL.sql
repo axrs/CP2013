@@ -1,4 +1,15 @@
 /*-=-=-=-=-=-=-=-=-=-=
+ * SESSIONS
+ -=-=-=-=-=-=-=-=-=-=*/
+
+CREATE TABLE IF NOT EXISTS Session (
+  Id       INTEGER,
+  UserId   INTEGER,
+  Lifetime BIGINT,
+  FOREIGN KEY (UserId) REFERENCES User (UserId)
+);
+
+/*-=-=-=-=-=-=-=-=-=-=
  * CONTACTS
  -=-=-=-=-=-=-=-=-=-=*/
 CREATE TABLE IF NOT EXISTS Contact (
@@ -22,13 +33,15 @@ CREATE TABLE IF NOT EXISTS Contact (
  * USERS
  -=-=-=-=-=-=-=-=-=-=*/
 CREATE TABLE IF NOT EXISTS User (
-  UserId       INTEGER,
-  User         VARCHAR NOT NULL,
-  Password     VARCHAR NOT NULL,
+  UserId       INTEGER PRIMARY KEY AUTOINCREMENT,
+  ContactId    INTEGER,
+  User         VARCHAR,
+  Password     VARCHAR,
   isAdmin      BOOLEAN DEFAULT 0,
+  StrategyId   INTEGER,
   Strategy     VARCHAR DEFAULT 'local',
   StrategyData VARCHAR,
-  FOREIGN KEY (UserId) REFERENCES Contact (ContactId)
+  FOREIGN KEY (ContactId) REFERENCES Contact (ContactId)
 );
 
 /*-=-=-=-=-=-=-=-=-=-=

@@ -4,31 +4,29 @@ var AbstractConcreteCommand = require('./AbstractContactCommand.js');
 var StatusHelpers = require('../../helpers/StatusHelpers.js');
 
 var UpdateContactCommand = Ring.create([AbstractConcreteCommand], {
+    _contact: null,
+
     /**
-     *
+     * @param {Contact} contact
      * @param {IContactDAO} contactDAO
      */
-    init: function (contactDAO) {
+    init: function (contact, contactDAO) {
+        this._contact = contact;
         this.$super(contactDAO);
     },
-    /**
-     *
-     * @param req Requester
-     * @param res Response
-     */
-    execute: function (req, res) {
-        var contact = new Contact();
 
-        this._dao.retrieve(req.params.id, function (err, result) {
+    execute: function (req, res) {
+
+        var contact = this._contact;
+        var dao = this._dao;
+        dao.retrieve(contact.getId(), function (err, result) {
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {
-                contact = Contact.fromJSON(req.body);
-
                 if (!contact.isValid() || contact.getId() <= 0) {
                     StatusHelpers.status400(req, res);
                 } else {
-                    this._dao.update(contact, function (err, result) {
+                    dao.update(contact, function (err, result) {
                         if (err) {
                             StatusHelpers.status500(req, res);
                         } else {

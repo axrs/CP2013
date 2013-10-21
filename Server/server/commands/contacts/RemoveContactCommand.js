@@ -4,20 +4,23 @@ var AbstractConcreteCommand = require('./AbstractContactCommand.js');
 var StatusHelpers = require('../../helpers/StatusHelpers.js');
 
 var RemoveContactCommand = Ring.create([AbstractConcreteCommand], {
+    _id: 0,
     /**
      *
+     * @param {Number} id
      * @param {IContactDAO} contactDAO
      */
-    init: function (contactDAO) {
+    init: function (id, contactDAO) {
         this.$super(contactDAO);
     },
     /**
      *
-     * @param req Requester
-     * @param res Response
+     * @param req
+     * @param res
      */
     execute: function (req, res) {
-        if (req.params.id > 0) {
+        var id = this._id;
+        if (id > 0) {
             this._dao.remove(req.params.id, function (err, result) {
                 if (err) StatusHelpers.status500(req, res);
                 else {

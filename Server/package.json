@@ -9,6 +9,7 @@
         "start": "node server.js"
     },
     "dependencies": {
+        "client-sessions": "latest",
         "express": "latest",
         "restify": "latest",
         "fs-extra": "latest",
@@ -22,6 +23,7 @@
         "view-helpers": "latest",
         "forever": "latest",
         "sqlite3": "latest",
-        "ring": "latest"
+        "ring": "latest",
+        "node-uuid": "latest"
     }
 }
