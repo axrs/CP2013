@@ -24,15 +24,13 @@ var removeCMD = function (req, res) {
     new RemoveContactCommand(dao).execute(req, res);
 };
 
-app = module.exports.app = module.parent.exports.app;
+server = module.exports.server = module.parent.exports.server;
 
 /**
  * API Routing
  */
-app.get('/api/contacts', app.logger, allCMD);
-app.put('/api/contacts', app.logger, createCMD);
-app.post('/api/contacts', app.logger, createCMD);
-app.put('/api/contacts/:id', app.logger, updateCMD);
-app.post('/api/contacts/:id', app.logger, updateCMD);
-app.delete('/api/contacts/:id', app.logger, removeCMD);
+server.get('/api/contacts', server.logger, allCMD);
+server.put('/api/contacts', server.logger, createCMD);
+server.put('/api/contacts/:id', server.logger, updateCMD);
+server.del('/api/contacts/:id', server.logger, removeCMD);
 

@@ -4,22 +4,31 @@
 myApp.factory('RESTService',
     function ($http) {
         return {
+            rootURL: "http://127.0.0.1:8081",
             get: function (url) {
-                return $http.get(url);
+                return $http.get(this.rootURL + url);
             },
             put: function (url, data) {
-                return $http.put(url, data);
+                return $http.put(this.rootURL + url, data);
             },
             post: function (url, data) {
-                return $http.post(url, data);
+                return $http.post(this.rootURL + url, data);
             },
             delete: function (url) {
-                return $http({method: 'delete', url: url});
+                return $http({method: 'delete', url: this.rootURL + url});
             }
         };
     }
 );
-
+myApp.factory('LocalService',
+    function ($http) {
+        return {
+            get: function (url) {
+                return $http.get(url);
+            }
+        };
+    }
+);
 
 // simple auth service that can use a lot of work... 
 myApp.factory('AuthService',
@@ -38,7 +47,7 @@ myApp.factory('AuthService',
             login: function (name, password) {
                 currentUser = name;
                 authorized = true;
-                //console.log("Logged in as " + name);
+                console.log("Logged in as " + name);
                 initialState = false;
             },
             logout: function () {

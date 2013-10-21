@@ -1,6 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
 var GitHubStrategy = require('passport-github').Strategy;
-var GoogleStrategy = require('passport-google-oauth').Strategy;
 var sqlite = require('sqlite3');
 var config = require('../config/config.js');
 var database = new sqlite.Database(config.db);
@@ -8,15 +7,12 @@ var DAOFactory = require('../dao/sqlite/SqliteDAOFactory.js');
 var UserDAO = new DAOFactory(database).getUserDAO();
 
 module.exports = function (passport) {
-    //Serialize sessions
     passport.serializeUser(function (user, done) {
-        done(null, user.id);
+        done(null, user.getId());
     });
 
     passport.deserializeUser(function (id, done) {
-        User.findOne({
-            _id: id
-        }, function (err, user) {
+        UserDAO.retrieveById(id, function (err, user) {
             done(err, user);
         });
     });
@@ -45,4 +41,38 @@ module.exports = function (passport) {
             });
         }
     ));
+
+
+    //Use github strategy
+    passport.use(new GitHubStrategy({
+            clientID: config.github.clientID,
+            clientSecret: config.github.clientSecret,
+            callbackURL: config.github.callbackURL
+        },
+        function (accessToken, refreshToken, profile, done) {
+
+            /*
+             UserDAO.retrieveById({
+             'github.id': profile.id
+             }, function (err, user) {
+             if (!user) {
+             user = new User({
+             name: profile.displayName,
+             email: profile.emails[0].value,
+             username: profile.username,
+             provider: 'github',
+             github: profile._json
+             });
+             user.save(function (err) {
+             if (err) console.log(err);
+             return done(err, user);
+             });
+             } else {
+             return done(err, user);
+             }
+             });
+             */
+        }
+    ));
+
 };

@@ -48,17 +48,17 @@ myApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $
 }]);
 
 // this is run after angular is instantiated and bootstrapped
-myApp.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService) {
+myApp.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTService, LocalService) {
 
     // *****
     // Eager load some data using simple REST client
     // *****
-
     $rootScope.restService = RESTService;
+    $rootScope.LocalService = LocalService;
 
     // async load constants
     $rootScope.constants = [];
-    $rootScope.restService.get('data/constants.json').success(function (data) {
+    $rootScope.LocalService.get('data/constants.json').success(function (data) {
         $rootScope.constants = data[0];
     });
 

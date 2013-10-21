@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "express": "latest",
+        "restify": "latest",
         "fs-extra": "latest",
         "underscore": "latest",
         "colors": "latest",
@@ -17,7 +18,6 @@
         "passport": "latest",
         "passport-local": "latest",
         "passport-github": "latest",
-        "passport-google-oauth": "latest",
         "async": "latest",
         "view-helpers": "latest",
         "forever": "latest",

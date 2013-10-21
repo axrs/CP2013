@@ -18,21 +18,22 @@ var CreateContactCommand = Ring.create([AbstractConcreteCommand], {
      */
     execute: function (req, res) {
         var contact = Contact.fromJSON(req.body);
+        var dao = this._dao;
 
         if (!contact.isValid() || contact.getId() > 0) {
             StatusHelpers.status400(req, res);
         } else {
-            this._dao.retrieveByName(contact.getName(), contact.getSurname(), function (err, result) {
+            dao.retrieveByName(contact.getName(), contact.getSurname(), function (err, result) {
                 if (err) {
                     StatusHelpers.status500(req, res);
                 } else if (result) {
                     StatusHelpers.status409(req, res);
                 } else {
-                    this._dao.create(contact, function (err, result) {
+                    dao.create(contact, function (err, result) {
                         if (err) {
                             StatusHelpers.status500(req, res);
                         } else {
-                            this._dao.lastInserted(function (err, result) {
+                            dao.lastInserted(function (err, result) {
                                 res.writeHead(201, { 'Content-Type': 'application/json' });
                                 contact = result;
                                 res.write(JSON.stringify(contact));

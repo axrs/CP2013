@@ -1,17 +1,13 @@
-var express = require('express');
 var fs = require('fs');
+var util = require('util');
 var passport = require('passport');
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require('./server/config/config');
 //auth = require('./config/middlewares/authorization'),
 
 
-var app = express();
-require('./server/config/express')(app, null);
-require('./server/config/routes')(app, null, null);
-
-app.listen(config.port);
-console.log('Express app started on port ' + config.port);
+/**Configure Restify**/
+var server = require('./server/config/restify.js');
 
 
 var StrategyLogger = require('./server/utilities/logger/StrategyLogger.js');
@@ -42,20 +38,16 @@ function logRequest(req, res, next) {
     next();
 }
 
-app.logger = logRequest;
+server.logger = logRequest;
 
-module.exports.app = app;
+module.exports.server = server;
+
 
 var controllers = __dirname + '/server/controllers';
 fs.readdirSync(controllers).forEach(function (file) {
     require(controllers + '/' + file);
 });
 //require('./config/passport')(passport);
-
-//Home route
-app.get('/', function (req, res) {
-    res.sendfile(config.publicFolder + '/index.html');
-});
 
 
 
