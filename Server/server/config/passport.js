@@ -1,5 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var GitHubStrategy = require('passport-github').Strategy;
+var BearerStrategy = require('passport-http-bearer').Strategy;
+
 var sqlite = require('sqlite3');
 var config = require('../config/config.js');
 var database = new sqlite.Database(config.db);
@@ -22,6 +24,15 @@ module.exports = function (passport) {
         });
     });
 
+
+    passport.use(new BearerStrategy(
+        function (token, done) {
+            UserDAO.retrieveByToken(token, function (err, user) {
+                done(err, user);
+            });
+        }
+    ));
+
     //Use github strategy
     passport.use(new GitHubStrategy({
             clientID: config.github.clientID,
@@ -33,7 +44,19 @@ module.exports = function (passport) {
                 if (user == null) {
                     user = new User();
 
-                    var names = profile._json.name.split(" ");
+                    if (profile._json.name) {
+                        var names = profile._json.name.split(" ");
+                        user.setName(names[0]);
+                        if (names.length > 1) {
+                            user.setSurname(names[names.length - 1]);
+                        }
+                        if (names.length > 2) {
+                            user.setMiddleName(names[1]);
+                        }
+                    } else {
+                        user.setName(profile.username);
+                        user.setSurname('GitHub User');
+                    }
 
                     user.setStrategyId(profile.id);
                     user.setStrategy('github');
@@ -41,13 +64,7 @@ module.exports = function (passport) {
                     user.setEmail(profile.emails[0].value);
                     user.setCompany(profile._json.company);
 
-                    user.setName(names[0]);
-                    if (names.length > 1) {
-                        user.setSurname(names[names.length - 1]);
-                    }
-                    if (names.length > 2) {
-                        user.setMiddleName(names[1]);
-                    }
+
                     LogDispatcher.log('Creating new GitHub User.');
 
                     UserDAO.create(user, function (err) {

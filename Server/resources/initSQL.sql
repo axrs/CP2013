@@ -3,7 +3,7 @@
  -=-=-=-=-=-=-=-=-=-=*/
 
 CREATE TABLE IF NOT EXISTS Session (
-  Id       INTEGER,
+  Token    VARCHAR PRIMARY KEY NOT NULL,
   UserId   INTEGER,
   Lifetime BIGINT,
   FOREIGN KEY (UserId) REFERENCES User (UserId)
@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS User (
   StrategyId   INTEGER,
   Strategy     VARCHAR DEFAULT 'local',
   StrategyData VARCHAR,
+  Token        VARCHAR UNIQUE NOT NULL,
   FOREIGN KEY (ContactId) REFERENCES Contact (ContactId)
 );
 

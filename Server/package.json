@@ -19,6 +19,8 @@
         "passport": "latest",
         "passport-local": "latest",
         "passport-github": "latest",
+        "passport-http-token": "latest",
+        "passport-http-bearer": "latest",
         "async": "latest",
         "view-helpers": "latest",
         "forever": "latest",

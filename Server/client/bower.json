@@ -11,7 +11,10 @@
         "angular-ui": "latest",
         "gmap3": "latest",
         "ng-grid": "latest",
-        "angular-strap": "latest"
+        "angular-strap": "latest",
+        "angular-placeholders": "latest",
+        "angular-cookies": "latest",
+        "underscore": "latest"
     },
     "dependencies": {}
 }

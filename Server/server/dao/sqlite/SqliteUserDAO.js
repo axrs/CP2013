@@ -2,6 +2,7 @@ var Ring = require('ring');
 var User = require('../../models/User.js');
 var SqliteHelper = require('./SqliteHelper.js');
 var IUserDAO = require('../IUserDAO.js');
+var UUID = require('node-uuid');
 
 var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
     init: function (databaseConnection) {
@@ -44,12 +45,11 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
                             callback(err);
                         }
                     } else {
-                        console.log('here');
                         var contId = result[0].ContactId;
                         var sql = '' +
                             'INSERT INTO User ' +
-                            '(User, Password, isAdmin, StrategyId, Strategy, StrategyData, ContactId) VALUES ' +
-                            '($user, $password, $isAdmin, $strategyId, $strategy, $strategyData, $contactId);';
+                            '(User, Password, isAdmin, StrategyId, Strategy, StrategyData, ContactId, Token) VALUES ' +
+                            '($user, $password, $isAdmin, $strategyId, $strategy, $strategyData, $contactId, $token);';
 
                         var values = {
                             $user: user.getUserName(),
@@ -58,7 +58,8 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
                             $strategyId: user.getStrategyId(),
                             $strategy: user.getStrategy(),
                             $strategyData: user.getStrategyData(),
-                            $contactId: contId
+                            $contactId: contId,
+                            $token: UUID.v4()
                         };
                         queryHelper.query(sql, values, function (err, res) {
                             if (callback) {
@@ -79,16 +80,28 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
         if (strategy == null) {
             strategy = 'local';
         }
-        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND Strategy=$strategy AND isActive=1 LIMIT 1;';
+        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND User.ContactId = Contact.ContactId AND Strategy=$strategy AND isActive=1 LIMIT 1;';
         var values = {$id: id, $strategy: strategy};
 
         if (strategy != 'local') {
-            sql = 'SELECT * FROM User LEFT JOIN Contact WHERE StrategyId=$id AND Strategy=$strategy AND isActive=1 LIMIT 1;';
+            sql = 'SELECT * FROM User LEFT JOIN Contact WHERE StrategyId=$id AND User.ContactId = Contact.ContactId AND Strategy=$strategy AND isActive=1 LIMIT 1;';
         }
         if (strategy == 'Any') {
-            sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;';
+            sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND User.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
             values = {$id: id};
         }
+        this.all(sql, values, function (err, result) {
+            if (result.length) {
+                callback(err, SqliteUserDAO.UserFromDatabase(result[0]));
+            } else {
+                callback(err, null);
+            }
+        });
+    },
+    retrieveByToken: function (token, callback) {
+        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE Token=$token AND User.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
+        var values = {$token: token};
+
         this.all(sql, values, function (err, result) {
             if (result.length) {
                 callback(err, SqliteUserDAO.UserFromDatabase(result[0]));
@@ -125,18 +138,19 @@ SqliteUserDAO.UserFromDatabase = function (row) {
     user.setName(row.Name);
     user.setMiddleName(row.MiddleName);
     user.setSurname(row.Surname);
-    user.setCompany(row.company);
-    user.setEmail(row.email);
-    user.setPhone(row.phone);
-    user.setAddress(row.address, row.suburb, row.city, row.country, row.state, row.post);
+    user.setCompany(row.Company);
+    user.setEmail(row.Email);
+    user.setPhone(row.Phone);
+    user.setAddress(row.Address, row.Suburb, row.City, row.Country, row.State, row.Post);
 
     user.setUserName(row.User);
     user.setId(row.UserId);
     user.setHashedPassword(row.Password);
     user.setIsAdmin(row.isAdmin);
-    user.setStrategyId(row.strategyId);
-    user.setStrategy(row.strategy);
-    user.setStrategyData(row.strategyData);
+    user.setStrategyId(row.StrategyId);
+    user.setStrategy(row.Strategy);
+    user.setStrategyData(row.StrategyData);
+    user.setToken(row.Token);
 
     return user;
 };

@@ -16,6 +16,17 @@ var User = Ring.create([Contact], {
         }
     },
 
+
+    _token: null,
+    getToken: function () {
+        return this._token;
+    },
+    setToken: function (value) {
+        if (value != null) {
+            this._token = value;
+        }
+    },
+
     getContactId: function () {
         return this._contactId;
     },
@@ -126,7 +137,8 @@ var User = Ring.create([Contact], {
             "strategy": this._strategy,
             "strategyData": this._strategyData,
             "userName": this._user,
-            "isAdmin": this._isAdmin
+            "isAdmin": this._isAdmin,
+            "token": this._token
         };
 
         return Utilities.mergeObjectProperties([contactData, userData]);

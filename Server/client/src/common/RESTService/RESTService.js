@@ -1,19 +1,25 @@
 angular.module('RESTService', [])
 
-    .factory('RESTService', function ($http) {
+    .factory('RESTService', function ($http, $cookieStore) {
+        var rootURL = "http://127.0.0.1:8081";
+        var token = $cookieStore.get('token') || 0;
+        $cookieStore.remove('token');
+
         return {
-            rootURL: "http://127.0.0.1:8081",
+            setToken: function (value) {
+                token = value;
+            },
             get: function (url) {
-                return $http.get(this.rootURL + url);
+                return $http.get(rootURL + url + '?access_token=' + token);
             },
             put: function (url, data) {
-                return $http.put(this.rootURL + url, data);
+                return $http.put(rootURL + url + '?access_token=' + token, data);
             },
             post: function (url, data) {
-                return $http.post(this.rootURL + url, data);
+                return $http.post(rootURL + url + '?access_token=' + token, data);
             },
             remove: function (url) {
-                return $http({method: 'delete', url: this.rootURL + url});
+                return $http({method: 'delete', url: rootURL + url + '?access_token=' + token});
             }
         };
     })

@@ -256,11 +256,11 @@ SqliteContactDAO.ContactFromDatabase = function (row) {
     c.setMiddleName(row.MiddleName);
     c.setSurname(row.Surname);
 
-    c.setCompany(row.company);
-    c.setEmail(row.email);
-    c.setPhone(row.phone);
+    c.setCompany(row.Company);
+    c.setEmail(row.Email);
+    c.setPhone(row.Phone);
 
-    c.setAddress(row.address, row.suburb, row.city, row.country, row.state, row.post);
+    c.setAddress(row.Address, row.Suburb, row.City, row.Country, row.State, row.Post);
 
     return c;
 };

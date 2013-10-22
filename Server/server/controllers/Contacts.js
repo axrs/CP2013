@@ -9,6 +9,7 @@ var CreateContactCommand = require('../commands/contacts/CreateContactCommand.js
 var UpdateContactCommand = require('../commands/contacts/UpdateContactCommand.js');
 var RemoveContactCommand = require('../commands/contacts/RemoveContactCommand.js');
 var Authorisation = require('../helpers/Authorisation.js');
+var passport = require('passport');
 
 var dao = new DAOFactory(database).getContactDAO();
 
@@ -32,8 +33,22 @@ server = module.exports.server = module.parent.exports.server;
 /**
  * API Routing
  */
-server.get('/api/contacts', server.logger, Authorisation.requiresLogin, allCMD);
-server.put('/api/contacts', server.logger, createCMD);
-server.put('/api/contacts/:id', server.logger, updateCMD);
-server.delete('/api/contacts/:id', server.logger, removeCMD);
+server.get('/api/contacts',
+    server.logger,
+    passport.authenticate('bearer', { session: false }),
+    Authorisation.requiresLogin,
+    allCMD
+);
+server.put('/api/contacts',
+    server.logger,
+    createCMD
+);
+server.put('/api/contacts/:id',
+    server.logger,
+    updateCMD
+);
+server.delete('/api/contacts/:id',
+    server.logger,
+    removeCMD
+);
 

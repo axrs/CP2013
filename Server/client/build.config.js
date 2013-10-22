@@ -69,7 +69,11 @@ module.exports = {
             'vendor/angular-ui-router/release/angular-ui-router.min.js',
             'vendor/angular-ui-utils/modules/route/route.js',
             'vendor/gmap3/gmap3.js',
-            'vendor/ng-grid/build/ng-grid.min.js'
+            'vendor/ng-grid/build/ng-grid.min.js',
+            'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
+            'vendor/angular-cookies/angular-cookies.min.js',
+            'vendor/underscore/underscore-min.js'
+
         ],
         css: [
             'vendor/ng-grid/ng-grid.css'

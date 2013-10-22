@@ -23,6 +23,7 @@ module.exports = function (server, passport) {
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.header('Access-Control-Allow-Credentials', 'true');
         next();
     };
 
@@ -37,7 +38,7 @@ module.exports = function (server, passport) {
         server.use(
             express.session({
                 secret: 'CutAboveTheRest',
-                maxAge: new Date(Date.now() + 3600000)
+                maxAge: new Date(Date.now() + 6000)
             })
         );
         server.use(passport.initialize());

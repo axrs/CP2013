@@ -5,7 +5,10 @@ angular.module('ngBoilerplate.about', [
     ])
 
     .config(function config($stateProvider) {
+        var access = routingConfig.accessLevels;
+
         $stateProvider.state('about', {
+            access: access.anon,
             url: '/about',
             views: {
                 "main": {

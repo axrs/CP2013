@@ -36,7 +36,7 @@ var loggers = new StrategyLogger(recorders);
 loggers.setStrategy(new DateTimeFormatStrategy());
 
 function logRequest(req, res, next) {
-    var message = req.connection.remoteAddress + "\t" + req.url;
+    var message = req.sessionID + "\t" + req.connection.remoteAddress + "\t" + req.url;
     loggers.log(message + "\t" + JSON.stringify(req.body));
     next();
 }
@@ -45,11 +45,7 @@ server.logger = logRequest;
 
 module.exports.server = server;
 
-
 var controllers = __dirname + '/server/controllers';
 fs.readdirSync(controllers).forEach(function (file) {
     require(controllers + '/' + file);
 });
-
-
-
