@@ -48,7 +48,7 @@ var SqliteHelper = Ring.create({
     /**
      * Runs the SQL query with the specified parameters and calls the callback with all result rows afterwards.
      * @param {string} sql SQL (prepared optional) statement
-     * @param {Array} values prepared values to substitute into the array, or null
+     * @param {Object} values prepared values to substitute into the array, or null
      * @param callback
      */
     all: function (sql, values, callback) {
