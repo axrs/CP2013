@@ -80,7 +80,8 @@ CREATE TABLE IF NOT EXISTS Appointment_Type (
   TypeId      INTEGER PRIMARY KEY AUTOINCREMENT,
   Description VARCHAR,
   Duration    TIME,
-  isAllDay    BOOLEAN DEFAULT 0
+  isAllDay    BOOLEAN DEFAULT 0,
+  isActive   BOOLEAN DEFAULT 1
 );
 
 /*-=-=-=-=-=-=-=-=-=-=
