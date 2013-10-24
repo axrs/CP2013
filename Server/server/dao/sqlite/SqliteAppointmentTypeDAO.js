@@ -36,7 +36,22 @@ var SqliteAppointmentTypeDAO = Ring.create([ICRUDDAO], {
         });
     },
     retrieveAll: function (callback) {
-        throw new Error('Method Not Implemented.');
+        var sql = 'SELECT * FROM Appointment_Type WHERE isActive=1 ORDER BY Description;';
+
+        var helper = new SqliteHelper(this._db);
+
+        helper.all(sql, null, function (err, result) {
+            var types = [];
+
+            if (result && result.length) {
+                for (var i = 0; i < result.length; i++) {
+                    types.push(SqliteAppointmentTypeDAO.TypeFromDatabase(result[i]));
+                }
+            }
+            if (callback) {
+                callback(err, types);
+            }
+        });
     },
     retrieveById: function (id, callback) {
         throw new Error('Method Not Implemented.');
