@@ -7,7 +7,7 @@ import client.controllers.EditContactWindowCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
-import client.scene.control.SloganLabel;
+import client.scene.control.LabelFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -38,7 +38,7 @@ public class AddressBook extends Stage {
         setTitle("CP2013 Appointment Scheduler - Contacts");
         BorderPane contactPane = new BorderPane();
 
-        final Label label = new SloganLabel("Address Book");
+        final Label label = LabelFactory.createSloganLabel("Address Book");
 
         initialiseTableColumns();
         table.setItems(data);

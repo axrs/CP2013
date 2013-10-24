@@ -6,7 +6,7 @@ import client.controllers.CloseStageCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
-import client.scene.control.FieldLabel;
+import client.scene.control.LabelFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -150,39 +150,39 @@ public class FormView extends Stage implements ServiceProviderView {
         grid.setVgap(10);
         grid.setPadding(new Insets(10));
 
-        grid.addRow(0, new FieldLabel("First Name:"), forenameInput);
+        grid.addRow(0, LabelFactory.createFieldLabel("First Name:"), forenameInput);
 
-        grid.addRow(1, new FieldLabel("Last Name:"), surnameInput);
+        grid.addRow(1, LabelFactory.createFieldLabel("Last Name:"), surnameInput);
 
         grid.addRow(2, new Separator(), new Separator());
 
-        grid.addRow(3, new FieldLabel("Company:"), companyInput);
+        grid.addRow(3, LabelFactory.createFieldLabel("Company:"), companyInput);
 
-        grid.addRow(4, new FieldLabel("Phone:"), phoneInput);
+        grid.addRow(4, LabelFactory.createFieldLabel("Phone:"), phoneInput);
 
-        grid.addRow(5, new FieldLabel("Email:"), emailInput);
+        grid.addRow(5, LabelFactory.createFieldLabel("Email:"), emailInput);
 
         grid.addRow(6, new Separator(), new Separator());
 
-        grid.addRow(7, new FieldLabel("Street:"), addrStreetInput);
+        grid.addRow(7, LabelFactory.createFieldLabel("Street:"), addrStreetInput);
 
-        grid.addRow(8, new FieldLabel("Suburb:"), addrSuburbInput);
+        grid.addRow(8, LabelFactory.createFieldLabel("Suburb:"), addrSuburbInput);
 
-        grid.addRow(9, new FieldLabel("City:"), addrCityInput);
+        grid.addRow(9, LabelFactory.createFieldLabel("City:"), addrCityInput);
 
-        grid.addRow(10, new FieldLabel("Post Code:"), addrZipInput);
+        grid.addRow(10, LabelFactory.createFieldLabel("Post Code:"), addrZipInput);
 
-        grid.addRow(11, new FieldLabel("State:"), addrStateInput);
+        grid.addRow(11, LabelFactory.createFieldLabel("State:"), addrStateInput);
 
         grid.addRow(12, new Separator(), new Separator());
 
-        grid.addRow(13, new FieldLabel("Date Employed:"), dateStartedInput);
+        grid.addRow(13,LabelFactory.createFieldLabel("Date Employed:"), dateStartedInput);
 
-        grid.addRow(14, new FieldLabel("Date Terminated:"), dateTerminatedInput);
+        grid.addRow(14, LabelFactory.createFieldLabel("Date Terminated:"), dateTerminatedInput);
 
-        grid.addRow(15, new FieldLabel("Biography:"), bio);
+        grid.addRow(15, LabelFactory.createFieldLabel("Biography:"), bio);
 
-        grid.addColumn(2, new FieldLabel("Available Hours:"));
+        grid.addColumn(2, LabelFactory.createFieldLabel("Available Hours:"));
 
         BorderPane tablePane = new BorderPane();
 

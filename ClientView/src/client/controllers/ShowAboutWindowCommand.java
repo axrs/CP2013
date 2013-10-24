@@ -1,12 +1,11 @@
 package client.controllers;
 
 import Models.Config;
-import client.utilities.GoogleMap;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
-import client.scene.control.HeaderLabel;
-import client.scene.control.SloganLabel;
+import client.scene.control.LabelFactory;
+import client.utilities.GoogleMap;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
@@ -64,11 +63,11 @@ public class ShowAboutWindowCommand implements ICommand {
         RowConstraints rc = new RowConstraints();
         rc.setValignment(VPos.TOP);
 
-        SloganLabel sloganLabel = new SloganLabel(slogan);
+        Label sloganLabel = LabelFactory.createSloganLabel(slogan);
         borderPane.add(sloganLabel, 0, 0, 2, 1);
         GridPane.setHalignment(sloganLabel, HPos.CENTER);
 
-        borderPane.add(new HeaderLabel("Who We Are"), 0, 1);
+        borderPane.add(LabelFactory.createHeadingLabel("Who We Are"), 0, 1);
 
         Label aboutText = new Label(description);
         aboutText.setPrefWidth(300);
@@ -77,7 +76,7 @@ public class ShowAboutWindowCommand implements ICommand {
         borderPane.add(aboutText, 0, 2);
         GridPane.setValignment(aboutText, VPos.TOP);
 
-        borderPane.add(new HeaderLabel("Showroom"), 0, 3);
+        borderPane.add(LabelFactory.createHeadingLabel("Showroom"), 0, 3);
         Label addressLabel = new Label(address);
         borderPane.add(addressLabel, 0, 4);
         GridPane.setValignment(addressLabel, VPos.TOP);
@@ -92,7 +91,7 @@ public class ShowAboutWindowCommand implements ICommand {
         webEngine.loadContent(html);
         webView.setMaxSize(300, 300);
 
-        borderPane.add(new HeaderLabel("Where We Be"), 1, 1);
+        borderPane.add(LabelFactory.createHeadingLabel("Where We Be"), 1, 1);
         borderPane.add(webView, 1, 2, 1, 3);
 
         ActionButtons actions = new ActionButtons(false);

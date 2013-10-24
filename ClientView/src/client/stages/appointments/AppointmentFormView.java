@@ -12,7 +12,7 @@ import client.controllers.CloseStageCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
-import client.scene.control.FieldLabel;
+import client.scene.control.LabelFactory;
 import client.scene.control.TimeComboBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -78,19 +78,19 @@ public class AppointmentFormView extends Stage {
 
         GridPane mainPane = new GridPane();
         mainPane.getStyleClass().add("grid");
-        mainPane.add(new FieldLabel("Provider: "), 0, 0);
+        mainPane.add(LabelFactory.createFieldLabel("Provider: "), 0, 0);
         mainPane.add(serviceProvider, 1, 0);
 
-        mainPane.add(new FieldLabel("Type: "), 0, 1);
+        mainPane.add(LabelFactory.createFieldLabel("Type: "), 0, 1);
         mainPane.add(appointmentType, 1, 1);
 
-        mainPane.add(new FieldLabel("Client: "), 0, 2);
+        mainPane.add(LabelFactory.createFieldLabel("Client: "), 0, 2);
         mainPane.add(contact, 1, 2);
 
-        mainPane.add(new FieldLabel("Date: "), 0, 3);
+        mainPane.add(LabelFactory.createFieldLabel("Date: "), 0, 3);
         mainPane.add(date, 1, 3);
 
-        mainPane.add(new FieldLabel("Time: "), 0, 4);
+        mainPane.add(LabelFactory.createFieldLabel("Time: "), 0, 4);
         mainPane.add(timeSelection, 1, 4);
 
         for (Node n : mainPane.getChildren()) {

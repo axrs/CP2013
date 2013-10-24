@@ -3,12 +3,13 @@ package client.stages.contacts;
 import Interfaces.ContactView;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
-import client.scene.control.FieldLabel;
+import client.scene.control.LabelFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -55,29 +56,29 @@ public class FormView extends Stage implements ContactView {
         grid.setAlignment(Pos.CENTER);
         grid.getStyleClass().add("grid");
 
-        grid.addRow(0, new FieldLabel("First Name:"), forenameInput);
+        grid.addRow(0, LabelFactory.createFieldLabel("First Name:"), forenameInput);
 
-        grid.addRow(1, new FieldLabel("Last Name:"), surnameInput);
+        grid.addRow(1, LabelFactory.createFieldLabel("Last Name:"), surnameInput);
 
         grid.addRow(2, new Separator(), new Separator());
 
-        grid.addRow(3, new FieldLabel("Company:"), companyInput);
+        grid.addRow(3, LabelFactory.createFieldLabel("Company:"), companyInput);
 
-        grid.addRow(4, new FieldLabel("Phone:"), phoneInput);
+        grid.addRow(4, LabelFactory.createFieldLabel("Phone:"), phoneInput);
 
-        grid.addRow(5, new FieldLabel("Email:"), emailInput);
+        grid.addRow(5, LabelFactory.createFieldLabel("Email:"), emailInput);
 
         grid.addRow(6, new Separator(), new Separator());
 
-        grid.addRow(7, new FieldLabel("Street:"), addrStreetInput);
+        grid.addRow(7, LabelFactory.createFieldLabel("Street:"), addrStreetInput);
 
-        grid.addRow(8, new FieldLabel("Suburb:"), addrSuburbInput);
+        grid.addRow(8, LabelFactory.createFieldLabel("Suburb:"), addrSuburbInput);
 
-        grid.addRow(9, new FieldLabel("City:"), addrCityInput);
+        grid.addRow(9, LabelFactory.createFieldLabel("City:"), addrCityInput);
 
-        grid.addRow(10, new FieldLabel("Post Code:"), addrZipInput);
+        grid.addRow(10, LabelFactory.createFieldLabel("Post Code:"), addrZipInput);
 
-        grid.addRow(11, new FieldLabel("State:"), addrStateInput);
+        grid.addRow(11, LabelFactory.createFieldLabel("State:"), addrStateInput);
 
 
         for (Node n : grid.getChildren()) {
@@ -85,9 +86,9 @@ public class FormView extends Stage implements ContactView {
                 ((TextField) n).setPrefWidth(200);
                 ((TextField) n).setPrefHeight(20);
             }
-            if (n instanceof FieldLabel) {
-                ((FieldLabel) n).setPrefWidth(80);
-                ((FieldLabel) n).setPrefHeight(20);
+            if (n instanceof Label) {
+                ((Label) n).setPrefWidth(80);
+                ((Label) n).setPrefHeight(20);
             }
         }
 

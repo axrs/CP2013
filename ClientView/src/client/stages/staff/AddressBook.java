@@ -8,7 +8,7 @@ import client.controllers.EditStaffWindowCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
-import client.scene.control.SloganLabel;
+import client.scene.control.LabelFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -31,7 +31,7 @@ public class AddressBook extends Stage {
         setTitle("CP2013 Appointment Scheduler - Admin");
         final BorderPane mainPane = new BorderPane();
 
-        final Label label = new SloganLabel("Staff Listing");
+        final Label label = LabelFactory.createSloganLabel("Staff Listing");
 
         initialiseTableColumns();
         staffTable.setItems(data);
