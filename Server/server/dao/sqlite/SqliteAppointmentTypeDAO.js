@@ -68,8 +68,26 @@ var SqliteAppointmentTypeDAO = Ring.create([ICRUDDAO], {
             }
         });
     },
-    update: function (contact, callback) {
-        throw new Error('Method Not Implemented.');
+    update: function (type, callback) {
+        var sql = '' +
+            'UPDATE Appointment_Type ' +
+            'SET Description=$description, Duration=$duration, isAllDay=$isAllDay, isActive=$active ' +
+            'WHERE TypeId=$id;';
+
+        var values = {
+            $description: type.getDescription(),
+            $duration: type.getDuration(),
+            $isAllDay: type.getIsAllDay(),
+            $isActive: type.getIsActive(),
+            $id: type.getId()
+        };
+        var helper = new SqliteHelper(this._db);
+
+        helper.query(sql, values, function (err) {
+            if (callback) {
+                callback(err);
+            }
+        });
     },
     remove: function (contact, callback) {
         throw new Error('Method Not Implemented.');
