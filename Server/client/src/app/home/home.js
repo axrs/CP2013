@@ -26,7 +26,7 @@ angular.module('ngBoilerplate.home', [
         var access = routingConfig.accessLevels;
 
         $stateProvider.state('home', {
-            access: access.anon,
+            access: access.public,
             url: '/',
             views: {
                 "main": {

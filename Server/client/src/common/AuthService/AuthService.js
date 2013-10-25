@@ -9,6 +9,7 @@ angular.module('AuthService', [])
 
         function changeUser(user) {
             user.role = (user.isAdmin) ? userRoles.admin : userRoles.user;
+            user.strategyDataDecode = JSON.parse(user.strategyData);
             _.extend(currentUser, user);
         }
 

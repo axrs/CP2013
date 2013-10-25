@@ -9,13 +9,14 @@ angular.module('ngBoilerplate', [
         'ngBoilerplate.home',
         'ngBoilerplate.about',
         'ngBoilerplate.contacts',
-        'ngBoilerplate.types'
-
+        'ngBoilerplate.types',
+        'ngBoilerplate.profile',
+        'ngBoilerplate.404',
+        'ngBoilerplate.401'
     ])
 
     .config(function myAppConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/404');
-        var access = routingConfig.accessLevels;
     })
 
     .run(function run($rootScope, AuthService, RESTService, LocalService, $location) {
@@ -33,17 +34,13 @@ angular.module('ngBoilerplate', [
          */
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
-            console.log(fromState);
-            console.log(toState);
             if (!AuthService.authorize(toState.access)) {
                 event.preventDefault();
                 if (AuthService.isLoggedIn()) {
-                    console.log('User is logged in.');
                     $location.path('/');
                 }
                 else {
-                    console.log('User is not logged in.');
-                    $location.path('/login');
+                    $location.path('/401');
                 }
             }
         });

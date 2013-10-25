@@ -145,7 +145,8 @@ var User = Ring.create([Contact], {
             "strategyData": this._strategyData,
             "userName": this._user,
             "isAdmin": this._isAdmin,
-            "token": this._token
+            "token": this._token,
+            "md5Email": Crypto.createHash('md5').update(this._email).digest("hex")
         };
 
         return Utilities.mergeObjectProperties([contactData, userData]);
