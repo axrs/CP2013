@@ -12,13 +12,8 @@ var Provider = Ring.create([Contact], {
     _terminated: '',
     _isActive: 1,
     _color: '#006dcc',
-    _hours: [],
+    _hours: new Array(7),
     init: function () {
-        if (this._hours.length == 0) {
-            for (var i = 0; i <= 6; i++) {
-                this._hours.push(new ProviderHours(i));
-            }
-        }
     },
     getId: function () {
         return this._providerId;
@@ -92,9 +87,10 @@ var Provider = Ring.create([Contact], {
         var contactData = this.$super();
         var hours = [];
 
-        console.log(this._hours);
         for (var i = 0; i < this._hours.length; i++) {
-            hours[i] = this._hours[i].toJSON();
+            if (typeof this._hours[i] !== 'undefined' && this._hours[i] !== null) {
+                hours[i] = this._hours[i].toJSON();
+            }
         }
 
         var providerData = {
