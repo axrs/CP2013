@@ -42,7 +42,6 @@ var SqliteAppointmentTypeDAO = Ring.create([ITypeDAO], {
 
         helper.all(sql, null, function (err, result) {
             var types = [];
-
             if (result && result.length) {
                 for (var i = 0; i < result.length; i++) {
                     types.push(SqliteAppointmentTypeDAO.TypeFromDatabase(result[i]));

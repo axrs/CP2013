@@ -10,7 +10,8 @@
         <label class="control-label">Description</label>
         <input type="text" placeholder="Description" ng-model="type.description" required>
         <label class="control-label">Duration</label>
-        <input type="text" placeholder="Description" ng-model="type.duration" class="timepicker8 input-small" required>
+        <input type="text" id="typeTimePicker" placeholder="00:00" class="timepicker8" required ng-model="type.duration">
+
     </div>
 </fieldset>
 
@@ -22,12 +23,19 @@
 </fieldset>
 
 <script>
-    $('.timepicker8').timepicker({
-        step: 15,
-        at_row: 4,
-        active_from: '00:15',
-        active_to: '8:00',
-        alarm_from: '00:00',
-        alarm_to: '00:00'
+    $(document).ready(function () {
+
+        $('#typeTimePicker').timepicker({
+            step: 15,
+            at_row: 4,
+            active_from: '00:15',
+            active_to: '8:00',
+            alarm_from: '00:00',
+            alarm_to: '00:00',
+            close_callback: function () {
+                var time = $('#typeTimePicker')[0].value;
+                $('#typeTimePicker').scope().setTypeDuration(time);
+            }
+        });
     });
 </script>

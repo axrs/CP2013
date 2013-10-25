@@ -31,7 +31,7 @@ module.exports.isIntegerAboveZero = function (n) {
  * @returns {boolean} True if the {value} matches the format
  */
 module.exports.isTimeStamp = function (value) {
-    return '^(20|21|22|23|[01]\d|\d)((:[0-5]\d){1,2})$'.test(value);
+    return RegExp("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$").test(value);
 };
 
 /**

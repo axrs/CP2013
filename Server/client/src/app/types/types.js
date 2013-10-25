@@ -35,6 +35,11 @@ angular.module('ngBoilerplate.contacts', [
             $scope.alerts.splice(index, 1);
         };
 
+        $scope.setTypeDuration = function (value) {
+            $scope.type.duration = value;
+        };
+
+
         $scope.type = null;
 
         $scope.process = function () {
@@ -54,16 +59,21 @@ angular.module('ngBoilerplate.contacts', [
 
         $scope.create = function () {
             RESTService.put('/api/types', $scope.type).
-                success(function (data, status) {
+                success(function (data, status, headers, config) {
                     if (status == 201) {
                         $scope.type = data;
-                        $scope.type.push($scope.type);
+                        $scope.types.push($scope.type);
                         $scope.clear();
+                        console.log('here');
                     }
                 }).
-                error(function (data, status) {
+                error(function (data, status, headers, config) {
+                    console.log('here');
+
                     switch (status) {
                         case 400:
+                            console.log('here');
+
                             $scope.alerts.push({type: 'error', title: 'Form Error:', msg: "An appointment type must have a description."});
                             break;
                         case 500:
@@ -168,7 +178,7 @@ angular.module('ngBoilerplate.contacts', [
         $scope.selected = [];
 
         $scope.gridOptions = {
-            data: 'contacts',
+            data: 'types',
             enablePaging: false,
             showFooter: true,
             multiSelect: false,
@@ -185,7 +195,7 @@ angular.module('ngBoilerplate.contacts', [
                     $scope.type = $scope.selected[0];
                     $scope.action = 'Editing';
                 } else {
-                    $scope.contact = null;
+                    $scope.type = null;
                 }
             }
         };
