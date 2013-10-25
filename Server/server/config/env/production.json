@@ -1,6 +1,12 @@
 {
+    "webLocation": "http://shear-n-dipity.com/",
     "db": "./resources/shears.db",
     "app": {
         "name": "Project Central"
+    },
+    "github": {
+        "clientID": "595e60171ce27a1a7142",
+        "clientSecret": "1daddb497d4c7e30250006ed42ab686592140203",
+        "callbackURL": "http://shear-n-dipity.com:8081/api/auth/github/callback"
     }
 }

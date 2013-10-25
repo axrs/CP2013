@@ -9,11 +9,12 @@ angular.module('ngBoilerplate', [
         'ngBoilerplate.home',
         'ngBoilerplate.about',
         'ngBoilerplate.contacts',
-        'ui.router'
+        'ngBoilerplate.types'
+
     ])
 
     .config(function myAppConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/404');
         var access = routingConfig.accessLevels;
     })
 
@@ -30,16 +31,19 @@ angular.module('ngBoilerplate', [
         /**
          * Watch for location change requests and prevent unauthorised access
          */
-        $rootScope.$on("$stateChangeStart", function (event, next, current) {
-            $rootScope.error = null;
+        $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
 
-            if (!AuthService.authorize(next.access, AuthService.user.role)) {
+            console.log(fromState);
+            console.log(toState);
+            if (!AuthService.authorize(toState.access)) {
                 event.preventDefault();
                 if (AuthService.isLoggedIn()) {
-                    $location.path('/home');
+                    console.log('User is logged in.');
+                    $location.path('/');
                 }
                 else {
-                    $location.path('/about');
+                    console.log('User is not logged in.');
+                    $location.path('/login');
                 }
             }
         });

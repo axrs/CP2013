@@ -1,5 +1,5 @@
 angular.module('AuthService')
-    .directive('accessLevel', ['AuthService', function (Auth) {
+    .directive('accessLevel', ['AuthService', function (AuthService) {
         return {
             restrict: 'A',
             link: function ($scope, element, attrs) {
@@ -7,7 +7,7 @@ angular.module('AuthService')
                 var userRole;
                 var accessLevel;
 
-                $scope.user = Auth.user;
+                $scope.user = AuthService.user;
                 $scope.$watch('user', function (user) {
                     if (user.role) {
                         userRole = user.role;
@@ -24,7 +24,7 @@ angular.module('AuthService')
 
                 function updateCSS() {
                     if (userRole && accessLevel) {
-                        if (!Auth.authorize(accessLevel, userRole)) {
+                        if (!AuthService.authorize(accessLevel, userRole)) {
                             element.css('display', 'none');
                         }
                         else {

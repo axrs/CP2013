@@ -27,7 +27,7 @@ angular.module('ngBoilerplate.home', [
 
         $stateProvider.state('home', {
             access: access.anon,
-            url: '/home',
+            url: '/',
             views: {
                 "main": {
                     controller: 'HomeCtrl',

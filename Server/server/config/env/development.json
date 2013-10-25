@@ -1,7 +1,8 @@
 {
     "db": "./resources/shears-development.db",
     "app": {
-        "name": "« Development » Project Central"
+        "name": "« Development » Project Central",
+        "webLocation": "http://localhost:8080/"
     },
     "github": {
         "clientID": "595e60171ce27a1a7142",

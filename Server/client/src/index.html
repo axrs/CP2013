@@ -21,21 +21,24 @@
                     <span class="icon-bar"></span>
                 </a>
 
-                <a class="brand" href="#" ng-bind="siteName"></a>
+                <a class="brand" href="#/" ng-bind="siteName"></a>
 
                 <div class="nav-collapse collapse">
 
                     <ul class="nav">
-
-                        <li ui-route="/contacts" ng-class="{active:$uiRoute}" data-access-level='accessLevels.user'>
-                            <a href="#/contacts"><i class="icon-user"></i> Contacts</a>
+                        <li ui-route="/types" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'>
+                            <a href="#/types"><i class="icon-user"></i> Types</a>
                         </li>
 
-                        <li ui-route="/contacts" ng-class="{active:$uiRoute}" data-access-level='accessLevels.admin'>
-                            <a href="#/contacts"><i class="icon-user"></i> Contacts</a>
+                        <li ui-route="/contacts" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'>
+                            <a href="#/contacts"><i class="icon-user"></i> User Contacts</a>
                         </li>
 
-                        <li ui-route="/profile" ng-class="{active:$uiRoute}" data-access-level='accessLevels.user'
+                        <li ui-route="/contacts" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'>
+                            <a href="#/contacts"><i class="icon-user"></i> Admin Contacts</a>
+                        </li>
+
+                        <li ui-route="/profile" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'
                             class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="icon-user"></i>

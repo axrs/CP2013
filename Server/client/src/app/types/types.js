@@ -1,4 +1,4 @@
-angular.module('ngBoilerplate.contacts', [
+angular.module('ngBoilerplate.types', [
         'ui.router',
         'placeholders',
         'ui.bootstrap',
@@ -14,8 +14,8 @@ angular.module('ngBoilerplate.contacts', [
 
         var access = routingConfig.accessLevels;
 
-        $stateProvider.state('contacts', {
-            access: access.anon,
+        $stateProvider.state('types', {
+            access: access.admin,
             url: '/types',
             views: {
                 "main": {
@@ -23,7 +23,7 @@ angular.module('ngBoilerplate.contacts', [
                     templateUrl: 'types/types.index.tpl.html'
                 }
             },
-            data: { pageTitle: 'Appointment Types' }
+            data: { pageTitle: 'AppointmentTypes' }
         });
     })
     .controller('TypesCtrl', function TypesCtrl($scope, RESTService) {

@@ -15,7 +15,7 @@ angular.module('ngBoilerplate.contacts', [
         var access = routingConfig.accessLevels;
 
         $stateProvider.state('contacts', {
-            access: access.user,
+            access: access.admin,
             url: '/contacts',
             views: {
                 "main": {

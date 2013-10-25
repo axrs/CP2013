@@ -1,4 +1,4 @@
-(function (exports) {
+(function(exports){
 
     var config = {
 
@@ -6,7 +6,7 @@
          * You have a max of 31 before the bit shift pushes the accompanying integer out of
          * the memory footprint for an integer
          */
-        roles: [
+        roles :[
             'public',
             'user',
             'admin'],
@@ -15,10 +15,10 @@
          Build out all the access levels you want referencing the roles listed above
          You can use the "*" symbol to represent access to all roles
          */
-        accessLevels: {
-            'public': "*",
+        accessLevels : {
+            'public' : "*",
             'anon': ['public'],
-            'user': ['user', 'admin'],
+            'user' : ['user', 'admin'],
             'admin': ['admin']
         }
 
@@ -33,12 +33,12 @@
      roles array parameter
      */
 
-    function buildRoles(roles) {
+    function buildRoles(roles){
 
         var bitMask = "01";
         var userRoles = {};
 
-        for (var role in roles) {
+        for(var role in roles){
             var intCode = parseInt(bitMask, 2);
             userRoles[roles[role]] = {
                 bitMask: intCode,
@@ -54,22 +54,22 @@
      This method builds access level bit masks based on the accessLevelDeclaration parameter which must
      contain an array for each access level containing the allowed user roles.
      */
-    function buildAccessLevels(accessLevelDeclarations, userRoles) {
+    function buildAccessLevels(accessLevelDeclarations, userRoles){
 
         var accessLevels = {};
-        for (var level in accessLevelDeclarations) {
+        for(var level in accessLevelDeclarations){
 
-            if (typeof accessLevelDeclarations[level] == 'string') {
-                if (accessLevelDeclarations[level] == '*') {
+            if(typeof accessLevelDeclarations[level] == 'string'){
+                if(accessLevelDeclarations[level] == '*'){
 
-                    var resultBitMask = '';
+                    var mask = '';
 
-                    for (var role in userRoles) {
-                        resultBitMask += "1";
+                    for( var r in userRoles){
+                        mask += "1";
                     }
                     //accessLevels[level] = parseInt(resultBitMask, 2);
                     accessLevels[level] = {
-                        bitMask: parseInt(resultBitMask, 2),
+                        bitMask: parseInt(mask, 2),
                         title: accessLevelDeclarations[level]
                     };
                 }
@@ -79,18 +79,18 @@
 
             }
             else {
-                var resultingMask = 0;
-                for (var r in accessLevelDeclarations[level]) {
-                    if (userRoles.hasOwnProperty(accessLevelDeclarations[level][r])) {
-                        resultingMask = resultingMask | userRoles[accessLevelDeclarations[level][r]].bitMask;
+                var resultBitMask = 0;
+                for(var role in accessLevelDeclarations[level]){
+                    if(userRoles.hasOwnProperty(accessLevelDeclarations[level][role])){
+                        resultBitMask = resultBitMask | userRoles[accessLevelDeclarations[level][role]].bitMask;
                     }
                     else {
-                        console.log("Access Control Error: Could not find role '" + accessLevelDeclarations[level][r] + "' in registered roles while building access for '" + level + "'");
+                        console.log("Access Control Error: Could not find role '" + accessLevelDeclarations[level][role] + "' in registered roles while building access for '" + level + "'");
                     }
                 }
                 accessLevels[level] = {
-                    bitMask: resultingMask,
-                    title: accessLevelDeclarations[level][r]
+                    bitMask: resultBitMask,
+                    title: accessLevelDeclarations[level][role]
                 };
             }
         }
