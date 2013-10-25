@@ -48,7 +48,6 @@
                     </ul>
 
 
-
                     <div class="nav navbar-form pull-right">
                         <div ng-show="!authService.isLoggedIn()">
 
@@ -56,10 +55,20 @@
                                    placeholder="Email">
                             <input ng-model="passwordInput" style="width: 100px;" type="password"
                                    placeholder="Password">
-                            <a class="btn btn-primary" ng-click="authService.login(loginInput, passwordInput)">
-                                <i class="icon-user icon-white"></i> Log in</a>
-                            <a class="btn btn-primary" ng-click="authService.loginGitHub()">
-                                <i class="icon-user icon-white"></i> Log in with GitHub</a>
+
+                            <div class="btn-group">
+                                <button class="btn btn-primary"
+                                        ng-click="authService.login(loginInput, passwordInput)">Log In
+                                </button>
+                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret white"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a ng-click="authService.loginGitHub()">
+                                        <i class="icon-user icon-white"></i> Log in with GitHub</a></li>
+                                </ul>
+                            </div>
+
 
                         </div>
                         <div ng-show="authService.isLoggedIn()">

@@ -18,9 +18,6 @@ angular.module('AuthService', [])
                 if (role === undefined) {
                     role = currentUser.role;
                 }
-                console.log(role.title + ":"+role.bitMask);
-                console.log(accessLevel.title + ":"+accessLevel.bitMask);
-                console.log(accessLevel.bitMask & role.bitMask);
                 return accessLevel.bitMask & role.bitMask;
             },
             isLoggedIn: function (user) {
