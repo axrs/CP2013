@@ -78,8 +78,21 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
         });
 
     },
+    removeProviderHours: function (id, callback) {
+        var sql = 'DELETE FROM  Provider_Hours WHERE ProviderId = $id;';
+        var queryHelper = new SqliteHelper(this._db);
+
+        queryHelper.query(sql, {$id: id}, function (err, result) {
+            if (callback) {
+                callback(err, result);
+            }
+        });
+
+    },
+
     retrieveAll: function (callback) {
-        var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND isActive=1;';
+        var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId;';
+
         this.all(sql, null, function (err, result) {
             var providers = [];
             if (result && result.length) {
@@ -120,9 +133,21 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
             }
         });
     },
+    retrieveByName: function (name, surname, callback) {
+        var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND Name=$name AND Surname=$surname LIMIT 1;';
 
+        this.all(sql, {$name: name, $surname: surname}, function (err, result) {
+            var provider = null;
+            if (result.length) {
+                provider = SqliteProviderDAO.ProviderFromDatabase(result[0]);
+            }
+            if (callback) {
+                callback(err, provider);
+            }
+        });
+    },
     lastInserted: function (callback) {
-        var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE ProviderId=$id AND Provider.ContactId = Contact.ContactId ORDER BY User.rowid DESC LIMIT 1;';
+        var sql = 'SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId ORDER BY Provider.rowid DESC LIMIT 1;';
         var queryHelper = new SqliteHelper(this._db);
 
         queryHelper.all(sql, null, function (err, result) {
@@ -182,8 +207,6 @@ SqliteProviderDAO.ProviderFromDatabase = function (row) {
     provider.setEmail(row.Email);
     provider.setPhone(row.Phone);
     provider.setAddress(row.Address, row.Suburb, row.City, row.Country, row.State, row.Post);
-
-
     provider.setId(row.ProviderId);
     provider.setBiography(row.Biography)
     provider.setPortrait(row.Portrait);

@@ -14,8 +14,10 @@ var Provider = Ring.create([Contact], {
     _color: '#006dcc',
     _hours: [],
     init: function () {
-        for (var i = 0; i <= 6; i++) {
-            this._hours.push(new ProviderHours(i));
+        if (this._hours.length == 0) {
+            for (var i = 0; i <= 6; i++) {
+                this._hours.push(new ProviderHours(i));
+            }
         }
     },
     getId: function () {
@@ -28,10 +30,12 @@ var Provider = Ring.create([Contact], {
         }
     },
     getContactId: function () {
-        return this.$super().getId();
+        return this._contactId;
     },
     setContactId: function (value) {
-        this.$super().setId(value);
+        if (Utilities.isInteger(value) && value > 0) {
+            this._contactId = value;
+        }
     },
     setBiography: function (value) {
         if (Utilities.isStringAndNotEmpty(value)) {
@@ -70,8 +74,12 @@ var Provider = Ring.create([Contact], {
     getColor: function () {
         return this._color;
     },
-    setHours: function (index, value) {
-        this._hours[index] = value;
+    setHours: function (value) {
+        if (Ring.instance(value, ProviderHours)) {
+            this._hours[value.getDay()] = value;
+        } else {
+            this._hours = value;
+        }
     },
     getHours: function (index) {
         if (index) {
@@ -84,6 +92,7 @@ var Provider = Ring.create([Contact], {
         var contactData = this.$super();
         var hours = [];
 
+        console.log(this._hours);
         for (var i = 0; i < this._hours.length; i++) {
             hours[i] = this._hours[i].toJSON();
         }

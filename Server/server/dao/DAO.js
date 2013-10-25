@@ -28,6 +28,9 @@ module.exports = {
     },
     getUserDAO: function () {
         return this.getInstance().getFactory().getUserDAO();
+    },
+    getProviderDAO: function () {
+        return this.getInstance().getFactory().getProviderDAO();
     }
 };
 

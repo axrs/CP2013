@@ -2408,3 +2408,12 @@
 2013-10-25 21:08:39	Deserialising User Session
 2013-10-25 21:08:41	Existing GitHub User Logged In.
 2013-10-25 21:08:41	Serialising User Session
+2013-10-25 09:25:21	Error running query.
+2013-10-25 09:25:21	Error: SQLITE_ERROR: ambiguous column name: isActive
+2013-10-25 09:25:21	SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND isActive=1;null
+2013-10-25 09:34:49	Error running query.
+2013-10-25 09:34:49	Error: SQLITE_ERROR: no such column: User.rowid
+2013-10-25 09:34:49	SELECT * FROM Provider LEFT JOIN Contact WHERE ProviderId=$id AND Provider.ContactId = Contact.ContactId ORDER BY User.rowid DESC LIMIT 1;null
+2013-10-25 09:45:27	Error running query.
+2013-10-25 09:45:27	Error: SQLITE_ERROR: no such column: User.rowid
+2013-10-25 09:45:27	SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId WHERE ProviderId=$id ORDER BY User.rowid DESC LIMIT 1;null

@@ -12,6 +12,7 @@ var RemoveContactCommand = Ring.create([AbstractConcreteCommand], {
      */
     init: function (id, contactDAO) {
         this.$super(contactDAO);
+        this._id = id;
     },
     /**
      *
