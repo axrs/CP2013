@@ -1919,3 +1919,65 @@
 2013-10-22 17:20:41	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
 2013-10-22 17:20:41	j5KcbitXQulPjoMx8bHRnUTn	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
 2013-10-22 17:20:43	lxFT2RtXB7K3a4R-umwkJmMR	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-25 10:22:26	29opDut6NBWImtAz3DrcuvmG	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:22:27	29opDut6NBWImtAz3DrcuvmG	127.0.0.1	/api/auth/github/callback?code=eabf916f84ec9a99f187	{}
+2013-10-25 10:22:29	Creating new GitHub User.
+2013-10-25 10:22:50	IHiPC1RDzmy30yyO051ZTaqg	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:22:51	IHiPC1RDzmy30yyO051ZTaqg	127.0.0.1	/api/auth/github/callback?code=095552d7d3654bddf22c	{}
+2013-10-25 10:22:54	Creating new GitHub User.
+2013-10-25 10:25:15	JCYc7enuerodnR81uP5xqYh3	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:25:15	JCYc7enuerodnR81uP5xqYh3	127.0.0.1	/api/auth/github/callback?code=50d614dd10e338ff84c5	{}
+2013-10-25 10:25:19	Creating new GitHub User.
+2013-10-25 10:26:46	of_XJ20gHsxqnw6ZAtM6IA2Z	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:26:46	of_XJ20gHsxqnw6ZAtM6IA2Z	127.0.0.1	/api/auth/github/callback?code=67863340b061dc40104b	{}
+2013-10-25 10:26:55	Creating new GitHub User.
+2013-10-25 10:27:23	5ESW3bSh0gKweCwiZd9w64CC	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:27:23	5ESW3bSh0gKweCwiZd9w64CC	127.0.0.1	/api/auth/github/callback?code=bd1843d0ca17e89e0337	{}
+2013-10-25 10:27:26	Creating new GitHub User.
+2013-10-25 10:27:41	BmRCxJFqoCp5tTPCvLGBymO2	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:27:42	BmRCxJFqoCp5tTPCvLGBymO2	127.0.0.1	/api/auth/github/callback?code=dca89bcd8e2dfe7fedf5	{}
+2013-10-25 10:27:45	Creating new GitHub User.
+2013-10-25 10:30:24	ZbCchCqI8VcelhkP7SvAuBwr	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:30:25	ZbCchCqI8VcelhkP7SvAuBwr	127.0.0.1	/api/auth/github/callback?code=0fa32b71d5e1a29a9e4b	{}
+2013-10-25 10:30:33	Creating new GitHub User.
+2013-10-25 10:37:01	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:37:02	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/callback?code=dca69529ff8c2a64ebbe	{}
+2013-10-25 10:37:06	Creating new GitHub User.
+2013-10-25 10:37:15	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:37:16	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/callback?code=6f56b807ad5d896962e5	{}
+2013-10-25 10:37:18	Creating new GitHub User.
+2013-10-25 10:45:02	0Z8baLnmvannISkkxXfeZgAA	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:45:02	0Z8baLnmvannISkkxXfeZgAA	127.0.0.1	/api/auth/github/callback?code=bea1f627e3b03036056f	{}
+2013-10-25 10:45:04	Creating new GitHub User.
+2013-10-25 10:45:31	bnl5J2jXRG1zcy3CLgXAw4uM	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:45:31	bnl5J2jXRG1zcy3CLgXAw4uM	127.0.0.1	/api/auth/github/callback?code=5ebc6e758c8e142d7a2e	{}
+2013-10-25 10:45:34	Creating new GitHub User.
+2013-10-25 10:48:18	YeMNSANTKHdSwWxXlR5JUz53	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:48:19	YeMNSANTKHdSwWxXlR5JUz53	127.0.0.1	/api/auth/github/callback?code=db0ca094483f597d8544	{}
+2013-10-25 10:48:22	Creating new GitHub User.
+2013-10-25 10:49:09	LJSSIPo1wRX7nMvRMlyU_1zi	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:49:10	LJSSIPo1wRX7nMvRMlyU_1zi	127.0.0.1	/api/auth/github/callback?code=c1c3180ead9d399ef9d6	{}
+2013-10-25 10:49:13	Creating new GitHub User.
+2013-10-25 10:49:43	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:49:44	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/callback?code=5d17bc52eb8c4591e0e3	{}
+2013-10-25 10:49:47	Creating new GitHub User.
+2013-10-25 10:49:47	Serialising User Session
+2013-10-25 10:49:47	Deserialising User Session
+2013-10-25 10:49:47	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/token	{}
+2013-10-25 10:53:55	Deserialising User Session
+2013-10-25 10:53:55	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:53:55	Deserialising User Session
+2013-10-25 10:53:55	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/callback?code=1360919cba328a76ab90	{}
+2013-10-25 10:53:58	Existing GitHub User Logged In.
+2013-10-25 10:53:58	Serialising User Session
+2013-10-25 10:53:58	Deserialising User Session
+2013-10-25 10:53:58	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/token	{}
+2013-10-25 10:54:14	Deserialising User Session
+2013-10-25 10:54:14	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:54:15	Deserialising User Session
+2013-10-25 10:54:15	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/callback?code=0aebc558075f1486690b	{}
+2013-10-25 10:54:17	Existing GitHub User Logged In.
+2013-10-25 10:54:17	Serialising User Session
+2013-10-25 10:54:17	Deserialising User Session
+2013-10-25 10:54:17	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/token	{}
+2013-10-25 10:54:17	aiYghD5givcGcN1AsznCLgTR	127.0.0.1	/api/user?access_token=8c7c944b-b2c2-49fb-aa45-3ededacf0021	{}

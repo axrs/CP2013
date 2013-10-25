@@ -1,46 +1,49 @@
 var Ring = require('ring');
-var Contact = require('../../models/Contact.js');
-var AbstractConcreteCommand = require('./AbstractContactCommand.js');
+var User = require('../../models/User.js');
+var AbstractUserCommand = require('./AbstractUserCommand.js');
 var StatusHelpers = require('../../helpers/StatusHelpers.js');
 var Utilities = require('../../utilities/Utilities.js');
 
-var UpdateContactCommand = Ring.create([AbstractConcreteCommand], {
-    _contact: null,
-
+var CreateUserCommand = Ring.create([AbstractUserCommand], {
+    _user: null,
     /**
-     * @param {Contact} contact
+     * @param {User} user
      * @param {IContactDAO} contactDAO
      */
-    init: function (contact, contactDAO) {
-        this._contact = contact;
+    init: function (user, contactDAO) {
+        this._user = user;
         this.$super(contactDAO);
     },
-
+    /**
+     *
+     * @param req Requester
+     * @param res Response
+     */
     execute: function (req, res) {
-
-        var contact = this._contact;
+        var user = this._user;
         var dao = this._dao;
-        dao.retrieve(contact.getId(), function (err, result) {
 
-            var updatedContact = Contact.fromJSON(
+        dao.retrieve(user.getId(), function (err, result) {
+
+            var updatedUser = User.fromJSON(
                 Utilities.mergeObjectProperties([
                     result.toJSON(),
-                    contact.toJSON()
+                    user.toJSON()
                 ])
             );
 
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {
-                if (!contact.isValid() || contact.getId() <= 0) {
+                if (!updatedUser.isValid() || updatedUser.getId() == 0) {
                     StatusHelpers.status400(req, res);
                 } else {
-                    dao.update(updatedContact, function (err) {
+                    dao.update(updatedUser, function (err) {
                         if (err) {
                             StatusHelpers.status500(req, res);
                         } else {
                             res.writeHead(202, { 'Content-Type': 'application/json' });
-                            res.write(JSON.stringify(contact));
+                            res.write(JSON.stringify(updatedUser));
                             res.end();
                         }
                     });
@@ -50,4 +53,4 @@ var UpdateContactCommand = Ring.create([AbstractConcreteCommand], {
     }
 });
 
-module.exports = UpdateContactCommand;
+module.exports = CreateUserCommand;

@@ -3,49 +3,29 @@ var User = require('../../models/User.js');
 var SqliteHelper = require('./SqliteHelper.js');
 var IUserDAO = require('../IUserDAO.js');
 var UUID = require('node-uuid');
+var SqliteContactDAO = require('./SqliteContactDAO.js');
 
-var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
+var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
     init: function (databaseConnection) {
         this.$super(databaseConnection);
     },
     create: function (user, callback) {
-        var sql = '' +
-            'INSERT INTO Contact ' +
-            '(Name, MiddleName, Surname, Company, Phone, Email, Address, Suburb, City, Country, Post, State) ' +
-            'VALUES ' +
-            '($name, $middleName, $surname, $company, $phone, $email, $address, $suburb, $city, $country, $post, $state);';
-
-        var values = {
-            $name: user.getName(),
-            $middleName: user.getMiddleName(),
-            $surname: user.getSurname(),
-            $company: user.getCompany(),
-            $phone: user.getPhone(),
-            $email: user.getEmail(),
-            $address: user.getAddress(),
-            $suburb: user.getSuburb(),
-            $city: user.getCity(),
-            $country: user.getCountry(),
-            $state: user.getState(),
-            $post: user.getPost()
-        };
 
         var queryHelper = new SqliteHelper(this._db);
+        var that = this;
 
-        queryHelper.query(sql, values, function (err, res) {
+        this.$super(user, function (err) {
             if (err) {
                 if (callback) {
                     callback(err);
                 }
             } else {
-                sql = 'SELECT ContactId FROM Contact ORDER BY rowid DESC LIMIT 1;';
-                queryHelper.all(sql, null, function (err, result) {
-                    if (err) {
+                that._lastInsertedContactId(function (error, id) {
+                    if (error) {
                         if (callback) {
-                            callback(err);
+                            callback(error);
                         }
                     } else {
-                        var contId = result[0].ContactId;
                         var sql = '' +
                             'INSERT INTO User ' +
                             '(User, Password, isAdmin, StrategyId, Strategy, StrategyData, ContactId, Token) VALUES ' +
@@ -58,10 +38,10 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
                             $strategyId: user.getStrategyId(),
                             $strategy: user.getStrategy(),
                             $strategyData: user.getStrategyData(),
-                            $contactId: contId,
+                            $contactId: id,
                             $token: UUID.v4()
                         };
-                        queryHelper.query(sql, values, function (err, res) {
+                        queryHelper.query(sql, values, function (err) {
                             if (callback) {
                                 callback(err);
                             }
@@ -69,7 +49,6 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
                     }
                 });
             }
-
         });
     },
 
@@ -90,7 +69,9 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
             sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND User.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
             values = {$id: id};
         }
-        this.all(sql, values, function (err, result) {
+        var queryHelper = new SqliteHelper(this._db);
+
+        queryHelper.all(sql, values, function (err, result) {
             if (result.length) {
                 callback(err, SqliteUserDAO.UserFromDatabase(result[0]));
             } else {
@@ -101,8 +82,9 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
     retrieveByToken: function (token, callback) {
         var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE Token=$token AND User.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
         var values = {$token: token};
+        var queryHelper = new SqliteHelper(this._db);
 
-        this.all(sql, values, function (err, result) {
+        queryHelper.all(sql, values, function (err, result) {
             if (result.length) {
                 callback(err, SqliteUserDAO.UserFromDatabase(result[0]));
             } else {
@@ -112,7 +94,9 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
     },
     lastInserted: function (callback) {
         var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId ORDER BY User.rowid DESC LIMIT 1;';
-        this.all(sql, null, function (err, result) {
+        var queryHelper = new SqliteHelper(this._db);
+
+        queryHelper.all(sql, null, function (err, result) {
             var user = null;
             if (result.length) {
                 user = SqliteUserDAO.UserFromDatabase(result[0]);
@@ -123,11 +107,33 @@ var SqliteUserDAO = Ring.create([SqliteHelper, IUserDAO], {
         });
 
     },
-    update: function (contact, callback) {
+    update: function (user, callback) {
+        var queryHelper = new SqliteHelper(this._db);
 
-    },
-    remove: function (id, callback) {
+        this.$super(user, function (err) {
+            if (err) {
+                if (callback) {
+                    callback(err);
+                }
+            } else {
+                var sql = '' +
+                    'UPDATE User SET' +
+                    'Password=$password, isAdmin=$isAdmin, StrategyData=$strategyData ' +
+                    'WHERE UserId=$id;';
 
+                var values = {
+                    $password: user.getPassword(),
+                    $isAdmin: user.getIsAdmin(),
+                    $strategyData: user.getStrategyData(),
+                    $id: user.getId()
+                };
+                queryHelper.query(sql, values, function (err) {
+                    if (callback) {
+                        callback(err);
+                    }
+                });
+            }
+        });
     }
 });
 

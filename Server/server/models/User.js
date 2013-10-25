@@ -16,6 +16,13 @@ var User = Ring.create([Contact], {
         }
     },
 
+    isValid: function () {
+        if (this.getStrategy() === 'local') {
+            return (this.$super() && Utilities.isStringAndNotEmpty(this.getPassword()));
+        } else {
+            return true;
+        }
+    },
 
     _token: null,
     getToken: function () {
