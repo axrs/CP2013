@@ -8,7 +8,6 @@ var AllContactsCommand = require('../commands/contacts/AllContactsCommand.js');
 var CreateContactCommand = require('../commands/contacts/CreateContactCommand.js');
 var UpdateContactCommand = require('../commands/contacts/UpdateContactCommand.js');
 var RemoveContactCommand = require('../commands/contacts/RemoveContactCommand.js');
-var Authorisation = require('../helpers/Authorisation.js');
 var passport = require('passport');
 
 var DAO = require('../dao/DAO.js');
@@ -35,16 +34,22 @@ server = module.exports.server = module.parent.exports.server;
  */
 server.get('/api/contacts',
     passport.authenticate('bearer', { session: false }),
-    Authorisation.requiresLogin,
+    server.requiresAdmin,
     allCMD
 );
 server.put('/api/contacts',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     createCMD
 );
 server.put('/api/contacts/:id',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     updateCMD
 );
 server.delete('/api/contacts/:id',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     removeCMD
 );
 

@@ -12,6 +12,7 @@ var server = express();
 require('./server/config/passport')(passport);
 require('./server/config/express')(server, passport);
 require('./server/config/loggers')(server);
+require('./server/config/authorisation')(server);
 
 server.listen(config.port);
 console.log('Express app started on port ' + config.port);

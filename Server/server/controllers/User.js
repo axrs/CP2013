@@ -1,10 +1,8 @@
 var passport = require('passport');
-var Authorisation = require('../helpers/Authorisation.js');
-
 server = module.exports.server = module.parent.exports.server;
 
 server.get('/api/token',
-    Authorisation.requiresLogin,
+    server.requiresLogin,
     function (req, res) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write('<html><head><title>' + req.user.getToken() + '</title></head>' +
@@ -17,9 +15,10 @@ server.get('/api/token',
 );
 server.get('/api/user',
     passport.authenticate('bearer', { session: false }),
-    Authorisation.requiresLogin,
+    server.requiresLogin,
     function (req, res) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.write(JSON.stringify(req.user));
         res.end();
-    });
+    }
+);
