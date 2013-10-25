@@ -1,9 +1,8 @@
 var Ring = require('ring');
 var IContactDAO = require('../../dao/IContactDAO.js');
-var ICommand = require('../ICommand.js');
+var AbstractDAOCommand = require('../AbstractDAOCommand.js');
 
-var AbstractContactCommand = Ring.create([ICommand], {
-    _dao: null,
+var AbstractContactCommand = Ring.create([AbstractDAOCommand], {
     /**
      *
      * @param {IContactDAO} contactDAO
@@ -12,7 +11,7 @@ var AbstractContactCommand = Ring.create([ICommand], {
         if (!Ring.instance(contactDAO, IContactDAO)) {
             throw new Error('Invalid DAO Passed.');
         }
-        this._dao = contactDAO;
+        this.$super(contactDAO);
     }
 });
 

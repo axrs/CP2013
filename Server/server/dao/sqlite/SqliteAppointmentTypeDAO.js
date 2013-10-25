@@ -1,9 +1,9 @@
 var Ring = require('ring');
-var ICRUDDAO = require('../ICRUDDAO.js');
+var ITypeDAO = require('../ITypeDAO.js');
 var SqliteHelper = require('./SqliteHelper.js');
 var Type = require('../../models/AppointmentType.js');
 
-var SqliteAppointmentTypeDAO = Ring.create([ICRUDDAO], {
+var SqliteAppointmentTypeDAO = Ring.create([ITypeDAO], {
     _db: null,
     /**
      * Constructor

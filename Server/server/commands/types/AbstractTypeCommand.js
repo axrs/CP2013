@@ -1,18 +1,18 @@
 var Ring = require('ring');
-var IUserDAO = require('../../dao/IUserDAO.js');
+var ITypeDAO = require('../../dao/ITypeDAO.js');
 var AbstractDAOCommand = require('../AbstractDAOCommand.js');
 
-var AbstractUserCommand = Ring.create([AbstractDAOCommand], {
+var AbstractTypeCommand = Ring.create([AbstractDAOCommand], {
     /**
      *
-     * @param {IUserDAO} dao
+     * @param {ITypeDAO} dao
      */
     init: function (dao) {
-        if (!Ring.instance(dao, IUserDAO)) {
+        if (!Ring.instance(dao, ITypeDAO)) {
             throw new Error('Invalid DAO Passed.');
         }
         this.$super(dao);
     }
 });
 
-module.exports = AbstractUserCommand;
+module.exports = AbstractTypeCommand;
