@@ -10,7 +10,7 @@ module.exports = {
      */
     status200: function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(200, JSON.stringify(true));
+        res.send(200, null);
         res.end();
     },
     /**
@@ -23,9 +23,7 @@ module.exports = {
      */
     status201: function (req, res) {
         res.set('Content-Type', 'application/json');
-        console.log('201 status');
-
-        res.send(201, JSON.stringify(true));
+        res.send(201, null);
         res.end();
         res.end();
     },
@@ -39,7 +37,7 @@ module.exports = {
      */
     status202: function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(202, JSON.stringify(true));
+        res.send(202, null);
         res.end();
     },
 
@@ -52,7 +50,7 @@ module.exports = {
      */
     status400: function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(400, JSON.stringify(null));
+        res.send(400, null);
         res.end();
     },
     /**
@@ -65,7 +63,7 @@ module.exports = {
      */
     status404: function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(404, JSON.stringify(null));
+        res.send(404, null);
         res.end();
     },
     /**
@@ -78,7 +76,7 @@ module.exports = {
      */
     status409: function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(409, JSON.stringify(null));
+        res.send(409, null);
         res.end();
     },
     /**
@@ -90,7 +88,7 @@ module.exports = {
      */
     status500: function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(500, JSON.stringify(false));
+        res.send(500, null);
         res.end();
     },
     /**
@@ -103,7 +101,7 @@ module.exports = {
      */
     status501: function (req, res) {
         res.set('Content-Type', 'application/json');
-        res.send(501, JSON.stringify(false));
+        res.send(501, null);
         res.end();
     }
 

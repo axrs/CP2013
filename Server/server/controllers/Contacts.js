@@ -11,21 +11,21 @@ var RemoveContactCommand = require('../commands/contacts/RemoveContactCommand.js
 var Authorisation = require('../helpers/Authorisation.js');
 var passport = require('passport');
 
-var dao = new DAOFactory(database).getContactDAO();
+var DAO = require('../dao/DAO.js');
 
 var allCMD = function (req, res) {
-    new AllContactsCommand(dao).execute(req, res);
+    new AllContactsCommand(DAO.getContactDAO()).execute(req, res);
 };
 var createCMD = function (req, res) {
     var contact = Contact.fromJSON(req.body);
-    new CreateContactCommand(contact, dao).execute(req, res);
+    new CreateContactCommand(contact, DAO.getContactDAO()).execute(req, res);
 };
 var updateCMD = function (req, res) {
     var contact = Contact.fromJSON(req.body);
-    new UpdateContactCommand(contact, dao).execute(req, res);
+    new UpdateContactCommand(contact, DAO.getContactDAO()).execute(req, res);
 };
 var removeCMD = function (req, res) {
-    new RemoveContactCommand(req.params.id, dao).execute(req, res);
+    new RemoveContactCommand(req.params.id, DAO.getContactDAO()).execute(req, res);
 };
 
 server = module.exports.server = module.parent.exports.server;

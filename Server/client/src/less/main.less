@@ -7,21 +7,64 @@
  * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
  * project should be imported as the rest are just wasting space.
  */
-@import '../../vendor/bootstrap/less/mixins.less';
+
+
+// CSS Reset
 @import '../../vendor/bootstrap/less/reset.less';
-@import '../../vendor/bootstrap/less/utilities.less';
+
+// Core variables and mixins
+@import '../../vendor/bootstrap/less/variables.less';
+@import 'variables.less'; // import our own variables here
+@import '../../vendor/bootstrap/less/mixins.less';
+
+// Grid system and page structure
 @import '../../vendor/bootstrap/less/scaffolding.less';
-@import '../../vendor/bootstrap/less/forms.less';
-@import '../../vendor/bootstrap/less/buttons.less';
-@import '../../vendor/bootstrap/less/button-groups.less';
-@import '../../vendor/bootstrap/less/type.less';
 @import '../../vendor/bootstrap/less/grid.less';
 @import '../../vendor/bootstrap/less/layouts.less';
+
+// Base CSS
+@import '../../vendor/bootstrap/less/type.less';
+@import '../../vendor/bootstrap/less/code.less';
+@import '../../vendor/bootstrap/less/forms.less';
+@import '../../vendor/bootstrap/less/tables.less';
+
+// Components: common
+@import '../../vendor/bootstrap/less/sprites.less';
+@import '../../vendor/bootstrap/less/dropdowns.less';
+@import '../../vendor/bootstrap/less/wells.less';
+@import '../../vendor/bootstrap/less/component-animations.less';
+@import '../../vendor/bootstrap/less/close.less';
+
+// Components: Buttons & Alerts
+@import '../../vendor/bootstrap/less/buttons.less';
+@import '../../vendor/bootstrap/less/button-groups.less';
+@import '../../vendor/bootstrap/less/alerts.less'; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+
+// Components: Nav
 @import '../../vendor/bootstrap/less/navs.less';
 @import '../../vendor/bootstrap/less/navbar.less';
+@import '../../vendor/bootstrap/less/breadcrumbs.less';
+@import '../../vendor/bootstrap/less/pagination.less';
+@import '../../vendor/bootstrap/less/pager.less';
 
-@import '../../vendor/bootstrap/less/dropdowns.less';
+// Components: Popovers
+@import '../../vendor/bootstrap/less/modals.less';
+@import '../../vendor/bootstrap/less/tooltip.less';
+@import '../../vendor/bootstrap/less/popovers.less';
+
+// Components: Misc
+@import '../../vendor/bootstrap/less/thumbnails.less';
+@import '../../vendor/bootstrap/less/media.less';
+@import '../../vendor/bootstrap/less/labels-badges.less';
+@import '../../vendor/bootstrap/less/progress-bars.less';
+@import '../../vendor/bootstrap/less/accordion.less';
+@import '../../vendor/bootstrap/less/carousel.less';
+@import '../../vendor/bootstrap/less/hero-unit.less';
+
+// Utility classes
+@import '../../vendor/bootstrap/less/utilities.less'; // Has to be last to override when necessary
 @import '../../vendor/bootstrap/less/responsive.less';
+
 /**
  * This is our main variables file. It in turn imports the `variables` file from
  * Twitter Bootstrap. We must include it last so we can overwrite any variable

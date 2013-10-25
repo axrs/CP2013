@@ -74,7 +74,6 @@ module.exports = {
             'vendor/angular-cookies/angular-cookies.min.js',
             'vendor/underscore/underscore-min.js',
             'vendor/timepicker/timepicker.js'
-
         ],
         css: [
             'vendor/ng-grid/ng-grid.css',

@@ -43,6 +43,7 @@ angular.module('ngBoilerplate.contacts', [
         $scope.type = null;
 
         $scope.process = function () {
+            console.log($scope.type.typeId);
             if ($scope.type.typeId === 0) {
                 $scope.create();
             } else {
@@ -64,16 +65,11 @@ angular.module('ngBoilerplate.contacts', [
                         $scope.type = data;
                         $scope.types.push($scope.type);
                         $scope.clear();
-                        console.log('here');
                     }
                 }).
                 error(function (data, status, headers, config) {
-                    console.log('here');
-
                     switch (status) {
                         case 400:
-                            console.log('here');
-
                             $scope.alerts.push({type: 'error', title: 'Form Error:', msg: "An appointment type must have a description."});
                             break;
                         case 500:
@@ -193,6 +189,7 @@ angular.module('ngBoilerplate.contacts', [
             afterSelectionChange: function () {
                 if ($scope.selected.length == 1) {
                     $scope.type = $scope.selected[0];
+                    console.log($scope.type);
                     $scope.action = 'Editing';
                 } else {
                     $scope.type = null;

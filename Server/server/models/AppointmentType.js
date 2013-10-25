@@ -13,7 +13,7 @@ var AppointmentType = Ring.create({
 
     setId: function (value) {
         if (Utilities.isIntegerAboveZero(value)) {
-            this._typeId = 0;
+            this._typeId = value;
         }
     },
     getId: function () {
