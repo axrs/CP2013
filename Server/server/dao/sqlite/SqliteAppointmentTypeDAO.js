@@ -90,7 +90,7 @@ var SqliteAppointmentTypeDAO = Ring.create([ITypeDAO], {
     },
     remove: function (id, callback) {
         var sql = '' +
-            'UPDATE Appointment_Type isActive=0 WHERE TypeId=$id;';
+            'UPDATE Appointment_Type SET isActive=0 WHERE TypeId=$id;';
         var helper = new SqliteHelper(this._db);
 
         helper.query(sql, { $id: id }, function (err) {

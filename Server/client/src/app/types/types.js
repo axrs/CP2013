@@ -189,7 +189,6 @@ angular.module('ngBoilerplate.contacts', [
             afterSelectionChange: function () {
                 if ($scope.selected.length == 1) {
                     $scope.type = $scope.selected[0];
-                    console.log($scope.type);
                     $scope.action = 'Editing';
                 } else {
                     $scope.type = null;
