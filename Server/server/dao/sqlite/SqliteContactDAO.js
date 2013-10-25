@@ -88,7 +88,7 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
      * @param {Number} id - Contact ID to retrieve
      * @param {SqliteContactDAO~RetrieveCallback} [callback]
      */
-    retrieve: function (id, callback) {
+    retrieveById: function (id, callback) {
         var sql = 'SELECT * FROM Contact WHERE ContactId=$id AND isActive=1 LIMIT 1 ;';
 
         this.all(sql, {$id: id}, function (err, result) {

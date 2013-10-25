@@ -156,6 +156,35 @@ var User = Ring.create([Contact], {
 
 User.fromJSON = function (data) {
 
+    var user = new User();
+    user.setContactId(data.contactId);
+    user.setSalutation(data.salutation);
+    user.setName(data.name);
+    user.setMiddleName(data.middleName);
+    user.setSurname(data.surname);
+
+    user.setCompany(data.company);
+    user.setPhone(data.phone);
+    user.setEmail(data.email);
+
+
+    user.setAddress(data.address, data.suburb, data.city, data.country, data.state, data.post);
+
+    user.setId(data.userId);
+    user.setUserName(data.username);
+
+    if (data.userId) {
+        user.setHashedPassword(data.password);
+    } else {
+        user.setPassword(data.password);
+    }
+    user.setStrategyId(data.strategyId);
+
+    user.setStrategy(data.strategy);
+    user.setStrategyData(data.strategyData);
+    user.setIsAdmin(data.isAdmin);
+
+    return user;
 };
 
 module.exports = User;

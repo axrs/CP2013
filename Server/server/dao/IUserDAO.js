@@ -7,6 +7,9 @@ var IUserDAO = Ring.create([IContactDAO], {
     },
     retrieveById: function (id, strategy, callback) {
         throw new Error('Method Not Implemented.');
+    },
+    retrieveByToken: function (token, callback) {
+        throw new Error('Method Not Implemented.');
     }
 });
 

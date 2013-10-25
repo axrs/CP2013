@@ -25,17 +25,13 @@ var CreateUserCommand = Ring.create([AbstractUserCommand], {
         if (!user.isValid() || user.getId() > 0) {
             StatusHelpers.status400(req, res);
         } else {
-            var id = user.getId();
-            if (user.getStrategy() != 'local') {
-                id = user.getStrategyId();
-            }
-            dao.retrieveById(id, user.getStrategy(), function (err, result) {
+            dao.retrieveByUserName(user.getUserName(), function (err, result) {
                 if (err) {
                     StatusHelpers.status500(req, res);
                 } else if (result) {
                     StatusHelpers.status409(req, res);
                 } else {
-                    dao.create(user, function (err, result) {
+                    dao.create(user, function (err) {
                         if (err) {
                             StatusHelpers.status500(req, res);
                         } else {

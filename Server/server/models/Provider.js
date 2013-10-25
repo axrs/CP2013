@@ -70,7 +70,16 @@ var Provider = Ring.create([Contact], {
     getColor: function () {
         return this._color;
     },
-
+    setHours: function (index, value) {
+        this._hours[index] = value;
+    },
+    getHours: function (index) {
+        if (index) {
+            return this._hours[index];
+        } else {
+            return this._hours;
+        }
+    },
     toJSON: function () {
         var contactData = this.$super();
         var hours = [];
@@ -94,5 +103,35 @@ var Provider = Ring.create([Contact], {
         return Utilities.mergeObjectProperties([contactData, providerData]);
     }
 });
+
+Provider.fromJSON = function (data) {
+
+    var provider = new Provider();
+    provider.setContactId(data.contactId);
+    provider.setSalutation(data.salutation);
+    provider.setName(data.name);
+    provider.setMiddleName(data.middleName);
+    provider.setSurname(data.surname);
+
+    provider.setCompany(data.company);
+    provider.setPhone(data.phone);
+    provider.setEmail(data.email);
+
+    provider.setAddress(data.address, data.suburb, data.city, data.country, data.state, data.post);
+
+    provider.setId(data.providerId);
+    provider.setBiography(data.biography)
+    provider.setPortrait(data.portrait);
+    provider.setInitiated(data.initiated);
+    provider.setTerminated(data.terminated);
+    provider.setColor(data.color);
+
+    for (var i = 0; i < data.hours; i++) {
+        var ph = ProviderHours.fromJSON(data.hours[i]);
+        provider.setHours(i, ph);
+    }
+
+    return provider;
+};
 
 module.exports = Provider;

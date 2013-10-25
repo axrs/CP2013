@@ -52,9 +52,6 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
         });
     },
 
-    retrieve: function (id, callback) {
-
-    },
     retrieveById: function (id, strategy, callback) {
         if (strategy == null) {
             strategy = 'local';
@@ -69,6 +66,19 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
             sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND User.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
             values = {$id: id};
         }
+        var queryHelper = new SqliteHelper(this._db);
+
+        queryHelper.all(sql, values, function (err, result) {
+            if (result.length) {
+                callback(err, SqliteUserDAO.UserFromDatabase(result[0]));
+            } else {
+                callback(err, null);
+            }
+        });
+    },
+    retrieveByUserName: function (username, callback) {
+        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserName=$username AND User.ContactId = Contact.ContactId LIMIT 1;';
+        var values = {$username: username};
         var queryHelper = new SqliteHelper(this._db);
 
         queryHelper.all(sql, values, function (err, result) {
