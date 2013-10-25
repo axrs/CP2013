@@ -7,6 +7,6 @@ var github_callback = passport.authenticate('github', {successRedirect: '/api/to
 /**
  * API Routing
  */
-server.get('/api/auth/github/login', server.logger, github_login);
-server.get('/api/auth/github/callback', server.logger, github_callback);
+server.get('/api/auth/github/login', github_login);
+server.get('/api/auth/github/callback', github_callback);
 

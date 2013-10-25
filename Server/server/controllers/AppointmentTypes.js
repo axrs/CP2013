@@ -29,20 +29,16 @@ server = module.exports.server = module.parent.exports.server;
  * API Routing
  */
 server.get('/api/types',
-    server.logger,
     allCMD
 );
 
 server.put('/api/types',
-    server.logger,
     createCMD
 );
 
 server.put('/api/types/:id',
-    server.logger,
     updateCMD
 );
 server.delete('/api/types/:id',
-    server.logger,
     removeCMD
 );
