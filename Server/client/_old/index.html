@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="myApp"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" ng-app="myApp"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" ng-app="myApp"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="myApp"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{constants.site_name || 'Shear-N-Dipity'}}</title>
+    <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/vendor/bootstrap/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="css/vendor/ng-grid/ng-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/overkill.css"/>
+
+    <!-- TODO needed? -->
+    <link href="css/vendor/angularstrap/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/vendor/angularstrap/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/vendor/angularstrap/bootstrap-timepicker.css">
+    <link rel="stylesheet" href="css/vendor/animate/animate.css">
+    <script src="js/vendor/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+
+<body>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
+    improve your experience.</p>
+<![endif]-->
+
+<!-- bootstrap navbar -->
+<div id="wrap">
+    <div ng-include="'partials/navbar-top.html'"></div>
+    <!-- ng routes hook -->
+    <div class="container-fluid" ng-view></div>
+    <div id="push"></div>
+</div>
+
+<!-- footer -->
+<div id="footer" ng-include="'partials/navbar-bottom.html'"></div>
+
+<script>window.jQuery || document.write('<script src="js/vendor/jquery/jquery-2.0.3.min.js"><\/script>')</script>
+
+<script src="js/vendor/bootstrap/bootstrap.min.js"></script>
+
+<script src="js/vendor/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- <script src="http://angular-ui.github.com/lib/bootstrap/docs/assets/js/bootstrap.min.js"></script> -->
+
+<script src="js/vendor/angular/angular-1.0.8.js"></script>
+
+<script src="js/vendor/angular-ui/angular-ui.js"></script>
+
+<script src="js/vendor/ng-grid/ng-grid-2.0.7.min.js"></script>
+
+<script src="js/vendor/angular-ui/ui-bootstrap-tpls-0.6.0.min.js"></script>
+
+<!-- enables rendering of injected html -->
+<!-- TODO localize -->
+<script src="js/vendor/angular-sanitize/angular-sanitize.js"></script>
+
+<!-- angular strap -->
+<script src="js/vendor/underscore/underscore.min.js"></script>
+<!-- needed?
+<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>-->
+<script src="js/vendor/angularstrap/angular-strap.min.js"></script>
+<script src="js/vendor/angularstrap/bootstrap-datepicker.js"></script>
+<script src="js/vendor/angularstrap/bootstrap-timepicker.js"></script>
+<script src="js/vendor/oauth/oauth.js"></script>
+<script src="myApp/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<h2>{{action}}: {{type.description}}
+    <a class="btn btn-danger pull-right" ng-click="remove()">
+        <i class="icon-remove icon-white"></i>
+    </a>
+</h2>
+<div class="clearfix"></div>
+<fieldset>
+    <legend>General</legend>
+    <div class="controls controls-row">
+        <label class="control-label">Description</label>
+        <input type="text" placeholder="Description" ng-model="type.description" required>
+        <label class="control-label">Duration</label>
+        <input type="text" id="typeTimePicker" placeholder="00:00" class="timepicker8" required ng-model="type.duration">
+
+    </div>
+</fieldset>
+
+<fieldset>
+    <div class="controls controls-row">
+        <button type="submit" class="btn btn-primary" ng-click="process()">Save</button>
+        <button type="submit" class="btn btn-danger" ng-click="clear()">Cancel</button>
+    </div>
+</fieldset>
+
+<script>
+    $(document).ready(function () {
+
+        $('#typeTimePicker').timepicker({
+            step: 15,
+            at_row: 4,
+            active_from: '00:15',
+            active_to: '8:00',
+            alarm_from: '00:00',
+            alarm_to: '00:00',
+            close_callback: function () {
+                var time = $('#typeTimePicker')[0].value;
+                $('#typeTimePicker').scope().setTypeDuration(time);
+            }
+        });
+    });
+</script>

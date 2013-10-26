@@ -53,30 +53,30 @@ public class ContactController implements BaseController, ActionListener, EventH
         if (theModel != null && theView != null) {
 
             theView.setForename(theModel.getContFirstName());
-            theView.setSurname(theModel.getContSurname());
-            theView.setEmail(theModel.getContEmail());
-            theView.setCompany(theModel.getContCompany());
-            theView.setPhone(theModel.getContPhone());
-            theView.setAddress(theModel.getContAddrStreet());
-            theView.setSuburb(theModel.getContAddrSuburb());
-            theView.setCity(theModel.getContAddrCity());
-            theView.setState(theModel.getContAddrState());
-            theView.setZip(theModel.getContAddrZip());
+            theView.setSurname(theModel.getSurname());
+            theView.setEmail(theModel.getEmail());
+            theView.setCompany(theModel.getCompany());
+            theView.setPhone(theModel.getPhone());
+            theView.setAddress(theModel.getStreet());
+            theView.setSuburb(theModel.getSuburb());
+            theView.setCity(theModel.getCity());
+            theView.setState(theModel.getState());
+            theView.setZip(theModel.getPost());
         }
     }
 
     @Override
     public void updateModel() {
-        theModel.setContForename(theView.getForename());
-        theModel.setContSurname(theView.getSurname());
-        theModel.setContEmail(theView.getEmail());
-        theModel.setContCompany(theView.getCompany());
-        theModel.setContPhone(theView.getPhone());
-        theModel.setContAddrStreet(theView.getAddress());
-        theModel.setContAddrSuburb(theView.getSuburb());
-        theModel.setContAddrCity(theView.getCity());
-        theModel.setContAddrState(theView.getState());
-        theModel.setContAddrZip(theView.getZip());
+        theModel.setName(theView.getForename());
+        theModel.setSurname(theView.getSurname());
+        theModel.setEmail(theView.getEmail());
+        theModel.setCompany(theView.getCompany());
+        theModel.setPhone(theView.getPhone());
+        theModel.setStreet(theView.getAddress());
+        theModel.setSuburb(theView.getSuburb());
+        theModel.setCity(theView.getCity());
+        theModel.setState(theView.getState());
+        theModel.setPost(theView.getZip());
         theModel.update();
     }
 

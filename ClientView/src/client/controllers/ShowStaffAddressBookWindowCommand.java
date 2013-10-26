@@ -1,11 +1,11 @@
 package client.controllers;
 
-import client.StaffAddressBookView;
+import client.stages.staff.AddressBook;
 
 public class ShowStaffAddressBookWindowCommand extends NewStage implements ICommand {
 
     @Override
     public void execute() {
-        tryStageStart(new StaffAddressBookView());
+        new AddressBook().show();
     }
 }

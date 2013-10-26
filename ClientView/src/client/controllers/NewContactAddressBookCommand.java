@@ -1,14 +1,12 @@
 package client.controllers;
 
-import client.ContactAddressBookView;
+import client.stages.contacts.AddressBook;
 
 
-public class NewContactAddressBookCommand extends NewStage implements ICommand {
+public class NewContactAddressBookCommand implements ICommand {
 
     @Override
     public void execute() {
-
-        tryStageStart(new ContactAddressBookView());
-
+        new AddressBook().show();
     }
 }

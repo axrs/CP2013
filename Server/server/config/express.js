@@ -1,33 +1,48 @@
 var express = require('express'),
     config = require('./config');
+var MemoryStore = express.session.MemoryStore;
+var sessionStore = new MemoryStore();
+module.exports = function (server, passport) {
+    server.set('showStackError', true);
 
-module.exports = function (app, passport) {
-    app.set('showStackError', true);
-
-    app.use(express.compress({
+    server.use(express.compress({
         filter: function (req, res) {
             return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
         },
         level: 9
     }));
 
-    app.use(express.favicon());
-
-    app.use(express.static(config.publicFolder));
+    server.use(express.favicon());
 
     if (process.env.NODE_ENV !== 'test') {
-        app.use(express.logger('dev'));
+        server.use(express.logger('dev'));
     }
 
-    app.configure(function () {
-        app.use(express.cookieParser());
+    //CORS middleware
+    var allowCrossDomain = function (req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.header('Access-Control-Allow-Credentials', 'true');
+        next();
+    };
 
-        app.use(express.bodyParser());
-        app.use(express.methodOverride());
+    server.configure(function () {
+        server.use(express.cookieParser());
 
-        //app.use(passport.initialize());
-        //app.use(passport.session());
+        server.use(express.bodyParser());
+        server.use(express.methodOverride());
+        server.use(allowCrossDomain);
 
-        app.use(app.router);
+
+        server.use(
+            express.session({
+                secret: 'CutAboveTheRest',
+                maxAge: new Date(Date.now() + 6000)
+            })
+        );
+        server.use(passport.initialize());
+        server.use(passport.session());
+        server.use(server.router);
     });
 };

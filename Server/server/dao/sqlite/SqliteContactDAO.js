@@ -50,7 +50,6 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
 
     },
 
-
     /**
      * Called after retrieving all contacts
      * @callback SqliteContactDAO~RetrieveAllCallback
@@ -89,7 +88,7 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
      * @param {Number} id - Contact ID to retrieve
      * @param {SqliteContactDAO~RetrieveCallback} [callback]
      */
-    retrieve: function (id, callback) {
+    retrieveById: function (id, callback) {
         var sql = 'SELECT * FROM Contact WHERE ContactId=$id AND isActive=1 LIMIT 1 ;';
 
         this.all(sql, {$id: id}, function (err, result) {
@@ -145,12 +144,8 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
             }
         });
     },
-    /**
-     * Updates a contact reference in the database.
-     * @param {Contact} contact - Contact to update
-     * @param {SqliteContactDAO~GeneralCallback} [callback]
-     */
-    update: function (contact, callback) {
+
+    _updateContact: function(contact, callback){
         var sql = '' +
             'UPDATE Contact ' +
             'SET Name=$name, MiddleName=$middleName, Surname=$surname, ' +
@@ -182,6 +177,14 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
             }
         });
     },
+    /**
+     * Updates a contact reference in the database.
+     * @param {Contact} contact - Contact to update
+     * @param {SqliteContactDAO~GeneralCallback} [callback]
+     */
+    update: function (contact, callback) {
+        this._updateContact(contact, callback);
+    },
 
     /**
      * Removes a contact reference from the database.
@@ -199,18 +202,7 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
     },
 
 
-    /**
-     * Called after retrieving a contact
-     * @callback SqliteContactDAO~LastIdCallback
-     * @param {Error} err - Error object containing the error message from SQLite
-     * @param {Number} id - Last Inserted Contact id
-     */
-
-    /**
-     * Retrieves the last inserted contact id
-     * @param {SqliteContactDAO~LastIdCallback} [callback]
-     */
-    lastInsertedId: function (callback) {
+    _lastInsertedContactId: function (callback) {
         var sql = 'SELECT ContactId FROM Contact ORDER BY ContactId DESC LIMIT 1;';
 
         this.all(sql, null, function (err, result) {
@@ -225,10 +217,21 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
     },
 
     /**
-     * Retrieves the last inserted contact
-     * @param {SqliteContactDAO~RetrieveCallback} [callback]
+     * Called after retrieving a contact
+     * @callback SqliteContactDAO~LastIdCallback
+     * @param {Error} err - Error object containing the error message from SQLite
+     * @param {Number} id - Last Inserted Contact id
      */
-    lastInserted: function (callback) {
+
+    /**
+     * Retrieves the last inserted contact id
+     * @param {SqliteContactDAO~LastIdCallback} [callback]
+     */
+    lastInsertedId: function (callback) {
+        this._lastInsertedContactId(callback);
+    },
+
+    _lastInsertedContact: function (callback) {
         var sql = 'SELECT * FROM Contact ORDER BY ContactId DESC LIMIT 1;';
 
         this.all(sql, null, function (err, result) {
@@ -241,6 +244,14 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
                 callback(err, contact);
             }
         });
+    },
+
+    /**
+     * Retrieves the last inserted contact
+     * @param {SqliteContactDAO~RetrieveCallback} [callback]
+     */
+    lastInserted: function (callback) {
+        this._lastInsertedContact(callback);
     }
 });
 
@@ -257,11 +268,11 @@ SqliteContactDAO.ContactFromDatabase = function (row) {
     c.setMiddleName(row.MiddleName);
     c.setSurname(row.Surname);
 
-    c.setCompany(row.company);
-    c.setEmail(row.email);
-    c.setPhone(row.phone);
+    c.setCompany(row.Company);
+    c.setEmail(row.Email);
+    c.setPhone(row.Phone);
 
-    c.setAddress(row.address, row.suburb, row.city, row.country, row.state, row.post);
+    c.setAddress(row.Address, row.Suburb, row.City, row.Country, row.State, row.Post);
 
     return c;
 };

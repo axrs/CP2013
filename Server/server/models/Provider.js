@@ -12,11 +12,8 @@ var Provider = Ring.create([Contact], {
     _terminated: '',
     _isActive: 1,
     _color: '#006dcc',
-    _hours: [],
+    _hours: new Array(7),
     init: function () {
-        for (var i = 0; i <= 6; i++) {
-            this._hours.push(new ProviderHours(i));
-        }
     },
     getId: function () {
         return this._providerId;
@@ -28,10 +25,12 @@ var Provider = Ring.create([Contact], {
         }
     },
     getContactId: function () {
-        return this.$super().getId();
+        return this._contactId;
     },
     setContactId: function (value) {
-        this.$super().setId(value);
+        if (Utilities.isInteger(value) && value > 0) {
+            this._contactId = value;
+        }
     },
     setBiography: function (value) {
         if (Utilities.isStringAndNotEmpty(value)) {
@@ -70,13 +69,28 @@ var Provider = Ring.create([Contact], {
     getColor: function () {
         return this._color;
     },
-
+    setHours: function (value) {
+        if (Ring.instance(value, ProviderHours)) {
+            this._hours[value.getDay()] = value;
+        } else {
+            this._hours = value;
+        }
+    },
+    getHours: function (index) {
+        if (index) {
+            return this._hours[index];
+        } else {
+            return this._hours;
+        }
+    },
     toJSON: function () {
         var contactData = this.$super();
         var hours = [];
 
         for (var i = 0; i < this._hours.length; i++) {
-            hours[i] = this._hours[i].toJSON();
+            if (typeof this._hours[i] !== 'undefined' && this._hours[i] !== null) {
+                hours[i] = this._hours[i].toJSON();
+            }
         }
 
         var providerData = {
@@ -94,5 +108,35 @@ var Provider = Ring.create([Contact], {
         return Utilities.mergeObjectProperties([contactData, providerData]);
     }
 });
+
+Provider.fromJSON = function (data) {
+
+    var provider = new Provider();
+    provider.setContactId(data.contactId);
+    provider.setSalutation(data.salutation);
+    provider.setName(data.name);
+    provider.setMiddleName(data.middleName);
+    provider.setSurname(data.surname);
+
+    provider.setCompany(data.company);
+    provider.setPhone(data.phone);
+    provider.setEmail(data.email);
+
+    provider.setAddress(data.address, data.suburb, data.city, data.country, data.state, data.post);
+
+    provider.setId(data.providerId);
+    provider.setBiography(data.biography)
+    provider.setPortrait(data.portrait);
+    provider.setInitiated(data.initiated);
+    provider.setTerminated(data.terminated);
+    provider.setColor(data.color);
+
+    for (var i = 0; i < data.hours; i++) {
+        var ph = ProviderHours.fromJSON(data.hours[i]);
+        provider.setHours(i, ph);
+    }
+
+    return provider;
+};
 
 module.exports = Provider;

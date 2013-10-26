@@ -1,0 +1,20 @@
+{
+    "name": "ng-boilerplate",
+    "version": "0.3.1",
+    "devDependencies": {
+        "angular": "latest",
+        "angular-mocks": "latest",
+        "bootstrap": "~2.3.2",
+        "angular-bootstrap": "latest",
+        "angular-ui-router": "latest",
+        "angular-ui-utils": "latest",
+        "angular-ui": "latest",
+        "gmap3": "latest",
+        "ng-grid": "latest",
+        "angular-strap": "latest",
+        "angular-placeholders": "latest",
+        "angular-cookies": "latest",
+        "underscore": "latest"
+    },
+    "dependencies": {}
+}

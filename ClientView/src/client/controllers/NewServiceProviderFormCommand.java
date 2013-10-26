@@ -1,15 +1,11 @@
 package client.controllers;
 
-import client.ServiceProviderFormUI;
-import client.controllers.ICommand;
-import client.controllers.NewStage;
+import client.stages.staff.FormView;
 
 
-public class NewServiceProviderFormCommand extends NewStage implements ICommand {
+public class NewServiceProviderFormCommand implements ICommand {
     @Override
     public void execute() {
-
-        tryStageStart(new ServiceProviderFormUI());
-
+        new FormView().show();
     }
 }

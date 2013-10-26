@@ -160,7 +160,7 @@ public class ContactsController {
     public void updateContact(Contact contact) {
         RESTRunner runner = new RESTRunner();
         runner.addListner(new ModifyContactResultListener());
-        runner.setRequest(Config.getInstance().getServer() + "/api/contacts/" + String.valueOf(contact.getContId()));
+        runner.setRequest(Config.getInstance().getServer() + "/api/contacts/" + String.valueOf(contact.getContactId()));
         runner.setMethod("PUT");
         runner.setMessage(new Gson().toJson(contact, Contact.class));
         Thread runnerThread = new Thread(runner, "Updating Contact");
@@ -249,7 +249,7 @@ public class ContactsController {
 
                     for (int i = 0; i < results.length; i++) {
                         Contact c = results[i];
-                        contacts.put(c.getContId(), c);
+                        contacts.put(c.getContactId(), c);
                     }
 
                 } finally {
@@ -282,8 +282,8 @@ public class ContactsController {
                 try {
                     c = new Gson().fromJson(result.getResponse(), Contact.class);
 
-                    if (c.getContId() != 0) {
-                        contacts.put(c.getContId(), c);
+                    if (c.getContactId() != 0) {
+                        contacts.put(c.getContactId(), c);
                     }
                 } finally {
                     contactsLocker.release();

@@ -1,0 +1,51 @@
+<div class="row-fluid">
+
+    <h1 class="page-header muted">'cause our fictitious hair dressers are a cut above the rest</h1>
+
+    <div class="span4">
+        <h2>Who We Are</h2>
+
+        <p>Shear-N-Dipity are the ultimate all round experience. Our highly trained and fictitious salon stylists
+            can offer advice on the latest trends, catering to every need you can imagine.</p>
+
+        <p>Delivering the best imaginary service to you is what's important to us.</p>
+
+        <p>We are situated in the heart of North Queensland, within the confines of Townsville's city limits. </p>
+
+    </div>
+    <div class="span2">
+        <h2>Showroom</h2>
+        <address>
+            <strong>Shear-N-Dipity, Inc.</strong><br>
+            Room 035, Building 17<br>
+            James Cook University<br>
+            Douglas, QLD 4814
+        </address>
+    </div>
+
+    <div id="map" class="span6 gmap3"></div>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $("#map").gmap3({
+                marker: {
+                    latLng: [-19.32917,146.759523],
+                    title: 'Shear-N-Dipity',
+                    options: {
+                        draggable: true
+                    },
+                    events: {
+                    }
+                },
+                map: {
+                    options: {
+                        zoom: 17
+                    }
+                }
+            });
+
+        });
+    </script>
+</div>
+

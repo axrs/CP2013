@@ -1,4 +1,15 @@
 /*-=-=-=-=-=-=-=-=-=-=
+ * SESSIONS
+ -=-=-=-=-=-=-=-=-=-=*/
+
+CREATE TABLE IF NOT EXISTS Session (
+  Token    VARCHAR PRIMARY KEY NOT NULL,
+  UserId   INTEGER,
+  Lifetime BIGINT,
+  FOREIGN KEY (UserId) REFERENCES User (UserId)
+);
+
+/*-=-=-=-=-=-=-=-=-=-=
  * CONTACTS
  -=-=-=-=-=-=-=-=-=-=*/
 CREATE TABLE IF NOT EXISTS Contact (
@@ -22,13 +33,16 @@ CREATE TABLE IF NOT EXISTS Contact (
  * USERS
  -=-=-=-=-=-=-=-=-=-=*/
 CREATE TABLE IF NOT EXISTS User (
-  UserId       INTEGER,
-  User         VARCHAR NOT NULL,
-  Password     VARCHAR NOT NULL,
+  UserId       INTEGER PRIMARY KEY AUTOINCREMENT,
+  ContactId    INTEGER,
+  User         VARCHAR,
+  Password     VARCHAR,
   isAdmin      BOOLEAN DEFAULT 0,
+  StrategyId   INTEGER,
   Strategy     VARCHAR DEFAULT 'local',
   StrategyData VARCHAR,
-  FOREIGN KEY (UserId) REFERENCES Contact (ContactId)
+  Token        VARCHAR UNIQUE NOT NULL,
+  FOREIGN KEY (ContactId) REFERENCES Contact (ContactId)
 );
 
 /*-=-=-=-=-=-=-=-=-=-=
@@ -66,7 +80,8 @@ CREATE TABLE IF NOT EXISTS Appointment_Type (
   TypeId      INTEGER PRIMARY KEY AUTOINCREMENT,
   Description VARCHAR,
   Duration    TIME,
-  isAllDay    BOOLEAN DEFAULT 0
+  isAllDay    BOOLEAN DEFAULT 0,
+  isActive   BOOLEAN DEFAULT 1
 );
 
 /*-=-=-=-=-=-=-=-=-=-=

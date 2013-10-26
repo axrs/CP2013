@@ -215,3 +215,2569 @@
 2013-10-14 12:17:01	127.0.0.1	/api/contacts	{}
 2013-10-18 10:28:31	127.0.0.1	/api/contacts	{}
 2013-10-18 10:28:42	127.0.0.1	/api/contacts/2	{"contactId":2,"name":"Patrick","middleName":"","surname":"Murray","company":"GlynnTucker","phone":"","email":"","address":"","suburb":"","city":"","country":"","state":"","post":""}
+2013-10-20 09:20:55	127.0.0.1	/api/contacts	{}
+2013-10-20 09:24:47	127.0.0.1	/api/contacts	{}
+2013-10-20 09:24:53	127.0.0.1	/api/contacts/2	{}
+2013-10-20 09:24:56	127.0.0.1	/api/contacts	{}
+2013-10-20 09:37:08	127.0.0.1	/api/contacts	{}
+2013-10-20 09:58:02	127.0.0.1	/api/contacts	{}
+2013-10-20 09:58:58	127.0.0.1	/api/contacts	{}
+2013-10-21 10:00:04	127.0.0.1	/api/contacts	{}
+2013-10-21 10:21:33	127.0.0.1	/api/contacts	{}
+2013-10-21 10:25:13	127.0.0.1	/api/contacts	{}
+2013-10-21 10:27:36	127.0.0.1	/api/contacts	{}
+2013-10-21 10:29:04	127.0.0.1	/api/contacts	{}
+2013-10-21 10:30:18	127.0.0.1	/api/contacts	{}
+2013-10-21 10:30:36	127.0.0.1	/api/contacts	{}
+2013-10-21 10:30:40	127.0.0.1	/api/contacts	{}
+2013-10-21 10:31:49	127.0.0.1	/api/contacts	{}
+2013-10-21 10:34:07	127.0.0.1	/api/contacts	{}
+2013-10-21 10:35:31	127.0.0.1	/api/contacts	{}
+2013-10-21 10:41:02	127.0.0.1	/api/contacts	{}
+2013-10-21 10:41:05	127.0.0.1	/api/contacts	{}
+2013-10-21 10:42:10	127.0.0.1	/api/contacts	{}
+2013-10-21 10:42:30	127.0.0.1	/api/contacts	{}
+2013-10-21 10:44:46	127.0.0.1	/api/contacts	{}
+2013-10-21 10:45:29	127.0.0.1	/api/contacts	{}
+2013-10-21 10:45:56	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:01	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:05	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:06	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:07	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:08	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:08	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:08	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:08	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:15	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:25	127.0.0.1	/api/contacts	{}
+2013-10-21 10:46:39	127.0.0.1	/api/contacts	{}
+2013-10-21 10:48:46	127.0.0.1	/api/contacts	{}
+2013-10-21 10:49:08	127.0.0.1	/api/contacts	{}
+2013-10-21 10:50:09	127.0.0.1	/api/contacts	{}
+2013-10-21 10:50:32	127.0.0.1	/api/contacts	{}
+2013-10-21 10:51:22	127.0.0.1	/api/contacts	{}
+2013-10-21 10:51:46	127.0.0.1	/api/contacts	{}
+2013-10-21 10:53:42	127.0.0.1	/api/contacts	{}
+2013-10-21 10:54:20	127.0.0.1	/api/contacts	{}
+2013-10-21 10:55:46	127.0.0.1	/api/contacts	{}
+2013-10-21 10:57:47	127.0.0.1	/api/contacts	{}
+2013-10-21 11:48:17	127.0.0.1	/api/contacts	undefined
+2013-10-21 12:15:31	127.0.0.1	/api/contacts	undefined
+2013-10-21 12:27:43	127.0.0.1	/api/contacts	undefined
+2013-10-21 12:27:58	127.0.0.1	/api/contacts	undefined
+2013-10-21 12:32:42	127.0.0.1	/api/contacts	[]
+2013-10-21 12:32:48	127.0.0.1	/api/contacts	{"contactId":0,"name":"asdfasdfasdfasdf","surname":"asdfasdfasdfasdf"}
+2013-10-21 12:34:29	127.0.0.1	/api/contacts	{"contactId":0,"name":"asdfasdfasdfasdf","surname":"asdfasdfasdfasdf"}
+2013-10-21 12:34:37	127.0.0.1	/api/contacts/4	undefined
+2013-10-21 12:34:41	127.0.0.1	/api/contacts	[]
+2013-10-21 12:39:45	127.0.0.1	/api/contacts	[]
+2013-10-21 12:41:34	127.0.0.1	/api/contacts	[]
+2013-10-21 12:43:49	127.0.0.1	/api/contacts	[]
+2013-10-21 12:44:47	127.0.0.1	/api/contacts	[]
+2013-10-21 12:45:19	127.0.0.1	/api/contacts	[]
+2013-10-21 12:45:24	127.0.0.1	/api/contacts	[]
+2013-10-21 13:16:09	127.0.0.1	/api/contacts	{"contactId":0,"name":"Frank","surname":"Enstein"}
+2013-10-21 14:52:34	Creating new GitHub User.
+2013-10-21 14:52:34	Existing GitHub User Logged In.
+2013-10-21 14:58:35	127.0.0.1	/api/contacts	[]
+2013-10-21 14:58:52	Creating new GitHub User.
+2013-10-21 14:58:52	Existing GitHub User Logged In.
+2013-10-21 14:58:59	127.0.0.1	/api/contacts	[]
+2013-10-21 15:02:58	127.0.0.1	/api/contacts	[]
+2013-10-21 15:03:10	Creating new GitHub User.
+2013-10-21 15:03:10	Existing GitHub User Logged In.
+2013-10-21 15:03:14	127.0.0.1	/api/contacts	[]
+2013-10-21 15:04:20	127.0.0.1	/api/contacts	[]
+2013-10-21 15:04:28	Creating new GitHub User.
+2013-10-21 15:04:28	Existing GitHub User Logged In.
+2013-10-21 15:04:28	Serialising User Session
+2013-10-21 15:04:34	127.0.0.1	/api/contacts	[]
+2013-10-21 15:12:52	127.0.0.1	/api/contacts	[]
+2013-10-21 15:12:53	127.0.0.1	/api/contacts	[]
+2013-10-21 15:13:01	Creating new GitHub User.
+2013-10-21 15:13:01	Existing GitHub User Logged In.
+2013-10-21 15:13:01	Serialising User Session
+2013-10-21 15:26:54	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:03	Creating new GitHub User.
+2013-10-21 15:27:03	Existing GitHub User Logged In.
+2013-10-21 15:27:03	Serialising User Session
+2013-10-21 15:27:08	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:08	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:09	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:21	127.0.0.1	/api/contacts	[]
+2013-10-21 15:27:25	127.0.0.1	/api/contacts	[]
+2013-10-21 15:32:11	127.0.0.1	/api/contacts	[]
+2013-10-21 15:32:19	Creating new GitHub User.
+2013-10-21 15:32:19	Existing GitHub User Logged In.
+2013-10-21 15:32:19	Serialising User Session
+2013-10-21 15:32:28	127.0.0.1	/api/contacts	[]
+2013-10-21 15:39:06	127.0.0.1	/api/contacts	[]
+2013-10-21 16:15:35	127.0.0.1	/api/contacts	[]
+2013-10-21 16:17:33	Creating new GitHub User.
+2013-10-21 16:17:33	Existing GitHub User Logged In.
+2013-10-21 16:17:33	Serialising User Session
+2013-10-21 16:18:24	Creating new GitHub User.
+2013-10-21 16:18:24	Existing GitHub User Logged In.
+2013-10-21 16:18:24	Serialising User Session
+2013-10-21 16:19:34	Creating new GitHub User.
+2013-10-21 16:19:34	Existing GitHub User Logged In.
+2013-10-21 16:19:34	Serialising User Session
+2013-10-21 16:29:30	Creating new GitHub User.
+2013-10-21 16:29:30	Existing GitHub User Logged In.
+2013-10-21 16:29:30	Serialising User Session
+2013-10-21 16:29:42	127.0.0.1	/api/contacts	[]
+2013-10-21 16:31:36	127.0.0.1	/api/contacts	[]
+2013-10-21 16:31:44	Creating new GitHub User.
+2013-10-21 16:31:44	Existing GitHub User Logged In.
+2013-10-21 16:31:44	Serialising User Session
+2013-10-21 16:31:51	127.0.0.1	/api/contacts	[]
+2013-10-21 16:34:21	Creating new GitHub User.
+2013-10-21 16:34:21	Existing GitHub User Logged In.
+2013-10-21 16:34:21	Serialising User Session
+2013-10-21 16:36:03	Creating new GitHub User.
+2013-10-21 16:36:03	Existing GitHub User Logged In.
+2013-10-21 16:36:03	Serialising User Session
+2013-10-21 16:37:00	Creating new GitHub User.
+2013-10-21 16:37:00	Existing GitHub User Logged In.
+2013-10-21 16:37:00	Serialising User Session
+2013-10-21 16:45:42	127.0.0.1	/api/contacts	{}
+2013-10-21 16:45:52	Creating new GitHub User.
+2013-10-21 16:45:52	Existing GitHub User Logged In.
+2013-10-21 16:45:52	Serialising User Session
+2013-10-21 16:45:56	127.0.0.1	/api/contacts	{}
+2013-10-21 16:46:39	127.0.0.1	/api/contacts	{}
+2013-10-21 16:46:40	127.0.0.1	/api/contacts	{}
+2013-10-21 16:46:45	Creating new GitHub User.
+2013-10-21 16:46:45	Existing GitHub User Logged In.
+2013-10-21 16:46:45	Serialising User Session
+2013-10-21 16:46:51	127.0.0.1	/api/contacts	{}
+2013-10-21 16:49:55	127.0.0.1	/api/contacts	{}
+2013-10-21 16:50:02	Creating new GitHub User.
+2013-10-21 16:50:02	Existing GitHub User Logged In.
+2013-10-21 16:50:02	Serialising User Session
+2013-10-21 16:50:16	Deserialising User Session
+2013-10-21 16:50:16	Error running query.
+2013-10-21 16:50:16	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:50:16	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":"1eb5bbf6-5833-475a-a548-6465ec987b6f","$strategy":"Any"}
+2013-10-21 16:51:44	127.0.0.1	/api/contacts	{}
+2013-10-21 16:51:49	Creating new GitHub User.
+2013-10-21 16:51:49	Existing GitHub User Logged In.
+2013-10-21 16:51:49	Serialising User Session
+2013-10-21 16:51:53	Deserialising User Session
+2013-10-21 16:51:53	Error running query.
+2013-10-21 16:51:53	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:51:53	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:52:36	127.0.0.1	/api/contacts	{}
+2013-10-21 16:52:44	Creating new GitHub User.
+2013-10-21 16:52:44	Existing GitHub User Logged In.
+2013-10-21 16:52:44	Serialising User Session
+2013-10-21 16:52:48	Deserialising User Session
+2013-10-21 16:52:48	Error running query.
+2013-10-21 16:52:48	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:52:48	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:54:18	127.0.0.1	/api/contacts	{}
+2013-10-21 16:54:23	Creating new GitHub User.
+2013-10-21 16:54:23	Existing GitHub User Logged In.
+2013-10-21 16:54:23	Serialising User Session
+2013-10-21 16:54:29	Deserialising User Session
+2013-10-21 16:54:29	Error running query.
+2013-10-21 16:54:29	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:54:29	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:55:34	127.0.0.1	/api/contacts	{}
+2013-10-21 16:55:40	Creating new GitHub User.
+2013-10-21 16:55:40	Existing GitHub User Logged In.
+2013-10-21 16:55:40	Serialising User Session
+2013-10-21 16:55:50	Deserialising User Session
+2013-10-21 16:55:50	Error running query.
+2013-10-21 16:55:50	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 16:55:50	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":0,"$strategy":"Any"}
+2013-10-21 16:57:59	127.0.0.1	/api/contacts	{}
+2013-10-21 16:58:04	Creating new GitHub User.
+2013-10-21 16:58:04	Existing GitHub User Logged In.
+2013-10-21 16:58:04	Serialising User Session
+2013-10-21 16:58:56	Creating new GitHub User.
+2013-10-21 16:58:56	Existing GitHub User Logged In.
+2013-10-21 16:58:56	Serialising User Session
+2013-10-21 17:00:04	Creating new GitHub User.
+2013-10-21 17:00:04	Existing GitHub User Logged In.
+2013-10-21 17:00:04	Serialising User Session
+2013-10-21 17:01:27	Creating new GitHub User.
+2013-10-21 17:01:27	Existing GitHub User Logged In.
+2013-10-21 17:01:27	Serialising User Session
+2013-10-21 17:02:14	Creating new GitHub User.
+2013-10-21 17:02:14	Existing GitHub User Logged In.
+2013-10-21 17:02:14	Serialising User Session
+2013-10-21 17:02:41	Creating new GitHub User.
+2013-10-21 17:02:41	Existing GitHub User Logged In.
+2013-10-21 17:02:41	Serialising User Session
+2013-10-21 17:03:29	Creating new GitHub User.
+2013-10-21 17:03:29	Existing GitHub User Logged In.
+2013-10-21 17:03:29	Serialising User Session
+2013-10-21 17:03:47	Creating new GitHub User.
+2013-10-21 17:03:47	Existing GitHub User Logged In.
+2013-10-21 17:03:47	Serialising User Session
+2013-10-21 17:04:11	Creating new GitHub User.
+2013-10-21 17:04:11	Existing GitHub User Logged In.
+2013-10-21 17:04:11	Serialising User Session
+2013-10-21 17:04:11	Serialising User Session
+2013-10-21 17:06:31	Existing GitHub User Logged In.
+2013-10-21 17:06:31	Serialising User Session
+2013-10-21 17:06:36	Deserialising User Session
+2013-10-21 17:06:36	Error running query.
+2013-10-21 17:06:36	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:06:36	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:07:35	127.0.0.1	/api/contacts	{}
+2013-10-21 17:07:41	Existing GitHub User Logged In.
+2013-10-21 17:07:41	Serialising User Session
+2013-10-21 17:07:53	Deserialising User Session
+2013-10-21 17:07:53	Error running query.
+2013-10-21 17:07:53	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:07:53	SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId AND UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:09:10	127.0.0.1	/api/contacts	{}
+2013-10-21 17:09:16	Existing GitHub User Logged In.
+2013-10-21 17:09:16	Serialising User Session
+2013-10-21 17:09:27	Deserialising User Session
+2013-10-21 17:09:27	Error running query.
+2013-10-21 17:09:27	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:09:27	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:10:40	Existing GitHub User Logged In.
+2013-10-21 17:10:40	Serialising User Session
+2013-10-21 17:10:47	Deserialising User Session
+2013-10-21 17:10:47	Error running query.
+2013-10-21 17:10:47	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:10:47	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:11:28	Existing GitHub User Logged In.
+2013-10-21 17:11:28	Serialising User Session
+2013-10-21 17:11:31	Deserialising User Session
+2013-10-21 17:11:31	Error running query.
+2013-10-21 17:11:31	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:11:31	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:12:56	Existing GitHub User Logged In.
+2013-10-21 17:12:56	Serialising User Session
+2013-10-21 17:12:59	Deserialising User Session
+2013-10-21 17:12:59	Error running query.
+2013-10-21 17:12:59	Error: SQLITE_RANGE: bind or column index out of range
+2013-10-21 17:12:59	SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND isActive=1 LIMIT 1;{"$id":1,"$strategy":"Any"}
+2013-10-21 17:13:31	Existing GitHub User Logged In.
+2013-10-21 17:13:31	Serialising User Session
+2013-10-21 17:13:34	Deserialising User Session
+2013-10-21 17:13:34	127.0.0.1	/api/contacts	{}
+2013-10-21 17:14:12	127.0.0.1	/api/contacts	{}
+2013-10-21 17:14:25	Existing GitHub User Logged In.
+2013-10-21 17:14:25	Serialising User Session
+2013-10-21 17:14:27	Deserialising User Session
+2013-10-21 17:14:27	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:31	Existing GitHub User Logged In.
+2013-10-21 17:16:31	Serialising User Session
+2013-10-21 17:16:45	Deserialising User Session
+2013-10-21 17:16:45	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:55	Deserialising User Session
+2013-10-21 17:16:55	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:56	Deserialising User Session
+2013-10-21 17:16:56	127.0.0.1	/api/contacts	{}
+2013-10-21 17:16:57	Deserialising User Session
+2013-10-21 17:16:57	127.0.0.1	/api/contacts	{}
+2013-10-21 17:17:33	127.0.0.1	/api/contacts	{}
+2013-10-21 21:41:45	127.0.0.1	/api/contacts	{}
+2013-10-21 21:42:25	127.0.0.1	/api/contacts	{}
+2013-10-21 21:46:53	127.0.0.1	/api/contacts	{}
+2013-10-21 22:05:30	Existing GitHub User Logged In.
+2013-10-21 22:05:30	Serialising User Session
+2013-10-21 22:08:53	127.0.0.1	/api/contacts	{}
+2013-10-21 22:08:55	Deserialising User Session
+2013-10-21 22:08:56	Deserialising User Session
+2013-10-21 22:09:00	Existing GitHub User Logged In.
+2013-10-21 22:09:00	Serialising User Session
+2013-10-21 22:09:04	127.0.0.1	/api/contacts	{}
+2013-10-21 22:09:31	127.0.0.1	/api/contacts	{}
+2013-10-21 22:10:20	127.0.0.1	/api/contacts	{}
+2013-10-21 22:10:34	Deserialising User Session
+2013-10-21 22:10:34	127.0.0.1	/api/contacts	{}
+2013-10-21 22:12:31	127.0.0.1	/api/contacts	{}
+2013-10-21 00:54:04	127.0.0.1	/api/contacts	{}
+2013-10-21 00:54:08	127.0.0.1	/api/contacts	{}
+2013-10-21 00:54:53	127.0.0.1	/api/contacts	{}
+2013-10-21 00:56:15	127.0.0.1	/api/contacts	{}
+2013-10-21 00:56:17	127.0.0.1	/api/contacts	{}
+2013-10-21 00:57:05	127.0.0.1	/api/contacts	{}
+2013-10-21 00:57:06	127.0.0.1	/api/contacts	{}
+2013-10-21 00:57:27	127.0.0.1	/api/contacts	{}
+2013-10-21 00:57:31	127.0.0.1	/api/contacts	{}
+2013-10-21 00:57:41	127.0.0.1	/api/contacts	{}
+2013-10-21 00:58:22	127.0.0.1	/api/contacts	{}
+2013-10-21 00:58:26	127.0.0.1	/api/contacts	{}
+2013-10-21 01:20:26	127.0.0.1	/api/contacts	{}
+2013-10-21 01:22:18	127.0.0.1	/api/contacts	{}
+2013-10-21 01:26:26	127.0.0.1	/api/contacts	{}
+2013-10-21 01:27:19	127.0.0.1	/api/contacts	{}
+2013-10-21 01:28:08	127.0.0.1	/api/contacts	{}
+2013-10-21 01:28:12	127.0.0.1	/api/contacts	{}
+2013-10-21 01:30:31	127.0.0.1	/api/contacts	{}
+2013-10-21 01:32:06	127.0.0.1	/api/contacts	{}
+2013-10-21 01:32:10	127.0.0.1	/api/contacts	{}
+2013-10-21 01:32:12	127.0.0.1	/api/contacts	{}
+2013-10-21 01:32:27	127.0.0.1	/api/contacts	{}
+2013-10-21 01:33:49	127.0.0.1	/api/contacts	{}
+2013-10-21 01:35:50	127.0.0.1	/api/contacts	{}
+2013-10-21 01:36:15	127.0.0.1	/api/contacts	{}
+2013-10-21 01:36:40	127.0.0.1	/api/contacts	{}
+2013-10-21 01:36:45	127.0.0.1	/api/contacts	{}
+2013-10-21 01:36:56	127.0.0.1	/api/contacts	{"contactId":0}
+2013-10-21 01:37:50	127.0.0.1	/api/contacts	{}
+2013-10-21 01:37:56	127.0.0.1	/api/contacts	{}
+2013-10-21 01:38:03	127.0.0.1	/api/contacts	{}
+2013-10-21 01:38:06	127.0.0.1	/api/contacts	{}
+2013-10-21 08:58:26	127.0.0.1	/api/contacts	{}
+2013-10-21 09:04:35	127.0.0.1	/api/contacts	{}
+2013-10-21 09:04:57	127.0.0.1	/api/contacts	{}
+2013-10-21 09:05:45	127.0.0.1	/api/contacts	{}
+2013-10-21 09:05:49	127.0.0.1	/api/contacts	{}
+2013-10-21 09:06:24	127.0.0.1	/api/contacts	{}
+2013-10-21 09:07:58	127.0.0.1	/api/contacts	{}
+2013-10-21 09:08:12	Existing GitHub User Logged In.
+2013-10-21 09:08:12	Serialising User Session
+2013-10-21 09:08:32	127.0.0.1	/api/contacts	{}
+2013-10-21 09:08:43	127.0.0.1	/api/contacts	{}
+2013-10-21 09:09:17	127.0.0.1	/api/contacts	{}
+2013-10-21 09:09:23	127.0.0.1	/api/contacts	{}
+2013-10-21 09:10:01	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:10:01	127.0.0.1	/api/auth/github/callback?code=89eab7b556541d100f6d	{}
+2013-10-21 09:10:04	Existing GitHub User Logged In.
+2013-10-21 09:10:04	Serialising User Session
+2013-10-21 09:10:21	127.0.0.1	/api/contacts	{}
+2013-10-21 09:11:08	127.0.0.1	/api/contacts	{}
+2013-10-21 09:11:20	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:11:20	Deserialising User Session
+2013-10-21 09:11:20	127.0.0.1	/api/auth/github/callback?code=bc62b98e57be0a0d1ccf	{}
+2013-10-21 09:11:22	Existing GitHub User Logged In.
+2013-10-21 09:11:22	Serialising User Session
+2013-10-21 09:11:26	Deserialising User Session
+2013-10-21 09:11:26	127.0.0.1	/api/contacts	{}
+2013-10-21 09:11:35	Deserialising User Session
+2013-10-21 09:11:35	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:11:36	Deserialising User Session
+2013-10-21 09:11:36	127.0.0.1	/api/auth/github/callback?code=05259c84ea89385e5586	{}
+2013-10-21 09:11:38	Existing GitHub User Logged In.
+2013-10-21 09:11:38	Serialising User Session
+2013-10-21 09:11:44	127.0.0.1	/api/contacts	{}
+2013-10-21 09:11:45	127.0.0.1	/api/contacts	{}
+2013-10-21 09:12:36	Deserialising User Session
+2013-10-21 09:12:40	Deserialising User Session
+2013-10-21 09:12:43	Deserialising User Session
+2013-10-21 09:12:47	Deserialising User Session
+2013-10-21 09:12:47	127.0.0.1	/api/contacts	{}
+2013-10-21 09:20:39	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:20:41	127.0.0.1	/api/auth/github/callback?code=7ffbff9ff5cc3a840633	{}
+2013-10-21 09:20:43	Existing GitHub User Logged In.
+2013-10-21 09:20:43	Serialising User Session
+2013-10-21 09:20:46	127.0.0.1	/api/contacts	{}
+2013-10-21 09:25:26	127.0.0.1	/api/contacts	{}
+2013-10-21 09:25:29	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:25:37	127.0.0.1	/api/contacts	{}
+2013-10-21 09:25:57	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:26:30	127.0.0.1	/api/contacts	{}
+2013-10-21 09:26:34	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:26:36	127.0.0.1	/api/contacts	{}
+2013-10-21 09:26:53	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:33:12	Deserialising User Session
+2013-10-21 09:33:12	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:33:13	Deserialising User Session
+2013-10-21 09:33:13	127.0.0.1	/api/auth/github/callback?code=8f0e7af90807b33ea03d	{}
+2013-10-21 09:33:16	Existing GitHub User Logged In.
+2013-10-21 09:33:16	Serialising User Session
+2013-10-21 09:34:28	Deserialising User Session
+2013-10-21 09:34:28	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:34:29	Deserialising User Session
+2013-10-21 09:34:29	127.0.0.1	/api/auth/github/callback?code=5c6747f29986972a2ece	{}
+2013-10-21 09:34:31	Existing GitHub User Logged In.
+2013-10-21 09:34:31	Serialising User Session
+2013-10-21 09:35:01	Deserialising User Session
+2013-10-21 09:35:01	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:35:02	Deserialising User Session
+2013-10-21 09:35:02	127.0.0.1	/api/auth/github/callback?code=abc9c03590560a78d021	{}
+2013-10-21 09:35:05	Existing GitHub User Logged In.
+2013-10-21 09:35:05	Serialising User Session
+2013-10-21 09:35:53	Deserialising User Session
+2013-10-21 09:35:53	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:35:55	Deserialising User Session
+2013-10-21 09:35:55	127.0.0.1	/api/auth/github/callback?code=08ff7dadded2aeb5083b	{}
+2013-10-21 09:35:58	Existing GitHub User Logged In.
+2013-10-21 09:35:58	Serialising User Session
+2013-10-21 09:36:16	Deserialising User Session
+2013-10-21 09:36:16	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:36:17	Deserialising User Session
+2013-10-21 09:36:17	127.0.0.1	/api/auth/github/callback?code=47e1de00e1164fb696fd	{}
+2013-10-21 09:36:19	Existing GitHub User Logged In.
+2013-10-21 09:36:19	Serialising User Session
+2013-10-21 09:36:53	Deserialising User Session
+2013-10-21 09:36:53	127.0.0.1	/api/auth/github/login	{}
+2013-10-21 09:36:53	127.0.0.1	/api/contacts	{}
+2013-10-21 09:36:54	Deserialising User Session
+2013-10-21 09:36:54	127.0.0.1	/api/auth/github/callback?code=5762a44d3a721a46895d	{}
+2013-10-21 09:36:56	Existing GitHub User Logged In.
+2013-10-21 09:36:56	Serialising User Session
+2013-10-21 09:37:04	127.0.0.1	/api/contacts	{}
+2013-10-21 09:55:40	127.0.0.1	/api/contacts	{}
+2013-10-22 10:01:27	127.0.0.1	/api/contacts	{}
+2013-10-22 10:01:42	127.0.0.1	/api/contacts	{}
+2013-10-22 10:01:43	Deserialising User Session
+2013-10-22 10:01:43	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:01:45	Deserialising User Session
+2013-10-22 10:01:45	127.0.0.1	/api/auth/github/callback?code=a068860615c5ed4f51e3	{}
+2013-10-22 10:01:47	Existing GitHub User Logged In.
+2013-10-22 10:01:47	Serialising User Session
+2013-10-22 10:02:08	127.0.0.1	/api/contacts	{}
+2013-10-22 10:08:59	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:09:00	127.0.0.1	/api/auth/github/callback?code=7be1489d18b9d60088b5	{}
+2013-10-22 10:09:02	Existing GitHub User Logged In.
+2013-10-22 10:09:02	Serialising User Session
+2013-10-22 10:12:58	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:12:58	127.0.0.1	/api/auth/github/callback?code=b9fb7beb6b93c456adfd	{}
+2013-10-22 10:13:01	Existing GitHub User Logged In.
+2013-10-22 10:13:01	Serialising User Session
+2013-10-22 10:13:15	Deserialising User Session
+2013-10-22 10:14:13	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:14:14	127.0.0.1	/api/auth/github/callback?code=8b2774ed2dd5f20e3cb6	{}
+2013-10-22 10:14:17	Existing GitHub User Logged In.
+2013-10-22 10:14:17	Serialising User Session
+2013-10-22 10:14:54	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:14:55	127.0.0.1	/api/auth/github/callback?code=6681e9d4e50671f6d1bf	{}
+2013-10-22 10:14:57	Existing GitHub User Logged In.
+2013-10-22 10:14:57	Serialising User Session
+2013-10-22 10:14:57	Deserialising User Session
+2013-10-22 10:15:05	Deserialising User Session
+2013-10-22 10:15:05	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:15:06	Deserialising User Session
+2013-10-22 10:15:06	127.0.0.1	/api/auth/github/callback?code=3a8238a5568cfd98ce3c	{}
+2013-10-22 10:15:08	Existing GitHub User Logged In.
+2013-10-22 10:15:08	Serialising User Session
+2013-10-22 10:15:08	Deserialising User Session
+2013-10-22 10:15:15	Deserialising User Session
+2013-10-22 10:20:47	127.0.0.1	/api/contacts	{}
+2013-10-22 10:21:10	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:21:11	127.0.0.1	/api/auth/github/callback?code=7fcb3a02449b72669a1a	{}
+2013-10-22 10:21:14	Existing GitHub User Logged In.
+2013-10-22 10:21:14	Serialising User Session
+2013-10-22 10:21:14	127.0.0.1	/api/contacts	{}
+2013-10-22 10:26:37	Deserialising User Session
+2013-10-22 10:26:37	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:26:39	Deserialising User Session
+2013-10-22 10:26:39	127.0.0.1	/api/auth/github/callback?code=51d49f7d6a8ed3aa45a1	{}
+2013-10-22 10:26:41	Existing GitHub User Logged In.
+2013-10-22 10:26:41	Serialising User Session
+2013-10-22 10:26:42	127.0.0.1	/api/contacts	{}
+2013-10-22 10:34:44	Deserialising User Session
+2013-10-22 10:34:44	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:34:45	Deserialising User Session
+2013-10-22 10:34:45	127.0.0.1	/api/auth/github/callback?code=2a603205007065e9fe9a	{}
+2013-10-22 10:34:48	Existing GitHub User Logged In.
+2013-10-22 10:34:48	Serialising User Session
+2013-10-22 10:34:48	127.0.0.1	/api/contacts	{}
+2013-10-22 10:35:06	Deserialising User Session
+2013-10-22 10:35:06	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:35:07	Deserialising User Session
+2013-10-22 10:35:07	127.0.0.1	/api/auth/github/callback?code=13b84696a982ac5e8451	{}
+2013-10-22 10:35:09	Existing GitHub User Logged In.
+2013-10-22 10:35:09	Serialising User Session
+2013-10-22 10:35:10	127.0.0.1	/api/contacts	{}
+2013-10-22 10:35:25	Deserialising User Session
+2013-10-22 10:35:25	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:35:26	Deserialising User Session
+2013-10-22 10:35:26	127.0.0.1	/api/auth/github/callback?code=e08fdf97424fb23e68ff	{}
+2013-10-22 10:35:28	Deserialising User Session
+2013-10-22 10:35:28	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:35:28	Deserialising User Session
+2013-10-22 10:35:28	127.0.0.1	/api/auth/github/callback?code=40b4807270e74d11f902	{}
+2013-10-22 10:35:29	Existing GitHub User Logged In.
+2013-10-22 10:35:29	Serialising User Session
+2013-10-22 10:35:31	Existing GitHub User Logged In.
+2013-10-22 10:35:31	Serialising User Session
+2013-10-22 10:35:36	127.0.0.1	/api/contacts	{}
+2013-10-22 10:36:33	Deserialising User Session
+2013-10-22 10:36:33	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:36:34	Deserialising User Session
+2013-10-22 10:36:34	127.0.0.1	/api/auth/github/callback?code=8232a900ad21068af226	{}
+2013-10-22 10:36:37	Existing GitHub User Logged In.
+2013-10-22 10:36:37	Serialising User Session
+2013-10-22 10:36:37	127.0.0.1	/api/contacts	{}
+2013-10-22 10:36:50	Deserialising User Session
+2013-10-22 10:36:50	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:36:51	Deserialising User Session
+2013-10-22 10:36:51	127.0.0.1	/api/auth/github/callback?code=a4d267daf4c35be1cc66	{}
+2013-10-22 10:36:53	Existing GitHub User Logged In.
+2013-10-22 10:36:53	Serialising User Session
+2013-10-22 10:48:23	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:48:24	127.0.0.1	/api/auth/github/callback?code=e0966af717070855ea8c	{}
+2013-10-22 10:48:27	Existing GitHub User Logged In.
+2013-10-22 10:48:27	Serialising User Session
+2013-10-22 10:48:28	127.0.0.1	/api/contacts	{}
+2013-10-22 10:49:16	Deserialising User Session
+2013-10-22 10:49:16	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:49:17	Deserialising User Session
+2013-10-22 10:49:17	127.0.0.1	/api/auth/github/callback?code=9aaa3d1491469afff447	{}
+2013-10-22 10:49:20	Existing GitHub User Logged In.
+2013-10-22 10:49:20	Serialising User Session
+2013-10-22 10:49:20	127.0.0.1	/api/contacts	{}
+2013-10-22 10:49:33	127.0.0.1	/api/contacts	{}
+2013-10-22 10:49:56	Deserialising User Session
+2013-10-22 10:49:56	127.0.0.1	/api/contacts	{}
+2013-10-22 10:50:27	127.0.0.1	/api/contacts	{}
+2013-10-22 10:50:29	Deserialising User Session
+2013-10-22 10:50:29	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:50:30	Deserialising User Session
+2013-10-22 10:50:30	127.0.0.1	/api/auth/github/callback?code=1e63fa53e8f3d5799edd	{}
+2013-10-22 10:50:33	Existing GitHub User Logged In.
+2013-10-22 10:50:33	Serialising User Session
+2013-10-22 10:50:33	127.0.0.1	/api/contacts	{}
+2013-10-22 10:51:28	127.0.0.1	/api/contacts	{}
+2013-10-22 10:51:30	Deserialising User Session
+2013-10-22 10:51:30	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:51:31	Deserialising User Session
+2013-10-22 10:51:31	127.0.0.1	/api/auth/github/callback?code=061781fd1e647cff4594	{}
+2013-10-22 10:51:33	Existing GitHub User Logged In.
+2013-10-22 10:51:33	Serialising User Session
+2013-10-22 10:51:34	127.0.0.1	/api/contacts	{}
+2013-10-22 10:51:51	127.0.0.1	/api/contacts	{}
+2013-10-22 10:51:53	Deserialising User Session
+2013-10-22 10:51:53	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:51:54	Deserialising User Session
+2013-10-22 10:51:54	127.0.0.1	/api/auth/github/callback?code=7fdc79263bb82cfbd103	{}
+2013-10-22 10:51:56	Existing GitHub User Logged In.
+2013-10-22 10:51:56	Serialising User Session
+2013-10-22 10:51:57	127.0.0.1	/api/contacts	{}
+2013-10-22 10:52:05	127.0.0.1	/api/contacts	{}
+2013-10-22 10:53:26	127.0.0.1	/api/contacts	{}
+2013-10-22 10:53:29	127.0.0.1	/api/contacts	{}
+2013-10-22 10:54:16	127.0.0.1	/api/contacts	{}
+2013-10-22 10:54:50	127.0.0.1	/api/contacts	{}
+2013-10-22 10:55:07	127.0.0.1	/api/contacts	{}
+2013-10-22 10:55:13	Deserialising User Session
+2013-10-22 10:55:13	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 10:55:14	Deserialising User Session
+2013-10-22 10:55:14	127.0.0.1	/api/auth/github/callback?code=bf0d3440ea9b94a7dfec	{}
+2013-10-22 10:55:16	Existing GitHub User Logged In.
+2013-10-22 10:55:16	Serialising User Session
+2013-10-22 10:55:17	127.0.0.1	/api/contacts	{}
+2013-10-22 10:55:20	127.0.0.1	/api/contacts	{}
+2013-10-22 11:01:40	pj_SwKrw9n3t3_GRnQLmoGny	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:01:42	pj_SwKrw9n3t3_GRnQLmoGny	127.0.0.1	/api/auth/github/callback?code=d9d174844f63d58ee46a	{}
+2013-10-22 11:01:44	Existing GitHub User Logged In.
+2013-10-22 11:01:44	Serialising User Session
+2013-10-22 11:01:45	IteMzgh_ED3VnuqyXVsOD8rK	127.0.0.1	/api/contacts	{}
+2013-10-22 11:01:53	eS9XG0Fn70H7bJMifzlm9Ckb	127.0.0.1	/api/contacts	{}
+2013-10-22 11:06:47	o8MnFZS11oeBALZJige_AAPd	127.0.0.1	/api/contacts	{}
+2013-10-22 11:06:52	2-J6I0FoLsVWJJKCHVqEaTa1	127.0.0.1	/api/contacts	{}
+2013-10-22 11:06:54	6drAqNKfA38o-dFDkIGijQh_	127.0.0.1	/api/contacts	{}
+2013-10-22 11:06:55	EB1rGRleAykQY47rouj7xYYP	127.0.0.1	/api/contacts	{}
+2013-10-22 11:06:57	mq4A8iP9WR-jof0P2-evVHSb	127.0.0.1	/api/contacts	{}
+2013-10-22 11:06:58	_YA-D9kBlkU3S9eEHAaMkzto	127.0.0.1	/api/contacts	{}
+2013-10-22 11:23:07	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:23:08	undefined	127.0.0.1	/api/auth/github/callback?code=2863249ed82c99a55283	{}
+2013-10-22 11:23:11	Creating new GitHub User.
+2013-10-22 11:23:11	Serialising User Session
+2013-10-22 11:23:12	undefined	127.0.0.1	/api/contacts	{}
+2013-10-22 11:24:27	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:24:28	undefined	127.0.0.1	/api/auth/github/callback?code=b9bda36c26458c491553	{}
+2013-10-22 11:24:30	Existing GitHub User Logged In.
+2013-10-22 11:24:30	Serialising User Session
+2013-10-22 11:27:08	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:27:08	undefined	127.0.0.1	/api/auth/github/callback?code=dc6a5d2a4c449f0971fe	{}
+2013-10-22 11:27:10	Existing GitHub User Logged In.
+2013-10-22 11:27:10	Serialising User Session
+2013-10-22 11:27:10	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:27:27	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:27:30	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:27:46	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:27:47	undefined	127.0.0.1	/api/auth/github/callback?code=219d1d9515e8031c6194	{}
+2013-10-22 11:27:49	Existing GitHub User Logged In.
+2013-10-22 11:27:49	Serialising User Session
+2013-10-22 11:27:49	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:28:49	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:28:55	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:28:56	undefined	127.0.0.1	/api/auth/github/callback?code=6debcebe7b9133d13368	{}
+2013-10-22 11:28:58	Existing GitHub User Logged In.
+2013-10-22 11:28:58	Serialising User Session
+2013-10-22 11:28:58	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:30:25	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:30:26	undefined	127.0.0.1	/api/auth/github/callback?code=2bdb48ee1ee7faee7cd4	{}
+2013-10-22 11:30:28	Existing GitHub User Logged In.
+2013-10-22 11:30:28	Serialising User Session
+2013-10-22 11:30:28	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:31:05	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:31:06	undefined	127.0.0.1	/api/auth/github/callback?code=d6bc32ac6f7ec6023696	{}
+2013-10-22 11:31:09	Existing GitHub User Logged In.
+2013-10-22 11:31:09	Serialising User Session
+2013-10-22 11:31:09	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:33:26	undefined	127.0.0.1	/api/user?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:33:53	undefined	127.0.0.1	/api/user?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:34:08	undefined	127.0.0.1	/api/user?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:34:56	undefined	127.0.0.1	/api/user?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:35:20	undefined	127.0.0.1	/api/user?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:36:15	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:36:29	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:36:46	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:37:24	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:38:35	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:42:24	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:42:54	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:43:32	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:46:54	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:49:39	undefined	127.0.0.1	/api/token	{}
+2013-10-22 11:49:46	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:49:47	undefined	127.0.0.1	/api/auth/github/callback?code=4c0c3e0b6eca0eea17cc	{}
+2013-10-22 11:49:49	Existing GitHub User Logged In.
+2013-10-22 11:49:49	Serialising User Session
+2013-10-22 11:49:49	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:50:09	undefined	127.0.0.1	/api/user	{}
+2013-10-22 11:50:12	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:50:12	undefined	127.0.0.1	/api/auth/github/callback?code=e68dd8be14b1a929872b	{}
+2013-10-22 11:50:14	Existing GitHub User Logged In.
+2013-10-22 11:50:14	Serialising User Session
+2013-10-22 11:50:14	undefined	127.0.0.1	/api/token	{}
+2013-10-22 11:50:41	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/token	{}
+2013-10-22 11:50:43	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:50:43	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/auth/github/callback?code=6721fc7b6cacd5fe094c	{}
+2013-10-22 11:50:46	Existing GitHub User Logged In.
+2013-10-22 11:50:46	Serialising User Session
+2013-10-22 11:50:46	Deserialising User Session
+2013-10-22 11:50:46	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/token	{}
+2013-10-22 11:50:59	Deserialising User Session
+2013-10-22 11:50:59	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:51:05	Deserialising User Session
+2013-10-22 11:51:05	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/user?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 11:54:50	R-xTYxUtsfe1wW5anj1sVs_5	10.100.0.115	/api/auth/github/login	{}
+2013-10-22 11:56:49	Deserialising User Session
+2013-10-22 11:56:49	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:56:50	Deserialising User Session
+2013-10-22 11:56:50	-lOCCQALobbu2oPnCgvA691Q	127.0.0.1	/api/auth/github/callback?code=eb881f180f36ce3e5da8	{}
+2013-10-22 11:56:52	Existing GitHub User Logged In.
+2013-10-22 11:56:52	Serialising User Session
+2013-10-22 11:57:39	Ao3UpGTR7zbd_5u9j7Sj961C	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:57:40	Ao3UpGTR7zbd_5u9j7Sj961C	127.0.0.1	/api/auth/github/callback?code=d0e94ed616841aba1257	{}
+2013-10-22 11:57:42	Existing GitHub User Logged In.
+2013-10-22 11:57:42	Serialising User Session
+2013-10-22 11:57:42	Deserialising User Session
+2013-10-22 11:57:42	Ao3UpGTR7zbd_5u9j7Sj961C	127.0.0.1	/api/token	{}
+2013-10-22 11:59:17	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 11:59:18	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=ea9614936166204d7da4	{}
+2013-10-22 11:59:21	Existing GitHub User Logged In.
+2013-10-22 11:59:21	Serialising User Session
+2013-10-22 11:59:21	Deserialising User Session
+2013-10-22 11:59:21	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:02:43	Deserialising User Session
+2013-10-22 12:02:43	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:02:43	Deserialising User Session
+2013-10-22 12:02:43	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=19a1b834e3275f0cd254	{}
+2013-10-22 12:02:46	Existing GitHub User Logged In.
+2013-10-22 12:02:46	Serialising User Session
+2013-10-22 12:02:46	Deserialising User Session
+2013-10-22 12:02:46	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:04:30	Deserialising User Session
+2013-10-22 12:04:30	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:04:30	Deserialising User Session
+2013-10-22 12:04:30	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=6e0d2b207cdd0613ea7c	{}
+2013-10-22 12:04:33	Existing GitHub User Logged In.
+2013-10-22 12:04:33	Serialising User Session
+2013-10-22 12:04:33	Deserialising User Session
+2013-10-22 12:04:33	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:05:06	Deserialising User Session
+2013-10-22 12:05:06	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:05:07	Deserialising User Session
+2013-10-22 12:05:07	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=11fc9fd64dc9e06cf869	{}
+2013-10-22 12:05:10	Existing GitHub User Logged In.
+2013-10-22 12:05:10	Serialising User Session
+2013-10-22 12:05:10	Deserialising User Session
+2013-10-22 12:05:10	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:06:44	Deserialising User Session
+2013-10-22 12:06:44	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:06:45	Deserialising User Session
+2013-10-22 12:06:45	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=b19b4c6e9e9bdfdeab3a	{}
+2013-10-22 12:06:48	Existing GitHub User Logged In.
+2013-10-22 12:06:48	Serialising User Session
+2013-10-22 12:06:48	Deserialising User Session
+2013-10-22 12:06:48	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:07:15	Deserialising User Session
+2013-10-22 12:07:15	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:07:16	Deserialising User Session
+2013-10-22 12:07:16	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=9437e0bd552b9c4f8ad8	{}
+2013-10-22 12:07:18	Existing GitHub User Logged In.
+2013-10-22 12:07:18	Serialising User Session
+2013-10-22 12:07:18	Deserialising User Session
+2013-10-22 12:07:18	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:07:38	Deserialising User Session
+2013-10-22 12:07:38	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:07:39	Deserialising User Session
+2013-10-22 12:07:39	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=b20370dcb69fecd5be9f	{}
+2013-10-22 12:07:41	Existing GitHub User Logged In.
+2013-10-22 12:07:41	Serialising User Session
+2013-10-22 12:07:41	Deserialising User Session
+2013-10-22 12:07:41	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:08:17	Deserialising User Session
+2013-10-22 12:08:17	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:08:18	Deserialising User Session
+2013-10-22 12:08:18	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/auth/github/callback?code=365cedde7b9c0104c38d	{}
+2013-10-22 12:08:21	Existing GitHub User Logged In.
+2013-10-22 12:08:21	Serialising User Session
+2013-10-22 12:08:21	Deserialising User Session
+2013-10-22 12:08:21	76KDjJd1WRBRyvCrQ5yvmfLU	127.0.0.1	/api/token	{}
+2013-10-22 12:11:48	9FqvpchzdKydWCoC5aczrQD_	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:11:49	9FqvpchzdKydWCoC5aczrQD_	127.0.0.1	/api/auth/github/callback?code=6dff7aabdd87130bd739	{}
+2013-10-22 12:11:52	Existing GitHub User Logged In.
+2013-10-22 12:11:52	Serialising User Session
+2013-10-22 12:11:52	Deserialising User Session
+2013-10-22 12:11:52	9FqvpchzdKydWCoC5aczrQD_	127.0.0.1	/api/token	{}
+2013-10-22 12:16:07	aoFR47XrlSlZIEN0nOzzH_Yc	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:16:08	aoFR47XrlSlZIEN0nOzzH_Yc	127.0.0.1	/api/auth/github/callback?code=a1cc14fe216c4e052323	{}
+2013-10-22 12:16:11	Existing GitHub User Logged In.
+2013-10-22 12:16:11	Serialising User Session
+2013-10-22 12:16:11	Deserialising User Session
+2013-10-22 12:16:11	aoFR47XrlSlZIEN0nOzzH_Yc	127.0.0.1	/api/token	{}
+2013-10-22 12:16:35	Deserialising User Session
+2013-10-22 12:16:35	aoFR47XrlSlZIEN0nOzzH_Yc	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:16:36	Deserialising User Session
+2013-10-22 12:16:36	aoFR47XrlSlZIEN0nOzzH_Yc	127.0.0.1	/api/auth/github/callback?code=a95100751227112afcef	{}
+2013-10-22 12:16:39	Existing GitHub User Logged In.
+2013-10-22 12:16:39	Serialising User Session
+2013-10-22 12:16:39	Deserialising User Session
+2013-10-22 12:16:39	aoFR47XrlSlZIEN0nOzzH_Yc	127.0.0.1	/api/token	{}
+2013-10-22 12:19:18	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:19:20	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=b449fd59c223fbf4ed57	{}
+2013-10-22 12:19:22	Existing GitHub User Logged In.
+2013-10-22 12:19:22	Serialising User Session
+2013-10-22 12:19:22	Deserialising User Session
+2013-10-22 12:19:22	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:28	Deserialising User Session
+2013-10-22 12:19:28	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:29	Deserialising User Session
+2013-10-22 12:19:29	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:29	Deserialising User Session
+2013-10-22 12:19:29	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:29	Deserialising User Session
+2013-10-22 12:19:29	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:30	Deserialising User Session
+2013-10-22 12:19:30	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:30	Deserialising User Session
+2013-10-22 12:19:30	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:30	Deserialising User Session
+2013-10-22 12:19:30	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:30	Deserialising User Session
+2013-10-22 12:19:30	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:30	Deserialising User Session
+2013-10-22 12:19:30	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:19:58	Deserialising User Session
+2013-10-22 12:19:58	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:19:59	Deserialising User Session
+2013-10-22 12:19:59	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=6db577d6ee99a914c44a	{}
+2013-10-22 12:20:02	Existing GitHub User Logged In.
+2013-10-22 12:20:02	Serialising User Session
+2013-10-22 12:20:02	Deserialising User Session
+2013-10-22 12:20:02	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:20:11	Deserialising User Session
+2013-10-22 12:20:11	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:20:12	Deserialising User Session
+2013-10-22 12:20:12	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=7696bf712984054e1907	{}
+2013-10-22 12:20:14	Existing GitHub User Logged In.
+2013-10-22 12:20:14	Serialising User Session
+2013-10-22 12:20:14	Deserialising User Session
+2013-10-22 12:20:14	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:20:50	Deserialising User Session
+2013-10-22 12:20:50	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:20:51	Deserialising User Session
+2013-10-22 12:20:51	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=f5b5a78ff654c0efbff4	{}
+2013-10-22 12:20:54	Existing GitHub User Logged In.
+2013-10-22 12:20:54	Serialising User Session
+2013-10-22 12:20:54	Deserialising User Session
+2013-10-22 12:20:54	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:23:58	Deserialising User Session
+2013-10-22 12:23:58	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:23:59	Deserialising User Session
+2013-10-22 12:23:59	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=31c1afb4efad2768edb6	{}
+2013-10-22 12:24:02	Existing GitHub User Logged In.
+2013-10-22 12:24:02	Serialising User Session
+2013-10-22 12:24:02	Deserialising User Session
+2013-10-22 12:24:02	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:25:57	Deserialising User Session
+2013-10-22 12:25:57	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:25:59	Deserialising User Session
+2013-10-22 12:25:59	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=866f903afae8ba4cdef3	{}
+2013-10-22 12:26:01	Existing GitHub User Logged In.
+2013-10-22 12:26:01	Serialising User Session
+2013-10-22 12:26:01	Deserialising User Session
+2013-10-22 12:26:01	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:28:46	Deserialising User Session
+2013-10-22 12:28:46	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:28:47	Deserialising User Session
+2013-10-22 12:28:47	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=3d84711434adb99e4bca	{}
+2013-10-22 12:28:50	Existing GitHub User Logged In.
+2013-10-22 12:28:50	Serialising User Session
+2013-10-22 12:28:50	Deserialising User Session
+2013-10-22 12:28:50	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:31:20	Deserialising User Session
+2013-10-22 12:31:20	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:31:21	Deserialising User Session
+2013-10-22 12:31:21	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=e08b2055bba1f67633a0	{}
+2013-10-22 12:31:24	Existing GitHub User Logged In.
+2013-10-22 12:31:24	Serialising User Session
+2013-10-22 12:31:24	Deserialising User Session
+2013-10-22 12:31:24	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:33:00	Deserialising User Session
+2013-10-22 12:33:00	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:33:01	Deserialising User Session
+2013-10-22 12:33:01	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=71e7b6a11e1b6a3a4ad1	{}
+2013-10-22 12:33:03	Existing GitHub User Logged In.
+2013-10-22 12:33:03	Serialising User Session
+2013-10-22 12:33:03	Deserialising User Session
+2013-10-22 12:33:03	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 12:34:23	Deserialising User Session
+2013-10-22 12:34:23	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 12:34:24	Deserialising User Session
+2013-10-22 12:34:24	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=5209cd2352b0b9555cff	{}
+2013-10-22 12:34:26	Existing GitHub User Logged In.
+2013-10-22 12:34:26	Serialising User Session
+2013-10-22 12:34:26	Deserialising User Session
+2013-10-22 12:34:26	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 13:14:27	Deserialising User Session
+2013-10-22 13:14:27	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:14:28	Deserialising User Session
+2013-10-22 13:14:28	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/auth/github/callback?code=43250ad6642ff7da7639	{}
+2013-10-22 13:14:30	Existing GitHub User Logged In.
+2013-10-22 13:14:30	Serialising User Session
+2013-10-22 13:14:30	Deserialising User Session
+2013-10-22 13:14:30	SHLQgmlRMdRwsrLXEVPBucax	127.0.0.1	/api/token	{}
+2013-10-22 13:15:17	rHyGzgbaIV4zdPYtBuMMXlLz	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:15:18	rHyGzgbaIV4zdPYtBuMMXlLz	127.0.0.1	/api/auth/github/callback?code=95c68ef5f25c4c4e1468	{}
+2013-10-22 13:15:21	Existing GitHub User Logged In.
+2013-10-22 13:15:21	Serialising User Session
+2013-10-22 13:15:21	Deserialising User Session
+2013-10-22 13:15:21	rHyGzgbaIV4zdPYtBuMMXlLz	127.0.0.1	/api/token	{}
+2013-10-22 13:16:01	VEsZwMf3XHMCjYmyCrXXbQNk	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:16:02	VEsZwMf3XHMCjYmyCrXXbQNk	127.0.0.1	/api/auth/github/callback?code=addef2117e7fcbc66b15	{}
+2013-10-22 13:16:04	Existing GitHub User Logged In.
+2013-10-22 13:16:04	Serialising User Session
+2013-10-22 13:16:04	Deserialising User Session
+2013-10-22 13:16:04	VEsZwMf3XHMCjYmyCrXXbQNk	127.0.0.1	/api/token	{}
+2013-10-22 13:16:41	BsxhYXj6EKrkcE4lZRezFRxq	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:16:43	BsxhYXj6EKrkcE4lZRezFRxq	127.0.0.1	/api/auth/github/callback?code=33c5003fb6fc6eeba14b	{}
+2013-10-22 13:16:45	Existing GitHub User Logged In.
+2013-10-22 13:16:45	Serialising User Session
+2013-10-22 13:16:45	Deserialising User Session
+2013-10-22 13:16:45	BsxhYXj6EKrkcE4lZRezFRxq	127.0.0.1	/api/token	{}
+2013-10-22 13:17:12	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:17:12	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/callback?code=80b663564bd8e87332d6	{}
+2013-10-22 13:17:15	Existing GitHub User Logged In.
+2013-10-22 13:17:15	Serialising User Session
+2013-10-22 13:17:15	Deserialising User Session
+2013-10-22 13:17:15	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/token	{}
+2013-10-22 13:17:28	Deserialising User Session
+2013-10-22 13:17:28	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:17:29	Deserialising User Session
+2013-10-22 13:17:29	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/callback?code=90903da097443718c654	{}
+2013-10-22 13:17:31	Existing GitHub User Logged In.
+2013-10-22 13:17:31	Serialising User Session
+2013-10-22 13:17:31	Deserialising User Session
+2013-10-22 13:17:31	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/token	{}
+2013-10-22 13:18:05	Deserialising User Session
+2013-10-22 13:18:05	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:18:06	Deserialising User Session
+2013-10-22 13:18:06	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/callback?code=45fd9838ad895c5b6a0c	{}
+2013-10-22 13:18:08	Existing GitHub User Logged In.
+2013-10-22 13:18:08	Serialising User Session
+2013-10-22 13:18:08	Deserialising User Session
+2013-10-22 13:18:08	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/token	{}
+2013-10-22 13:19:04	Deserialising User Session
+2013-10-22 13:19:04	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:19:05	Deserialising User Session
+2013-10-22 13:19:05	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/callback?code=ef7ddf0c83f931ea3865	{}
+2013-10-22 13:19:07	Existing GitHub User Logged In.
+2013-10-22 13:19:07	Serialising User Session
+2013-10-22 13:19:07	Deserialising User Session
+2013-10-22 13:19:07	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/token	{}
+2013-10-22 13:31:33	Deserialising User Session
+2013-10-22 13:31:33	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:31:33	Deserialising User Session
+2013-10-22 13:31:33	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/callback?code=9b8e11f24579d8e0c94e	{}
+2013-10-22 13:31:36	Existing GitHub User Logged In.
+2013-10-22 13:31:36	Serialising User Session
+2013-10-22 13:31:36	Deserialising User Session
+2013-10-22 13:31:36	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/token	{}
+2013-10-22 13:33:39	Deserialising User Session
+2013-10-22 13:33:39	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:33:39	Deserialising User Session
+2013-10-22 13:33:39	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/auth/github/callback?code=0910dd778e702ca236ca	{}
+2013-10-22 13:33:42	Existing GitHub User Logged In.
+2013-10-22 13:33:42	Serialising User Session
+2013-10-22 13:33:42	Deserialising User Session
+2013-10-22 13:33:42	VOqBWQy-pOlglv3XuGK6Et-E	127.0.0.1	/api/token	{}
+2013-10-22 13:37:46	xIGlU-xuES9Z-XTL_K88oJ77	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:37:47	xIGlU-xuES9Z-XTL_K88oJ77	127.0.0.1	/api/auth/github/callback?code=873355b03107e2ac2746	{}
+2013-10-22 13:37:49	Existing GitHub User Logged In.
+2013-10-22 13:37:49	Serialising User Session
+2013-10-22 13:37:49	Deserialising User Session
+2013-10-22 13:37:49	xIGlU-xuES9Z-XTL_K88oJ77	127.0.0.1	/api/token	{}
+2013-10-22 13:38:11	WcEZePp0zoFQEqEK_WcfEcTi	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:38:26	WcEZePp0zoFQEqEK_WcfEcTi	127.0.0.1	/api/auth/github/callback?code=f4f87b4179c6d23e3c4e	{}
+2013-10-22 13:38:28	Existing GitHub User Logged In.
+2013-10-22 13:38:28	Serialising User Session
+2013-10-22 13:38:28	Deserialising User Session
+2013-10-22 13:38:28	WcEZePp0zoFQEqEK_WcfEcTi	127.0.0.1	/api/token	{}
+2013-10-22 13:38:48	Deserialising User Session
+2013-10-22 13:38:48	WcEZePp0zoFQEqEK_WcfEcTi	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:38:49	Deserialising User Session
+2013-10-22 13:38:49	WcEZePp0zoFQEqEK_WcfEcTi	127.0.0.1	/api/auth/github/callback?code=5bbb8734c60cb7672dbe	{}
+2013-10-22 13:38:52	Existing GitHub User Logged In.
+2013-10-22 13:38:52	Serialising User Session
+2013-10-22 13:38:52	Deserialising User Session
+2013-10-22 13:38:52	WcEZePp0zoFQEqEK_WcfEcTi	127.0.0.1	/api/token	{}
+2013-10-22 13:42:29	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:42:30	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/callback?code=e4a7d0e96192f0281c67	{}
+2013-10-22 13:42:32	Existing GitHub User Logged In.
+2013-10-22 13:42:32	Serialising User Session
+2013-10-22 13:42:32	Deserialising User Session
+2013-10-22 13:42:32	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/token	{}
+2013-10-22 13:42:41	h-3d-w1aE3c_ONiTscB_qlrJ	127.0.0.1	/api/contacts	{}
+2013-10-22 13:42:48	h-3d-w1aE3c_ONiTscB_qlrJ	127.0.0.1	/api/contacts	{}
+2013-10-22 13:42:52	Deserialising User Session
+2013-10-22 13:42:52	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:42:52	Deserialising User Session
+2013-10-22 13:42:52	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/callback?code=7923d1c1cec17a28f383	{}
+2013-10-22 13:42:54	Existing GitHub User Logged In.
+2013-10-22 13:42:54	Serialising User Session
+2013-10-22 13:42:54	Deserialising User Session
+2013-10-22 13:42:54	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/token	{}
+2013-10-22 13:46:57	h-3d-w1aE3c_ONiTscB_qlrJ	127.0.0.1	/api/contacts	{}
+2013-10-22 13:46:59	Deserialising User Session
+2013-10-22 13:46:59	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:47:00	Deserialising User Session
+2013-10-22 13:47:00	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/callback?code=b9778e75195dec157bfe	{}
+2013-10-22 13:47:03	Existing GitHub User Logged In.
+2013-10-22 13:47:03	Serialising User Session
+2013-10-22 13:47:03	Deserialising User Session
+2013-10-22 13:47:03	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/token	{}
+2013-10-22 13:47:26	h-3d-w1aE3c_ONiTscB_qlrJ	127.0.0.1	/api/contacts	{}
+2013-10-22 13:47:36	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:47:37	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=e009ee0cf249a9b243a9	{}
+2013-10-22 13:47:40	Existing GitHub User Logged In.
+2013-10-22 13:47:40	Serialising User Session
+2013-10-22 13:47:40	Deserialising User Session
+2013-10-22 13:47:40	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 13:47:46	Deserialising User Session
+2013-10-22 13:47:46	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 13:47:46	Deserialising User Session
+2013-10-22 13:47:46	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/auth/github/callback?code=22e5bd60fc7a41e88e99	{}
+2013-10-22 13:47:48	Existing GitHub User Logged In.
+2013-10-22 13:47:48	Serialising User Session
+2013-10-22 13:47:48	Deserialising User Session
+2013-10-22 13:47:48	MoZsMm3AFtTj9dj_QuTb6TY0	127.0.0.1	/api/token	{}
+2013-10-22 13:51:18	Deserialising User Session
+2013-10-22 14:02:54	Deserialising User Session
+2013-10-22 14:02:54	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:02:55	Deserialising User Session
+2013-10-22 14:02:55	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=a242bce343422e47f846	{}
+2013-10-22 14:02:57	Existing GitHub User Logged In.
+2013-10-22 14:02:57	Serialising User Session
+2013-10-22 14:02:57	Deserialising User Session
+2013-10-22 14:02:57	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:03:14	Deserialising User Session
+2013-10-22 14:03:14	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:03:15	Deserialising User Session
+2013-10-22 14:03:15	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=3beb141968af6432671a	{}
+2013-10-22 14:03:18	Existing GitHub User Logged In.
+2013-10-22 14:03:18	Serialising User Session
+2013-10-22 14:03:18	Deserialising User Session
+2013-10-22 14:03:18	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:06:35	Deserialising User Session
+2013-10-22 14:06:35	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:06:36	Deserialising User Session
+2013-10-22 14:06:36	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=8dee558f2ac2a388d972	{}
+2013-10-22 14:06:38	Existing GitHub User Logged In.
+2013-10-22 14:06:38	Serialising User Session
+2013-10-22 14:06:38	Deserialising User Session
+2013-10-22 14:06:38	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:12:28	Deserialising User Session
+2013-10-22 14:12:28	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:12:29	Deserialising User Session
+2013-10-22 14:12:29	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=878bec02884d1f12ef16	{}
+2013-10-22 14:12:32	Existing GitHub User Logged In.
+2013-10-22 14:12:32	Serialising User Session
+2013-10-22 14:12:32	Deserialising User Session
+2013-10-22 14:12:32	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:13:34	Deserialising User Session
+2013-10-22 14:13:34	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:13:35	Deserialising User Session
+2013-10-22 14:13:35	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=14ccf0219db55ed7b81d	{}
+2013-10-22 14:13:37	Existing GitHub User Logged In.
+2013-10-22 14:13:37	Serialising User Session
+2013-10-22 14:13:37	Deserialising User Session
+2013-10-22 14:13:37	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:14:35	Deserialising User Session
+2013-10-22 14:14:35	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:14:36	Deserialising User Session
+2013-10-22 14:14:36	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=1036dce9705a2a31b827	{}
+2013-10-22 14:14:40	Existing GitHub User Logged In.
+2013-10-22 14:14:40	Serialising User Session
+2013-10-22 14:14:40	Deserialising User Session
+2013-10-22 14:14:40	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:15:17	Deserialising User Session
+2013-10-22 14:15:17	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:15:18	Deserialising User Session
+2013-10-22 14:15:18	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=1622c81c7e361a451fd5	{}
+2013-10-22 14:15:21	Existing GitHub User Logged In.
+2013-10-22 14:15:21	Serialising User Session
+2013-10-22 14:15:21	Deserialising User Session
+2013-10-22 14:15:21	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:16:27	Deserialising User Session
+2013-10-22 14:16:27	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:16:27	Deserialising User Session
+2013-10-22 14:16:27	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=f6008dea9ebe75983c81	{}
+2013-10-22 14:16:30	Existing GitHub User Logged In.
+2013-10-22 14:16:30	Serialising User Session
+2013-10-22 14:16:30	Deserialising User Session
+2013-10-22 14:16:30	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:16:54	Deserialising User Session
+2013-10-22 14:16:54	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:16:54	Deserialising User Session
+2013-10-22 14:16:54	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/callback?code=7fa26acdfe08b86f9b38	{}
+2013-10-22 14:16:57	Existing GitHub User Logged In.
+2013-10-22 14:16:57	Serialising User Session
+2013-10-22 14:16:57	Deserialising User Session
+2013-10-22 14:16:57	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/token	{}
+2013-10-22 14:17:14	Deserialising User Session
+2013-10-22 14:17:14	X4_ZSk3k5_3IFzaJa8toBaqP	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:18:15	Nvwy64mzOPCR6odV5Ak0jAgn	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:18:15	Nvwy64mzOPCR6odV5Ak0jAgn	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:19:09	BBxJoB9J-TxzeeDSFCCsJ9Ls	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:19:24	BBxJoB9J-TxzeeDSFCCsJ9Ls	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:20:20	BBxJoB9J-TxzeeDSFCCsJ9Ls	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:24:54	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:25:10	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:25:17	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:25:25	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/callback?code=90242f9e0eda2b2d0672	{}
+2013-10-22 14:25:27	Existing GitHub User Logged In.
+2013-10-22 14:25:27	Serialising User Session
+2013-10-22 14:25:27	Deserialising User Session
+2013-10-22 14:25:27	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/token	{}
+2013-10-22 14:25:43	Deserialising User Session
+2013-10-22 14:25:43	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:25:43	Deserialising User Session
+2013-10-22 14:25:43	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/callback?code=f3c802eb4b7242d81c8b	{}
+2013-10-22 14:25:46	Existing GitHub User Logged In.
+2013-10-22 14:25:46	Serialising User Session
+2013-10-22 14:25:46	Deserialising User Session
+2013-10-22 14:25:46	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/token	{}
+2013-10-22 14:26:27	Deserialising User Session
+2013-10-22 14:26:27	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:26:27	Deserialising User Session
+2013-10-22 14:26:27	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/auth/github/callback?code=5825b52b30174ae1ad2f	{}
+2013-10-22 14:26:30	Existing GitHub User Logged In.
+2013-10-22 14:26:30	Serialising User Session
+2013-10-22 14:26:30	Deserialising User Session
+2013-10-22 14:26:30	xPg6gVBiSSgu_b9DhneGXz-0	127.0.0.1	/api/token	{}
+2013-10-22 14:28:58	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:28:59	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=341cce46d62cd4975ec3	{}
+2013-10-22 14:29:01	Existing GitHub User Logged In.
+2013-10-22 14:29:01	Serialising User Session
+2013-10-22 14:29:09	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:29:10	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=36fccb592afd36bf9d66	{}
+2013-10-22 14:29:12	Existing GitHub User Logged In.
+2013-10-22 14:29:12	Serialising User Session
+2013-10-22 14:29:12	Deserialising User Session
+2013-10-22 14:29:12	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:30:11	Deserialising User Session
+2013-10-22 14:30:11	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:30:13	Deserialising User Session
+2013-10-22 14:30:13	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=aca8cf79c7a6e3f6da23	{}
+2013-10-22 14:30:15	Existing GitHub User Logged In.
+2013-10-22 14:30:15	Serialising User Session
+2013-10-22 14:30:15	Deserialising User Session
+2013-10-22 14:30:15	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:31:02	Deserialising User Session
+2013-10-22 14:31:02	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:31:03	Deserialising User Session
+2013-10-22 14:31:03	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=6bdcf6a78de9232de4eb	{}
+2013-10-22 14:31:07	Existing GitHub User Logged In.
+2013-10-22 14:31:07	Serialising User Session
+2013-10-22 14:31:07	Deserialising User Session
+2013-10-22 14:31:07	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:31:51	Deserialising User Session
+2013-10-22 14:31:51	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:31:52	Deserialising User Session
+2013-10-22 14:31:52	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=9e378e72f0693419b334	{}
+2013-10-22 14:31:55	Existing GitHub User Logged In.
+2013-10-22 14:31:55	Serialising User Session
+2013-10-22 14:31:55	Deserialising User Session
+2013-10-22 14:31:55	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:40:16	LwexEGHKJOJl5QNEwOw0zDdl	10.100.0.136	/api/auth/github/login	{}
+2013-10-22 14:40:18	Deserialising User Session
+2013-10-22 14:40:18	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=ddf1f3585303c207a11c	{}
+2013-10-22 14:40:20	Existing GitHub User Logged In.
+2013-10-22 14:40:20	Serialising User Session
+2013-10-22 14:40:20	Deserialising User Session
+2013-10-22 14:40:20	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:40:57	LwexEGHKJOJl5QNEwOw0zDdl	10.100.0.136	/api/auth/github/login	{}
+2013-10-22 14:40:58	Deserialising User Session
+2013-10-22 14:40:58	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=f51cf870a5ab471e7c1e	{}
+2013-10-22 14:41:00	Existing GitHub User Logged In.
+2013-10-22 14:41:00	Serialising User Session
+2013-10-22 14:41:00	Deserialising User Session
+2013-10-22 14:41:00	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:46:15	LwexEGHKJOJl5QNEwOw0zDdl	10.100.0.136	/api/auth/github/login	{}
+2013-10-22 14:46:16	Deserialising User Session
+2013-10-22 14:46:16	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=2aea3850c3b86daf830c	{}
+2013-10-22 14:46:18	Existing GitHub User Logged In.
+2013-10-22 14:46:18	Serialising User Session
+2013-10-22 14:46:18	Deserialising User Session
+2013-10-22 14:46:18	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:46:25	LwexEGHKJOJl5QNEwOw0zDdl	10.100.0.136	/api/auth/github/login	{}
+2013-10-22 14:46:33	LwexEGHKJOJl5QNEwOw0zDdl	10.100.0.136	/api/auth/github/login	{}
+2013-10-22 14:47:41	LwexEGHKJOJl5QNEwOw0zDdl	10.100.0.136	/api/auth/github/login	{}
+2013-10-22 14:47:42	Deserialising User Session
+2013-10-22 14:47:42	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:48:01	Deserialising User Session
+2013-10-22 14:48:01	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:48:50	Deserialising User Session
+2013-10-22 14:48:50	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:48:59	Deserialising User Session
+2013-10-22 14:48:59	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=c01c515d08be9cbe23a9	{}
+2013-10-22 14:49:01	Existing GitHub User Logged In.
+2013-10-22 14:49:01	Serialising User Session
+2013-10-22 14:49:01	Deserialising User Session
+2013-10-22 14:49:01	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 14:51:13	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:51:35	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:52:10	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:52:11	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/callback?code=174580ad05cf32bac1bc	{}
+2013-10-22 14:52:13	Existing GitHub User Logged In.
+2013-10-22 14:52:13	Serialising User Session
+2013-10-22 14:52:13	Deserialising User Session
+2013-10-22 14:52:13	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/token	{}
+2013-10-22 14:53:51	Deserialising User Session
+2013-10-22 14:53:51	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:53:53	Deserialising User Session
+2013-10-22 14:53:53	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/callback?code=2ed50fd799010da2e49f	{}
+2013-10-22 14:53:55	Existing GitHub User Logged In.
+2013-10-22 14:53:55	Serialising User Session
+2013-10-22 14:53:55	Deserialising User Session
+2013-10-22 14:53:55	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/token	{}
+2013-10-22 14:54:19	Deserialising User Session
+2013-10-22 14:54:19	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:54:20	Deserialising User Session
+2013-10-22 14:54:20	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/auth/github/callback?code=27d7ea5831f68e4fffa8	{}
+2013-10-22 14:54:22	Existing GitHub User Logged In.
+2013-10-22 14:54:22	Serialising User Session
+2013-10-22 14:54:22	Deserialising User Session
+2013-10-22 14:54:22	CCJgsnOI2oe8EIQCS_02Cn47	127.0.0.1	/api/token	{}
+2013-10-22 14:54:49	Deserialising User Session
+2013-10-22 14:54:49	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 14:54:49	Deserialising User Session
+2013-10-22 14:54:49	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=8933c01239d8f37c902e	{}
+2013-10-22 14:54:52	Existing GitHub User Logged In.
+2013-10-22 14:54:52	Serialising User Session
+2013-10-22 14:54:52	Deserialising User Session
+2013-10-22 14:54:52	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:04:56	Deserialising User Session
+2013-10-22 15:04:56	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:04:56	Deserialising User Session
+2013-10-22 15:04:56	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=7435ebd4265ce82dadd9	{}
+2013-10-22 15:04:58	Existing GitHub User Logged In.
+2013-10-22 15:04:58	Serialising User Session
+2013-10-22 15:04:58	Deserialising User Session
+2013-10-22 15:04:58	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:05:22	Deserialising User Session
+2013-10-22 15:05:22	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:05:24	Deserialising User Session
+2013-10-22 15:05:24	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=593ff9a923d28c2adccc	{}
+2013-10-22 15:05:26	Existing GitHub User Logged In.
+2013-10-22 15:05:26	Serialising User Session
+2013-10-22 15:05:26	Deserialising User Session
+2013-10-22 15:05:26	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:05:41	Deserialising User Session
+2013-10-22 15:05:41	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:05:42	Deserialising User Session
+2013-10-22 15:05:42	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=c143b52e832abeb6864b	{}
+2013-10-22 15:05:44	Existing GitHub User Logged In.
+2013-10-22 15:05:44	Serialising User Session
+2013-10-22 15:05:44	Deserialising User Session
+2013-10-22 15:05:44	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:06:11	Deserialising User Session
+2013-10-22 15:06:11	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:06:12	Deserialising User Session
+2013-10-22 15:06:12	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=67006f3e8d1c6a07549f	{}
+2013-10-22 15:06:15	Existing GitHub User Logged In.
+2013-10-22 15:06:15	Serialising User Session
+2013-10-22 15:06:15	Deserialising User Session
+2013-10-22 15:06:15	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:09:48	Deserialising User Session
+2013-10-22 15:09:48	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:09:49	Deserialising User Session
+2013-10-22 15:09:49	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=41e282d9f60b02e674fb	{}
+2013-10-22 15:09:52	Existing GitHub User Logged In.
+2013-10-22 15:09:52	Serialising User Session
+2013-10-22 15:09:52	Deserialising User Session
+2013-10-22 15:09:52	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:11:02	Deserialising User Session
+2013-10-22 15:11:02	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:11:03	Deserialising User Session
+2013-10-22 15:11:03	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=4c2a4437b884c177c5f4	{}
+2013-10-22 15:11:06	Existing GitHub User Logged In.
+2013-10-22 15:11:06	Serialising User Session
+2013-10-22 15:11:06	Deserialising User Session
+2013-10-22 15:11:06	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:11:10	cTqMU4TuxZOS1jf1EdDy_HAD	127.0.0.1	/api/contacts	{}
+2013-10-22 15:11:31	sY8-V5dCYirRQlrp6zyGS4zP	127.0.0.1	/api/contacts	{}
+2013-10-22 15:11:32	Deserialising User Session
+2013-10-22 15:11:32	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:11:33	Deserialising User Session
+2013-10-22 15:11:33	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=b7cf3a441bdc42e5542d	{}
+2013-10-22 15:11:35	Existing GitHub User Logged In.
+2013-10-22 15:11:35	Serialising User Session
+2013-10-22 15:11:35	Deserialising User Session
+2013-10-22 15:11:35	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:12:10	iq9-PkMB0Oq7qcM7NqonogIv	127.0.0.1	/api/contacts	{}
+2013-10-22 15:19:20	Deserialising User Session
+2013-10-22 15:19:20	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:19:22	Deserialising User Session
+2013-10-22 15:19:22	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=7ae0e5e33e5615a235ff	{}
+2013-10-22 15:19:24	Existing GitHub User Logged In.
+2013-10-22 15:19:24	Serialising User Session
+2013-10-22 15:19:24	Deserialising User Session
+2013-10-22 15:19:24	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:19:37	Td_pCsN15Bigr4RTwMbyrC3A	127.0.0.1	/api/contacts	{}
+2013-10-22 15:20:07	nASdXjw61mcWyFoANUtWCwqI	127.0.0.1	/api/contacts	{}
+2013-10-22 15:20:08	Deserialising User Session
+2013-10-22 15:20:08	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:20:09	Deserialising User Session
+2013-10-22 15:20:09	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=fff76771775cd53b07b3	{}
+2013-10-22 15:20:12	Existing GitHub User Logged In.
+2013-10-22 15:20:12	Serialising User Session
+2013-10-22 15:20:12	Deserialising User Session
+2013-10-22 15:20:12	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:20:18	pLTvKHA6LSkl7oF5iBLU-vTX	127.0.0.1	/api/contacts	{}
+2013-10-22 15:23:58	l3QIFL9E4TN5O-_HCtwUHZJK	127.0.0.1	/api/contacts	{}
+2013-10-22 15:24:01	Deserialising User Session
+2013-10-22 15:24:01	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:24:02	Deserialising User Session
+2013-10-22 15:24:02	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/auth/github/callback?code=552ccffff2990469baf4	{}
+2013-10-22 15:24:04	Existing GitHub User Logged In.
+2013-10-22 15:24:04	Serialising User Session
+2013-10-22 15:24:04	Deserialising User Session
+2013-10-22 15:24:04	Un8T8OVnonaq2w7_4Y71vZuC	127.0.0.1	/api/token	{}
+2013-10-22 15:24:13	DCwPRbYElf4sleR-Ev0DsVtg	127.0.0.1	/api/contacts	{}
+2013-10-22 15:25:35	cqHjguBRtOeg_o1P7dMr0o-t	127.0.0.1	/api/contacts	{}
+2013-10-22 15:25:36	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:25:38	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/callback?code=ee61b4f35b8783cf93ec	{}
+2013-10-22 15:25:40	Existing GitHub User Logged In.
+2013-10-22 15:25:40	Serialising User Session
+2013-10-22 15:25:40	Deserialising User Session
+2013-10-22 15:25:40	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/token	{}
+2013-10-22 15:26:03	DTlqz0FbxvOWM5EqMyibVJcq	127.0.0.1	/api/contacts	{}
+2013-10-22 15:28:27	Deserialising User Session
+2013-10-22 15:28:27	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:28:29	Deserialising User Session
+2013-10-22 15:28:29	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/callback?code=207d9e79a1a0d4017260	{}
+2013-10-22 15:28:31	Existing GitHub User Logged In.
+2013-10-22 15:28:31	Serialising User Session
+2013-10-22 15:28:31	Deserialising User Session
+2013-10-22 15:28:31	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/token	{}
+2013-10-22 15:33:24	-rLzT6ZqyHoS7_QqRCYhyx75	127.0.0.1	/api/contacts	{}
+2013-10-22 15:33:26	Deserialising User Session
+2013-10-22 15:33:26	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:33:27	Deserialising User Session
+2013-10-22 15:33:27	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/callback?code=7ea4f55792a7b772c89c	{}
+2013-10-22 15:33:29	Existing GitHub User Logged In.
+2013-10-22 15:33:29	Serialising User Session
+2013-10-22 15:33:29	Deserialising User Session
+2013-10-22 15:33:29	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/token	{}
+2013-10-22 15:33:43	mir4PZ3ozw6ggfZW7dbk5dGw	127.0.0.1	/api/contacts	{}
+2013-10-22 15:33:43	Deserialising User Session
+2013-10-22 15:33:43	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:33:44	Deserialising User Session
+2013-10-22 15:33:44	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/auth/github/callback?code=3290c4cfeb6fa96e41b0	{}
+2013-10-22 15:33:47	Existing GitHub User Logged In.
+2013-10-22 15:33:47	Serialising User Session
+2013-10-22 15:33:47	Deserialising User Session
+2013-10-22 15:33:47	cLMO3oZTzg5n4OLKCv6V1-Hk	127.0.0.1	/api/token	{}
+2013-10-22 15:33:50	7ZbBLc17CAZR_HlfMJgQ2r8e	127.0.0.1	/api/contacts	{}
+2013-10-22 15:37:27	jgaAq68DPo78kLF15xQcfZQY	127.0.0.1	/api/contacts	{}
+2013-10-22 15:37:41	W6oUtkPzqSP4jnS-Kwkxp6Rm	127.0.0.1	/api/contacts	{}
+2013-10-22 15:37:44	eCNREWUBZAPIe7SusMMyWXIV	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:37:45	eCNREWUBZAPIe7SusMMyWXIV	127.0.0.1	/api/auth/github/callback?code=892e0b577f178964e778	{}
+2013-10-22 15:37:47	Existing GitHub User Logged In.
+2013-10-22 15:37:47	Serialising User Session
+2013-10-22 15:37:47	Deserialising User Session
+2013-10-22 15:37:47	eCNREWUBZAPIe7SusMMyWXIV	127.0.0.1	/api/token	{}
+2013-10-22 15:38:36	CKBV0ypok6J8AcgZrdJoYHke	127.0.0.1	/api/contacts	{}
+2013-10-22 15:38:38	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:38:39	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/callback?code=4cc9c3d56d0d9006ac65	{}
+2013-10-22 15:38:41	Existing GitHub User Logged In.
+2013-10-22 15:38:41	Serialising User Session
+2013-10-22 15:38:41	Deserialising User Session
+2013-10-22 15:38:41	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:39:23	3strF4Znbv-MTza4cYwaaMeL	127.0.0.1	/api/contacts	{}
+2013-10-22 15:39:25	Deserialising User Session
+2013-10-22 15:39:25	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:39:26	Deserialising User Session
+2013-10-22 15:39:26	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/callback?code=43d1cf50343b04a2eb46	{}
+2013-10-22 15:39:28	Existing GitHub User Logged In.
+2013-10-22 15:39:28	Serialising User Session
+2013-10-22 15:39:28	Deserialising User Session
+2013-10-22 15:39:28	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:45:15	e70t3JPwmQVg__ND5v8Xg1zc	127.0.0.1	/api/contacts	{}
+2013-10-22 15:45:18	Deserialising User Session
+2013-10-22 15:45:18	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:45:19	Deserialising User Session
+2013-10-22 15:45:19	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/callback?code=96fb5455ff5daaf38b95	{}
+2013-10-22 15:45:22	Existing GitHub User Logged In.
+2013-10-22 15:45:22	Serialising User Session
+2013-10-22 15:45:22	Deserialising User Session
+2013-10-22 15:45:22	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:45:28	nHSxpt_Q4Ue0lKdJZ91izPVN	127.0.0.1	/api/contacts	{}
+2013-10-22 15:45:50	KdOSoOp0X_-ozsTRxvk2xn-8	127.0.0.1	/api/contacts	{}
+2013-10-22 15:45:52	Deserialising User Session
+2013-10-22 15:45:52	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:45:53	Deserialising User Session
+2013-10-22 15:45:53	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/callback?code=1cb6c55ef961c482348a	{}
+2013-10-22 15:45:55	Existing GitHub User Logged In.
+2013-10-22 15:45:55	Serialising User Session
+2013-10-22 15:45:55	Deserialising User Session
+2013-10-22 15:45:55	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:46:00	meB8NIj4HKWAyGFapGOZ-RB4	127.0.0.1	/api/contacts	{}
+2013-10-22 15:46:34	Deserialising User Session
+2013-10-22 15:46:34	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:48:45	IBBLm81ZFcSDXrQKbnMRSuw4	127.0.0.1	/api/contacts?0	{}
+2013-10-22 15:48:48	Deserialising User Session
+2013-10-22 15:48:48	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:48:49	Deserialising User Session
+2013-10-22 15:48:49	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/callback?code=bc63ce09ad041cb233e8	{}
+2013-10-22 15:48:52	Existing GitHub User Logged In.
+2013-10-22 15:48:52	Serialising User Session
+2013-10-22 15:48:52	Deserialising User Session
+2013-10-22 15:48:52	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:48:55	3qi7-vdDAGu95TqT9cVvbATX	127.0.0.1	/api/contacts?8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:49:16	Deserialising User Session
+2013-10-22 15:49:16	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:49:17	Deserialising User Session
+2013-10-22 15:49:17	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/callback?code=6fa499e9cdb7937bfc9e	{}
+2013-10-22 15:49:19	Existing GitHub User Logged In.
+2013-10-22 15:49:19	Serialising User Session
+2013-10-22 15:49:19	Deserialising User Session
+2013-10-22 15:49:19	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:49:23	NhH5rgyu3ToPmSCNG6LTkLDT	127.0.0.1	/api/contacts?access_token8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:49:30	3DwwykP_m9yaRKeUOJGCx6mL	127.0.0.1	/api/contacts?access_token8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:49:35	3DwwykP_m9yaRKeUOJGCx6mL	127.0.0.1	/api/contacts/?access_token8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:49:39	3DwwykP_m9yaRKeUOJGCx6mL	127.0.0.1	/api/contacts/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:49:42	3DwwykP_m9yaRKeUOJGCx6mL	127.0.0.1	/api/contacts?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:50:55	Deserialising User Session
+2013-10-22 15:50:55	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:50:56	Deserialising User Session
+2013-10-22 15:50:56	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/auth/github/callback?code=aca8e9e5babf1d57350b	{}
+2013-10-22 15:50:58	Existing GitHub User Logged In.
+2013-10-22 15:50:58	Serialising User Session
+2013-10-22 15:50:58	Deserialising User Session
+2013-10-22 15:50:58	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/token	{}
+2013-10-22 15:51:04	Deserialising User Session
+2013-10-22 15:51:04	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/contacts	{}
+2013-10-22 15:51:20	Deserialising User Session
+2013-10-22 15:51:20	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/contacts	{}
+2013-10-22 15:51:22	Deserialising User Session
+2013-10-22 15:51:22	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:51:34	Deserialising User Session
+2013-10-22 15:51:34	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/contacts	{}
+2013-10-22 15:51:37	Deserialising User Session
+2013-10-22 15:51:37	aASFQsUiwl_ynyNyf15MC_N1	127.0.0.1	/api/contacts?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:52:17	undefined	127.0.0.1	/api/contacts?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:52:22	undefined	127.0.0.1	/api/contacts/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:52:39	undefined	127.0.0.1	/api/token/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:52:44	undefined	127.0.0.1	/api/user/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:53:51	undefined	127.0.0.1	/api/contacts/?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:53:56	undefined	127.0.0.1	/api/contacts?access_token8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:54:01	undefined	127.0.0.1	/api/contacts?access_token8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:54:05	undefined	127.0.0.1	/api/contacts/?access_token8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:54:12	undefined	127.0.0.1	/api/contacts?access_token0	{}
+2013-10-22 15:54:16	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:54:16	undefined	127.0.0.1	/api/auth/github/callback?code=83175da7e3f2aa2450be	{}
+2013-10-22 15:54:19	Existing GitHub User Logged In.
+2013-10-22 15:54:19	Serialising User Session
+2013-10-22 15:54:19	undefined	127.0.0.1	/api/token	{}
+2013-10-22 15:54:38	undefined	127.0.0.1	/api/contacts?access_token0	{}
+2013-10-22 15:55:38	undefined	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 15:55:40	undefined	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:55:42	undefined	127.0.0.1	/api/auth/github/callback?code=10c8d8a7b4c7bb567e54	{}
+2013-10-22 15:55:44	Existing GitHub User Logged In.
+2013-10-22 15:55:44	Serialising User Session
+2013-10-22 15:55:44	undefined	127.0.0.1	/api/token	{}
+2013-10-22 15:56:13	poyD5jgSAaSbtEmMk1N5FosD	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 15:56:15	m6ByBbcq0Uo8X5t_ddEQYA9X	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:56:16	m6ByBbcq0Uo8X5t_ddEQYA9X	127.0.0.1	/api/auth/github/callback?code=9be07b6b672ec71f70bd	{}
+2013-10-22 15:56:19	Existing GitHub User Logged In.
+2013-10-22 15:56:19	Serialising User Session
+2013-10-22 15:56:19	Deserialising User Session
+2013-10-22 15:56:19	m6ByBbcq0Uo8X5t_ddEQYA9X	127.0.0.1	/api/token	{}
+2013-10-22 15:56:21	B3XgNJdVUPs6R2SHKP0gjEqa	127.0.0.1	/api/contacts?access_token=8cc1df41-e379-4f80-af4d-7399eabd6f4a	{}
+2013-10-22 15:56:50	cLaFtAWpQQaa2qfBcIDHguaO	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 15:57:31	FhzWiHt489FpeePHZ9aIb4co	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 15:58:06	1dwjF0Sf29kMuhfHJwID9uod	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 15:58:14	T8XSYokoVX0h2WArkDD3tI5v	10.100.0.115	/api/auth/github/login	{}
+2013-10-22 15:58:43	cm-aQFsjZOWwcnyvADvwAnXw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:58:59	cm-aQFsjZOWwcnyvADvwAnXw	127.0.0.1	/api/auth/github/callback?code=a1676441674d083c6001	{}
+2013-10-22 15:59:43	AQ0YK12GybUcmZ6qgVVCoQq4	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 15:59:44	AQ0YK12GybUcmZ6qgVVCoQq4	127.0.0.1	/api/auth/github/callback?code=f70c0788c3db860f2a77	{}
+2013-10-22 16:02:25	hqf9lqSd_D9GvB2QKbUmHieA	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:02:27	hqf9lqSd_D9GvB2QKbUmHieA	127.0.0.1	/api/auth/github/callback?code=d0d8a7a59e5cb6f56dac	{}
+2013-10-22 16:02:29	Creating new GitHub User.
+2013-10-22 16:02:29	Serialising User Session
+2013-10-22 16:02:29	Deserialising User Session
+2013-10-22 16:02:29	hqf9lqSd_D9GvB2QKbUmHieA	127.0.0.1	/api/token	{}
+2013-10-22 16:02:35	3D8qhMMhSciy0t2HkuOYPvaL	127.0.0.1	/api/contacts?access_token=fd2093e6-813e-4a34-96df-583bacffe889	{}
+2013-10-22 16:03:01	eEUMKCYdS2zrw3rWNIeFx77E	127.0.0.1	/api/contacts?access_token=fd2093e6-813e-4a34-96df-583bacffe889	{}
+2013-10-22 16:03:03	5PIIXSpInpSsUIcog-YfdPzW	127.0.0.1	/api/contacts?access_token=fd2093e6-813e-4a34-96df-583bacffe889	{}
+2013-10-22 16:03:46	T4izil4Zodk0UIGm-m4YI9sw	127.0.0.1	/api/contacts?access_token=fd2093e6-813e-4a34-96df-583bacffe889	{}
+2013-10-22 16:04:52	Deserialising User Session
+2013-10-22 16:04:52	hqf9lqSd_D9GvB2QKbUmHieA	127.0.0.1	/api/contacts?access_token=fd2093e6-813e-4a34-96df-583bacffe889	{}
+2013-10-22 16:05:43	03reScv8hQsAH884ZuA1R4zF	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:05:44	03reScv8hQsAH884ZuA1R4zF	127.0.0.1	/api/auth/github/callback?code=6f930e40b678593b5f24	{}
+2013-10-22 16:05:46	Creating new GitHub User.
+2013-10-22 16:05:46	Serialising User Session
+2013-10-22 16:05:46	Deserialising User Session
+2013-10-22 16:05:46	03reScv8hQsAH884ZuA1R4zF	127.0.0.1	/api/token	{}
+2013-10-22 16:05:53	VKj-Npfi1cvrpEfcZ-WD4XU6	127.0.0.1	/api/contacts?access_token=fd17d884-bd3b-43c7-a0a0-4cd86c77a399	{}
+2013-10-22 16:06:18	Deserialising User Session
+2013-10-22 16:06:18	03reScv8hQsAH884ZuA1R4zF	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:06:19	Deserialising User Session
+2013-10-22 16:06:19	03reScv8hQsAH884ZuA1R4zF	127.0.0.1	/api/auth/github/callback?code=0c664f2b8f98fc265fbf	{}
+2013-10-22 16:06:21	Creating new GitHub User.
+2013-10-22 16:06:21	Serialising User Session
+2013-10-22 16:06:21	Deserialising User Session
+2013-10-22 16:06:21	03reScv8hQsAH884ZuA1R4zF	127.0.0.1	/api/token	{}
+2013-10-22 16:06:25	CR38Zjx4vwIlFKK7eNxZ63m-	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:10:06	gNvPwii0EI8lgCZw7QTP8wrn	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:10:10	xSX37mkwfKJf3Rvft9oL6Gc0	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:10:12	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:10:13	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=d01e111c086d3b4ced37	{}
+2013-10-22 16:10:16	Existing GitHub User Logged In.
+2013-10-22 16:10:16	Serialising User Session
+2013-10-22 16:10:16	Deserialising User Session
+2013-10-22 16:10:16	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:10:18	UzIFf5S1DoDALKyd_zpNF1_9	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:10:36	4WJvqT4_Q8vEAIdrhq_smJFc	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:13:31	Deserialising User Session
+2013-10-22 16:13:31	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/user?access_token=fd2093e6-813e-4a34-96df-583bacffe889	{}
+2013-10-22 16:13:55	Deserialising User Session
+2013-10-22 16:13:55	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:19:28	Deserialising User Session
+2013-10-22 16:19:28	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:19:30	Deserialising User Session
+2013-10-22 16:19:30	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=c21cac3e751eb1aac3a6	{}
+2013-10-22 16:19:32	Existing GitHub User Logged In.
+2013-10-22 16:19:32	Serialising User Session
+2013-10-22 16:19:32	Deserialising User Session
+2013-10-22 16:19:32	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:20:38	L27g1sPmiLrFrzLyIQPENLK0	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:20:40	Deserialising User Session
+2013-10-22 16:20:40	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:20:41	Deserialising User Session
+2013-10-22 16:20:41	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=718d1389ff704940a751	{}
+2013-10-22 16:20:43	Existing GitHub User Logged In.
+2013-10-22 16:20:43	Serialising User Session
+2013-10-22 16:20:43	Deserialising User Session
+2013-10-22 16:20:43	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:20:43	oAjVgfg_-tMu1zcde8f-aVI6	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:20:46	Whzct_ThNehYCBCcBAASycuu	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:20:50	V-fowwTepS-Gxx_j3bzXkWMx	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:20:51	A5BOgn1DWk7So0h7TyuV-ob1	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:20:52	JaA7eeCOyQHteSwchnBTb8Pq	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:20:52	ltsFUoHuK-0d4VK51aJ70lqZ	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:20:55	OucGTZLcc3ze0hmmeb-T5jOl	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:22:09	XSLIJp892vYJ91y5hPqwd7Ci	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:22:10	aPuwgn2Tudb9BNLmNCSbpFY4	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:22:47	Deserialising User Session
+2013-10-22 16:22:47	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:22:49	Deserialising User Session
+2013-10-22 16:22:49	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=6fc5b04dc137613ee629	{}
+2013-10-22 16:22:51	Existing GitHub User Logged In.
+2013-10-22 16:22:51	Serialising User Session
+2013-10-22 16:22:51	Deserialising User Session
+2013-10-22 16:22:51	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:22:51	PurXWAnvlPEUCn0KjpUijTu5	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:24:04	Deserialising User Session
+2013-10-22 16:24:04	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:24:05	Deserialising User Session
+2013-10-22 16:24:05	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=7fa82107e6524c01b86e	{}
+2013-10-22 16:24:07	Existing GitHub User Logged In.
+2013-10-22 16:24:07	Serialising User Session
+2013-10-22 16:24:07	Deserialising User Session
+2013-10-22 16:24:07	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:24:07	zEVjCbY96rNy8mhyVHLWoi68	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:24:25	lvjldkQf6OcGD1J6UTR0ZhdJ	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:24:36	Deserialising User Session
+2013-10-22 16:24:36	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:24:38	Deserialising User Session
+2013-10-22 16:24:38	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=fd1d39052cb696ae189e	{}
+2013-10-22 16:24:40	Existing GitHub User Logged In.
+2013-10-22 16:24:40	Serialising User Session
+2013-10-22 16:24:40	Deserialising User Session
+2013-10-22 16:24:40	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:24:40	GEIaMmHXdkuCuqybF-E-JLYc	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:25:17	Deserialising User Session
+2013-10-22 16:25:17	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:25:18	Deserialising User Session
+2013-10-22 16:25:18	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=ec0dce69a7c16b94ec2a	{}
+2013-10-22 16:25:21	Existing GitHub User Logged In.
+2013-10-22 16:25:21	Serialising User Session
+2013-10-22 16:25:21	Deserialising User Session
+2013-10-22 16:25:21	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:25:21	SbCI61SM2OucrdShuDvs3vJg	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:25:24	eBmILWgr5TETZYZvWI7FGuIl	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:25:25	wUu9IXXQcHwluHWwgqdBCISz	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:25:26	B1lCdhIJkn3kM1XwM_jIZtQn	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:26:33	Qlt2bXGH_zj0mrlkmW0stJNy	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:26:36	Deserialising User Session
+2013-10-22 16:26:36	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:26:37	Deserialising User Session
+2013-10-22 16:26:37	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/auth/github/callback?code=5423fd5b30ea42b3c9ce	{}
+2013-10-22 16:26:40	Existing GitHub User Logged In.
+2013-10-22 16:26:40	Serialising User Session
+2013-10-22 16:26:40	Deserialising User Session
+2013-10-22 16:26:40	Sh7CJdn6gLutI5aR5fkeCTht	127.0.0.1	/api/token	{}
+2013-10-22 16:26:40	vbynYBzT91uwiMcagwRaqw8E	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:26:45	iUhcMJ5kFCPlVfNu6QFfJhK-	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:26:47	-c7fw9HHaB65tYJ5A5ivgXDt	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:29:45	L92KO7BVlxkuCHWdH8lkYOVn	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:30:19	7l78lS9jJrzuqMw1srnZVky6	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:32:00	Ap7spagNW59gCpRg4XLNBTWN	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:32:29	Wo8QQJYChuvst2zAhGH4BQdM	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:32:33	LM9_TrS6KoGs9dQWxN7jO9Nj	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:32:34	GlpLsosUdL81bQqG46eFcvJD	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:33:16	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 16:33:17	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=3e745557190435770c35	{}
+2013-10-22 16:33:20	Existing GitHub User Logged In.
+2013-10-22 16:33:20	Serialising User Session
+2013-10-22 16:33:20	Deserialising User Session
+2013-10-22 16:33:20	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 16:33:20	YkmCs2jCA886WGbCDeds07hz	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 16:35:00	bUoOhbk5G8UMOpvHOMb0AIqZ	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:36:10	fv_YTghsC3kfMbreo9NkJx46	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:36:42	ZbLaQ8ArA2IelBP0gtHkevGk	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:38:35	9XfoA8lxFwLSYNDfK2SDnax2	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:39:38	gq5D0vUi9ZLQ9OgsqnveSTpZ	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:41:02	pgtYTrASFxruwLBubOYGCWqJ	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:41:30	b5JFaynam5mlFvWRcARupIb9	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:41:33	RpMVmt8bxht1-Z8EhwOZTJN_	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:41:39	AEg2VcB63VZhbeJnpvSRgx2O	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:41:53	7vaDG4i_eO-WcqlPH2bN4j56	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:42:44	8N-f-Zsj-Tbx59SlYrQM1FVp	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:42:48	zliqEhRYfiV6PiaENeNZHLIe	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:43:10	yCCQpoJ29rCR_i33txCT3VCl	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:43:14	Y6_swqJkyLpAQgVoTfvCin-X	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:43:32	460rN4JAeWyO_D1rYM2paSHn	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 16:43:43	HxR_4sP6SMRuW_3gM6SfJEyB	127.0.0.1	/api/contacts?access_token=0	{}
+2013-10-22 17:01:01	Deserialising User Session
+2013-10-22 17:01:01	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:01:02	Deserialising User Session
+2013-10-22 17:01:02	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=d1b9afa667f7c8ffdf67	{}
+2013-10-22 17:01:05	Existing GitHub User Logged In.
+2013-10-22 17:01:05	Serialising User Session
+2013-10-22 17:01:05	Deserialising User Session
+2013-10-22 17:01:05	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:01:05	VN0WMyJHPUsEG3SijMfOMlTF	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:01:52	Deserialising User Session
+2013-10-22 17:01:52	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:01:54	Deserialising User Session
+2013-10-22 17:01:54	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=63b48a2255e1a1a1cc4f	{}
+2013-10-22 17:01:56	Existing GitHub User Logged In.
+2013-10-22 17:01:56	Serialising User Session
+2013-10-22 17:01:56	Deserialising User Session
+2013-10-22 17:01:56	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:01:56	sTMk_i5aq7tPIbSUrZ-mTRHq	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:02:25	Deserialising User Session
+2013-10-22 17:02:25	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:02:26	Deserialising User Session
+2013-10-22 17:02:26	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=ac48974ea9c7956b9c73	{}
+2013-10-22 17:02:29	Existing GitHub User Logged In.
+2013-10-22 17:02:29	Serialising User Session
+2013-10-22 17:02:29	Deserialising User Session
+2013-10-22 17:02:29	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:02:29	3REjZVFxPQOi2-7UknfserM_	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:03:17	Deserialising User Session
+2013-10-22 17:03:17	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:03:17	Deserialising User Session
+2013-10-22 17:03:17	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=6d04486595679efd4fcb	{}
+2013-10-22 17:03:20	Existing GitHub User Logged In.
+2013-10-22 17:03:20	Serialising User Session
+2013-10-22 17:03:20	Deserialising User Session
+2013-10-22 17:03:20	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:03:20	CH6qkZZ7OYVk-h8bSNNNW29y	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:03:53	Deserialising User Session
+2013-10-22 17:03:53	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:03:54	Deserialising User Session
+2013-10-22 17:03:54	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=330203f6c2be67c23674	{}
+2013-10-22 17:03:56	Existing GitHub User Logged In.
+2013-10-22 17:03:56	Serialising User Session
+2013-10-22 17:03:56	Deserialising User Session
+2013-10-22 17:03:56	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:03:56	eCI-djxvZ0S4YECZQRKbO1wQ	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:04:49	Deserialising User Session
+2013-10-22 17:04:49	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:04:50	Deserialising User Session
+2013-10-22 17:04:50	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=ba9f0cd9d20749d9cf81	{}
+2013-10-22 17:04:52	Existing GitHub User Logged In.
+2013-10-22 17:04:52	Serialising User Session
+2013-10-22 17:04:52	Deserialising User Session
+2013-10-22 17:04:52	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:04:53	zox9H9NbLQ71_8PdofiEHW2v	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:05:02	2HnbCseziVM4VaC60OWE0TAC	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:06:15	Deserialising User Session
+2013-10-22 17:06:15	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:06:17	Deserialising User Session
+2013-10-22 17:06:17	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=3d39f544063619b1b9ef	{}
+2013-10-22 17:06:19	Existing GitHub User Logged In.
+2013-10-22 17:06:19	Serialising User Session
+2013-10-22 17:06:19	Deserialising User Session
+2013-10-22 17:06:19	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:06:19	GrdpuTwXJevBJX61qmeNb_O_	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:06:24	PggmJype2VvnK3hT3YuDSqig	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:08:23	Deserialising User Session
+2013-10-22 17:08:23	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:08:24	Deserialising User Session
+2013-10-22 17:08:24	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=ea3f3735ec082aa232fb	{}
+2013-10-22 17:08:27	Existing GitHub User Logged In.
+2013-10-22 17:08:27	Serialising User Session
+2013-10-22 17:08:27	Deserialising User Session
+2013-10-22 17:08:27	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:08:27	97vg7OnyaQtPJWl4ynj_KPWC	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:08:30	L1QlZap1F1KOoJpFAJYorc83	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:08:44	Deserialising User Session
+2013-10-22 17:08:44	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:08:45	Deserialising User Session
+2013-10-22 17:08:45	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=f3023514fc4b94bb9da2	{}
+2013-10-22 17:08:47	Existing GitHub User Logged In.
+2013-10-22 17:08:47	Serialising User Session
+2013-10-22 17:08:47	Deserialising User Session
+2013-10-22 17:08:47	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:08:47	e5gL8oP_1AUBu5PPgDhcIYrJ	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:08:50	itzbMUf7cWOCQBBk-CiByRco	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:11:32	Deserialising User Session
+2013-10-22 17:11:32	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:11:33	Deserialising User Session
+2013-10-22 17:11:33	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=10147b0560db53b4afff	{}
+2013-10-22 17:11:35	Existing GitHub User Logged In.
+2013-10-22 17:11:35	Serialising User Session
+2013-10-22 17:11:35	Deserialising User Session
+2013-10-22 17:11:35	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:11:35	4EwSYF5Bl-8Qo1um3eNwt8Z7	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:15:00	Deserialising User Session
+2013-10-22 17:15:00	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:15:01	Deserialising User Session
+2013-10-22 17:15:01	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=29b0e5a0ac71234e972c	{}
+2013-10-22 17:15:03	Existing GitHub User Logged In.
+2013-10-22 17:15:03	Serialising User Session
+2013-10-22 17:15:03	Deserialising User Session
+2013-10-22 17:15:03	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:15:03	d9FEqdtlrqVn5M1rrm4LSNjk	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:15:37	Deserialising User Session
+2013-10-22 17:15:37	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:15:38	Deserialising User Session
+2013-10-22 17:15:38	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=91ecb6f9ee535b0fc771	{}
+2013-10-22 17:15:40	Existing GitHub User Logged In.
+2013-10-22 17:15:40	Serialising User Session
+2013-10-22 17:15:40	Deserialising User Session
+2013-10-22 17:15:40	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:15:40	QS3SLQDC13xOHBlZ5k03fkVO	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:15:57	Deserialising User Session
+2013-10-22 17:15:57	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:15:58	Deserialising User Session
+2013-10-22 17:15:58	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=d79d269247f69b673a70	{}
+2013-10-22 17:16:01	Existing GitHub User Logged In.
+2013-10-22 17:16:01	Serialising User Session
+2013-10-22 17:16:01	Deserialising User Session
+2013-10-22 17:16:01	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:16:01	4JrJXJeQYNgIKeJ0lvvrxtb8	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:16:38	Deserialising User Session
+2013-10-22 17:16:38	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:16:39	Deserialising User Session
+2013-10-22 17:16:39	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=40d4f6d667b66e8d4845	{}
+2013-10-22 17:16:41	Existing GitHub User Logged In.
+2013-10-22 17:16:41	Serialising User Session
+2013-10-22 17:16:41	Deserialising User Session
+2013-10-22 17:16:41	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:16:42	qyZaIuD9evicymngaS4r4tSI	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:17:37	Deserialising User Session
+2013-10-22 17:17:37	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:17:38	Deserialising User Session
+2013-10-22 17:17:38	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=3d3a96005b286a27c1b9	{}
+2013-10-22 17:17:41	Existing GitHub User Logged In.
+2013-10-22 17:17:41	Serialising User Session
+2013-10-22 17:17:41	Deserialising User Session
+2013-10-22 17:17:41	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:17:41	l8rRHs8qJPsoJdpWLP9iwUuu	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:20:38	Deserialising User Session
+2013-10-22 17:20:38	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/login	{}
+2013-10-22 17:20:39	Deserialising User Session
+2013-10-22 17:20:39	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/auth/github/callback?code=5454d21e3d76c5a07e38	{}
+2013-10-22 17:20:41	Existing GitHub User Logged In.
+2013-10-22 17:20:41	Serialising User Session
+2013-10-22 17:20:41	Deserialising User Session
+2013-10-22 17:20:41	MKSCKhidGvwuuJuKECXpobCw	127.0.0.1	/api/token	{}
+2013-10-22 17:20:41	j5KcbitXQulPjoMx8bHRnUTn	127.0.0.1	/api/user?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-22 17:20:43	lxFT2RtXB7K3a4R-umwkJmMR	127.0.0.1	/api/contacts?access_token=3590cf34-c50f-49ef-8e7e-9fbd504e8871	{}
+2013-10-25 10:22:26	29opDut6NBWImtAz3DrcuvmG	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:22:27	29opDut6NBWImtAz3DrcuvmG	127.0.0.1	/api/auth/github/callback?code=eabf916f84ec9a99f187	{}
+2013-10-25 10:22:29	Creating new GitHub User.
+2013-10-25 10:22:50	IHiPC1RDzmy30yyO051ZTaqg	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:22:51	IHiPC1RDzmy30yyO051ZTaqg	127.0.0.1	/api/auth/github/callback?code=095552d7d3654bddf22c	{}
+2013-10-25 10:22:54	Creating new GitHub User.
+2013-10-25 10:25:15	JCYc7enuerodnR81uP5xqYh3	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:25:15	JCYc7enuerodnR81uP5xqYh3	127.0.0.1	/api/auth/github/callback?code=50d614dd10e338ff84c5	{}
+2013-10-25 10:25:19	Creating new GitHub User.
+2013-10-25 10:26:46	of_XJ20gHsxqnw6ZAtM6IA2Z	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:26:46	of_XJ20gHsxqnw6ZAtM6IA2Z	127.0.0.1	/api/auth/github/callback?code=67863340b061dc40104b	{}
+2013-10-25 10:26:55	Creating new GitHub User.
+2013-10-25 10:27:23	5ESW3bSh0gKweCwiZd9w64CC	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:27:23	5ESW3bSh0gKweCwiZd9w64CC	127.0.0.1	/api/auth/github/callback?code=bd1843d0ca17e89e0337	{}
+2013-10-25 10:27:26	Creating new GitHub User.
+2013-10-25 10:27:41	BmRCxJFqoCp5tTPCvLGBymO2	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:27:42	BmRCxJFqoCp5tTPCvLGBymO2	127.0.0.1	/api/auth/github/callback?code=dca89bcd8e2dfe7fedf5	{}
+2013-10-25 10:27:45	Creating new GitHub User.
+2013-10-25 10:30:24	ZbCchCqI8VcelhkP7SvAuBwr	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:30:25	ZbCchCqI8VcelhkP7SvAuBwr	127.0.0.1	/api/auth/github/callback?code=0fa32b71d5e1a29a9e4b	{}
+2013-10-25 10:30:33	Creating new GitHub User.
+2013-10-25 10:37:01	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:37:02	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/callback?code=dca69529ff8c2a64ebbe	{}
+2013-10-25 10:37:06	Creating new GitHub User.
+2013-10-25 10:37:15	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:37:16	FysmfIrrZLSUIU-UWMha8oPw	127.0.0.1	/api/auth/github/callback?code=6f56b807ad5d896962e5	{}
+2013-10-25 10:37:18	Creating new GitHub User.
+2013-10-25 10:45:02	0Z8baLnmvannISkkxXfeZgAA	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:45:02	0Z8baLnmvannISkkxXfeZgAA	127.0.0.1	/api/auth/github/callback?code=bea1f627e3b03036056f	{}
+2013-10-25 10:45:04	Creating new GitHub User.
+2013-10-25 10:45:31	bnl5J2jXRG1zcy3CLgXAw4uM	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:45:31	bnl5J2jXRG1zcy3CLgXAw4uM	127.0.0.1	/api/auth/github/callback?code=5ebc6e758c8e142d7a2e	{}
+2013-10-25 10:45:34	Creating new GitHub User.
+2013-10-25 10:48:18	YeMNSANTKHdSwWxXlR5JUz53	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:48:19	YeMNSANTKHdSwWxXlR5JUz53	127.0.0.1	/api/auth/github/callback?code=db0ca094483f597d8544	{}
+2013-10-25 10:48:22	Creating new GitHub User.
+2013-10-25 10:49:09	LJSSIPo1wRX7nMvRMlyU_1zi	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:49:10	LJSSIPo1wRX7nMvRMlyU_1zi	127.0.0.1	/api/auth/github/callback?code=c1c3180ead9d399ef9d6	{}
+2013-10-25 10:49:13	Creating new GitHub User.
+2013-10-25 10:49:43	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:49:44	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/callback?code=5d17bc52eb8c4591e0e3	{}
+2013-10-25 10:49:47	Creating new GitHub User.
+2013-10-25 10:49:47	Serialising User Session
+2013-10-25 10:49:47	Deserialising User Session
+2013-10-25 10:49:47	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/token	{}
+2013-10-25 10:53:55	Deserialising User Session
+2013-10-25 10:53:55	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:53:55	Deserialising User Session
+2013-10-25 10:53:55	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/callback?code=1360919cba328a76ab90	{}
+2013-10-25 10:53:58	Existing GitHub User Logged In.
+2013-10-25 10:53:58	Serialising User Session
+2013-10-25 10:53:58	Deserialising User Session
+2013-10-25 10:53:58	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/token	{}
+2013-10-25 10:54:14	Deserialising User Session
+2013-10-25 10:54:14	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/login	{}
+2013-10-25 10:54:15	Deserialising User Session
+2013-10-25 10:54:15	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/auth/github/callback?code=0aebc558075f1486690b	{}
+2013-10-25 10:54:17	Existing GitHub User Logged In.
+2013-10-25 10:54:17	Serialising User Session
+2013-10-25 10:54:17	Deserialising User Session
+2013-10-25 10:54:17	PDN22h0slLBM5sMYGWDIFiwD	127.0.0.1	/api/token	{}
+2013-10-25 10:54:17	aiYghD5givcGcN1AsznCLgTR	127.0.0.1	/api/user?access_token=8c7c944b-b2c2-49fb-aa45-3ededacf0021	{}
+2013-10-25 11:28:15	sWJSlWSTIO1AJGz-Cg_WCf60	10.100.0.136	/api/types	{}
+2013-10-25 11:51:51	9ZGSy6FMk7s3kS9iBkDfLdrO	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 11:52:34	nXoa1XRAJSeG8pMLQL7OaPTN	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 11:53:09	WjPrcc7u6wJewXFIOVvrjuRT	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 11:53:29	ejjDY7jtS-Xzzw5J5MjMdwUv	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 11:55:43	Kc7WG4s9mJnfG2mVAipkeyVy	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf"}
+2013-10-25 11:56:35	ckdbZZhKwhPTRTUHz7zItoUv	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 11:56:39	oNJ1eL8iAR51vI1c-pLEgM6j	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 11:57:21	dEmao95CPB15plvmDzM6PboJ	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf"}
+2013-10-25 11:58:25	fO-0MEAJZ_WaUZSuRH_0WIpc	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 11:58:29	zbEZajvvYiefSwucXEMCeGce	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 11:58:34	TqXjHgMyZ56k3qbAZ4vxcn9s	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdfasdf"}
+2013-10-25 11:58:36	YRRJOGcP6q2NFJ-6rcgqY0dw	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdfasdf"}
+2013-10-25 11:58:58	eNpVlso7QqDHN1hgLjA3HMe1	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 11:59:01	usHYBNOya5Pmy5x_BVtJjD20	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 11:59:07	y3hayT22pqFJ2xYDxHe7orPK	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf"}
+2013-10-25 13:13:36	OmVuD7N6ySL5fYJ0-vmT8o89	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:13:53	6jseWg5BX4jus0EvIg9i8rOi	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:15:55	osUP78tlv7QYv7njfV_wfgzt	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:16:02	TmuU7GOWHxwqNxsNyUP6xdpO	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 13:16:10	ukQOO_75WLWaxbZGaEA4frgM	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 13:16:41	r13lIonPLp_IlaRWuGXsjRnP	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:16:45	Z3zDw3WO_Il2_s6wd_z5qhM9	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:00"}
+2013-10-25 13:17:08	e6Zf60jCWPmJznXwGGqee_72	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:17:11	UrGtWze2esj9vun-yhSBQywR	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:17:16	7UZhEcB5aoxul1q6OwO8pxLi	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:17:18	zjQFfgF9R24Zat7t95_ouO_t	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45","description":"asdf"}
+2013-10-25 13:18:07	rG3hSKs2NukmNjdK-8vRI93d	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:18:10	KS-wU-IeBVyzafChQnwNBuaH	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:18:19	IL2_d0C21HPlP2P_WnowtDIY	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:18:21	kVP9m_ySiPLQEn8ErzaY8g21	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:18:40	zfBcANPylTF35YYbPNtUwlgp	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:21:36	l74LKbOpoW2SE_wh8Yuf6AcV	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:22:48	O57ozqLphSHblI1Hn5W-VvDZ	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:22:54	Mu-krixdVcaUOGOyfmJUJ-O0	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:23:01	gBwrh4Hzyi7gYS21TnAq0Fya	10.100.0.136	/api/types	{}
+2013-10-25 13:24:12	AsXpONH7WjZB0gzMuuyKds9x	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45","description":"asdfasdf"}
+2013-10-25 13:24:17	IHmXeKzPDX5Uw2IKJmJqM8g0	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:25:02	ZhQ4Re3LcRFBeNH9X8HKh5OM	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:25:06	1dvN_HYzpUIbcDAnYYJomsCv	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:25:08	sthWSYxthENweOTci8BM0Vmx	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:25:14	fKquS7c9TOSSWfAqQPaIqbFP	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"00:00","isAllDay":0,"isActive":0}
+2013-10-25 13:25:44	4sesgwpskOXygDsTKAJRJ3R4	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"00:00","isAllDay":0,"isActive":0}
+2013-10-25 13:26:04	mbZ3ZWVdkdOc3xsOTOs8ffHh	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:26:08	9EkUxAFI5ktvusWqvIRYD946	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45","description":"asdfasdf"}
+2013-10-25 13:26:51	Qz5rgmddN6HkvSQQfGQZ40G6	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:27:46	jiav9QrgcBjkVhmhpfekAqc9	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"00:45"}
+2013-10-25 13:29:45	4DjkfT36vt_q0pTLgH0Td1lb	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:29:53	YK1SWH8du56cfv_eutYCxZDY	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:29:58	VHRKaggtirgMJa2cagrUL7uI	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf"}
+2013-10-25 13:31:42	DGpktmdKD4wRQwRyuN2ypCnq	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:31:44	YDo61txYRHOH2Hddn4CIUQ8W	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdfasdf"}
+2013-10-25 13:32:26	Rx--rWQ6TvzMKZcTbIVdXUCo	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:32:29	sP275tFjFEPdFm0KHITi2cFs	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdfasdf"}
+2013-10-25 13:32:32	SYmYAaTEAZPc9q3SnPc8nviF	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdfasdfasdfasdf","duration":"00:00","isAllDay":0,"isActive":0}
+2013-10-25 13:41:47	IEQor1D6p1m6yNNxA201qalN	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:48:25	DkI27UVRAFnXpbnMii8218bX	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:48:44	kdDEl9TNxyqGtozshabmWBBi	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:48:45	HAdsSGIbYhVxYQcKDWPU8Cip	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:48:47	HvyLqYu5IIuc8YljFi6ovrzj	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 13:49:13	c1tpQRk-GrkFb1H7VdGEaemz	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:50:38	O4fBx3tunTeVA6j5DuMgdoYX	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:50:44	5kf0zTx_irU9WoUaPDU-o8lK	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 13:50:55	vkSHPWr3dOpuG1m_PwO3-rqJ	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:51:25	m8h6cLwmnQdygnw4_sEmJ3Ys	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:51:47	v9KkYoLS7zOdd10YAUmGCBVr	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:52:10	NX2Q-mwLx96460kTp8p6PFdv	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:52:28	Zoq9rOq5wbcvNN53DL6fmlaS	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:52:30	XY-wgahIykvYVQLSOZ6__r3-	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 13:54:00	T1qyqhaxcCM0IpH6mZjXZybw	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:54:33	M-qCgPzFuFOIJ7wKScwPfbyf	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:55:49	0xJXDmJyEVZmfb8PlE69rhwY	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:57:35	ZlBlJY3l6JlAowHYnuolK2rT	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:57:46	S0bdOklefzOaGFzFmB7Rql4q	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:58:07	KYckmDeTdBzaDL-jsQHGii5H	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:58:29	x5LQJqCu3gDX6jHC7r4a1ZwQ	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:58:45	M6FjxTllj9aMCXTztGBh4fw_	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:58:56	B37hqgSp88b2lZn703vdgEQ6	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 13:59:17	2khyezCziTi0zyJJAz7VhrrD	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:00:25	gxwQb3QpF63u9r9JYEubAbSE	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:00:55	qF9QWjbT22dZ3AnP8xkYgag5	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:02:07	mrhduPE2xw3WUjZCNHl9dRKH	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:02:12	y_8pUB3-SES1ojzv2DsoznyP	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:02:54	Iyk0lIrhvm1iTDLQ73C09Ydk	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:03:00	kOhHmyqXEpIHlxoFu0ZMRKka	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:03:26	FsIDToSpW-3kNB7PkEM5syG6	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:05:09	16AmtEzIWRiArkKeti3E608Y	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:05:17	bIuq-8Eita3rfMiW2wLfkJ4Q	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:08:22	EEZI8Ef7IGWhiXrp9GSq8_rT	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:10:42	RzxPFp07QhCTRszMOlbV31rG	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:10:48	JZuGyRulBQKljPGAW4QZSeis	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"01:15"}
+2013-10-25 14:11:08	UZ5YVCDrCvCGqJIJ9WaS_d43	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:11:12	hKtKjNWnRI3vtOoqZcSpg4J6	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:11:16	R33uxHc026zd5r5tUcXOzo7b	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"01:30"}
+2013-10-25 14:11:21	2chEcnpa-5281ZmFw4rEZSVL	127.0.0.1	/api/types?access_token=0	{"typeId":0,"duration":"03:45"}
+2013-10-25 14:11:36	fCxCuHSaz84S_MQlTvcFXjdm	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:11:39	OHyY9r6UmmJaGDvII6G9C_KA	10.100.0.136	/api/types	{}
+2013-10-25 14:13:02	CrvdnxuxfCzlFMtWXzcAYTse	10.100.0.136	/api/types	{}
+2013-10-25 14:13:08	_XveCKZTUAyBQrPqxSj6HG0i	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:13:12	OR6YS1rKvk9RPyRQpA0ID7vy	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"00:30"}
+2013-10-25 14:13:15	O3BVvXwivCofYSHEvxOV0GLJ	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:13:21	CrvdnxuxfCzlFMtWXzcAYTse	10.100.0.136	/api/types	{}
+2013-10-25 14:14:46	KIQnh1elR7Hn4n0w3YD7cLFO	10.100.0.136	/api/types	{}
+2013-10-25 14:14:49	Zf0x92FDbhAx2WqlSirFWMFI	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:14:55	zMEYQftk3SGcx7hRZR3ca54K	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"Hello","duration":"02:15"}
+2013-10-25 14:14:57	KIQnh1elR7Hn4n0w3YD7cLFO	10.100.0.136	/api/types	{}
+2013-10-25 14:15:55	03mDkLytWzz0w7a8wMjwhvMD	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15"}
+2013-10-25 14:16:00	fNambWhmyGSbmyfCojJup_Fe	10.100.0.136	/api/types	{}
+2013-10-25 14:16:02	0H776ewlI6V6DIOSLSSNGfxP	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:16:19	OgVU7U5RTC9u7qtxPBkrzblX	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15","isAllDay":0,"isActive":1}
+2013-10-25 14:18:26	mhlMPBqNFzV3HjvGtS3RcfQi	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15","isAllDay":0,"isActive":1}
+2013-10-25 14:18:29	yzITQK5L6cwbq8lav2KtrMn_	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:20:14	egzWGEQdgGTRonhbpfDWTIbU	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:20:25	cAFff9_aHIzdrJRysHnA40lg	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:20:48	MmTFDtdAsVJtNF1SPw5CtxQ7	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:20:50	mNyL0vpOLNi4F6UWnUVqgvnc	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:21:36	WyGbtTe8cCQ6jVTBUoZCcI4Z	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:21:38	d5vSuqq74D3YDP_B3MNM_kPV	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:21:52	60WmDtMMBDAHjqqywe34iZDg	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:07	WTdqXoxmxO1H2bNAOlkSVQ5k	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:22:08	7mPZ6JmbCN4lNY9VZ0bGBoKN	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:09	MxPMB7DysRYQ2ukMO1eN7cNR	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:09	6xTHUgUt8da4dwxG2nSQig3J	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:10	EZHQ5DtCeYvvmCHYC_KfKTma	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:17	Zzsr62lfeQGT52YNEi0Rz26n	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:22:18	vOdj0EXbunuM_2TLAQbdpj_E	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:19	xvAMBVuRHY6jXjI7h4mTaeoc	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:19	uMNzNOlBhpxNHXm1sMLd3wex	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:19	uc0bCuFRPPkjQPWa4hSXDaql	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:19	FPWSyswiLlebAtcMke-mHnXh	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:19	PUxb2s2TH3_dyPPn5ewRuFnJ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:32	7x_Wmq1pp9sR_O4vc-Vkn_Yz	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:32	HinQ83NKj9lfCb5o9b2PYKWI	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:33	pR0rJKoIf93zYjmp8KvY3bjd	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:22:35	Eu-2OjdmRuPV0hO5kvnIkC93	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:36	g93dOp-aZKh1DKpu7aDSRQdH	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:36	mxvCK09urxfFxVnncoPOIbHJ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:36	xJENRAw0oTGKs4o_UwUuakCn	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:36	-4z52YyMk2-EYZSyYEuApx82	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:53	-pEjM3y2nxtZDqoLmX6ZNwcr	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:22:55	3AiSmastCZ-AhLil5tjL32JM	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:22:57	x7GYqcjIzNgdw1IgSZS3WDtA	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf"}
+2013-10-25 14:23:26	3uyK2tS8ToJ8JTNcHPXPqU20	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:23:28	NiG_w-N-zO6lC7yueUxMn39c	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:23:29	EpBAtoa7PS6y7oC1PRaryC7j	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:23:30	xMkj7fYRjUmk20gzVDcnufri	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:23:30	JtKbfcp_cqRlz4kskeoSg3OR	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:23:30	ie8Qw5IJspKu2K6Ip25Dwcjw	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:24:32	75UQ4RICYL3VbGPzZblaCx3h	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:24:33	UggolJ8A23VNBgRCtJPPOgsS	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:24:34	VV8c-BTdwhfZm1rwo0rwpprw	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:24:36	CZfBitLKSv61dR11a7kcURJI	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:24:36	7I3GzJpPeLMm3LjRFqYrdjsP	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:24:36	L0S21y4mzeY0Tx6jl9HyW1HS	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:24:36	amXfQoQXs_pJIGJNX--VXPdm	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:25:21	ylJGYv8OxgdWXGvVJgKGLjpW	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 14:25:32	c49MXRvuRlws2aLYFMcpBC3m	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:25:32	LyG_BOgy8OSAcxU93ubRbRFT	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:25:33	Pvi4NUg_A214yTsmVI4MrGXv	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:25:33	OIwEllj3NefYwKLUFKPSGlA8	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:25:33	7qOAlCA0qhBGXp8r4QkhYdjg	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:25:33	8l5lg3HOf5MRHUf9gemsLYf5	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:27:32	m7Zg0WYX7fs4Am47qJHXQZOJ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:27:32	ZyeUqB0l7sZYL-wTGNdDNyqZ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:27:33	jnWbNf7ZpsGYzN-C9yf__Qj5	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:27:33	v181cLPoG_ublwG4VPJugNJk	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:27:33	jF0GrJP5aNfEAkPX6ds_Ulmc	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:27:33	CYv_EpOscWMEQVEOwZZ8D8yb	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 14:29:32	xH78jKLNFILTDsY7Si-zCZBl	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:52:08	kE_EEemQQ73rHZ7wO62FwOXu	10.100.0.136	/api/types	{}
+2013-10-25 16:52:28	gsb6zVqR8iRpK7rinUoGofaG	10.100.0.136	/api/types	{}
+2013-10-25 16:52:32	CXUJ2njXDBIYRYRcil9w83RF	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:54:04	pg56SUsiMeyXx0nFP74IT849	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 16:54:06	CcUAe4mhWTz9IpAoQITAJeLj	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:55:01	3vL22NJoELtGebusMBSdOjR7	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 16:55:03	Z2oWKY4v8F27naJhchsRfiF2	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:55:04	sDQ1G_3TNGK4FljPV0ZbpR12	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:55:04	pz-_ecaxry8nCclNA5h7Z7hy	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:55:05	mAubflDy4c9-6yTfg7zZcADQ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:55:05	SCY4H_w9MnezaoeU570koTAH	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:55:05	SLm1Kz15QP3DzWXJArEn34dJ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:57:03	gybCyehtT-YOop5Sdsmx-XEv	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:57:22	VDIjtj20YyWkAiYQv348NUF5	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 16:58:06	XIeqoXjOwZtG4KaeGNdwAyCl	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 17:01:35	d_3RTLgkZtvB3ekd55-P6qFI	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:01:37	S2GvRz7ujGJFd8JCDmdkx9XJ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 17:01:40	ZayB657UrfFbDisrYhDdYjS2	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 17:02:10	X9vl1aK7vd44XEHnNWRmaelm	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:02:35	OkbvfujzNrFfgWtHG3lx3b-O	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:02:37	MvuVgvTV1wnXFrpdkV5pa0_I	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 17:06:22	xpEhfi603yDF7qCGcI7mg8wK	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:06:25	irL0IEDk67_aJjU28hxJXEdU	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 17:06:28	BY6FNaIGFhSXCnU4U-W17pxf	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 17:07:34	YnRzSR5v5GJcMyvz33sBClcJ	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:07:37	AfypPITL3zntyIP7HMkqEZVQ	127.0.0.1	/api/types?access_token=0	{"typeId":0}
+2013-10-25 17:07:47	mxAMrFoOWwoHY4sAvam_I9uL	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15","isAllDay":0,"isActive":1}
+2013-10-25 17:08:48	hSEp2fNPGmdWwW3qlG3bjFFJ	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15","isAllDay":0,"isActive":1}
+2013-10-25 17:09:42	S2E8GSqH6Xx-7Vu33weE2u1t	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:09:45	KQ6jQviG2220PFsMWkBg_8MH	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15","isAllDay":0,"isActive":1}
+2013-10-25 17:09:47	Xlq49J3FlZvtvXDpFjkP3USN	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15","isAllDay":0,"isActive":1}
+2013-10-25 17:09:49	MVuUQmjR5mAq9BlPupDS2Cy1	127.0.0.1	/api/types?access_token=0	{"typeId":0,"description":"asdf","duration":"01:15","isAllDay":0,"isActive":1}
+2013-10-25 17:10:13	JQpXTaYRv0Wq83dNRfQ5K0v0	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:10:33	nHnaqLR3BCH6siB_Zej3oi4A	10.100.0.136	/api/types	{}
+2013-10-25 17:11:40	CJhFOy379A2qhvEPNL31KuGC	10.100.0.136	/api/types	{}
+2013-10-25 17:11:48	fidalsnv7x44_3K7BhdMcsU4	10.100.0.136	/api/types	{}
+2013-10-25 17:12:09	K83ckZD2wrlk0Fikw_F_buEP	10.100.0.136	/api/types	{}
+2013-10-25 17:12:12	_msneNIE97GhkZ8rmC4pkUna	127.0.0.1	/api/types?access_token=0	{}
+2013-10-25 17:27:57	HgtkjhbYfZZgKGLGfOagRBq4	127.0.0.1	/api/contacts	{}
+2013-10-25 17:29:20	HgtkjhbYfZZgKGLGfOagRBq4	127.0.0.1	/api/token	{}
+2013-10-25 18:02:31	Creating new GitHub User.
+2013-10-25 18:02:32	Serialising User Session
+2013-10-25 18:02:32	Deserialising User Session
+2013-10-25 18:09:10	Existing GitHub User Logged In.
+2013-10-25 18:09:10	Serialising User Session
+2013-10-25 18:09:10	Deserialising User Session
+2013-10-25 18:09:22	Deserialising User Session
+2013-10-25 18:09:23	Deserialising User Session
+2013-10-25 18:09:25	Existing GitHub User Logged In.
+2013-10-25 18:09:25	Serialising User Session
+2013-10-25 18:09:25	Deserialising User Session
+2013-10-25 18:11:15	Deserialising User Session
+2013-10-25 18:11:16	Deserialising User Session
+2013-10-25 18:11:19	Existing GitHub User Logged In.
+2013-10-25 18:11:19	Serialising User Session
+2013-10-25 18:11:19	Deserialising User Session
+2013-10-25 18:12:16	Existing GitHub User Logged In.
+2013-10-25 18:12:16	Serialising User Session
+2013-10-25 18:12:16	Deserialising User Session
+2013-10-25 18:15:10	Existing GitHub User Logged In.
+2013-10-25 18:15:10	Serialising User Session
+2013-10-25 18:15:10	Deserialising User Session
+2013-10-25 18:16:41	Deserialising User Session
+2013-10-25 18:16:43	Deserialising User Session
+2013-10-25 18:16:45	Existing GitHub User Logged In.
+2013-10-25 18:16:45	Serialising User Session
+2013-10-25 18:16:45	Deserialising User Session
+2013-10-25 18:20:15	Deserialising User Session
+2013-10-25 18:20:17	Deserialising User Session
+2013-10-25 18:20:21	Existing GitHub User Logged In.
+2013-10-25 18:20:21	Serialising User Session
+2013-10-25 18:20:21	Deserialising User Session
+2013-10-25 18:22:11	Existing GitHub User Logged In.
+2013-10-25 18:22:11	Serialising User Session
+2013-10-25 18:22:11	Deserialising User Session
+2013-10-25 18:30:03	Existing GitHub User Logged In.
+2013-10-25 18:30:03	Serialising User Session
+2013-10-25 18:30:03	Deserialising User Session
+2013-10-25 18:32:26	Deserialising User Session
+2013-10-25 18:32:27	Deserialising User Session
+2013-10-25 18:32:30	Existing GitHub User Logged In.
+2013-10-25 18:32:30	Serialising User Session
+2013-10-25 18:32:30	Deserialising User Session
+2013-10-25 18:37:25	Deserialising User Session
+2013-10-25 18:37:26	Deserialising User Session
+2013-10-25 18:37:29	Existing GitHub User Logged In.
+2013-10-25 18:37:29	Serialising User Session
+2013-10-25 18:37:29	Deserialising User Session
+2013-10-25 18:39:46	Deserialising User Session
+2013-10-25 18:39:47	Deserialising User Session
+2013-10-25 18:39:49	Existing GitHub User Logged In.
+2013-10-25 18:39:49	Serialising User Session
+2013-10-25 18:39:49	Deserialising User Session
+2013-10-25 18:50:38	Existing GitHub User Logged In.
+2013-10-25 18:50:38	Serialising User Session
+2013-10-25 18:50:38	Deserialising User Session
+2013-10-25 18:51:31	Deserialising User Session
+2013-10-25 18:51:32	Deserialising User Session
+2013-10-25 18:51:36	Existing GitHub User Logged In.
+2013-10-25 18:51:36	Serialising User Session
+2013-10-25 18:51:36	Deserialising User Session
+2013-10-25 18:53:49	Deserialising User Session
+2013-10-25 18:53:50	Deserialising User Session
+2013-10-25 18:53:53	Existing GitHub User Logged In.
+2013-10-25 18:53:53	Serialising User Session
+2013-10-25 18:53:53	Deserialising User Session
+2013-10-25 18:58:32	Deserialising User Session
+2013-10-25 18:58:33	Deserialising User Session
+2013-10-25 18:58:36	Existing GitHub User Logged In.
+2013-10-25 18:58:36	Serialising User Session
+2013-10-25 18:58:36	Deserialising User Session
+2013-10-25 19:19:10	Existing GitHub User Logged In.
+2013-10-25 19:19:10	Serialising User Session
+2013-10-25 19:19:10	Deserialising User Session
+2013-10-25 20:17:49	Existing GitHub User Logged In.
+2013-10-25 20:17:49	Serialising User Session
+2013-10-25 20:17:49	Deserialising User Session
+2013-10-25 20:20:35	Deserialising User Session
+2013-10-25 20:20:36	Deserialising User Session
+2013-10-25 20:20:38	Existing GitHub User Logged In.
+2013-10-25 20:20:38	Serialising User Session
+2013-10-25 20:20:38	Deserialising User Session
+2013-10-25 20:21:01	Deserialising User Session
+2013-10-25 20:21:02	Deserialising User Session
+2013-10-25 20:21:04	Existing GitHub User Logged In.
+2013-10-25 20:21:04	Serialising User Session
+2013-10-25 20:21:04	Deserialising User Session
+2013-10-25 20:23:47	Deserialising User Session
+2013-10-25 20:23:48	Deserialising User Session
+2013-10-25 20:23:51	Existing GitHub User Logged In.
+2013-10-25 20:23:51	Serialising User Session
+2013-10-25 20:23:51	Deserialising User Session
+2013-10-25 20:25:03	Deserialising User Session
+2013-10-25 20:25:04	Deserialising User Session
+2013-10-25 20:25:06	Existing GitHub User Logged In.
+2013-10-25 20:25:06	Serialising User Session
+2013-10-25 20:25:06	Deserialising User Session
+2013-10-25 20:25:53	Deserialising User Session
+2013-10-25 20:25:54	Deserialising User Session
+2013-10-25 20:25:57	Existing GitHub User Logged In.
+2013-10-25 20:25:57	Serialising User Session
+2013-10-25 20:25:57	Deserialising User Session
+2013-10-25 20:26:17	Deserialising User Session
+2013-10-25 20:26:18	Deserialising User Session
+2013-10-25 20:26:20	Existing GitHub User Logged In.
+2013-10-25 20:26:20	Serialising User Session
+2013-10-25 20:26:20	Deserialising User Session
+2013-10-25 20:30:02	Deserialising User Session
+2013-10-25 20:30:03	Deserialising User Session
+2013-10-25 20:30:05	Existing GitHub User Logged In.
+2013-10-25 20:30:05	Serialising User Session
+2013-10-25 20:30:05	Deserialising User Session
+2013-10-25 20:33:25	Deserialising User Session
+2013-10-25 20:33:26	Deserialising User Session
+2013-10-25 20:33:28	Existing GitHub User Logged In.
+2013-10-25 20:33:28	Serialising User Session
+2013-10-25 20:33:28	Deserialising User Session
+2013-10-25 20:35:20	Deserialising User Session
+2013-10-25 20:35:21	Deserialising User Session
+2013-10-25 20:35:24	Existing GitHub User Logged In.
+2013-10-25 20:35:24	Serialising User Session
+2013-10-25 20:35:24	Deserialising User Session
+2013-10-25 20:36:54	Deserialising User Session
+2013-10-25 20:36:55	Deserialising User Session
+2013-10-25 20:36:57	Existing GitHub User Logged In.
+2013-10-25 20:36:57	Serialising User Session
+2013-10-25 20:36:57	Deserialising User Session
+2013-10-25 20:38:49	Deserialising User Session
+2013-10-25 20:38:50	Deserialising User Session
+2013-10-25 20:38:52	Existing GitHub User Logged In.
+2013-10-25 20:38:52	Serialising User Session
+2013-10-25 20:38:52	Deserialising User Session
+2013-10-25 20:40:41	Deserialising User Session
+2013-10-25 20:40:42	Deserialising User Session
+2013-10-25 20:40:45	Existing GitHub User Logged In.
+2013-10-25 20:40:45	Serialising User Session
+2013-10-25 20:40:45	Deserialising User Session
+2013-10-25 20:41:48	Deserialising User Session
+2013-10-25 20:41:49	Deserialising User Session
+2013-10-25 20:41:52	Existing GitHub User Logged In.
+2013-10-25 20:41:52	Serialising User Session
+2013-10-25 20:41:52	Deserialising User Session
+2013-10-25 20:44:27	Deserialising User Session
+2013-10-25 20:44:28	Deserialising User Session
+2013-10-25 20:44:30	Existing GitHub User Logged In.
+2013-10-25 20:44:30	Serialising User Session
+2013-10-25 20:44:30	Deserialising User Session
+2013-10-25 20:46:53	Deserialising User Session
+2013-10-25 20:46:54	Deserialising User Session
+2013-10-25 20:46:56	Existing GitHub User Logged In.
+2013-10-25 20:46:56	Serialising User Session
+2013-10-25 20:46:56	Deserialising User Session
+2013-10-25 20:52:32	Existing GitHub User Logged In.
+2013-10-25 20:52:32	Serialising User Session
+2013-10-25 20:52:32	Deserialising User Session
+2013-10-25 20:53:10	Deserialising User Session
+2013-10-25 20:53:11	Deserialising User Session
+2013-10-25 20:53:13	Existing GitHub User Logged In.
+2013-10-25 20:53:13	Serialising User Session
+2013-10-25 20:53:13	Deserialising User Session
+2013-10-25 20:54:11	Deserialising User Session
+2013-10-25 20:54:12	Deserialising User Session
+2013-10-25 20:54:14	Existing GitHub User Logged In.
+2013-10-25 20:54:14	Serialising User Session
+2013-10-25 20:54:14	Deserialising User Session
+2013-10-25 20:54:52	Deserialising User Session
+2013-10-25 20:54:53	Deserialising User Session
+2013-10-25 20:54:55	Existing GitHub User Logged In.
+2013-10-25 20:54:55	Serialising User Session
+2013-10-25 20:54:55	Deserialising User Session
+2013-10-25 20:55:42	Deserialising User Session
+2013-10-25 20:55:44	Deserialising User Session
+2013-10-25 20:55:46	Existing GitHub User Logged In.
+2013-10-25 20:55:46	Serialising User Session
+2013-10-25 20:55:46	Deserialising User Session
+2013-10-25 20:56:52	Deserialising User Session
+2013-10-25 20:56:53	Deserialising User Session
+2013-10-25 20:56:55	Existing GitHub User Logged In.
+2013-10-25 20:56:55	Serialising User Session
+2013-10-25 20:56:55	Deserialising User Session
+2013-10-25 20:57:34	Deserialising User Session
+2013-10-25 20:57:35	Deserialising User Session
+2013-10-25 20:57:37	Existing GitHub User Logged In.
+2013-10-25 20:57:37	Serialising User Session
+2013-10-25 20:57:37	Deserialising User Session
+2013-10-25 20:58:15	Deserialising User Session
+2013-10-25 20:58:16	Deserialising User Session
+2013-10-25 20:58:18	Existing GitHub User Logged In.
+2013-10-25 20:58:18	Serialising User Session
+2013-10-25 20:58:18	Deserialising User Session
+2013-10-25 20:58:46	Deserialising User Session
+2013-10-25 20:58:47	Deserialising User Session
+2013-10-25 20:58:50	Existing GitHub User Logged In.
+2013-10-25 20:58:50	Serialising User Session
+2013-10-25 20:58:50	Deserialising User Session
+2013-10-25 21:01:07	Deserialising User Session
+2013-10-25 21:01:08	Deserialising User Session
+2013-10-25 21:01:10	Existing GitHub User Logged In.
+2013-10-25 21:01:10	Serialising User Session
+2013-10-25 21:01:10	Deserialising User Session
+2013-10-25 21:01:56	Deserialising User Session
+2013-10-25 21:01:57	Deserialising User Session
+2013-10-25 21:01:59	Existing GitHub User Logged In.
+2013-10-25 21:01:59	Serialising User Session
+2013-10-25 21:01:59	Deserialising User Session
+2013-10-25 21:03:09	Deserialising User Session
+2013-10-25 21:03:10	Deserialising User Session
+2013-10-25 21:03:13	Existing GitHub User Logged In.
+2013-10-25 21:03:13	Serialising User Session
+2013-10-25 21:06:39	Existing GitHub User Logged In.
+2013-10-25 21:06:39	Serialising User Session
+2013-10-25 21:07:36	Existing GitHub User Logged In.
+2013-10-25 21:07:36	Serialising User Session
+2013-10-25 21:07:36	Deserialising User Session
+2013-10-25 21:08:38	Deserialising User Session
+2013-10-25 21:08:39	Deserialising User Session
+2013-10-25 21:08:41	Existing GitHub User Logged In.
+2013-10-25 21:08:41	Serialising User Session
+2013-10-25 09:25:21	Error running query.
+2013-10-25 09:25:21	Error: SQLITE_ERROR: ambiguous column name: isActive
+2013-10-25 09:25:21	SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND isActive=1;null
+2013-10-25 09:34:49	Error running query.
+2013-10-25 09:34:49	Error: SQLITE_ERROR: no such column: User.rowid
+2013-10-25 09:34:49	SELECT * FROM Provider LEFT JOIN Contact WHERE ProviderId=$id AND Provider.ContactId = Contact.ContactId ORDER BY User.rowid DESC LIMIT 1;null
+2013-10-25 09:45:27	Error running query.
+2013-10-25 09:45:27	Error: SQLITE_ERROR: no such column: User.rowid
+2013-10-25 09:45:27	SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId WHERE ProviderId=$id ORDER BY User.rowid DESC LIMIT 1;null
+2013-10-26 11:00:34	Existing GitHub User Logged In.
+2013-10-26 11:00:34	Serialising User Session
+2013-10-26 11:00:34	Deserialising User Session
+2013-10-26 11:01:32	Deserialising User Session
+2013-10-26 11:01:34	Existing GitHub User Logged In.
+2013-10-26 11:01:34	Serialising User Session
+2013-10-26 11:01:34	Deserialising User Session
+2013-10-26 11:02:09	Existing GitHub User Logged In.
+2013-10-26 11:02:09	Serialising User Session
+2013-10-26 11:02:09	Deserialising User Session
+2013-10-26 11:06:29	Creating new GitHub User.
+2013-10-26 11:06:29	Serialising User Session
+2013-10-26 11:06:29	Deserialising User Session
+2013-10-26 11:06:44	Deserialising User Session
+2013-10-26 11:06:45	Deserialising User Session
+2013-10-26 11:06:47	Existing GitHub User Logged In.
+2013-10-26 11:06:47	Serialising User Session
+2013-10-26 11:06:47	Deserialising User Session
+2013-10-26 11:08:14	Deserialising User Session
+2013-10-26 11:08:14	Deserialising User Session
+2013-10-26 11:08:17	Existing GitHub User Logged In.
+2013-10-26 11:08:17	Serialising User Session
+2013-10-26 11:08:17	Deserialising User Session
+2013-10-26 11:10:38	Existing GitHub User Logged In.
+2013-10-26 11:10:38	Serialising User Session
+2013-10-26 11:10:38	Deserialising User Session
+2013-10-26 11:29:18	Deserialising User Session
+2013-10-26 11:29:19	Deserialising User Session
+2013-10-26 11:29:21	Existing GitHub User Logged In.
+2013-10-26 11:29:21	Serialising User Session
+2013-10-26 11:29:21	Deserialising User Session
+2013-10-26 11:32:06	Creating new GitHub User.
+2013-10-26 11:32:06	Serialising User Session
+2013-10-26 11:32:06	Deserialising User Session
+2013-10-26 11:33:54	Deserialising User Session
+2013-10-26 11:33:55	Deserialising User Session
+2013-10-26 11:33:58	Existing GitHub User Logged In.
+2013-10-26 11:33:58	Serialising User Session
+2013-10-26 11:33:58	Deserialising User Session
+2013-10-26 11:34:24	Deserialising User Session
+2013-10-26 11:34:26	Deserialising User Session
+2013-10-26 11:34:29	Existing GitHub User Logged In.
+2013-10-26 11:34:29	Serialising User Session
+2013-10-26 11:34:29	Deserialising User Session
+2013-10-26 11:37:13	Existing GitHub User Logged In.
+2013-10-26 11:37:13	Serialising User Session
+2013-10-26 11:37:13	Deserialising User Session
+2013-10-26 11:42:36	Deserialising User Session
+2013-10-26 11:42:37	Deserialising User Session
+2013-10-26 11:42:39	Existing GitHub User Logged In.
+2013-10-26 11:42:39	Serialising User Session
+2013-10-26 11:42:39	Deserialising User Session
+2013-10-26 11:49:16	Deserialising User Session
+2013-10-26 11:49:18	Deserialising User Session
+2013-10-26 11:49:20	Existing GitHub User Logged In.
+2013-10-26 11:49:20	Serialising User Session
+2013-10-26 11:49:20	Deserialising User Session
+2013-10-26 11:49:36	Deserialising User Session
+2013-10-26 11:49:43	Deserialising User Session
+2013-10-26 12:04:06	Deserialising User Session
+2013-10-26 12:08:53	Deserialising User Session
+2013-10-26 12:20:28	Existing GitHub User Logged In.
+2013-10-26 12:20:28	Serialising User Session
+2013-10-26 12:20:28	Deserialising User Session
+2013-10-26 12:20:56	Deserialising User Session
+2013-10-26 12:23:02	9mZP8YCsZAJwm4q9jf6LlwLa	10.100.0.182	/api/staff	{}
+2013-10-26 12:23:02	Ro0l_BQzv6-WagOfkZIVoZYC	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:23:02	O-HOtvkL7thGkxCldkRIt2ck	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:23:05	ZWBFpKzVVC6PNAIRABKeRMq_	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:23:05	w6il53JeIaihbvaOMz4b31_V	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:27:35	q1EDHwQdPfQkri3cdfSLfQyx	10.100.0.182	/api/staff	{}
+2013-10-26 12:27:35	ZiV2nu3Yz3m_6UKomIT1nvkD	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:27:35	qTpsn3EGbrRtpwxvMQ1e8VUU	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:27:36	ERzZUC6uFh76HRJhQBzbPI98	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:27:36	1ZqZA79Vfo1nVfI_qOB7T1ZH	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:30:22	8Eey7hrJaZFHwkG28r2VRrvA	10.100.0.182	/api/staff	{}
+2013-10-26 12:30:22	QxspnJdesUqrpvnQ3xky-dRu	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:30:22	paZoH0161KqNgpTx2EoDbbNp	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:30:23	jbkTRJgr0kFnizhnl4WmkrWL	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:30:23	jEl95vInxb7I-Gt1TeXMhdPL	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:31:51	8ueZvzvJYyOSL1VwkXy2UjmV	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:31:51	7gXqd7IF4_7T_2eNDnEHPym5	10.100.0.182	/api/staff	{}
+2013-10-26 12:31:51	RGkZ4i2Srhi6gxYXSDOTG1i1	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:31:52	jbRa_5T6nhZkEtHkaLWuv3Ry	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:31:52	YBPyF7cBRqKPcCUOfZjki5z2	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:31:56	B9u0MD5GQUU3z36vzUFstzr7	10.100.0.167	/api/staff	{}
+2013-10-26 12:31:56	9iPVE4XRsuKl9CD313ZHCq1b	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:31:56	DNuOn6GxJ-W2UU-BViF6PfUe	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:31:56	V7bHyNSZqVKXQ95d0t8rsFcQ	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:31:56	6qFNb-Cm3x4_Uq1LLpPao3jh	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:32:56	Existing GitHub User Logged In.
+2013-10-26 12:32:56	Serialising User Session
+2013-10-26 12:32:56	Deserialising User Session
+2013-10-26 12:37:46	c5f444b9llNFTG64unpamLV7	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:37:46	w3ZmNFK5oN8Aav6U9-pmYPhX	10.100.0.167	/api/staff	{}
+2013-10-26 12:37:46	Wt_kuoaMJQp8bYw-9iUL9-C6	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:37:47	2snp82CXEfLcaSUQvIQ0nLTN	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:37:47	w4YsnMFEadM1aZo_VYkUB3Uh	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:38:24	Existing GitHub User Logged In.
+2013-10-26 12:38:24	Serialising User Session
+2013-10-26 12:38:24	Deserialising User Session
+2013-10-26 12:39:04	apyTblIxIzN5RCMEyFcFrQFX	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:39:29	f-IM6Jv7E_ZjHxWPf0XWhxfa	10.100.0.167	/api/staff	{}
+2013-10-26 12:39:29	b9C4ie8cjEzERf5jx5Qh0qHp	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:39:29	8t8rIV4ZyWhZbCB4e82F6k0X	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:39:29	QPDS81dPRU9q_T4ahpgCpLu9	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:39:40	_ZI1417c6MDfIrgUwzsSNgWD	10.100.0.167	/api/staff	{}
+2013-10-26 12:39:40	EkknZusxeNXCbX3uu99YsPlb	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:39:40	NdSkWQKnlky4p6MsAtmu-AtL	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:39:40	7iykQqcEkCG_iI2JgYaoUv6l	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:39:40	qBdV4mcammKzAEl65JEK18vp	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:39:49	7dZFA00gy-dxgAG7jfXA6gF6	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:39:49	mRUGznVo2hbf7qOrhWt7hZ8z	10.100.0.182	/api/staff	{}
+2013-10-26 12:39:50	-LFUzUmj1RHuzG2HzUS6LHpO	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:39:50	x8Z1kH3dBwmmVIDxzbHqiLMM	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:39:52	pebC_Rjsk9l4D-X0bAuH3A0p	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:39:59	Existing GitHub User Logged In.
+2013-10-26 12:39:59	Serialising User Session
+2013-10-26 12:39:59	Deserialising User Session
+2013-10-26 12:41:24	ae0U9dW--s51Hs2sJCJi_I44	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:41:24	OAKK3na8oXI3y0bzD3U7PuWQ	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:41:24	Ue1_JCTwmQF5KR1gPFog7qQD	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:42:18	JizgQ3VOduqFz2pcuOPUtXQJ	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:42:18	iHpSoTyzGF5dlCLtktpz3PSI	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:42:18	lyfbD9Rr3j9k7iWgzqaJclby	10.100.0.167	/api/staff	{}
+2013-10-26 12:42:18	duty10oY2FWGsgvfdGhRxXmX	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:42:18	lWm2q18XvuEnZq17OwxV4d2A	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:44:45	g1okfVBvuxuQ-3oIsd4-Y5gV	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:44:46	3fYPp7u_LDo1ht_wuN2wnqAz	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:44:46	_4ovmm2Ceq9Lj6wkUDmldjWE	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:44:48	BEbqvnh6DYBMgXw-FvURFLgf	10.100.0.182	/api/staff	{}
+2013-10-26 12:44:48	9AsPjazBDvmmPDZW2x9Whz7A	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:45:22	gzCWIAoPu2nPg-rpcmB7iXYZ	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:45:22	tgua2-tTeOnKhSR5u7PYW3ln	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:45:22	pLoA_Uv9xpgDz5UUNVoqJ8h-	10.100.0.182	/api/staff	{}
+2013-10-26 12:45:23	BtWbDMpYp1NADofa-0iEbf6x	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:45:23	iI1Qb_2Vj03xcaNlEnp2nEIS	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:47:14	QTlZHPehzq7WqVBOQwzk0GMo	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:47:14	YYP39PrPsD3pnPOzvwQFsYDC	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:47:14	lzrVDpK6Y0T4D6oeT0l26q2E	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:47:14	LLSs1KGHN2JPoDcGTQo6EbKL	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:47:17	OqH8UqIBqJu9qvyWA6xaMoZF	10.100.0.182	/api/staff	{}
+2013-10-26 12:48:15	2QBsXUJ3s32_IpcTarjsU08S	10.100.0.182	/api/staff	{}
+2013-10-26 12:48:15	nlYVOzHwSS_8NEeXg3M96iYo	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:48:15	gekd7a4g3LBR2Enqdrrtqw2P	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:48:15	IvOaCdmDybdJVdVOKLJcSRUB	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:48:15	fhN-Ud2RV_eYG6wxNVv-MjTo	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:48:34	8Z7ZSS5OHhuQ5LezD_SgHTRf	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:48:34	JIQrzZF4WltaBttxirx1cDzs	10.100.0.167	/api/staff	{}
+2013-10-26 12:48:34	6RiFbk_X2IS0gWQw2i2t4njL	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:48:34	azIQwgF4Y-Xe3A1nKK7vpQBj	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:48:34	exBV4MZQNW1ySWNDPqUomc6m	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:48:53	c3YbWxhDRV-IPRKuLCR4qK-b	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:48:53	olLAnT5QQl-OIDXaZZdGIobC	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:48:53	AlPurFPniSEEqlplByymbOx9	10.100.0.182	/api/staff	{}
+2013-10-26 12:48:54	qvmWn7HGF3sZsndhFfgjCo9N	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:48:54	COf0vn-C98eNtMVyslmy1vGI	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:50:10	baN9tmNHRFhqe7Mx3M0_vrpW	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:50:10	qcxOBWN1Gxz4vwHDzrM_mJcI	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:50:10	d5SfyuLO16TpqPpd9NWXfHJl	10.100.0.167	/api/staff	{}
+2013-10-26 12:50:10	1L0Q3CnUAariCnhm6eAvYl93	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:50:10	FXpXPJ2mvg2vKm6SKpUS7TQ3	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:50:12	wli-CB27I1bt8Aj2tNb-Y-ri	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:50:12	2kHxrepAMpJeZm2ozEsxDR8W	10.100.0.182	/api/staff	{}
+2013-10-26 12:50:12	lXEL6WoPXGYDBRGKfGYUv-BL	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:50:13	L6dqM_rysRkKQDCXALvZ499Z	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:50:13	NKDlSogKOIOdCvGqgJLFYAwo	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:50:30	Existing GitHub User Logged In.
+2013-10-26 12:50:30	Serialising User Session
+2013-10-26 12:50:42	Deserialising User Session
+2013-10-26 12:50:43	Deserialising User Session
+2013-10-26 12:50:45	Existing GitHub User Logged In.
+2013-10-26 12:50:45	Serialising User Session
+2013-10-26 12:50:45	Deserialising User Session
+2013-10-26 12:51:31	_Xo4Ky2x3hW8EnGv-7T_mV7S	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:51:31	r4PSKjie2EYcqGPWOFf9N0NX	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:51:31	37i7xMCmub9XDp-UcU-T4ALK	10.100.0.167	/api/staff	{}
+2013-10-26 12:51:31	BFeVM4lITrsK1cY3IGUADozI	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:51:31	0BHqQbhCcaw4xoapLJ0jPE3x	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:51:59	YDCB1s8lBLfv446fx4tOg23X	10.100.0.167	/api/staff	{}
+2013-10-26 12:52:07	7LyM2-MzCffnIFFR7UqWx_pa	10.100.0.182	/api/staff	{}
+2013-10-26 12:52:07	TO2ohn9gLONJcima6zIRH2iI	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:52:07	gsJ3YWjo6NQMJANvw6lNUBp2	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:52:10	bV0n5mm991Yu_3XDDoZwgQXW	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:52:10	z6JaM6MjWXbDrBHCNBsgCdz8	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:52:14	vO0PosA3XdUbueHIce2raesM	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:52:14	6JHJdWvufWlk0ZNw-KIxQ6xh	10.100.0.167	/api/staff	{}
+2013-10-26 12:52:14	SvBITWaC7oLf5G2WCrPik-4Z	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:52:14	tSfK-G8S8Drk4rxCLdcATpUS	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:52:14	072p3LTdpCjMnvp9YbKTka8A	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:52:55	AmoJ59s-RIuc42KVpE0lEB52	10.100.0.167	/api/staff	{}
+2013-10-26 12:52:55	sH1dYRMnbkKonvT2RQLZtDsf	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:52:55	6LR3e9NGi00Gzz-FFMCBH3HO	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:52:55	aQKOVzoAXvejM1Jh0X7OMGBf	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:52:55	gTvxicPXVFpNlD6SGHBIbYD5	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:53:16	Existing GitHub User Logged In.
+2013-10-26 12:53:16	Serialising User Session
+2013-10-26 12:53:16	Deserialising User Session
+2013-10-26 12:55:12	eEblXzaXlWMBU_6Wzv2yfeRo	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:55:12	k4kGAcWmhK17kOLPzx6fHeTh	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:55:12	CgT_aKJrV_sjnnMU7pYJ8ZNA	10.100.0.167	/api/staff	{}
+2013-10-26 12:55:13	AsnccF7o0luGQn-hWUKM1jm1	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:55:13	nFGApnyPM-Gh574mmYgIsmqn	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:55:30	Existing GitHub User Logged In.
+2013-10-26 12:55:30	Serialising User Session
+2013-10-26 12:55:31	Deserialising User Session
+2013-10-26 12:56:16	EXxQAB3lAB9EvdWkNktclTmk	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:56:16	zx1L7_BKTvUsWf6PxObAb2lH	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:56:39	_oOkAbOe00zgyNtv9l3bIsrG	10.100.0.167	/api/staff	{}
+2013-10-26 12:56:39	EvlxJ6cn3--PX7-XR69lwqiD	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:56:39	1UIWD0BgmusAno0E24FmKRZC	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:56:40	3O1QH0vF7iUZvSxA7IXxLo2w	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:56:40	bgsGraJLrcn0fsUZxSyHtkc6	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:57:02	Existing GitHub User Logged In.
+2013-10-26 12:57:02	Serialising User Session
+2013-10-26 12:57:02	Deserialising User Session
+2013-10-26 12:57:32	KE1UDTdBD3aPZlw8ZDeVATDU	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:57:32	J_Dj37UYHt7bM8uvadJzUB3B	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:57:32	o92TeqlD5j5KlJ9V_X-0L-z3	10.100.0.167	/api/staff	{}
+2013-10-26 12:57:33	VobWpAdbIOF9a6F7F6PBm4ct	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:57:33	P4wAeJMuqlYGDFUK4j5Ip5HB	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:57:49	Existing GitHub User Logged In.
+2013-10-26 12:57:49	Serialising User Session
+2013-10-26 12:57:49	Deserialising User Session
+2013-10-26 12:58:50	HveB2WPC-M0wX42Cc_LlmU5h	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:58:50	D1_QocwmBfSdKBW8tWRgEp-N	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:58:50	uW_r0W3vwzYPmJ3lIdsSUznJ	10.100.0.167	/api/staff	{}
+2013-10-26 12:58:50	ggqvjnHlYBdYaGlXzHltH3m_	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 12:58:50	Rue1All6xVROlYf_9yVA9OpP	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:59:02	474DPpFOoCzK6x2NokQYL7X7	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:59:02	dkzz2nYmBMTcG7P1ucl6iMih	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:59:02	2jgFNPrSK6xHfkySdPkO6Jvq	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:59:05	jhn3dx3dNVh50z_Z1OkyeoFW	10.100.0.182	/api/staff	{}
+2013-10-26 12:59:05	0FEAOSAU3iAOtRLcifMX5J3q	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:59:09	ra9By4DnJyBk-vbo4j2FhCbz	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:59:09	V-hUj9xkahgZ-pQh4hOqDYmr	10.100.0.167	/api/appointments/types	{}
+2013-10-26 12:59:31	EIMEI6f9aoqnAHZjK3I4uVng	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:59:31	k4lrtZn-K2aTQ1687KS6xn0l	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:59:31	IFDYwbzCFwCFGSXAp1WDjwVI	10.100.0.182	/api/staff	{}
+2013-10-26 12:59:31	Ny3_JnStPJNn146eKo-uS2Ut	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:59:31	GO6h4hYo8ygs22qncqz5VULQ	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:59:34	efN-R7oAJ0ANEWEkNTuBir-L	10.100.0.167	/api/staff	{}
+2013-10-26 12:59:34	VyMdjYQ1antlPT0fx5Q0n_f2	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 12:59:34	U1TyLSBk4zreF_BZ43P9t__a	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:00:13	TdLMONqXE_cd2ZSF-bzETGPP	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:00:13	86t1w8DqPW_yXvz102m2cX5U	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:00:13	v27vTleTxGOuJjnkbqL0lmVx	10.100.0.167	/api/staff	{}
+2013-10-26 13:00:13	Ytw9gTZPqdJflNFa-13kbTOh	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:00:13	6Gf1y0qNJuwlbQnTZxOHDBQm	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:00:31	Existing GitHub User Logged In.
+2013-10-26 13:00:31	Serialising User Session
+2013-10-26 13:00:31	Deserialising User Session
+2013-10-26 13:01:14	Vw4eGaZilTiQbl8QskjnagaG	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:01:14	xY7RFFszYo9W2gEeY8gOyE8e	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:01:16	VKvMIS6X6kasv6xqs3GsObz0	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:01:16	bIiyMLT90uje9yi0pyOgl4X5	10.100.0.182	/api/staff	{}
+2013-10-26 13:01:16	9jY7hyvpENNsrjLxKD858mSp	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:06:39	Z6eAVVOa-IWFUux4WnB_u18_	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:06:40	g5WJ43MwgTPQj30LS6ShMvGu	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:06:40	AzAorSMtW97BRXciH4Rjvgco	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:06:42	vgIeEjRK7Z2v_r3bXhYtsFwS	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:06:42	a_YNoIZ5P8AKkyT9CXG1Ocwi	10.100.0.182	/api/staff	{}
+2013-10-26 13:07:46	dDTwAi4UxdjbNKrNXQr4qRkh	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:07:46	gWFAoSqyo3rFG8UK6NKrmfpU	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:07:46	2S4AHHfy9MRybYQmrVMNL-Dr	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:07:49	qwBL9Zusgh9370sf0NqW2B1H	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:07:49	ZkcAHG3MHyemuVcfVOnsBWW0	10.100.0.182	/api/staff	{}
+2013-10-26 13:08:06	XsOFI9BeRtyMZuNEWBK5KSz5	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:08:06	V4M78LoxVbjzrafI3Ie3zhwa	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:08:06	KvmGRubHkPzrPrpLNdqdFkOJ	10.100.0.182	/api/staff	{}
+2013-10-26 13:08:06	Lqd9AhrRMPY_PEPtMrpmGf-z	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:08:06	Sg8NK3dcMGUZYDcVMNuk3U94	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:08:22	unQN2zIB5shoruO87KX5juts	10.100.0.182	/api/staff	{}
+2013-10-26 13:08:22	oV_kV_no1bqv1KfRH6A9LQzs	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:08:22	zOYAW9KSDtg8pLKg-lmkStcL	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:08:23	y1zIcNctA7MgPM97ygOlLzAB	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:08:23	qvywfCdWLD3T47-7801oCjFh	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:09:41	ET-FQrCQB-ccb4jw04i5ARGb	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:09:41	BkynXogMJqLbo-BTNku5S68g	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:09:41	PolKY95ntQphMoOpofMChjzf	10.100.0.182	/api/staff	{}
+2013-10-26 13:09:41	Y0TJuKbzjpL-Zz0bDxAMuHf0	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:09:41	ytxM0EMC_Fak5y_XWx2qECP-	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:09:59	kofYPPUKIP4xeI3GpA3Ufcpm	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:09:59	aNZapJW1AWZv5XlYZHioFDwm	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:09:59	BG20LDue8mWBvy3KE8kr4i1D	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:09:59	aQLAelXhj7E9C3b7K6OvlfKX	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:10:40	qwiKeuioSJk1s6fWgHbMn1Si	10.100.0.182	/api/staff	{}
+2013-10-26 13:10:40	LZu_1y4W6GxVayaUSGerbZ53	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:10:40	ThahiBuUgafVkeGkiv75UgOF	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:10:40	t5vPxkV2myrAyjPIqLDl1ho2	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:10:40	_dG67XG3LBRw1MHMAmHo3X2S	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:11:39	j9su3nnuzGSSzz9seOHE9Sz5	10.100.0.167	/api/staff	{}
+2013-10-26 13:11:39	KYBXd5WAF8wTfsv22V_uJjV6	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:11:39	8ovHX8ZDnz7cWBJboux8-waq	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:11:39	_D0kmP6v0Bz1lU62v8vnWbff	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:11:39	so3SPDnZ3Mb160IJHkOb5d6m	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:11:55	Existing GitHub User Logged In.
+2013-10-26 13:11:55	Serialising User Session
+2013-10-26 13:11:55	Deserialising User Session
+2013-10-26 13:13:24	lfhS2D6kGMZiaGHil-J-EbrO	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:13:24	E8E9e40eYxnQViIYiu_n5rbp	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:13:24	fchv7vVQyxYarNaXd7JLDzuK	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:13:27	sOD-IANW0SOPsg9FE7x-ZGrV	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:13:27	vjjv6xomoy8e2n-jXuH5sQzn	10.100.0.182	/api/staff	{}
+2013-10-26 13:17:26	XCWy1LvuJn9ZwKnYWeEsn42U	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:17:26	J1-0dtij6Urv3aszIdIGRgps	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:17:26	zG_IB9UP-ILADNrn_c-pYfy-	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:17:29	rejZKgawtqDsjQZMubw2HjgM	10.100.0.182	/api/staff	{}
+2013-10-26 13:17:29	vokJAppodqNqmif1pD-PWyKB	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:17:40	RqLBHZLXiOxaTJ34x476ImSr	10.100.0.182	/api/staff	{}
+2013-10-26 13:17:40	NshqGZHXeT85oc9T83uQgwgS	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:17:40	CnRMMTzHtIsfoZEs_x_06S8L	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:17:41	8bCyY8mzNqEHDWyPm9c-_w7z	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:17:41	tUNwGxYsNBRL3DPM_9H3aJwH	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:22:26	Giod5w4FhntSTu7QqIO3-g04	10.100.0.167	/api/staff	{}
+2013-10-26 13:22:26	5aHGN45ZUHxew69Le8DeKTOw	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:22:26	T-x52RhrrHM62GBsx8XGpshm	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:22:26	899EbM_d6ArxNS4jF1YhOXfh	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:22:26	LIFKmKwvRgekTF7vYDnZ7C7z	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:23:06	E2Crllh3AEdMi06RsazzjxP8	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:23:06	9gYfEuV58556lRDV24jr4IOd	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:23:06	ZiYgn2RXl675Hr7eyD54BeDj	10.100.0.167	/api/staff	{}
+2013-10-26 13:23:06	EdjKmNPR_DxrMDP5pphOVd-N	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:23:06	GITzRf0j4FSXYu6V3UYU8c_6	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:23:43	7JWnBXesY3U-AKG331fUkuh9	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:23:43	r8SnLo2c5H0Hg1SdSWehV4eb	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:23:43	s5ENOMX5OmNJNrYC-FWjUtWS	10.100.0.167	/api/staff	{}
+2013-10-26 13:23:44	RQNPsdSzF--sj_DhRiwVwZ8H	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:23:44	FdnHVBggp3K4tsbCVxKqE0Lj	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:23:54	8ugM7DlmV9VK5Q1OqoSbu2Ou	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:23:54	fruGX2vWWOy167HsfKtDBQhN	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:23:54	FD0jyYmixeVcl9Su3kay9zs1	10.100.0.167	/api/staff	{}
+2013-10-26 13:23:55	pElzYhkbAnvNnCAOsTuf-W2P	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:23:55	ziIVMyjutpMYbDjJti3sEOaf	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:24:17	iaMwxklgt6WNns3jfN0r-zLs	10.100.0.167	/api/staff	{}
+2013-10-26 13:24:17	LENyQ1UYacUtQO8KAPEfY5Ak	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:24:17	1M-mdGJT02-bLjrJLvqkuwSQ	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:24:17	yytbGYecGa4Ng7P70IIwMl9n	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:24:17	sK5SdZbUKogwmNGOa_T9njW7	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:24:44	6yuzWWDkEidJ310Jr1BLOiHc	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:24:44	8I_rjlmkR0Qm-r4zbKPc98m2	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:24:44	6h9BodT_Pfm2iEndWhpn_Kz_	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:24:47	42ITOQZLfnsZS4lO9SXWd_QU	10.100.0.182	/api/staff	{}
+2013-10-26 13:24:47	cEE2EJr8C2fsrvnKEnmVBi33	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:25:34	iwm4JetQkeyNAHeYuNzaAGXC	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:25:34	e9212_vM-PGL59-da8v_WBLk	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:25:34	rRnCxBMn3LMFAUKnfxktDKBV	10.100.0.182	/api/staff	{}
+2013-10-26 13:25:35	bPc9bzFjMGJo5WMC3rPB-_Oj	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:25:35	CnEoNmXywxyCdPAD9Wmc7gHm	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:27:42	Y9kbksAHtjUHAAcUcFHckKwX	10.100.0.167	/api/staff	{}
+2013-10-26 13:27:42	usprsiB_whbFYIhI77k6WdDb	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:27:42	pSZiC3IDviR02bR3o6dRffb8	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:27:42	2MMHiZ-smC9y_trTZNnNr-Hj	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:27:42	6qCTJwwW0UbwugNm4Jet58Fd	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:28:23	HA06XpFMJgxNO8298L9MXBNu	10.100.0.167	/api/staff	{}
+2013-10-26 13:28:23	rKFV8x01hy-ChrONFi2f5hlQ	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:28:23	ieLJdZ73J6DyEzJ_v9Lw0L7L	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:28:23	vW2rZJRfoQV5EBT1TyPJefYp	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:28:23	vxDtSV6ULlT2DUjpwigAJB4h	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:30:39	R6ZBcWKYQ4umC8jP6jr1oq6c	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:30:39	uoq_xEdkqfbceHU-PrcE1O0Z	10.100.0.167	/api/appointments/types	{}
+2013-10-26 13:30:39	kKkMrSlBRyFprQMFY5Y05GiE	10.100.0.167	/api/staff	{}
+2013-10-26 13:30:39	NeBRwfvu_-HCJsULNr8MZHOy	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:30:39	6s5VAxPLAAbkGc6-9lowKhXQ	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}

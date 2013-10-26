@@ -1,19 +1,30 @@
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var sqlite = require('sqlite3');
+var config = require('../../config/config.js');
+
 var Ring = require('ring');
-var SqliteContactDAO = require('./SqliteContactDAO.js');
-var SqliteUserDAO = require('./SqliteUserDAO.js');
+var Contacts = require('./SqliteContactDAO.js');
+var Users = require('./SqliteUserDAO.js');
+var Types = require('./SqliteAppointmentTypeDAO.js');
+var Providers = require('./SqliteProviderDAO.js');
 
 var IDAOFactory = require('../IDAOFactory.js');
 
 var SqliteDAOFactory = Ring.create([IDAOFactory], {
-    _db: null,
-    init: function (databaseConnection) {
-        this._db = databaseConnection;
+    init: function () {
+        this._db = new sqlite.Database(config.db);
     },
     getContactDAO: function () {
-        return new SqliteContactDAO(this._db);
+        return new Contacts(this._db);
     },
     getUserDAO: function () {
-        return new SqliteUserDAO(this._db);
+        return new Users(this._db);
+    },
+    getAppointmentTypeDAO: function () {
+        return new Types(this._db);
+    },
+    getProviderDAO: function () {
+        return new Providers(this._db);
     }
 });
 

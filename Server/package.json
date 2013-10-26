@@ -9,7 +9,9 @@
         "start": "node server.js"
     },
     "dependencies": {
+        "client-sessions": "latest",
         "express": "latest",
+        "restify": "latest",
         "fs-extra": "latest",
         "underscore": "latest",
         "colors": "latest",
@@ -17,11 +19,13 @@
         "passport": "latest",
         "passport-local": "latest",
         "passport-github": "latest",
-        "passport-google-oauth": "latest",
+        "passport-http-token": "latest",
+        "passport-http-bearer": "latest",
         "async": "latest",
         "view-helpers": "latest",
         "forever": "latest",
         "sqlite3": "latest",
-        "ring": "latest"
+        "ring": "latest",
+        "node-uuid": "latest"
     }
 }

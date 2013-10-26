@@ -1,16 +1,17 @@
 package client.controllers;
 
 import Models.Config;
-import client.GoogleMap;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
+import client.controllers.adapters.ActionEventStrategy;
+import client.scene.CoreScene;
+import client.scene.control.ActionButtons;
+import client.scene.control.LabelFactory;
+import client.utilities.GoogleMap;
+import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -18,9 +19,13 @@ import javafx.stage.Stage;
 public class ShowAboutWindowCommand implements ICommand {
     private String title = "About Us";
     private String description =
-            "Shear-N-Dipity does haircuts and things like that.\n" +
-                    "Get your hair cut now!\n" +
-                    "Cause our fictitious Hairdressers are the bomb!";
+            "Shear-N-Dipity offers the ultimate all round experience. Our highly trained and fictitious salon stylists can offer advice on the latest trends, catering to every need you can imagine.\n" +
+                    "\n" +
+                    "Delivering the best imaginary service to you is what's important to us.\n" +
+                    "\n" +
+                    "We are situated in the heart of North Queensland, within the confines of Townsville's city limits.";
+    private String slogan = "'cause our fictitious hair dressers are a cut above the rest";
+    private String address = "Room 035, Building 17\nJames Cook University,\nDouglas, QLD 4814";
 
     public void setTitle(String title) {
         if (!title.isEmpty()) {
@@ -34,16 +39,48 @@ public class ShowAboutWindowCommand implements ICommand {
         }
     }
 
+    public void setSlogan(String slogan) {
+        if (!slogan.isEmpty()) {
+            this.slogan = slogan;
+        }
+    }
+
+    public void setAddress(String address) {
+        if (!address.isEmpty()) {
+            this.address = address;
+        }
+    }
+
     @Override
     public void execute() {
         final Stage aboutStage = new Stage();
+        aboutStage.setResizable(false);
         aboutStage.setTitle(title);
 
         GridPane borderPane = new GridPane();
-        borderPane.setPadding(new Insets(5, 5, 5, 5));
-        borderPane.setHgap(5);
+        borderPane.getStyleClass().add("grid");
 
-        borderPane.addRow(0, new Label("Who We Are:"), new Label("Where We Be: "));
+        RowConstraints rc = new RowConstraints();
+        rc.setValignment(VPos.TOP);
+
+        Label sloganLabel = LabelFactory.createSloganLabel(slogan);
+        borderPane.add(sloganLabel, 0, 0, 2, 1);
+        GridPane.setHalignment(sloganLabel, HPos.CENTER);
+
+        borderPane.add(LabelFactory.createHeadingLabel("Who We Are"), 0, 1);
+
+        Label aboutText = new Label(description);
+        aboutText.setPrefWidth(300);
+        aboutText.setWrapText(true);
+
+        borderPane.add(aboutText, 0, 2);
+        GridPane.setValignment(aboutText, VPos.TOP);
+
+        borderPane.add(LabelFactory.createHeadingLabel("Showroom"), 0, 3);
+        Label addressLabel = new Label(address);
+        borderPane.add(addressLabel, 0, 4);
+        GridPane.setValignment(addressLabel, VPos.TOP);
+
 
         final WebView webView = new WebView();
         final WebEngine webEngine = webView.getEngine();
@@ -51,28 +88,20 @@ public class ShowAboutWindowCommand implements ICommand {
         String html = GoogleMap.getHtml(Config.getInstance().getGeoLocation(),
                 Config.getInstance().getZoom(),
                 Config.getInstance().getTitle());
-        System.out.println(html);
         webEngine.loadContent(html);
         webView.setMaxSize(300, 300);
 
-        Label aboutText =new Label(description);
+        borderPane.add(LabelFactory.createHeadingLabel("Where We Be"), 1, 1);
+        borderPane.add(webView, 1, 2, 1, 3);
 
-        borderPane.add( aboutText, 0, 1);
-        borderPane.add(webView, 1, 1, 1, 4);
-        GridPane.setValignment(aboutText, VPos.TOP);
+        ActionButtons actions = new ActionButtons(false);
+        actions.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(aboutStage)));
 
-        Button closeButton = new Button("I'm Done Here");
-        closeButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                aboutStage.close();
-            }
-        });
+        BorderPane border = new BorderPane();
+        border.setCenter(borderPane);
+        border.setBottom(actions);
 
-        borderPane.add(closeButton, 0, 4);
-        GridPane.setValignment(closeButton, VPos.BOTTOM);
-
-        aboutStage.setScene(new Scene(borderPane));
+        aboutStage.setScene(new CoreScene(border));
         aboutStage.show();
     }
 }
