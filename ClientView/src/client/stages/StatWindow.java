@@ -39,17 +39,20 @@ public class StatWindow extends Stage {
 
         graphChoices.addAll("Graph 1", "Graph 2", "Graph 3");
         final ComboBox<String> graphs = new ComboBox<String>(graphChoices);
-
+         graphs.setValue("Graph 1");
         graphs.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 String selectedGraph = graphs.getValue();
                 if (selectedGraph.equals("Graph 1")) {
                     makeBarChart();
+                    graphs.setValue(graphChoices.get(0).toString());
                 } else if (selectedGraph.equals("Graph 2")) {
                     makeLineChart();
+                    graphs.setValue(graphChoices.get(1).toString());
                 } else if (selectedGraph.equals("Graph 3")) {
                     makePieChart();
+                    graphs.setValue(graphChoices.get(2).toString());
                 }
             }
         });

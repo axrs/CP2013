@@ -54,6 +54,7 @@ public class GitLoginWindow extends Stage implements ICommand {
         return new ChangeListener<Worker.State>() {
             @Override
             public void changed(ObservableValue<? extends Worker.State> observableValue, Worker.State state, Worker.State state2) {
+                System.out.println(webEngine.getLocation().toString());
                 if (webEngine.getLocation().endsWith("/api/token")) {
                     onSuccess.setToken(webEngine.getDocument().getElementsByTagName("title").item(0).getTextContent());
                     onSuccess.execute();
