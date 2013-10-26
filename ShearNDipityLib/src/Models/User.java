@@ -22,9 +22,6 @@ public class User extends Contact {
     public User() {
     }
 
-    public static String getUserToken() {
-        return userToken;
-    }
 
     public static void setUserToken(String userToken) {
         User.userToken = userToken;
