@@ -1,20 +1,19 @@
 package client.stages;
 
 import client.controllers.ApplicationExitCommand;
+import client.controllers.CloseStageCommand;
+import client.controllers.CompositeCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -37,12 +36,12 @@ public class LoginWindow extends Stage {
         TextField userName = new TextField();
         TextField password = new TextField();
         Button gitLogin = new Button("Login With GitHub");
-        gitLogin.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new GitLoginWindow().show();
-            }
-        });
+
+        CompositeCommand cmds = new CompositeCommand();
+        cmds.addCommand(new GitLoginWindow());
+        cmds.addCommand(new CloseStageCommand(this));
+
+        gitLogin.setOnAction(new ActionEventStrategy(cmds));
 
         GridPane gridPane = new GridPane();
         gridPane.getStyleClass().add("grid");
