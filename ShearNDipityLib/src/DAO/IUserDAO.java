@@ -4,9 +4,9 @@ import Models.User;
 
 public interface IUserDAO {
 
-    public User getCurrentUser();
+    public void getCurrentUser();
 
-    public User getUser(int id);
+    public void getUser(int id);
 
     public void createUser(User user);
 
