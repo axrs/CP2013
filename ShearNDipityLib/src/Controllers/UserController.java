@@ -1,14 +1,14 @@
 package Controllers;
 
 
-
-import DAO.IUserDAO;
 import Models.Config;
 import Models.User;
 import com.google.gson.Gson;
+import dao.IUserDAO;
 
 
 public class UserController implements IUserDAO {
+
 
     private static UserController instance = null;
     private User user;
@@ -29,7 +29,6 @@ public class UserController implements IUserDAO {
         runnerThread.start();
     }
 
-
     @Override
     public void createUser(User user) {
         RESTRunner runner = new RESTRunner();
@@ -40,7 +39,6 @@ public class UserController implements IUserDAO {
         Thread runnerThread = new Thread(runner, "Creating User");
         runnerThread.start();
     }
-
 
     @Override
     public void removeUser(User user) {

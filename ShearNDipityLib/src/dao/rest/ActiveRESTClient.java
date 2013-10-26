@@ -1,8 +1,8 @@
 package dao.rest;
 
+import Utilities.LogEventDispatcher;
 import dao.rest.events.Result;
 import dao.rest.requests.Request;
-import Utilities.LogEventDispatcher;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -53,10 +53,8 @@ public class ActiveRESTClient {
 
             private void makeRequest(Request request) {
                 Result result = new Result(this);
-
                 try {
                     if (!request.getTarget().isEmpty()) {
-
                         String location = Request.getLocation() + request.getTarget() + "?access_token=" + Request.getToken();
                         URL url = new URL(location);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

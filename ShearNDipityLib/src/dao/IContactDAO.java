@@ -1,19 +1,30 @@
 package dao;
 
 
+import Models.Contact;
 import dao.events.ContactAddedListener;
 import dao.events.ContactsUpdatedListener;
-import Models.Contact;
+import dao.rest.listeners.ResultListener;
 
 public interface IContactDAO {
 
+    public Contact[] getStore();
+
     public Contact get(int id);
 
-    public Contact get(String name, String surname);
+    public void create(Contact contact, ResultListener listener);
 
-    public void update(Contact c);
+    public void create(Contact contact);
 
-    public void remove(Contact c);
+    public void update(Contact contact, ResultListener listener);
+
+    public void update(Contact contact);
+
+    public void remove(Contact contact, ResultListener listener);
+
+    public void remove(Contact contact);
+
+    public void remove(int id, ResultListener listener);
 
     public void remove(int id);
 

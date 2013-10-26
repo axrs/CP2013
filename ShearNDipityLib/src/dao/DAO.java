@@ -1,10 +1,13 @@
 package dao;
 
+import dao.rest.RESTFactory;
+
 public class DAO {
     private static DAO instance;
+    private IDAOFactory factory;
 
     protected DAO() {
-
+        factory = new RESTFactory();
     }
 
     public static DAO getInstance() {
@@ -14,7 +17,11 @@ public class DAO {
         return instance;
     }
 
-    public static void setInstance(DAO instance) {
-        DAO.instance = instance;
+    private IContactDAO getContactsFactoryDAO() {
+        return factory.getContactDAO();
+    }
+
+    public IContactDAO getContactDAO() {
+        return getInstance().getContactsFactoryDAO();
     }
 }

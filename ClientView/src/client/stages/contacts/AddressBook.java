@@ -2,9 +2,9 @@ package client.stages.contacts;
 
 import Controllers.ContactsController;
 import Models.Contact;
-import client.controllers.windows.core.CloseStageCommand;
-import client.controllers.windows.contacts.EditContactWindowCommand;
 import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.windows.contacts.EditContactWindowCommand;
+import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
@@ -67,13 +67,13 @@ public class AddressBook extends Stage {
      */
     private void initialiseTableColumns() {
         TableColumn firstNameColumn = new TableColumn("First Name");
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contFirstName"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
 
         TableColumn surnameColumn = new TableColumn("Last Name");
-        surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contSurname"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("surname"));
 
         TableColumn companyColumn = new TableColumn("Company");
-        companyColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contCompany"));
+        companyColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("company"));
         table.getColumns().addAll(firstNameColumn, surnameColumn, companyColumn);
     }
 

@@ -1,4 +1,4 @@
-package dao.rest;
+package dao;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

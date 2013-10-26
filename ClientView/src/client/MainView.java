@@ -10,6 +10,7 @@ import Models.ScheduledAppointment;
 import Models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;
+import client.controllers.dao.ConfigureDAOCommand;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
 import client.controllers.windows.contacts.NewContactAddressBookCommand;
@@ -24,6 +25,7 @@ import client.scene.CoreScene;
 import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
 import client.scene.control.ReadOnlyAppointmentImpl;
+import dao.DAO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -88,6 +90,9 @@ public class MainView extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+
+        new ConfigureDAOCommand().execute();
+        DAO.getInstance().getContactDAO();
 
         new HookLoggerCommand().execute();
 

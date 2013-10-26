@@ -30,7 +30,7 @@ server = module.exports.server = module.parent.exports.server;
  */
 server.get('/api/contacts',
     passport.authenticate('bearer', { session: false }),
-    server.requiresAdmin,
+    //server.requiresAdmin,
     allCMD
 );
 server.put('/api/contacts',

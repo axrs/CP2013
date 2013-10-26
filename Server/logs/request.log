@@ -2962,3 +2962,13 @@
 2013-10-26 15:17:32	W-laA0KZZqnExOVT7_t5r6s3	10.100.0.182	/api/staff?access_token=	{}
 2013-10-26 15:17:33	XG5HRiYnmY1hKlcZNmnL_dX3	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30?access_token=	{}
 2013-10-26 15:17:33	-LcbxjkTJ90fHjpuoAoW12CB	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30?access_token=	{}
+2013-10-26 16:28:53	FKC1lybJ16gdxohkuAjA7nhw	127.0.0.1	/api/staff?access_token=	{}
+2013-10-26 16:28:53	r6LlSq2qqyw6Z_qy3PSsu5Cu	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-26 16:28:53	6tcVk4z_Qn0PKo2XHwtl7MSO	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-26 16:28:53	bdVpPVo3huuwMW1nCbGl29v6	127.0.0.1	/api/staff/appointments/2013-10-20/2013-10-26?access_token=	{}
+2013-10-26 16:28:53	e4CG-6lua_qfXSXCvNL6u-UD	127.0.0.1	/api/staff/available/2013-10-20/2013-10-26?access_token=	{}
+2013-10-26 17:18:47	pwAm3ddgrwHPmfHGtU-iGj1q	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-26 17:18:47	5oT6a_78uO1Y8J328lHsUZ5a	127.0.0.1	/api/staff?access_token=	{}
+2013-10-26 17:18:47	oHu2bZ5ewe4ZkeusiktFbwTf	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-26 17:18:48	iPm-UAcQ05MuAZIziwCakJHf	127.0.0.1	/api/staff/appointments/2013-10-20/2013-10-26?access_token=	{}
+2013-10-26 17:18:48	jBzwFhlWU7uSdf9QmRJpg7jc	127.0.0.1	/api/staff/available/2013-10-20/2013-10-26?access_token=	{}
