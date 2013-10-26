@@ -3,6 +3,8 @@ package client.stages;
 import Models.Config;
 import client.controllers.*;
 import client.controllers.adapters.WindowEventStrategy;
+import client.controllers.windows.core.CloseStageCommand;
+import client.controllers.windows.core.ShowLoginCommand;
 import client.scene.CoreScene;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

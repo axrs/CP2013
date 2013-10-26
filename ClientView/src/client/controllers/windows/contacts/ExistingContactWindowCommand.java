@@ -1,6 +1,8 @@
-package client.controllers;
+package client.controllers.windows.contacts;
 
 import Models.Contact;
+import client.controllers.ICommand;
+import client.controllers.windows.core.NewStage;
 
 public class ExistingContactWindowCommand extends NewStage implements ICommand {
 

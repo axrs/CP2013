@@ -2,8 +2,8 @@ package client.stages.contacts;
 
 import Controllers.ContactsController;
 import Models.Contact;
-import client.controllers.CloseStageCommand;
-import client.controllers.EditContactWindowCommand;
+import client.controllers.windows.core.CloseStageCommand;
+import client.controllers.windows.contacts.EditContactWindowCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;

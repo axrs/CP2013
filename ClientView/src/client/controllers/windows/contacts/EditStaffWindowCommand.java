@@ -1,7 +1,8 @@
-package client.controllers;
+package client.controllers.windows.contacts;
 
 import Controllers.ServiceProviderController;
 import Models.ServiceProvider;
+import client.controllers.ICommand;
 import client.stages.staff.FormView;
 
 /**

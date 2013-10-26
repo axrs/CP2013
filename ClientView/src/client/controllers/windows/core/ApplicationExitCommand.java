@@ -1,5 +1,6 @@
-package client.controllers;
+package client.controllers.windows.core;
 
+import client.controllers.ICommand;
 import javafx.application.Platform;
 
 public class ApplicationExitCommand implements ICommand {

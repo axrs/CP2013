@@ -1,7 +1,7 @@
 package client.stages;
 
-import client.controllers.ApplicationExitCommand;
-import client.controllers.CloseStageCommand;
+import client.controllers.windows.core.ApplicationExitCommand;
+import client.controllers.windows.core.CloseStageCommand;
 import client.controllers.CompositeCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;

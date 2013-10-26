@@ -1,7 +1,8 @@
-package client.controllers;
+package client.controllers.windows.contacts;
 
 import Controllers.ContactController;
 import Models.Contact;
+import client.controllers.ICommand;
 import client.stages.contacts.FormView;
 
 public class EditContactWindowCommand implements ICommand {
