@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.layout.HBox;
 
 public class ActionButtons extends HBox {
@@ -20,6 +21,16 @@ public class ActionButtons extends HBox {
     public ActionButtons(boolean showSave) {
         init();
         setShowSaveButton(showSave);
+    }
+
+    public void addControl(Control c) {
+        this.getChildren().add(c);
+    }
+
+    public void removeControl(Control c) {
+        if (this.getChildren().contains(c)) {
+            this.getChildren().remove(c);
+        }
     }
 
     public Button getSaveButton() {
