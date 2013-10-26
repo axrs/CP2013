@@ -23,7 +23,7 @@ var CreateUserCommand = Ring.create([AbstractUserCommand], {
         var user = this._user;
         var dao = this._dao;
 
-        dao.retrieve(user.getId(), function (err, result) {
+        dao.retrieveById(user.getId(), function (err, result) {
 
             var updatedUser = User.fromJSON(
                 Utilities.mergeObjectProperties([

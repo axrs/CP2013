@@ -70,9 +70,14 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
 
         queryHelper.all(sql, values, function (err, result) {
             if (result.length) {
-                callback(err, SqliteUserDAO.UserFromDatabase(result[0]));
+                if (callback) {
+                    callback(err, SqliteUserDAO.UserFromDatabase(result[0]));
+                }
             } else {
-                callback(err, null);
+                if (callback) {
+                    callback(err, null);
+
+                }
             }
         });
     },

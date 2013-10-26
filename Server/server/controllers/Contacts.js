@@ -1,7 +1,3 @@
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-var sqlite = require('sqlite3');
-var config = require('../config/config.js');
-var database = new sqlite.Database(config.db);
 var DAOFactory = require('../dao/sqlite/SqliteDAOFactory.js');
 var Contact = require('../models/Contact.js');
 var AllContactsCommand = require('../commands/contacts/AllContactsCommand.js');
