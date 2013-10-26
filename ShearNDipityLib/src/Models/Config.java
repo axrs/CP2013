@@ -59,6 +59,10 @@ public class Config {
         return properties.getProperty("TITLE", "Shear-N-Dipity");
     }
 
+    public String getGithubURL() {
+        return getServer() + properties.getProperty("GITHUB", "/api/auth/github/login");
+    }
+
     public int getZoom() {
         int zoom;
 

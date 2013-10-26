@@ -7,7 +7,7 @@ module.exports = function (server) {
     };
 
     server.requiresAdmin = function (req, res, next) {
-        if (!req.getIsAdmin()) {
+        if (!req.user.getIsAdmin()) {
             return res.send(401, 'Requires Administration Privileges');
         }
         next();

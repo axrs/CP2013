@@ -1,5 +1,6 @@
 #Thu Aug 22 20:35:07 EST 2013
-SERVER=http://shear-n-dipity.com
+SERVER=http://10.100.0.167:8081
+GITHUB=/api/auth/github/login
 GEOLOCATION=-19.326006,146.755321
 TITLE=Shear-N-Dipity
 ZOOM=16
