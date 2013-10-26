@@ -17,20 +17,14 @@ import client.scene.CoreScene;
 import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
 import client.scene.control.ReadOnlyAppointmentImpl;
-import client.stages.LoginWindow;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -130,7 +124,7 @@ public class MainView extends Application {
 
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
-        new LoginWindow().show();
+        new ShowLoginCommand().execute();
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
