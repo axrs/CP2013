@@ -1,10 +1,15 @@
 package client.stages;
 
 import client.scene.CoreScene;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,6 +30,8 @@ public class LoginWindow extends Stage {
 
         TextField userName = new TextField();
         TextField password = new TextField();
+        Button gitLogin = new Button("Login With GitHub");
+        gitLogin.setOnAction(openGitLoginWindow());
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(new Label("Username: "), userName, new Label("Password: "), password);
@@ -33,6 +40,10 @@ public class LoginWindow extends Stage {
         borderPane.setCenter(hBox);
 
         setScene(new CoreScene(borderPane));
+    }
+
+    private EventHandler<ActionEvent> openGitLoginWindow() {
+        new GitLoginWindow().show();
     }
 
 }
