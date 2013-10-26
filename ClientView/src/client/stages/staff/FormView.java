@@ -85,7 +85,7 @@ public class FormView extends Stage implements ServiceProviderView {
             public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
                 (cellEditEvent.getTableView().getItems().get(
                         cellEditEvent.getTablePosition().getRow())
-                ).setServHrsStart(cellEditEvent.getNewValue());
+                ).setStart(cellEditEvent.getNewValue());
 
             }
         });
@@ -99,7 +99,7 @@ public class FormView extends Stage implements ServiceProviderView {
             public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
                 ((ServiceHours) cellEditEvent.getTableView().getItems().get(
                         cellEditEvent.getTablePosition().getRow())
-                ).setServHrsBreakStart(cellEditEvent.getNewValue());
+                ).setBreakStart(cellEditEvent.getNewValue());
             }
         });
 
@@ -112,7 +112,7 @@ public class FormView extends Stage implements ServiceProviderView {
             public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
                 ((ServiceHours) cellEditEvent.getTableView().getItems().get(
                         cellEditEvent.getTablePosition().getRow())
-                ).setServHrsBreakEnd(cellEditEvent.getNewValue());
+                ).setBreakEnd(cellEditEvent.getNewValue());
             }
         });
 
@@ -125,7 +125,7 @@ public class FormView extends Stage implements ServiceProviderView {
             public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
                 ((ServiceHours) cellEditEvent.getTableView().getItems().get(
                         cellEditEvent.getTablePosition().getRow())
-                ).setServHrsEnd(cellEditEvent.getNewValue());
+                ).setEnd(cellEditEvent.getNewValue());
 
             }
         });

@@ -116,11 +116,11 @@ public class ServiceProvider extends Contact {
         this.terminated = terminated;
     }
 
-    public String getActive() {
+    public int getActive() {
         return isActive;
     }
 
-    public void setActive(String active) {
+    public void setActive(int active) {
         this.isActive = active;
     }
 
