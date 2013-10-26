@@ -7,10 +7,13 @@ import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,11 +32,6 @@ public class LoginWindow extends Stage {
         initModality(Modality.APPLICATION_MODAL);
         setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
-        Button login = new Button("Login");
-        ActionButtons buttons = new ActionButtons(false);
-        buttons.addControl(login);
-        buttons.setOnCloseAction(ActionEventStrategy.create(new ApplicationExitCommand()));
-
         BorderPane borderPane = new BorderPane();
 
         TextField userName = new TextField();
@@ -46,14 +44,28 @@ public class LoginWindow extends Stage {
             }
         });
 
-        HBox hBox = new HBox();
-        hBox.getChildren().addAll(new Label("Username: "), userName, new Label("Password: "), password, gitLogin);
-        hBox.getStyleClass().add("grid");
+        GridPane gridPane = new GridPane();
+        gridPane.getStyleClass().add("grid");
+        gridPane.addRow(0, new Label("Username: "), userName);
+        gridPane.addRow(1, new Label("Password: "), password);
 
-        borderPane.setCenter(hBox);
+        Button login = new Button("Login");
+        gridPane.add(login, 1, 2);
+        login.setOnAction(login());
+
+
+        ActionButtons buttons = new ActionButtons(false);
+        buttons.setOnCloseAction(ActionEventStrategy.create(new ApplicationExitCommand()));
+        buttons.addControl(gitLogin);
+
+        borderPane.setCenter(gridPane);
         borderPane.setBottom(buttons);
 
         setScene(new CoreScene(borderPane));
+    }
+
+    private EventHandler<ActionEvent> login() {
+        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 
 }
