@@ -15,11 +15,12 @@ public class GitLoginWindow extends Stage implements ICommand {
     private LoginSuccessCommand onSuccess = new LoginSuccessCommand(this);
 
     public GitLoginWindow() {
-
+        execute();
     }
 
     public GitLoginWindow(LoginSuccessCommand onSuccess) {
         this.onSuccess = onSuccess;
+        execute();
     }
 
     @Override
