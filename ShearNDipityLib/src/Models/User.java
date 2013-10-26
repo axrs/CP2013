@@ -5,6 +5,7 @@ public class User extends Contact {
 
     public static User loggedInUser = null;
     public static String userToken = "";
+
     private String token;
     private int userId;
     private int strategyId;
