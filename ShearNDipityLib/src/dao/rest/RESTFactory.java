@@ -1,15 +1,15 @@
-package DAO.rest;
+package dao.rest;
 
-import DAO.IContactDAO;
-import DAO.IDAOFactory;
-import DAO.IProviderDAO;
-import DAO.IUserDAO;
+import dao.IContactDAO;
+import dao.IDAOFactory;
+import dao.IProviderDAO;
+import dao.IUserDAO;
 
 public class RESTFactory implements IDAOFactory {
 
     @Override
     public IContactDAO getContactDAO() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return ContactDAO.getInstance();
     }
 
     @Override
