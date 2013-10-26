@@ -1,5 +1,7 @@
 package client.controllers;
 
+import client.stages.contacts.RegisterNewUser;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Timface
@@ -10,7 +12,7 @@ package client.controllers;
 public class ShowRegisterCommand implements ICommand{
     @Override
     public void execute() {
-         RegisterNewUserWindow r = new RegisterNewUserWindow();
+         RegisterNewUser r = new RegisterNewUser();
         r.show();
     }
 }

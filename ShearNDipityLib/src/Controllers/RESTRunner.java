@@ -8,6 +8,7 @@
 
 package Controllers;
 
+import Models.User;
 import Utilities.LogEventDispatcher;
 
 import javax.swing.event.EventListenerList;
@@ -150,7 +151,8 @@ public class RESTRunner implements Runnable {
         try {
             if (!target.isEmpty()) {
 
-                URL url = new URL(target);
+                String location = target + "?access_token=" + User.getAuthToken();
+                URL url = new URL(location);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                 LogEventDispatcher.log("Attempting URL Connection to: " + target);
