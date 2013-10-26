@@ -1,26 +1,44 @@
 package client.stages;
 
 import Models.Config;
+import client.controllers.ICommand;
+import client.controllers.LoginSuccessCommand;
 import client.scene.CoreScene;
-import javafx.scene.layout.BorderPane;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Timface
- * Date: 26/11/13
- * Time: 12:08 PM
- * To change this template use File | Settings | File Templates.
- */
-public class GitLoginWindow extends Stage{
+public class GitLoginWindow extends Stage implements ICommand {
+    private LoginSuccessCommand onSuccess = new LoginSuccessCommand(this);
 
-    public GitLoginWindow(){
+    public GitLoginWindow() {
+
+    }
+
+    public GitLoginWindow(LoginSuccessCommand onSuccess) {
+        this.onSuccess = onSuccess;
+    }
+
+    @Override
+    public void execute() {
         WebView webView = new WebView();
-        WebEngine webEngine = webView.getEngine();
+
+        final WebEngine webEngine = webView.getEngine();
         webEngine.load(Config.getInstance().getGithubURL());
 
         setScene(new CoreScene(webView, 1020, 590));
+
+        webEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
+            @Override
+            public void changed(ObservableValue<? extends Worker.State> observableValue, Worker.State state, Worker.State state2) {
+                if (webEngine.getLocation().endsWith("/api/token")) {
+                    onSuccess.setToken(webEngine.getDocument().getElementsByTagName("title").item(0).getTextContent());
+                    onSuccess.execute();
+                }
+            }
+        });
     }
 }
