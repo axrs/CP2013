@@ -63,10 +63,10 @@ public class ServiceProviderController implements BaseController, ActionListener
             theView.setCity(theModel.getCity());
             theView.setState(theModel.getState());
             theView.setZip(theModel.getPost());
-            theView.setBio(theModel.getServBio());
+            theView.setBio(theModel.getBiography());
             theView.setDateEmployed(theModel.getServInitiatedDate());
             theView.setDateTerminated(theModel.getServTerminatedDate());
-            theView.setServHours(theModel.getServHrs());
+            theView.setServHours(theModel.getHours());
         }
     }
 
@@ -82,9 +82,9 @@ public class ServiceProviderController implements BaseController, ActionListener
         theModel.setCity(theView.getCity());
         theModel.setState(theView.getState());
         theModel.setPost(theView.getZip());
-        theModel.setServInitiated(theView.getDateEmployed().toString());
-        theModel.setServInitiated(theView.getDateTerminated().toString());
-        theModel.setServHrs(theView.getServHours());
+        theModel.setInitiated(theView.getDateEmployed().toString());
+        theModel.setInitiated(theView.getDateTerminated().toString());
+        theModel.setHours(theView.getServHours());
         theModel.update();
     }
 
