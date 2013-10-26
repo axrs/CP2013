@@ -1,6 +1,8 @@
 package client.stages;
 
 import Models.Config;
+import client.scene.CoreScene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -18,5 +20,7 @@ public class GitLoginWindow extends Stage{
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
         webEngine.load(Config.getInstance().getGithubURL());
+
+        setScene(new CoreScene(webView));
     }
 }
