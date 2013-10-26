@@ -276,7 +276,7 @@ public class ServiceProvidersController {
                     sp = new Gson().fromJson(result.getResponse(), ServiceProvider.class);
 
                     if (sp.getServId() != 0) {
-                        serviceProviders.put(sp.getContId(), sp);
+                        serviceProviders.put(sp.getContactId(), sp);
                     }
                 } finally {
                     serviceProviderLocker.release();

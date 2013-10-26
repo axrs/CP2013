@@ -3,11 +3,11 @@ angular.module('RESTService', [])
     .factory('RESTService', function ($http, $cookieStore) {
         var rootURL = "http://10.100.0.167:8081";
         var token = $cookieStore.get('token') || 0;
-        $cookieStore.remove('token');
 
         return {
             setToken: function (value) {
                 token = value;
+                $cookieStore.put('token', token);
             },
             get: function (url) {
                 return $http.get(rootURL + url + '?access_token=' + token);

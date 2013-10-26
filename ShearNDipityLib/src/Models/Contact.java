@@ -6,54 +6,55 @@ public class Contact implements CRUDModel {
     /**
      * Contact First Name
      */
-    private String contForename;
+    private String name;
     /**
      * Contact Surname
      */
-    private String contSurname;
+    private String middleName;
+    private String surname;
     /**
      * Contact Company Name
      */
-    private String contCompany;
+    private String company;
     /**
      * Contact Email Address
      */
-    private String contEmail;
+    private String email;
     /**
      * Contact Phone Number
      */
-    private String contPhone;
+    private String phone;
     /**
      * Contact Street Address
      */
-    private String contAddrStreet;
+    private String street;
     /**
      * Address Suburb
      */
-    private String contAddrSuburb;
+    private String suburb;
     /**
      * Address City
      */
-    private String contAddrCity;
+    private String city;
     /**
      * Address ZIP/Post Code
      */
-    private String contAddrZip;
+    private String post;
     /**
      * Address State
      */
-    private String contAddrState;
+    private String state;
     /**
      * Contact Id
      */
-    private int contId;
+    private int contactId;
 
     /**
      * Contact Default Constructor
      */
     public Contact(String contForename, String contSurname) {
-        this.contForename = contForename;
-        this.contSurname = contSurname;
+        this.name = contForename;
+        this.surname = contSurname;
     }
 
     /**
@@ -62,22 +63,43 @@ public class Contact implements CRUDModel {
     public Contact() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the contacts first name
+     *
+     * @param name first name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
     /**
      * Gets the contact id
      *
      * @return contact id
      */
-    public int getContId() {
-        return contId;
+    public int getContactId() {
+        return contactId;
     }
 
     /**
      * Sets the contact id
      *
-     * @param contId contact id
+     * @param contactId contact id
      */
-    public void setContId(int contId) {
-        this.contId = contId;
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
     }
 
     /**
@@ -86,16 +108,7 @@ public class Contact implements CRUDModel {
      * @return contacts first name
      */
     public String getContFirstName() {
-        return contForename;
-    }
-
-    /**
-     * Sets the contacts first name
-     *
-     * @param contForename first name
-     */
-    public void setContForename(String contForename) {
-        this.contForename = contForename;
+        return name;
     }
 
     /**
@@ -103,17 +116,17 @@ public class Contact implements CRUDModel {
      *
      * @return Surname
      */
-    public String getContSurname() {
-        return contSurname;
+    public String getSurname() {
+        return surname;
     }
 
     /**
      * Sets the contacts surname
      *
-     * @param contSurname surname
+     * @param surname surname
      */
-    public void setContSurname(String contSurname) {
-        this.contSurname = contSurname;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     /**
@@ -121,17 +134,17 @@ public class Contact implements CRUDModel {
      *
      * @return company
      */
-    public String getContCompany() {
-        return contCompany;
+    public String getCompany() {
+        return company;
     }
 
     /**
      * Sets the contacts company
      *
-     * @param contCompany company
+     * @param company company
      */
-    public void setContCompany(String contCompany) {
-        this.contCompany = contCompany;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     /**
@@ -139,17 +152,17 @@ public class Contact implements CRUDModel {
      *
      * @return contact email
      */
-    public String getContEmail() {
-        return contEmail;
+    public String getEmail() {
+        return email;
     }
 
     /**
      * Sets the contacts email address
      *
-     * @param contEmail email address
+     * @param email email address
      */
-    public void setContEmail(String contEmail) {
-        this.contEmail = contEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -157,17 +170,17 @@ public class Contact implements CRUDModel {
      *
      * @return phone number
      */
-    public String getContPhone() {
-        return contPhone;
+    public String getPhone() {
+        return phone;
     }
 
     /**
      * Sets the contacts phone number
      *
-     * @param contPhone phone number
+     * @param phone phone number
      */
-    public void setContPhone(String contPhone) {
-        this.contPhone = contPhone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     /**
@@ -175,17 +188,17 @@ public class Contact implements CRUDModel {
      *
      * @return street address
      */
-    public String getContAddrStreet() {
-        return contAddrStreet;
+    public String getStreet() {
+        return street;
     }
 
     /**
      * Sets the contacts street address
      *
-     * @param contAddrStreet street address
+     * @param street street address
      */
-    public void setContAddrStreet(String contAddrStreet) {
-        this.contAddrStreet = contAddrStreet;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     /**
@@ -193,17 +206,17 @@ public class Contact implements CRUDModel {
      *
      * @return contacts address suburb
      */
-    public String getContAddrSuburb() {
-        return contAddrSuburb;
+    public String getSuburb() {
+        return suburb;
     }
 
     /**
      * Sets the contacts address suburb
      *
-     * @param contAddrSuburb address suburb
+     * @param suburb address suburb
      */
-    public void setContAddrSuburb(String contAddrSuburb) {
-        this.contAddrSuburb = contAddrSuburb;
+    public void setSuburb(String suburb) {
+        this.suburb = suburb;
     }
 
     /**
@@ -211,17 +224,17 @@ public class Contact implements CRUDModel {
      *
      * @return address city
      */
-    public String getContAddrCity() {
-        return contAddrCity;
+    public String getCity() {
+        return city;
     }
 
     /**
      * Sets the contacts address city
      *
-     * @param contAddrCity city
+     * @param city city
      */
-    public void setContAddrCity(String contAddrCity) {
-        this.contAddrCity = contAddrCity;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     /**
@@ -229,17 +242,17 @@ public class Contact implements CRUDModel {
      *
      * @return post code
      */
-    public String getContAddrZip() {
-        return contAddrZip;
+    public String getPost() {
+        return post;
     }
 
     /**
      * Sets the contacts post code
      *
-     * @param contAddrZip post code
+     * @param post post code
      */
-    public void setContAddrZip(String contAddrZip) {
-        this.contAddrZip = contAddrZip;
+    public void setPost(String post) {
+        this.post = post;
     }
 
     /**
@@ -247,38 +260,38 @@ public class Contact implements CRUDModel {
      *
      * @return state
      */
-    public String getContAddrState() {
-        return contAddrState;
+    public String getState() {
+        return state;
     }
 
     /**
      * Sets the contacts address state
      *
-     * @param contAddrState state
+     * @param state state
      */
-    public void setContAddrState(String contAddrState) {
-        this.contAddrState = contAddrState;
+    public void setState(String state) {
+        this.state = state;
     }
 
     private void replaceInstance(Contact c) {
-        contId = c.contId;
-        contForename = c.contForename;
-        contSurname = c.contSurname;
-        contEmail = c.contEmail;
-        contCompany = c.contCompany;
-        contPhone = c.contPhone;
+        contactId = c.contactId;
+        name = c.name;
+        surname = c.surname;
+        email = c.email;
+        company = c.company;
+        phone = c.phone;
 
-        contAddrStreet = c.contAddrStreet;
-        contAddrSuburb = c.contAddrSuburb;
-        contAddrCity = c.contAddrCity;
-        contAddrState = c.contAddrState;
-        contAddrZip = c.contAddrZip;
+        street = c.street;
+        suburb = c.suburb;
+        city = c.city;
+        state = c.state;
+        post = c.post;
 
     }
 
     @Override
     public boolean create() {
-        if (this.getContId() == 0) {
+        if (this.getContactId() == 0) {
             ContactsController.getInstance().createContact(this);
         }
         return true;
@@ -300,8 +313,8 @@ public class Contact implements CRUDModel {
         boolean result = false;
         Contact c = null;
 
-        if (this.getContId() != 0) {
-            c = ContactsController.getInstance().getContact(getContId());
+        if (this.getContactId() != 0) {
+            c = ContactsController.getInstance().getContact(getContactId());
             result = (c != null);
         }
 
@@ -313,7 +326,7 @@ public class Contact implements CRUDModel {
     @Override
     public boolean update() {
         boolean result = true;
-        if (getContId() != 0) {
+        if (getContactId() != 0) {
             ContactsController.getInstance().updateContact(this);
         } else {
             result = create();

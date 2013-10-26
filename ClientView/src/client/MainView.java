@@ -255,7 +255,7 @@ public class MainView extends Application {
                         for (int id : map.keySet()) {
                             ServiceProvider sp = map.get(id);
                             Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));
-                            grp.setDescription(sp.getContFirstName() + " " + sp.getContSurname());
+                            grp.setDescription(sp.getContFirstName() + " " + sp.getSurname());
 
                             styles.add(
                                     String.format(".%s {-fx-background-color: %s; } ",
