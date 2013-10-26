@@ -1,11 +1,18 @@
 package DAO;
 
-/**
- * Created with IntelliJ IDEA.
- * User: xander
- * Date: 26/10/13
- * Time: 1:56 PM
- * To change this template use File | Settings | File Templates.
- */
+import Models.User;
+
 public interface IUserDAO {
+
+    public User getCurrentUser();
+
+    public User getUser(int id);
+
+    public void createUser(User user);
+
+    public void removeUser(User user);
+
+    public void removeUser(int id);
+
+    public void updateUser(User user);
 }
