@@ -1,6 +1,6 @@
 package client.stages;
 
-import client.controllers.CloseStageCommand;
+import client.controllers.windows.core.CloseStageCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
@@ -71,6 +71,7 @@ public class StatWindow extends Stage {
     private void makePieChart() {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Joey", 23),
                 new PieChart.Data("Felicity", 77));
+        //TODO put relevant data into the above list
         PieChart pieChart = new PieChart(pieChartData);
         pieChart.setTitle("Hairdressers");
 
@@ -80,11 +81,11 @@ public class StatWindow extends Stage {
 
     private void makeLineChart() {
         NumberAxis xAxis = new NumberAxis();
-        NumberAxis yAxis = new NumberAxis();
+        CategoryAxis yAxis = new CategoryAxis();
         xAxis.setLabel("Value");
         xAxis.setTickLabelRotation(90);
 
-        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        LineChart<String, Number> lineChart = new LineChart<String, Number>(yAxis, xAxis);
         XYChart.Series series = new XYChart.Series();
         //TODO implement adding of data here
         lineChart.getData().addAll(series);

@@ -2781,3 +2781,37 @@
 2013-10-26 13:30:39	kKkMrSlBRyFprQMFY5Y05GiE	10.100.0.167	/api/staff	{}
 2013-10-26 13:30:39	NeBRwfvu_-HCJsULNr8MZHOy	10.100.0.167	/api/staff/appointments/2013-10-20/2013-10-26	{}
 2013-10-26 13:30:39	6s5VAxPLAAbkGc6-9lowKhXQ	10.100.0.167	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:33:57	bOzM3X4jsydGXJPXodiaedxH	10.100.0.162	/api/appointments/types	{}
+2013-10-26 13:33:58	t3t7M90Io-DFv2aIijUcykDy	10.100.0.162	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:33:58	nqCul6dtAWjudtennxEZkWmX	10.100.0.162	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:33:58	5BK0NvXnM_wEbKNEwvy_g9N2	10.100.0.162	/api/staff	{}
+2013-10-26 13:33:58	1kjoesbFXhYk0Q46aQFOeoDV	10.100.0.162	/api/appointments/types	{}
+2013-10-26 13:34:45	Existing GitHub User Logged In.
+2013-10-26 13:34:45	Serialising User Session
+2013-10-26 13:34:55	Deserialising User Session
+2013-10-26 13:34:56	Deserialising User Session
+2013-10-26 13:34:59	Existing GitHub User Logged In.
+2013-10-26 13:34:59	Serialising User Session
+2013-10-26 13:34:59	Deserialising User Session
+2013-10-26 13:35:10	Deserialising User Session
+2013-10-26 13:35:10	Deserialising User Session
+2013-10-26 13:35:10	VaXqww9q_fh0T4XhSzt9Mjjs	10.100.0.162	/api/staff/appointments/2013-10-27/2013-11-02	{}
+2013-10-26 13:35:10	VaXqww9q_fh0T4XhSzt9Mjjs	10.100.0.162	/api/staff/available/2013-10-27/2013-11-02	{}
+2013-10-26 13:35:13	Deserialising User Session
+2013-10-26 13:35:13	Deserialising User Session
+2013-10-26 13:35:13	VaXqww9q_fh0T4XhSzt9Mjjs	10.100.0.162	/api/staff/available/2013-10-20/2013-10-26	{}
+2013-10-26 13:35:13	VaXqww9q_fh0T4XhSzt9Mjjs	10.100.0.162	/api/staff/appointments/2013-10-20/2013-10-26	{}
+2013-10-26 13:36:19	wRHSMBf91AGBCzxD714i5BMo	10.100.0.182	/api/staff	{}
+2013-10-26 13:36:19	lT4Ze_tLy0AVwyOqQsFuZtZ4	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 13:36:19	K1dmdHMAwMtRS6yHcXPrIBCd	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 13:36:22	FLqrbWDdIxN8UOAM_NXaaVjL	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:36:22	UsIYYCiLcP3aWGuOdzZXOvM6	10.100.0.182	/api/appointments/types	{}
+2013-10-26 13:37:46	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/available/2013-10-27/2013-11-02	{}
+2013-10-26 13:37:46	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/appointments/2013-10-27/2013-11-02	{}
+2013-10-26 13:37:47	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/appointments/2013-11-03/2013-11-09	{}
+2013-10-26 13:37:47	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/available/2013-11-03/2013-11-09	{}
+2013-10-26 13:37:47	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/appointments/2013-11-10/2013-11-16	{}
+2013-10-26 13:37:47	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/available/2013-11-10/2013-11-16	{}
+2013-10-26 13:37:47	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/appointments/2013-11-17/2013-11-23	{}
+2013-10-26 13:37:47	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff/available/2013-11-17/2013-11-23	{}
+2013-10-26 13:37:52	7Yu-atUNsGqRfcx9-sI02Q9b	10.100.0.167	/api/staff	{}

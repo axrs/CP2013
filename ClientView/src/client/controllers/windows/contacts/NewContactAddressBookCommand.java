@@ -1,5 +1,6 @@
-package client.controllers;
+package client.controllers.windows.contacts;
 
+import client.controllers.ICommand;
 import client.stages.contacts.AddressBook;
 
 

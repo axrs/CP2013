@@ -1,4 +1,4 @@
-package client.controllers;
+package client.controllers.windows.core;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
