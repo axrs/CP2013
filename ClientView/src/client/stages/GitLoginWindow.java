@@ -1,9 +1,7 @@
 package client.stages;
 
 import Models.Config;
-import client.controllers.ICommand;
-import client.controllers.LoginSuccessCommand;
-import client.controllers.ShowLoginCommand;
+import client.controllers.*;
 import client.controllers.adapters.WindowEventStrategy;
 import client.scene.CoreScene;
 import javafx.beans.value.ChangeListener;
@@ -15,21 +13,21 @@ import javafx.stage.Stage;
 
 public class GitLoginWindow extends Stage implements ICommand {
     private LoginSuccessCommand onSuccess = new LoginSuccessCommand(this);
-    private ICommand onFailure = null;
+    private ICommand onFailure = new ShowLoginCommand();
 
     public GitLoginWindow() {
     }
 
-
     public GitLoginWindow(LoginSuccessCommand onSuccess) {
         this.onSuccess = onSuccess;
-        this.setOnCloseRequest(new WindowEventStrategy(new ShowLoginCommand()));
     }
-
 
     public GitLoginWindow(LoginSuccessCommand onSuccess, ICommand onFailure) {
         this.onSuccess = onSuccess;
-        this.setOnCloseRequest(new WindowEventStrategy(onFailure));
+        CompositeCommand c = new CompositeCommand();
+        c.addCommand(onFailure);
+        c.addCommand(new CloseStageCommand(this));
+        this.onFailure = c;
     }
 
     @Override
@@ -46,6 +44,8 @@ public class GitLoginWindow extends Stage implements ICommand {
 
         webEngine.getLoadWorker().stateProperty().addListener(onTitleChange(webEngine));
         this.show();
+
+        this.setOnCloseRequest(new WindowEventStrategy(onFailure));
     }
 
     private ChangeListener<Worker.State> onTitleChange(final WebEngine webEngine) {
