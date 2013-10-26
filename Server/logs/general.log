@@ -2417,3 +2417,50 @@
 2013-10-25 09:45:27	Error running query.
 2013-10-25 09:45:27	Error: SQLITE_ERROR: no such column: User.rowid
 2013-10-25 09:45:27	SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId WHERE ProviderId=$id ORDER BY User.rowid DESC LIMIT 1;null
+2013-10-26 11:00:34	Existing GitHub User Logged In.
+2013-10-26 11:00:34	Serialising User Session
+2013-10-26 11:00:34	Deserialising User Session
+2013-10-26 11:01:32	Deserialising User Session
+2013-10-26 11:01:34	Existing GitHub User Logged In.
+2013-10-26 11:01:34	Serialising User Session
+2013-10-26 11:01:34	Deserialising User Session
+2013-10-26 11:02:09	Existing GitHub User Logged In.
+2013-10-26 11:02:09	Serialising User Session
+2013-10-26 11:02:09	Deserialising User Session
+2013-10-26 11:06:29	Creating new GitHub User.
+2013-10-26 11:06:29	Serialising User Session
+2013-10-26 11:06:29	Deserialising User Session
+2013-10-26 11:06:44	Deserialising User Session
+2013-10-26 11:06:45	Deserialising User Session
+2013-10-26 11:06:47	Existing GitHub User Logged In.
+2013-10-26 11:06:47	Serialising User Session
+2013-10-26 11:06:47	Deserialising User Session
+2013-10-26 11:08:14	Deserialising User Session
+2013-10-26 11:08:14	Deserialising User Session
+2013-10-26 11:08:17	Existing GitHub User Logged In.
+2013-10-26 11:08:17	Serialising User Session
+2013-10-26 11:08:17	Deserialising User Session
+2013-10-26 11:10:38	Existing GitHub User Logged In.
+2013-10-26 11:10:38	Serialising User Session
+2013-10-26 11:10:38	Deserialising User Session
+2013-10-26 11:29:18	Deserialising User Session
+2013-10-26 11:29:19	Deserialising User Session
+2013-10-26 11:29:21	Existing GitHub User Logged In.
+2013-10-26 11:29:21	Serialising User Session
+2013-10-26 11:29:21	Deserialising User Session
+2013-10-26 11:32:06	Creating new GitHub User.
+2013-10-26 11:32:06	Serialising User Session
+2013-10-26 11:32:06	Deserialising User Session
+2013-10-26 11:33:54	Deserialising User Session
+2013-10-26 11:33:55	Deserialising User Session
+2013-10-26 11:33:58	Existing GitHub User Logged In.
+2013-10-26 11:33:58	Serialising User Session
+2013-10-26 11:33:58	Deserialising User Session
+2013-10-26 11:34:24	Deserialising User Session
+2013-10-26 11:34:26	Deserialising User Session
+2013-10-26 11:34:29	Existing GitHub User Logged In.
+2013-10-26 11:34:29	Serialising User Session
+2013-10-26 11:34:29	Deserialising User Session
+2013-10-26 11:37:13	Existing GitHub User Logged In.
+2013-10-26 11:37:13	Serialising User Session
+2013-10-26 11:37:13	Deserialising User Session
