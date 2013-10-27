@@ -3,7 +3,8 @@ var IContactDAO = require('../../dao/IContactDAO.js');
 var AbstractProviderCommand = require('./AbstractProviderCommand.js');
 var StatusHelpers = require('../../helpers/StatusHelpers.js');
 
-var RemoveProviderCommand = Ring.create([AbstractProviderCommand], {
+var GetProviderCommand = Ring.create([AbstractProviderCommand], {
+
     _id: 0,
 
     init: function (id, dao) {
@@ -17,14 +18,15 @@ var RemoveProviderCommand = Ring.create([AbstractProviderCommand], {
      */
     execute: function (req, res) {
         var id = this._id;
-        this._dao.retrieveById(id, function (err, results) {
+        this._dao.remove(id, function (err, results) {
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {
-                StatusHelpers.status202(req, res);
+                res.writeHead(202, { 'Content-Type': 'application/json' });
+                res.end();
             }
         });
     }
 });
 
-module.exports = RemoveProviderCommand;
+module.exports = GetProviderCommand;

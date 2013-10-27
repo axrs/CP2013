@@ -10,7 +10,8 @@ import dao.events.UpdatedEvent;
 import dao.rest.events.Result;
 import dao.rest.listeners.ResultListener;
 import dao.rest.requests.Request;
-import dao.rest.requests.providers.GetAllProvidersRequest;
+import dao.rest.requests.contacts.GetAllContactsRequest;
+import dao.rest.requests.providers.*;
 import dao.rest.stores.ProviderDataStore;
 
 public class ProviderDAO extends Publisher implements IProviderDAO {
@@ -42,51 +43,106 @@ public class ProviderDAO extends Publisher implements IProviderDAO {
 
     @Override
     public ServiceProvider get(int id) {
-        return null;
+        ServiceProvider provider = store.get(id);
+
+        if (provider == null) {
+            Request r = new GetProviderRequest(id);
+            r.addResultListener(onGetProviderResult());
+            ActiveRESTClient.addRequest(r);
+        }
+
+        return provider;
     }
 
     @Override
-    public void create(ServiceProvider contact, ResultListener listener) {
-
+    public void create(ServiceProvider provider, ResultListener listener) {
+        Request r = new CreateProviderRequest(provider);
+        if (listener != null) {
+            r.addResultListener(listener);
+        }
+        r.addResultListener(onProviderUpdatedResult());
+        ActiveRESTClient.addRequest(r);
     }
 
     @Override
-    public void create(ServiceProvider contact) {
-
+    public void create(ServiceProvider provider) {
+        create(provider, null);
     }
 
     @Override
-    public void update(ServiceProvider contact, ResultListener listener) {
-
+    public void update(ServiceProvider provider, ResultListener listener) {
+        Request r = new UpdateProviderRequest(provider);
+        r.addResultListener(onProviderUpdatedResult());
+        if (listener != null) {
+            r.addResultListener(listener);
+        }
+        ActiveRESTClient.addRequest(r);
     }
 
     @Override
-    public void update(ServiceProvider contact) {
-
+    public void update(ServiceProvider provider) {
+        update(provider, null);
     }
 
     @Override
-    public void remove(ServiceProvider contact, ResultListener listener) {
-
+    public void remove(ServiceProvider provider, ResultListener listener) {
+        remove(provider.getProviderId(), listener);
     }
 
     @Override
-    public void remove(ServiceProvider contact) {
-
+    public void remove(ServiceProvider provider) {
+        remove(provider.getProviderId(), null);
     }
 
     @Override
     public void remove(int id, ResultListener listener) {
-
+        Request r = new RemoveProviderRequest(id);
+        r.addResultListener(onProviderRemoved(id));
+        if (listener != null) {
+            r.addResultListener(listener);
+        }
+        ActiveRESTClient.addRequest(r);
     }
 
     @Override
     public void remove(int id) {
-
+        remove(id, null);
     }
 
 
     //** SERVER RESPONSE ACTIONS **//
+
+    private ResultListener onProviderRemoved(final int id) {
+        return new ResultListener() {
+            @Override
+            public void results(Result result) {
+                if (result.getStatus() != 202) return;
+                store.remove(id);
+                fireUpdated(new UpdatedEvent(this));
+            }
+        };
+    }
+
+    private ResultListener onGetProviderResult() {
+        return new ResultListener() {
+            @Override
+            public void results(Result result) {
+                ServiceProvider provider;
+                if (result.getStatus() != 200) return;
+
+                provider = new Gson().fromJson(result.getResponse(), ServiceProvider.class);
+                if (provider.getProviderId() != 0) {
+                    store.add(provider.getProviderId(), provider);
+                }
+
+                //Fire events for individual contact added, and all contacts list updated
+                if (provider != null) {
+                    fireAdded(new ProviderAddedEvent(this, provider));
+                    fireUpdated(new UpdatedEvent(this));
+                }
+            }
+        };
+    }
 
     private ResultListener onGetAllProvidersResult() {
         return new ResultListener() {
@@ -99,6 +155,19 @@ public class ProviderDAO extends Publisher implements IProviderDAO {
                     store.add(provider.getProviderId(), provider);
                 }
                 fireUpdated(new UpdatedEvent(this));
+            }
+        };
+    }
+
+    private ResultListener onProviderUpdatedResult() {
+        return new ResultListener() {
+            @Override
+            public void results(Result result) {
+                if (result.getStatus() != 201 && result.getStatus() != 202) return;
+
+                Request r = new GetAllContactsRequest();
+                r.addResultListener(onGetAllProvidersResult());
+                ActiveRESTClient.addRequest(new GetAllContactsRequest());
             }
         };
     }

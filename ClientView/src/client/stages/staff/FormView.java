@@ -104,12 +104,14 @@ public class FormView extends CoreStage {
         serviceProviderPA.bindBidirectional("city", city.textProperty());
         serviceProviderPA.bindBidirectional("post", post.textProperty());
         serviceProviderPA.bindBidirectional("state", state.textProperty());
+        servHours.setAll(provider.getHours());
     }
 
     private EventHandler<TableColumn.CellEditEvent> onCellEditEnd(final CellEditField field) {
         return new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent cellEditEvent) {
+                isDirty = true;
                 ServiceHours hrs = provider.getDayHours(cellEditEvent.getTablePosition().getRow());
 
                 switch (field) {
@@ -204,19 +206,19 @@ public class FormView extends CoreStage {
         grid.add(tablePane, 2, 1, 1, 15);
         table.setItems(servHours);
         table.setMaxHeight(195);
+        table.setMinWidth(250);
 
         for (Node n : grid.getChildren()) {
             if (n instanceof TextField) {
-                ((TextField) n).setPrefWidth(200);
+                ((TextField) n).setPrefWidth(150);
                 ((TextField) n).setPrefHeight(20);
             } else if (n instanceof Label) {
                 ((Label) n).setPrefWidth(100);
-                ((Label) n).setMinWidth(75);
                 ((Label) n).setTextAlignment(TextAlignment.RIGHT);
                 ((Label) n).setAlignment(Pos.BASELINE_RIGHT);
             } else if (n instanceof TextArea) {
                 ((TextArea) n).setWrapText(true);
-                ((TextArea) n).setPrefWidth(200);
+                ((TextArea) n).setPrefWidth(150);
             }
         }
 

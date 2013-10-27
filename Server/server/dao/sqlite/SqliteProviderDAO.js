@@ -143,19 +143,39 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
             }
         });
     },
-    retrieveById: function (id, strategy, callback) {
-        var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE ProviderId=$id AND Provider.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
-        var values = {$id: id};
+    retrieveById: function (id, callback) {
+        var database = this._db;
 
-        var queryHelper = new SqliteHelper(this._db);
+        function getOne() {
+            database.serialize(function () {
 
-        queryHelper.all(sql, values, function (err, result) {
-            if (result.length) {
-                callback(err, SqliteProviderDAO.ProviderFromDatabase(result[0]));
-            } else {
-                callback(err, null);
-            }
-        });
+                database.each('SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND Provider.ProviderId=? AND Provider.isActive=1;', id, function (err, result) {
+                        var provider = SqliteProviderDAO.ProviderFromDatabase(result);
+                        database.serialize(function () {
+                            database.all('SELECT * FROM Provider_Hours WHERE ProviderId=?;', id, function (err, times) {
+                                var hours = [];
+                                if (times && times.length) {
+                                    for (var i = 0; i < times.length; i++) {
+                                        hours.push(SqliteProviderDAO.ProviderHoursFromDatabase(times[i]));
+                                    }
+                                }
+                                provider.setHours(hours);
+                                if (callback) {
+                                    callback(false, provider);
+                                }
+                            });
+                        })
+                    },
+                    function (err, results) {
+                        if (callback) {
+                            callback(err, results);
+                        }
+                    }
+                );
+            });
+        }
+
+        getOne();
     },
     retrieveByName: function (name, surname, callback) {
         var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND Name=$name AND Surname=$surname LIMIT 1;';
@@ -184,6 +204,14 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
             }
         });
 
+    },
+    remove: function (id, callback) {
+        var sql = 'UPDATE Provider SET isActive=0 WHERE ProviderId=$id;';
+        this.query(sql, {$id: id}, function (err) {
+            if (callback) {
+                callback(err);
+            }
+        });
     },
     update: function (provider, callback) {
 
