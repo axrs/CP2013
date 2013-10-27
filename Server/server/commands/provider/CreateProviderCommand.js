@@ -2,6 +2,8 @@ var Ring = require('ring');
 var IContactDAO = require('../../dao/IContactDAO.js');
 var AbstractProviderCommand = require('./AbstractProviderCommand.js');
 var StatusHelpers = require('../../helpers/StatusHelpers.js');
+var Provider = require('../../models/Provider.js');
+var Utilities = require('../../utilities/Utilities.js');
 
 var CreateProviderCommand = Ring.create([AbstractProviderCommand], {
     _provider: null,
@@ -18,7 +20,6 @@ var CreateProviderCommand = Ring.create([AbstractProviderCommand], {
     execute: function (req, res) {
         var provider = this._provider;
         var dao = this._dao;
-
         if (!provider.isValid() || provider.getId() > 0) {
             StatusHelpers.status400(req, res);
         } else {
@@ -34,12 +35,12 @@ var CreateProviderCommand = Ring.create([AbstractProviderCommand], {
                         } else {
                             dao.lastInserted(function (err, result) {
                                 res.writeHead(201, { 'Content-Type': 'application/json' });
-                                provider = result;
-                                res.write(JSON.stringify(provider));
+                                res.write(JSON.stringify(result));
                                 res.end();
-                                console.log(JSON.stringify(provider));
-                                dao.removeProviderHours(provider.getId(), function (err, result) {
-                                    dao.updateProviderHours(provider.getId(), provider.getHours(), null);
+
+                                var id = result.getId();
+                                dao.removeProviderHours(id, function (err, result) {
+                                    dao.updateProviderHours(id, provider.getHours(), null);
                                 });
                             });
                         }

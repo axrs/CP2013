@@ -11,17 +11,17 @@ public interface IProviderDAO {
 
     public ServiceProvider get(int id);
 
-    public void create(ServiceProvider contact, ResultListener listener);
+    public void create(ServiceProvider serviceProvider, ResultListener listener);
 
-    public void create(ServiceProvider contact);
+    public void create(ServiceProvider serviceProvider);
 
-    public void update(ServiceProvider contact, ResultListener listener);
+    public void update(ServiceProvider serviceProvider, ResultListener listener);
 
-    public void update(ServiceProvider contact);
+    public void update(ServiceProvider serviceProvider);
 
-    public void remove(ServiceProvider contact, ResultListener listener);
+    public void remove(ServiceProvider serviceProvider, ResultListener listener);
 
-    public void remove(ServiceProvider contact);
+    public void remove(ServiceProvider serviceProvider);
 
     public void remove(int id, ResultListener listener);
 

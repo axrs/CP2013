@@ -179,7 +179,7 @@ public class ContactDAO extends Publisher implements IContactDAO {
 
                 Request r = new GetAllContactsRequest();
                 r.addResultListener(onGetAllContactsResult());
-                ActiveRESTClient.addRequest(new GetAllContactsRequest());
+                ActiveRESTClient.addRequest(r);
             }
         };
     }

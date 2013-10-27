@@ -37,6 +37,11 @@ var UpdateProviderCommand = Ring.create([AbstractProviderCommand], {
                             res.writeHead(202, { 'Content-Type': 'application/json' });
                             res.write(JSON.stringify(provider));
                             res.end();
+
+                            var id = provider.getId();
+                            dao.removeProviderHours(id, function (err, result) {
+                                dao.updateProviderHours(id, provider.getHours(), null);
+                            });
                         }
                     });
                 }

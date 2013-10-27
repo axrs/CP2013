@@ -10,7 +10,6 @@ import dao.events.UpdatedEvent;
 import dao.rest.events.Result;
 import dao.rest.listeners.ResultListener;
 import dao.rest.requests.Request;
-import dao.rest.requests.contacts.GetAllContactsRequest;
 import dao.rest.requests.providers.*;
 import dao.rest.stores.ProviderDataStore;
 
@@ -65,13 +64,13 @@ public class ProviderDAO extends Publisher implements IProviderDAO {
     }
 
     @Override
-    public void create(ServiceProvider provider) {
-        create(provider, null);
+    public void create(ServiceProvider serviceProvider) {
+        create(serviceProvider, null);
     }
 
     @Override
-    public void update(ServiceProvider provider, ResultListener listener) {
-        Request r = new UpdateProviderRequest(provider);
+    public void update(ServiceProvider serviceProvider, ResultListener listener) {
+        Request r = new UpdateProviderRequest(serviceProvider);
         r.addResultListener(onProviderUpdatedResult());
         if (listener != null) {
             r.addResultListener(listener);
@@ -80,18 +79,18 @@ public class ProviderDAO extends Publisher implements IProviderDAO {
     }
 
     @Override
-    public void update(ServiceProvider provider) {
-        update(provider, null);
+    public void update(ServiceProvider serviceProvider) {
+        update(serviceProvider, null);
     }
 
     @Override
-    public void remove(ServiceProvider provider, ResultListener listener) {
-        remove(provider.getProviderId(), listener);
+    public void remove(ServiceProvider serviceProvider, ResultListener listener) {
+        remove(serviceProvider.getProviderId(), listener);
     }
 
     @Override
-    public void remove(ServiceProvider provider) {
-        remove(provider.getProviderId(), null);
+    public void remove(ServiceProvider serviceProvider) {
+        remove(serviceProvider.getProviderId(), null);
     }
 
     @Override
@@ -154,6 +153,7 @@ public class ProviderDAO extends Publisher implements IProviderDAO {
                 for (ServiceProvider provider : results) {
                     store.add(provider.getProviderId(), provider);
                 }
+
                 fireUpdated(new UpdatedEvent(this));
             }
         };
@@ -165,9 +165,9 @@ public class ProviderDAO extends Publisher implements IProviderDAO {
             public void results(Result result) {
                 if (result.getStatus() != 201 && result.getStatus() != 202) return;
 
-                Request r = new GetAllContactsRequest();
+                Request r = new GetAllProvidersRequest();
                 r.addResultListener(onGetAllProvidersResult());
-                ActiveRESTClient.addRequest(new GetAllContactsRequest());
+                ActiveRESTClient.addRequest(r);
             }
         };
     }

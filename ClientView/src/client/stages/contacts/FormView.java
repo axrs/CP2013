@@ -61,7 +61,7 @@ public class FormView extends CoreStage {
 
     @Override
     public void validationError(String message) {
-
+        onError(message);
     }
 
     private void init() {

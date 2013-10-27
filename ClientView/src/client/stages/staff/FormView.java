@@ -3,7 +3,8 @@ package client.stages.staff;
 import Models.ServiceHours;
 import Models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
-import client.controllers.windows.core.CloseStageCommand;
+import client.controllers.models.CreateProviderCommand;
+import client.controllers.models.UpdateProviderCommand;
 import client.scene.CoreScene;
 import client.scene.CoreStage;
 import client.scene.control.ActionButtons;
@@ -47,32 +48,36 @@ public class FormView extends CoreStage {
     private final ObservableList<ServiceHours> servHours = FXCollections.observableArrayList();
     boolean isDirty = false;
     ActionButtons buttons = new ActionButtons(true);
-    ServiceProvider provider = null;
+    ServiceProvider provider = new ServiceProvider();
     private TableView<ServiceHours> table = new TableView<ServiceHours>();
 
     public FormView() {
-        provider = new ServiceProvider();
         init();
+        buttons.setOnSaveAction(new ActionEventStrategy(new CreateProviderCommand(this.provider, this)));
+        setTitle("Register Provider");
+
     }
 
     public FormView(ServiceProvider provider) {
         this.provider = provider;
         init();
+        buttons.setOnSaveAction(new ActionEventStrategy(new UpdateProviderCommand(this.provider, this)));
+        setTitle("Editing Provider: " + provider.getName() + " " + provider.getSurname());
     }
 
     @Override
     public void validationError(String message) {
-
+        onError(message);
     }
 
     @Override
     public void success() {
-
+        this.isDirty = false;
+        this.close();
     }
 
     private void init() {
-        buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
-        buttons.setOnSaveAction(onSaveAction());
+        buttons.setOnCloseAction(onCloseAction());
 
         setTitle("CP2013 Appointment Scheduler - Edit/Create Service Provider");
         BorderPane border = new BorderPane();
@@ -245,8 +250,7 @@ public class FormView extends CoreStage {
         };
     }
 
-    @Override
-    public void close() {
+    private void tryClose() {
         if (isDirty) {
             MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
             dialog.setMessage("There are changes pending on this form.  Are you sure you wish to close?");
@@ -254,15 +258,20 @@ public class FormView extends CoreStage {
             dialog.setModal(true);
             MonologFXButton.Type type = dialog.showDialog();
             if (type == MonologFXButton.Type.YES) {
-                super.close();
+                this.close();
             }
         } else {
-            super.close();
+            this.close();
         }
     }
 
-    private void tryClose() {
-
+    private EventHandler<ActionEvent> onCloseAction() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                tryClose();
+            }
+        };
     }
 
     private EventHandler<KeyEvent> setDirty() {

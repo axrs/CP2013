@@ -1,13 +1,14 @@
 package dao;
 
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class DataStore extends Locker {
 
-    protected HashMap<Integer, Object> store = null;
+    protected ConcurrentHashMap<Integer, Object> store = null;
 
     public DataStore() {
-        store = new HashMap<Integer, Object>();
+        store = new ConcurrentHashMap<Integer, Object>();
     }
 
     public void clear() {
@@ -56,10 +57,19 @@ public abstract class DataStore extends Locker {
         add(id, o);
     }
 
+    public void addAll(Map<Integer, Object> values) {
+        writeLock.lock();
+        try {
+            store.putAll(values);
+        } finally {
+            writeLock.unlock();
+        }
+    }
+
     public void add(int id, Object o) {
         writeLock.lock();
         try {
-            store.put(id, o);
+            store.putIfAbsent(id, o);
         } finally {
             writeLock.unlock();
         }

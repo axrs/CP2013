@@ -131,10 +131,11 @@ Provider.fromJSON = function (data) {
     provider.setTerminated(data.terminated);
     provider.setColor(data.color);
 
-    for (var i = 0; i < data.hours; i++) {
-        var ph = ProviderHours.fromJSON(data.hours[i]);
-        provider.setHours(i, ph);
+    var hours = [];
+    for (var i = 0; i < data.hours.length; i++) {
+        hours[i] = ProviderHours.fromJSON(data.hours[i]);
     }
+    provider.setHours(hours);
 
     return provider;
 };

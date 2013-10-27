@@ -25,7 +25,6 @@ import javafx.stage.Modality;
 public class LoginWindow extends CoreStage {
     private TextField userName = new TextField();
     private TextField password = new PasswordField();
-    private LoginWindow instance = this;
 
     public LoginWindow() {
         setTitle("CP2013 Appointment Scheduler - Login");
