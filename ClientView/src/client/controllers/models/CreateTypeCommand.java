@@ -1,7 +1,6 @@
 package client.controllers.models;
 
 import Models.AppointmentType;
-import Models.Contact;
 import client.controllers.ICommand;
 import client.scene.INotifiable;
 import dao.DAO;
@@ -10,17 +9,17 @@ import dao.rest.listeners.ResultListener;
 
 public class CreateTypeCommand implements ICommand {
 
-    AppointmentType contact = null;
+    AppointmentType type = null;
     INotifiable source = null;
 
     public CreateTypeCommand(AppointmentType c, INotifiable source) {
         this.source = source;
-        contact = c;
+        type = c;
     }
 
     private boolean isValid() {
         boolean isValid = true;
-        if (!contact.getDescription().isEmpty() && !contact.getDuration().isEmpty()) {
+        if (!type.getDescription().isEmpty() && !type.getDuration().isEmpty()) {
             isValid = false;
         }
         return isValid;
@@ -29,21 +28,17 @@ public class CreateTypeCommand implements ICommand {
     @Override
     public void execute() {
         if (!isValid()) {
-            source.onValidationError("Contact must have a name and surname.");
+            source.onValidationError("Type must have a description and a duration.");
         } else {
-            DAO.getInstance().getContactDAO().create(contact, new ResultListener() {
+            DAO.getInstance().getTypeDAO().create(type, new ResultListener() {
                 @Override
                 public void results(Result result) {
-                    System.out.println(result.getStatus());
                     switch (result.getStatus()) {
                         case 201:
                             source.onSuccess();
                             break;
                         case 400:
                             source.onError("Bad request to server.");
-                            break;
-                        case 409:
-                            source.onError("Contact with specified name already exists.");
                             break;
                         case 500:
                             source.onError("Database Error");
