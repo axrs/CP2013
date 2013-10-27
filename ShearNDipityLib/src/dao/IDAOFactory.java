@@ -6,4 +6,7 @@ public interface IDAOFactory {
     public IProviderDAO getProviderDAO();
 
     public IUserDAO getUserDAO();
+
+    public ITypeDAO getTypeDAO();
+
 }

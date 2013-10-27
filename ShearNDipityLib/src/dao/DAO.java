@@ -29,6 +29,14 @@ public class DAO {
         return factory.getProviderDAO();
     }
 
+    private ITypeDAO getTypeFactoryDAO() {
+        return factory.getTypeDAO();
+    }
+
+    public ITypeDAO getTypeDAO() {
+        return getInstance().getTypeFactoryDAO();
+    }
+
     public IContactDAO getContactDAO() {
         return getInstance().getContactsFactoryDAO();
     }

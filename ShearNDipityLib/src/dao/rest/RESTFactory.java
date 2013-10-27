@@ -1,9 +1,6 @@
 package dao.rest;
 
-import dao.IContactDAO;
-import dao.IDAOFactory;
-import dao.IProviderDAO;
-import dao.IUserDAO;
+import dao.*;
 
 public class RESTFactory implements IDAOFactory {
 
@@ -20,5 +17,10 @@ public class RESTFactory implements IDAOFactory {
     @Override
     public IUserDAO getUserDAO() {
         return UserDAO.getInstance();
+    }
+
+    @Override
+    public ITypeDAO getTypeDAO() {
+        return TypeDAO.getInstance();
     }
 }
