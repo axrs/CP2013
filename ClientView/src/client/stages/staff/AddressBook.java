@@ -6,6 +6,7 @@ import Models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.contacts.EditStaffWindowCommand;
 import client.controllers.windows.core.CloseStageCommand;
+import client.controllers.windows.staff.NewServiceProviderFormCommand;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,6 +51,9 @@ public class AddressBook extends Stage {
 
         ActionButtons buttons = new ActionButtons(false);
         buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
+        Button b = new Button("+");
+        b.setOnAction(new ActionEventStrategy(new NewServiceProviderFormCommand()));
+        buttons.addControl(b);
 
         final VBox vbox = new VBox();
         vbox.getStyleClass().add("grid");

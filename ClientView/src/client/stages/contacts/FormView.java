@@ -46,11 +46,11 @@ public class FormView extends CoreStage {
 
     }
 
-    public FormView(Contact c) {
-        contact = c;
+    public FormView(Contact contact) {
+        this.contact = contact;
         init();
-        buttons.setOnSaveAction(new ActionEventStrategy(new UpdateContactCommand(contact, this)));
-        setTitle("Editing Contact: " + c.getName() + " " + c.getSurname());
+        buttons.setOnSaveAction(new ActionEventStrategy(new UpdateContactCommand(this.contact, this)));
+        setTitle("Editing Contact: " + contact.getName() + " " + contact.getSurname());
     }
 
     @Override
