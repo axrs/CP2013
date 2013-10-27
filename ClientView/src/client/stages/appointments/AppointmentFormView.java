@@ -62,7 +62,7 @@ public class AppointmentFormView extends Stage {
 
         ComboBox<String> appointmentType = new ComboBox<String>();
         for (int i = 0; i < appointmentTypeObservableList.size(); i++)
-            appointmentType.getItems().add(i, appointmentTypeObservableList.get(i).getAppTypeDescription());
+            appointmentType.getItems().add(i, appointmentTypeObservableList.get(i).getDescription());
 
         appointmentType.valueProperty().addListener(onAppointmentTypeChange());
         ComboBox<String> contact = new ComboBox<String>();
@@ -152,8 +152,8 @@ public class AppointmentFormView extends Stage {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object o2) {
                 for (AppointmentType type : AppointmentTypeController.getInstance().getAppointmentTypes().values()) {
-                    if (type.getAppTypeDescription().equals(o2)) {
-                        appointment.setAppTypeId(type.getAppTypeId());
+                    if (type.getDescription().equals(o2)) {
+                        appointment.setAppTypeId(type.getTypeId());
                         break;
                     }
                 }
@@ -163,7 +163,7 @@ public class AppointmentFormView extends Stage {
     }
 
     private void adjustMaximumTimeSelection() {
-        String appDuration = AppointmentTypeController.getInstance().getAppointmentType(appointment.getAppTypeId()).getAppTypeDuration();
+        String appDuration = AppointmentTypeController.getInstance().getAppointmentType(appointment.getAppTypeId()).getDuration();
         int appMinutes = (Integer.valueOf(appDuration.split(":")[0]) * 60) + (Integer.valueOf(appDuration.split(":")[1]));
 
         Calendar cal = Calendar.getInstance();

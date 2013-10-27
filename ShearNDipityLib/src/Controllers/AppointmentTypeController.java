@@ -132,7 +132,7 @@ public class AppointmentTypeController {
 
                     for (int i = 0; i < results.length; i++) {
                         AppointmentType appType = results[i];
-                        appointmentTypes.put(appType.getAppTypeId(), appType);
+                        appointmentTypes.put(appType.getTypeId(), appType);
                     }
 
                 } finally {

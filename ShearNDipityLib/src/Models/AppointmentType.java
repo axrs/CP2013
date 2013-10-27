@@ -12,51 +12,51 @@ package Models;
 
 public class AppointmentType {
 
-    private int appTypeId;
-    private String appTypeDescription;
-    private String appTypeDuration;
-    private int appTypeAllDay;
+    private int typeId;
+    private String description;
+    private String duration;
+    private int isAllDay;
 
     public AppointmentType() {
     }
 
     public AppointmentType(int appTypeId, String appTypeDescription, String appTypeDuration, int appTypeAllDay) {
-        this.appTypeId = appTypeId;
-        this.appTypeDescription = appTypeDescription;
-        this.appTypeDuration = appTypeDuration;
-        this.appTypeAllDay = appTypeAllDay;
+        this.typeId = appTypeId;
+        this.description = appTypeDescription;
+        this.duration = appTypeDuration;
+        this.isAllDay = appTypeAllDay;
     }
 
-    public int getAppTypeId() {
-        return appTypeId;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setAppTypeId(int appTypeId) {
-        this.appTypeId = appTypeId;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
-    public String getAppTypeDescription() {
-        System.out.println(appTypeDescription);
-        return appTypeDescription;
+    public String getDescription() {
+        System.out.println(description);
+        return description;
     }
 
-    public void setAppTypeDescription(String appTypeDescription) {
-        this.appTypeDescription = appTypeDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getAppTypeDuration() {
-        return appTypeDuration;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setAppTypeDuration(String appTypeDuration) {
-        this.appTypeDuration = appTypeDuration;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
-    public boolean isAppTypeAllDay() {
-        return appTypeAllDay == 1;
+    public boolean getIsAllDay() {
+        return isAllDay == 1;
     }
 
-    public void setAppTypeAllDay(boolean appTypeAllDay) {
-        this.appTypeAllDay = appTypeAllDay ? 1 : 0;
+    public void setIsAllDay(boolean isAllDay) {
+        this.isAllDay = isAllDay ? 1 : 0;
     }
 }
