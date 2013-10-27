@@ -131,11 +131,11 @@ public class ServiceProvider extends Contact {
         }
     }
 
-    public ServiceHours getByDay(int dayNum) {
+    public ServiceHours getDayHours(int dayNum) {
         return this.hours.get(dayNum);
     }
 
-    public void serByDay(int dayNum, ServiceHours servHours) {
+    public void setDayHours(int dayNum, ServiceHours servHours) {
         this.hours.set(dayNum, servHours);
     }
 }

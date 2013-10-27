@@ -87,23 +87,47 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
                 callback(err, result);
             }
         });
-
     },
 
     retrieveAll: function (callback) {
-        var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId;';
 
-        this.all(sql, null, function (err, result) {
-            var providers = [];
-            if (result && result.length) {
-                for (var i = 0; i < result.length; i++) {
-                    providers.push(SqliteProviderDAO.ProviderFromDatabase(result[i]));
-                }
-            }
-            if (callback) {
-                callback(err, providers);
-            }
-        });
+        var database = this._db;
+        var providers = [];
+        var total = 0;
+
+        function getAll() {
+            database.serialize(function () {
+
+                database.each('SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId;', function (err, result) {
+                        var provider = SqliteProviderDAO.ProviderFromDatabase(result);
+                        database.serialize(function () {
+                            database.all('SELECT * FROM Provider_Hours WHERE ProviderId=?;', provider.getId(), function (err, times) {
+                                var hours = [];
+                                if (times && times.length) {
+                                    for (var i = 0; i < times.length; i++) {
+                                        hours.push(SqliteProviderDAO.ProviderHoursFromDatabase(times[i]));
+                                    }
+                                }
+                                provider.setHours(hours);
+                                providers = providers.concat(provider);
+                                if (providers.length == total && callback) {
+                                    callback(false, providers);
+                                }
+                            });
+                        })
+                    },
+                    function (err, results) {
+                        total = results;
+                        if (total == 0) {
+                            callback(true, providers);
+                        }
+                    }
+                );
+            });
+        }
+
+        getAll();
+
     },
     retrieveProviderHours: function (id, callback) {
         var sql = 'SELECT * FROM Provider_Hours WHERE ProviderId=$id;';

@@ -14,7 +14,8 @@ var AllProvidersCommand = Ring.create([AbstractProviderCommand], {
      * @param res Response
      */
     execute: function (req, res) {
-        this._dao.retrieveAll(function (err, results) {
+        var dao = this._dao;
+        dao.retrieveAll(function (err, results) {
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {

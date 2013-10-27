@@ -19,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -107,64 +106,63 @@ public class FormView extends CoreStage {
         serviceProviderPA.bindBidirectional("state", state.textProperty());
     }
 
+    private EventHandler<TableColumn.CellEditEvent> onCellEditEnd(final CellEditField field) {
+        return new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent cellEditEvent) {
+                ServiceHours hrs = provider.getDayHours(cellEditEvent.getTablePosition().getRow());
+
+                switch (field) {
+                    case START:
+                        hrs.setStart(cellEditEvent.getNewValue().toString());
+                        break;
+                    case BREAKSTART:
+                        hrs.setBreakStart(cellEditEvent.getNewValue().toString());
+                        break;
+                    case BREAKEND:
+                        hrs.setBreakEnd(cellEditEvent.getNewValue().toString());
+                        break;
+                    case END:
+                        hrs.setEnd(cellEditEvent.getNewValue().toString());
+                        break;
+                }
+                provider.setDayHours(cellEditEvent.getTablePosition().getRow(), hrs);
+            }
+        };
+    }
+
     private void initialiseTableColumns() {
         TableColumn dayColumn = new TableColumn("Weekday");
-        dayColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsDayName"));
+        dayColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("dayName"));
+        dayColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
 
-        TableColumn shiftStartColumn = new TableColumn("Shift Start");
-        shiftStartColumn.setMinWidth(50);
-        shiftStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsStart"));
+        TableColumn shiftStartColumn = new TableColumn("Start");
+        shiftStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("start"));
         shiftStartColumn.setCellFactory(ComboBoxTableCell.forTableColumn(timesList));
-        shiftStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
-                (cellEditEvent.getTableView().getItems().get(
-                        cellEditEvent.getTablePosition().getRow())
-                ).setStart(cellEditEvent.getNewValue());
+        shiftStartColumn.setOnEditCommit(onCellEditEnd(CellEditField.START));
+        shiftStartColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
 
-            }
-        });
+        TableColumn breakStartColumn = new TableColumn("Lunch");
+        breakStartColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
+        breakStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("breakStart"));
+        breakStartColumn.setCellFactory(ComboBoxTableCell.forTableColumn(timesList));
+        breakStartColumn.setOnEditCommit(onCellEditEnd(CellEditField.BREAKSTART));
 
-        TableColumn breakStartColumn = new TableColumn("Break Start");
-        breakStartColumn.setMinWidth(50);
-        breakStartColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsBreakStart"));
-        breakStartColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        breakStartColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
-                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
-                        cellEditEvent.getTablePosition().getRow())
-                ).setBreakStart(cellEditEvent.getNewValue());
-            }
-        });
+        TableColumn breakEndColumn = new TableColumn("Start");
+        breakEndColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
+        breakEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("breakEnd"));
+        breakEndColumn.setCellFactory(ComboBoxTableCell.forTableColumn(timesList));
+        breakEndColumn.setOnEditCommit(onCellEditEnd(CellEditField.BREAKEND));
 
-        TableColumn breakEndColumn = new TableColumn("Break End");
-        breakEndColumn.setMinWidth(50);
-        breakEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsBreakEnd"));
-        breakEndColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        breakEndColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
-                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
-                        cellEditEvent.getTablePosition().getRow())
-                ).setBreakEnd(cellEditEvent.getNewValue());
-            }
-        });
-
-        TableColumn shiftEndColumn = new TableColumn("Shift End");
-        shiftEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("servHrsEnd"));
-        shiftEndColumn.setMinWidth(50);
-        shiftEndColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        shiftEndColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ServiceHours, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ServiceHours, String> cellEditEvent) {
-                ((ServiceHours) cellEditEvent.getTableView().getItems().get(
-                        cellEditEvent.getTablePosition().getRow())
-                ).setEnd(cellEditEvent.getNewValue());
-
-            }
-        });
+        TableColumn shiftEndColumn = new TableColumn("End");
+        shiftEndColumn.setCellValueFactory(new PropertyValueFactory<ServiceHours, String>("end"));
+        shiftEndColumn.setCellFactory(ComboBoxTableCell.forTableColumn(timesList));
+        shiftEndColumn.setOnEditCommit(onCellEditEnd(CellEditField.END));
         table.getColumns().addAll(dayColumn, shiftStartColumn, breakStartColumn, breakEndColumn, shiftEndColumn);
+
+        for (TableColumn c : table.getColumns()) {
+            c.prefWidthProperty().bind(table.widthProperty().divide(5));
+        }
     }
 
     private void createTimes() {
@@ -275,5 +273,7 @@ public class FormView extends CoreStage {
             }
         };
     }
+
+    private enum CellEditField {START, BREAKSTART, BREAKEND, END}
 
 }

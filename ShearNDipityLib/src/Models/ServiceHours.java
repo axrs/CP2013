@@ -18,7 +18,7 @@ public class ServiceHours {
     private String breakStart = "00:00";
     private String breakEnd = "00:00";
     private String end = "00:00";
-    private String servHrsDayName;
+    private String dayName;
 
     public ServiceHours() {
     }
@@ -75,7 +75,7 @@ public class ServiceHours {
         this.end = end;
     }
 
-    public String getServHrsDayName() {
+    public String getDayName() {
 
         return new DateFormatSymbols().getWeekdays()[day + 1];
     }
