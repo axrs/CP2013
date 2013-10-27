@@ -17,7 +17,6 @@ import client.controllers.windows.contacts.NewContactAddressBookCommand;
 import client.controllers.windows.contacts.NewContactWindowCommand;
 import client.controllers.windows.core.ApplicationExitCommand;
 import client.controllers.windows.core.ShowAboutWindowCommand;
-import client.controllers.windows.core.ShowLoginCommand;
 import client.controllers.windows.core.StatsWindowCommand;
 import client.controllers.windows.staff.NewServiceProviderFormCommand;
 import client.controllers.windows.staff.ShowStaffAddressBookWindowCommand;
@@ -107,7 +106,6 @@ public class MainView extends Application {
         BorderPane mainPane = new BorderPane();
         mainPane.setTop(menuBar);
 
-
         buildFileMenu();
         buildContactMenu();
         buildStaffMenu();
@@ -136,7 +134,7 @@ public class MainView extends Application {
 
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
-        new ShowLoginCommand().execute();
+        //new ShowLoginCommand().execute();
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {

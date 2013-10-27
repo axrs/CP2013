@@ -58,7 +58,7 @@ public class ServiceProviderController implements BaseController, ActionListener
             theView.setEmail(theModel.getEmail());
             theView.setCompany(theModel.getCompany());
             theView.setPhone(theModel.getPhone());
-            theView.setAddress(theModel.getStreet());
+            theView.setAddress(theModel.getAddress());
             theView.setSuburb(theModel.getSuburb());
             theView.setCity(theModel.getCity());
             theView.setState(theModel.getState());
@@ -77,7 +77,7 @@ public class ServiceProviderController implements BaseController, ActionListener
         theModel.setEmail(theView.getEmail());
         theModel.setCompany(theView.getCompany());
         theModel.setPhone(theView.getPhone());
-        theModel.setStreet(theView.getAddress());
+        theModel.setAddress(theView.getAddress());
         theModel.setSuburb(theView.getSuburb());
         theModel.setCity(theView.getCity());
         theModel.setState(theView.getState());
@@ -85,7 +85,6 @@ public class ServiceProviderController implements BaseController, ActionListener
         theModel.setInitiated(theView.getDateEmployed().toString());
         theModel.setInitiated(theView.getDateTerminated().toString());
         theModel.setHours(theView.getServHours());
-        theModel.update();
     }
 
     @Override

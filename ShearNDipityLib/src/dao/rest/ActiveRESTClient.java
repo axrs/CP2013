@@ -38,7 +38,7 @@ public class ActiveRESTClient {
                 BufferedReader reader = null;
                 try {
                     reader = new BufferedReader(new InputStreamReader(stream));
-                    StringBuilder buffer = new StringBuilder();
+                    StringBuffer buffer = new StringBuffer();
                     int read;
                     char[] chars = new char[4096];
                     while ((read = reader.read(chars)) != -1)
@@ -53,11 +53,12 @@ public class ActiveRESTClient {
 
             private void makeRequest(Request request) {
                 Result result = new Result(this);
+                HttpURLConnection connection = null;
                 try {
                     if (!request.getTarget().isEmpty()) {
                         String location = Request.getLocation() + request.getTarget() + "?access_token=" + Request.getToken();
                         URL url = new URL(location);
-                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection = (HttpURLConnection) url.openConnection();
 
                         LogEventDispatcher.log("Attempting URL Connection to: " + location);
 
@@ -69,20 +70,32 @@ public class ActiveRESTClient {
                         connection.setRequestProperty("Accept", "application/json");         //must be json
 
                         if (!request.getMethod().equals("GET") && !request.getMessage().equals("DELETE")) {
+                            LogEventDispatcher.log("Writing JSON Data.");
+
                             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                             writer.write(request.getMessage());
                             writer.flush();
                             writer.close();
                         }
 
-                        result = new Result(this, connection.getResponseCode(), ReadStream(connection.getInputStream()));
-
+                        String response = ReadStream(connection.getInputStream());
+                        LogEventDispatcher.log(connection.getResponseCode() + "\t" + response);
+                        result = new Result(this, connection.getResponseCode(), response);
                         connection.disconnect();
                     }
 
                 } catch (Exception ex) {
                     LogEventDispatcher.log("REST Exception Occurred: " + ex.toString());
+                    if (connection != null) {
+                        try {
+                            result = new Result(this, connection.getResponseCode(), "");
+                        } catch (IOException e) {
+                            LogEventDispatcher.log(e.toString());
+                        }
+                    }
+
                 } finally {
+                    LogEventDispatcher.log("Dispatching Result.");
                     request.resultReturned(result);
                 }
             }

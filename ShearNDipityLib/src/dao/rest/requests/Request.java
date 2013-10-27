@@ -3,15 +3,17 @@ package dao.rest.requests;
 import dao.rest.events.Result;
 import dao.rest.listeners.ResultListener;
 
-import javax.swing.event.EventListenerList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Request {
-    private static String token = "";
+    private static String token = "0";
     private static String location = "";
     protected String target = "";
     protected String message = "";
     protected String method = "GET";
-    protected EventListenerList subscribers = new EventListenerList();
+    List<ResultListener> resultListeners = Collections.synchronizedList(new ArrayList<ResultListener>());
 
     public static String getToken() {
         return token;
@@ -54,7 +56,7 @@ public class Request {
     }
 
     public void addResultListener(ResultListener listener) {
-        subscribers.add(ResultListener.class, listener);
+        resultListeners.add(listener);
     }
 
     public void resultReturned(Result restRequest) {
@@ -62,11 +64,8 @@ public class Request {
     }
 
     private void triggerResults(Result result) {
-        Object[] listeners = subscribers.getListenerList();
-        for (int i = 0; i < listeners.length; i += 2) {
-            if (listeners[i] == ResultListener.class) {
-                ((ResultListener) listeners[i + 1]).results(result);
-            }
+        for (ResultListener l : resultListeners) {
+            l.results(result);
         }
     }
 }

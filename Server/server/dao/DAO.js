@@ -24,7 +24,7 @@ module.exports = {
         return this.getInstance().getFactory().getAppointmentTypeDAO();
     },
     getContactDAO: function () {
-        return this.getInstance().getFactory().getUserDAO();
+        return this.getInstance().getFactory().getContactDAO();
     },
     getUserDAO: function () {
         return this.getInstance().getFactory().getUserDAO();

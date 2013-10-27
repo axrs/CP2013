@@ -12,7 +12,6 @@ import dao.rest.listeners.ResultListener;
 import dao.rest.requests.Request;
 import dao.rest.requests.contacts.*;
 import dao.rest.stores.ContactDataStore;
-import javafx.collections.ObservableMap;
 
 public class ContactDAO extends Publisher implements IContactDAO {
 
@@ -31,7 +30,7 @@ public class ContactDAO extends Publisher implements IContactDAO {
     protected ContactDAO() {
         Request r = new GetAllContactsRequest();
         r.addResultListener(onGetAllContactsResult());
-        ActiveRESTClient.addRequest(new GetAllContactsRequest());
+        ActiveRESTClient.addRequest(r);
     }
 
     /**
@@ -52,7 +51,7 @@ public class ContactDAO extends Publisher implements IContactDAO {
     }
 
     @Override
-    public  Contact[] getStore() {
+    public Contact[] getStore() {
         return store.getValues();
     }
 

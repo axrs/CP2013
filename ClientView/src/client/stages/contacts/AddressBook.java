@@ -1,18 +1,22 @@
 package client.stages.contacts;
 
-import Controllers.ContactsController;
 import Models.Contact;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.contacts.EditContactWindowCommand;
+import client.controllers.windows.contacts.NewContactWindowCommand;
 import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
+import dao.DAO;
+import dao.events.ContactsUpdatedListener;
+import dao.events.UpdatedEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,14 +46,16 @@ public class AddressBook extends Stage {
 
         initialiseTableColumns();
         table.setItems(data);
+        updateTableData();
 
-        ContactsController.getInstance().addUpdatedListener(onContactsListUpdate());
-        ContactsController.getInstance().getContactsFromServer();
-
+        DAO.getInstance().getContactDAO().addUpdatedEventLister(onContactsStoreUpdated());
         table.setOnMouseClicked(onTableRowDoubleClick());
 
         ActionButtons buttons = new ActionButtons(false);
+        Button b = new Button("+");
+        b.setOnAction(new ActionEventStrategy(new NewContactWindowCommand()));
         buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
+        buttons.addControl(b);
 
         final VBox vbox = new VBox();
         vbox.getStyleClass().add("grid");
@@ -60,6 +66,20 @@ public class AddressBook extends Stage {
 
         Scene scene = new CoreScene(contactPane, 300, 500);
         setScene(scene);
+    }
+
+    private void updateTableData() {
+        data.clear();
+        data.addAll(DAO.getInstance().getContactDAO().getStore());
+    }
+
+    private ContactsUpdatedListener onContactsStoreUpdated() {
+        return new ContactsUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                updateTableData();
+            }
+        };
     }
 
     /**
@@ -90,17 +110,4 @@ public class AddressBook extends Stage {
             }
         };
     }
-
-    private ContactsController.ContactsUpdatedListener onContactsListUpdate() {
-        return new ContactsController.ContactsUpdatedListener() {
-            @Override
-            public void updated(ContactsController.ContactsUpdated event) {
-                //Clear the table data source
-                data.clear();
-                //Add all known contacts to the data source.
-                data.addAll(ContactsController.getInstance().getContacts().values());
-            }
-        };
-    }
-
 }

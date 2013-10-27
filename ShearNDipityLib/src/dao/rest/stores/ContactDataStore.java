@@ -3,6 +3,8 @@ package dao.rest.stores;
 import Models.Contact;
 import dao.DataStore;
 
+import java.util.Arrays;
+
 public class ContactDataStore extends DataStore {
     @Override
     public Contact get(int id) {
@@ -10,7 +12,7 @@ public class ContactDataStore extends DataStore {
     }
 
     public Contact[] getValues() {
-        return (Contact[]) super.getValues();
+        return Arrays.copyOf(super.getValues(), super.getValues().length, Contact[].class);
     }
 
     public void update(int id, Contact contact) {

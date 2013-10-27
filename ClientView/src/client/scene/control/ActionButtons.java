@@ -66,6 +66,7 @@ public class ActionButtons extends HBox {
     }
 
     private void init() {
+
         this.getStyleClass().add("button_box");
         this.setAlignment(Pos.BASELINE_RIGHT);
         this.getChildren().add(closeButton);

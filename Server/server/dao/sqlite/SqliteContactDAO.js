@@ -145,7 +145,7 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
         });
     },
 
-    _updateContact: function(contact, callback){
+    _updateContact: function (contact, callback) {
         var sql = '' +
             'UPDATE Contact ' +
             'SET Name=$name, MiddleName=$middleName, Surname=$surname, ' +

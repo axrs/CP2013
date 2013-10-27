@@ -1,8 +1,6 @@
 package Models;
 
-import Controllers.ContactsController;
-
-public class Contact implements CRUDModel {
+public class Contact {
     /**
      * Contact First Name
      */
@@ -27,7 +25,7 @@ public class Contact implements CRUDModel {
     /**
      * Contact Street Address
      */
-    private String street;
+    private String address;
     /**
      * Address Suburb
      */
@@ -184,21 +182,22 @@ public class Contact implements CRUDModel {
     }
 
     /**
-     * Gets the contacts street address
+     * Gets the contacts address address
      *
-     * @return street address
+     * @return address address
      */
-    public String getStreet() {
-        return street;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * Sets the contacts street address
+     * Sets the contacts address address
      *
-     * @param street street address
+     * @param address address address
      */
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAddress(String address) {
+        System.out.println(address);
+        this.address = address;
     }
 
     /**
@@ -281,61 +280,11 @@ public class Contact implements CRUDModel {
         company = c.company;
         phone = c.phone;
 
-        street = c.street;
+        address = c.address;
         suburb = c.suburb;
         city = c.city;
         state = c.state;
         post = c.post;
 
-    }
-
-    @Override
-    public boolean create() {
-        if (this.getContactId() == 0) {
-            ContactsController.getInstance().createContact(this);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean retrieve(int id) {
-        Contact c = ContactsController.getInstance().getContact(id);
-
-        boolean result = (c != null);
-        if (result) {
-            replaceInstance(c);
-        }
-        return result;
-    }
-
-    @Override
-    public boolean retrieve() {
-        boolean result = false;
-        Contact c = null;
-
-        if (this.getContactId() != 0) {
-            c = ContactsController.getInstance().getContact(getContactId());
-            result = (c != null);
-        }
-
-        if (result)
-            replaceInstance(c);
-        return result;
-    }
-
-    @Override
-    public boolean update() {
-        boolean result = true;
-        if (getContactId() != 0) {
-            ContactsController.getInstance().updateContact(this);
-        } else {
-            result = create();
-        }
-        return result;
-    }
-
-    @Override
-    public boolean delete() {
-        return false;
     }
 }

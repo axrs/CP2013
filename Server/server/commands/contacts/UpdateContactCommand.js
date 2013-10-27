@@ -20,8 +20,7 @@ var UpdateContactCommand = Ring.create([AbstractConcreteCommand], {
 
         var contact = this._contact;
         var dao = this._dao;
-        dao.retrieve(contact.getId(), function (err, result) {
-
+        dao.retrieveById(contact.getId(), function (err, result) {
             var updatedContact = Contact.fromJSON(
                 Utilities.mergeObjectProperties([
                     result.toJSON(),
