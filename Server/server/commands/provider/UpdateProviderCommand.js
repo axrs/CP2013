@@ -17,16 +17,17 @@ var UpdateProviderCommand = Ring.create([AbstractProviderCommand], {
         var provider = this._provider;
         var dao = this._dao;
         dao.retrieveById(provider.getId(), function (err, result) {
-            var updatedContact = Provider.fromJSON(
-                Utilities.mergeObjectProperties([
-                    result.toJSON(),
-                    provider.toJSON()
-                ])
-            );
-
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {
+                console.log(result);
+                var updatedContact = Provider.fromJSON(
+                    Utilities.mergeObjectProperties([
+                        result.toJSON(),
+                        provider.toJSON()
+                    ])
+                );
+
                 if (!provider.isValid() || provider.getId() <= 0) {
                     StatusHelpers.status400(req, res);
                 } else {

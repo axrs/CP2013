@@ -165,11 +165,6 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
                                 }
                             });
                         })
-                    },
-                    function (err, results) {
-                        if (callback) {
-                            callback(err, results);
-                        }
                     }
                 );
             });
@@ -224,8 +219,8 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
                 }
             } else {
                 var sql = '' +
-                    'UPDATE Provider SET' +
-                    'Biography=$biography, Portrait=$portrait, Initiated=$initiated, Terminated=$terminated, Color=$color  ' +
+                    'UPDATE Provider SET ' +
+                    'Biography=$biography, Portrait=$portrait, Initiated=$initiated, Terminated=$terminated, Color=$color ' +
                     'WHERE ProviderId=$id;';
 
                 var values = {

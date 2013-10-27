@@ -41,14 +41,14 @@ public class RegisterNewUser extends CoreStage {
     final PasswordField confirmPassword = new PasswordField();
     final ActionButtons buttons = new ActionButtons(true);
     boolean isDirty = false;
-    private User user = null;
+    private User user = new User();
     private RegisterNewUser instance = this;
     private ICommand onFailure = null;
+    private BeanPathAdapter<User> userPA;
 
 
     public RegisterNewUser() {
         setTitle("Create an Account");
-        user = new User();
         init();
     }
 
@@ -74,7 +74,7 @@ public class RegisterNewUser extends CoreStage {
     }
 
     private void bindToModel() {
-        BeanPathAdapter<User> userPA = new BeanPathAdapter<User>(user);
+        userPA = new BeanPathAdapter<User>(user);
         userPA.bindBidirectional("name", name.textProperty());
         userPA.bindBidirectional("surname", surname.textProperty());
         userPA.bindBidirectional("company", company.textProperty());
@@ -93,7 +93,7 @@ public class RegisterNewUser extends CoreStage {
 
     @Override
     public void validationError(String message) {
-
+        onInformation(message);
     }
 
     @Override

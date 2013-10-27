@@ -40,9 +40,9 @@ server.get('/api/providers/:id',
 server.put('/api/providers',
     createCMD
 );
-server.delete('/api/providers/:id',
-    removeCMD
-);
 server.put('/api/providers/:id',
     updateCMD
+);
+server.delete('/api/providers/:id',
+    removeCMD
 );

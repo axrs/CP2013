@@ -7,42 +7,59 @@ public abstract class CoreStage extends NotifiableStage {
 
     @Override
     public void onInformation(final String message) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                information(message);
-            }
-        });
+        try {
+            information(message);
+        } catch (Exception e) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    information(message);
+                }
+            });
+        }
     }
 
     @Override
     public void onSuccess() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                success();
-            }
-        });
+        try {
+            success();
+        } catch (Exception e) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    success();
+                }
+            });
+        }
     }
 
     @Override
     public void onValidationError(final String message) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                validationError(message);
-            }
-        });
+
+        try {
+            validationError(message);
+        } catch (Exception e) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    validationError(message);
+                }
+            });
+        }
     }
 
     @Override
     public void onError(final String message) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                error(message);
-            }
-        });
+        try {
+            error(message);
+        } catch (Exception e) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    error(message);
+                }
+            });
+        }
     }
 
     public void information(String message) {

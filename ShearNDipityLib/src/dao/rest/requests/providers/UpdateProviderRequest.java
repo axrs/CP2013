@@ -8,7 +8,7 @@ public class UpdateProviderRequest extends Request {
 
     public UpdateProviderRequest(ServiceProvider provider) {
         setMethod("PUT");
-        setTarget("/api/provider/" + String.valueOf(provider.getProviderId()));
+        setTarget("/api/providers/" + String.valueOf(provider.getProviderId()));
         setMessage(new Gson().toJson(provider, ServiceProvider.class));
     }
 }

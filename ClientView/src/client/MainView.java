@@ -147,7 +147,7 @@ public class MainView extends Application {
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
         //ToDo: Force Login Again.
-        //new ShowLoginCommand().execute();
+        new ShowLoginCommand().execute();
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {

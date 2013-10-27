@@ -6,7 +6,7 @@ public class GetAllProvidersRequest extends Request {
 
     public GetAllProvidersRequest() {
         setMethod("GET");
-        setTarget("/api/providers");
+        setTarget("/api/providers/");
     }
 }
 

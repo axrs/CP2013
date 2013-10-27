@@ -56,7 +56,9 @@ public class ActiveRESTClient {
                 HttpURLConnection connection = null;
                 try {
                     if (!request.getTarget().isEmpty()) {
-                        String location = Request.getLocation() + request.getTarget() + "?access_token=" + Request.getToken();
+                        String location = Request.getLocation() + request.getTarget();
+                        location += location.endsWith("/") ? "" : "/";
+                        location += "?access_token=" + Request.getToken();
                         URL url = new URL(location);
                         connection = (HttpURLConnection) url.openConnection();
 

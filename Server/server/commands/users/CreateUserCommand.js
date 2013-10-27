@@ -21,6 +21,7 @@ var CreateUserCommand = Ring.create([AbstractUserCommand], {
         if (!user.isValid() || user.getId() > 0) {
             StatusHelpers.status400(req, res);
         } else {
+            console.log(user.getUserName());
             dao.retrieveByUserName(user.getUserName(), function (err, result) {
                 if (err) {
                     StatusHelpers.status500(req, res);
