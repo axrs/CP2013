@@ -148,7 +148,6 @@ var User = Ring.create([Contact], {
             "token": this._token,
             "md5Email": Crypto.createHash('md5').update(this._email).digest("hex")
         };
-
         return Utilities.mergeObjectProperties([contactData, userData]);
     }
 });

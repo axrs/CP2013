@@ -4,10 +4,7 @@ import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
 import Controllers.ContactsController;
 import Controllers.ServiceProvidersController;
-import Models.Appointment;
-import Models.Availability;
-import Models.ScheduledAppointment;
-import Models.ServiceProvider;
+import Models.*;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;
 import client.controllers.dao.ConfigureDAOCommand;
@@ -25,6 +22,9 @@ import client.scene.CoreScene;
 import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
 import client.scene.control.ReadOnlyAppointmentImpl;
+import dao.DAO;
+import dao.events.UpdatedEvent;
+import dao.events.UserUpdatedListener;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -47,6 +47,7 @@ public class MainView extends Application {
 
     private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
+    private final Menu userMenu = new Menu();
 
     public static void main(String[] args) {
         launch(args);
@@ -93,6 +94,19 @@ public class MainView extends Application {
         new ConfigureDAOCommand().execute();
         new HookLoggerCommand().execute();
 
+        DAO.getInstance().getUserDAO().addUpdatedEventLister(new UserUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        User u = DAO.getInstance().getUserDAO().getUser();
+                        userMenu.setText(u.getName() + " " + u.getSurname());
+                    }
+                });
+            }
+        });
+
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
         ContactsController.getInstance().getContactsFromServer();
@@ -103,7 +117,7 @@ public class MainView extends Application {
         primaryStage.setTitle("CP2013 Appointment Scheduler");
         BorderPane mainPane = new BorderPane();
         mainPane.setTop(menuBar);
-
+        menuBar.getMenus().add(userMenu);
         buildFileMenu();
         buildContactMenu();
         buildStaffMenu();

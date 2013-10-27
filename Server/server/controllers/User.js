@@ -15,7 +15,8 @@ var getCurrentUserCMD = function (req, res) {
 
 var loginCMD = function (req, res) {
     var user = User.fromJSON(req.body);
-    new LoginUserCommand(user, DAO.getUserDAO()).execute(req, res);
+    var password = req.body.password;
+    new LoginUserCommand(user, password, DAO.getUserDAO()).execute(req, res);
 };
 
 var createCMD = function (req, res) {
@@ -44,7 +45,7 @@ server.get('/api/user',
     getCurrentUserCMD
 );
 
-server.put('/api/users/login',
+server.put('/api/user/login',
     loginCMD
 );
 

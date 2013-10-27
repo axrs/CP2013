@@ -5,8 +5,9 @@ var StatusHelpers = require('../../helpers/StatusHelpers.js');
 
 var LoginUserCommand = Ring.create([AbstractUserCommand], {
     _user: null,
-
-    init: function (user, dao) {
+    _password: "",
+    init: function (user, password, dao) {
+        this._password = password;
         this._user = user;
         this.$super(dao);
     },
@@ -14,13 +15,15 @@ var LoginUserCommand = Ring.create([AbstractUserCommand], {
     execute: function (req, res) {
         var user = this._user;
         var dao = this._dao;
+        var password = this._password;
+        console.log(password);
         dao.retrieveByUserName(user.getUserName(), function (err, result) {
             if (err) {
                 StatusHelpers.status500(req, res);
             } else if (!result) {
                 StatusHelpers.status404(req, res);
             } else {
-                if (result.validatePassword(user.getPassword())) {
+                if (result.validatePassword(password)) {
                     res.writeHead(202, { 'Content-Type': 'application/json' });
                     user = result;
                     res.write(JSON.stringify(result));

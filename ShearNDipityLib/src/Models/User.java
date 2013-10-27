@@ -2,7 +2,6 @@ package Models;
 
 public class User extends Contact {
 
-
     public static User loggedInUser = null;
     public static String userToken = "";
     private String token;

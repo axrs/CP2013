@@ -17,25 +17,30 @@ public class LoginUserCommand implements ICommand {
         this.user = user;
     }
 
+    public LoginUserCommand(String userName, String password, INotifiable source) {
+        this.source = source;
+        User u = new User();
+        u.setUserName(userName);
+        u.setPassword(password);
+        this.user = u;
+    }
+
     @Override
     public void execute() {
 
-        DAO.getInstance().getUserDAO().create(user, new ResultListener() {
+        DAO.getInstance().getUserDAO().login(user, new ResultListener() {
             @Override
             public void results(Result result) {
-                if (result.getStatus() == 201) {
-
-                }
                 if (source == null) return;
                 switch (result.getStatus()) {
-                    case 201:
+                    case 202:
                         source.onSuccess();
                         break;
-                    case 400:
-                        source.onError("Bad request to server.");
+                    case 404://Unknown User
+                        source.onError("Invalid User Credentials.");
                         break;
-                    case 409:
-                        source.onError("User with specified user name already exists.");
+                    case 409://Bad Password
+                        source.onError("Invalid User Credentials.");
                         break;
                     case 500:
                         source.onError("Database Error");
