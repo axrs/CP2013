@@ -55,6 +55,140 @@ var SqliteAppointmentDAO = Ring.create([SqliteHelper], {
             }
         });
     },
+    retrieveForProvider: function (providerId, callback) {
+        var sql = 'SELECT * FROM Appointment WHERE ProviderId=$id;';
+        this.all(sql, {$id: providerId}, function (err, result) {
+            var appointments = [];
+            if (result && result.length) {
+                for (var i = 0; i < result.length; i++) {
+                    appointments.push(SqliteAppointmentDAO.AppointmentFromDatabase(result[i]));
+                }
+            }
+            if (callback) {
+                callback(err, appointments);
+            }
+        });
+    },
+
+    retrieveForContact: function (contactID, callback) {
+        var sql = 'SELECT * FROM Appointment WHERE ContactId=$id;';
+        this.all(sql, {$id: contactID}, function (err, result) {
+            var appointments = [];
+            if (result && result.length) {
+                for (var i = 0; i < result.length; i++) {
+                    appointments.push(SqliteAppointmentDAO.AppointmentFromDatabase(result[i]));
+                }
+            }
+            if (callback) {
+                callback(err, appointments);
+            }
+        });
+    },
+    retrievePastForProvider: function (providerId, callback) {
+        var sql = 'SELECT * FROM Appointment WHERE ProviderId=$id AND Date < date(\'now\');';
+        this.all(sql, {$id: providerId}, function (err, result) {
+            var appointments = [];
+            if (result && result.length) {
+                for (var i = 0; i < result.length; i++) {
+                    appointments.push(SqliteAppointmentDAO.AppointmentFromDatabase(result[i]));
+                }
+            }
+            if (callback) {
+                callback(err, appointments);
+            }
+        });
+    },
+
+    retrievePastForContact: function (contactID, callback) {
+        var sql = 'SELECT * FROM Appointment WHERE ContactId=$id AND Date < date(\'now\');';
+        this.all(sql, {$id: contactID}, function (err, result) {
+            var appointments = [];
+            if (result && result.length) {
+                for (var i = 0; i < result.length; i++) {
+                    appointments.push(SqliteAppointmentDAO.AppointmentFromDatabase(result[i]));
+                }
+            }
+            if (callback) {
+                callback(err, appointments);
+            }
+        });
+    },
+    retrieveFutureForProvider: function (providerId, callback) {
+        var sql = 'SELECT * FROM Appointment WHERE ProviderId=$id AND Date >= date(\'now\');';
+        this.all(sql, {$id: providerId}, function (err, result) {
+            var appointments = [];
+            if (result && result.length) {
+                for (var i = 0; i < result.length; i++) {
+                    appointments.push(SqliteAppointmentDAO.AppointmentFromDatabase(result[i]));
+                }
+            }
+            if (callback) {
+                callback(err, appointments);
+            }
+        });
+    },
+    retrieveFutureForContact: function (contactID, callback) {
+        var sql = 'SELECT * FROM Appointment WHERE ContactId=$id AND Date >= date(\'now\');';
+        this.all(sql, {$id: contactID}, function (err, result) {
+            var appointments = [];
+            if (result && result.length) {
+                for (var i = 0; i < result.length; i++) {
+                    appointments.push(SqliteAppointmentDAO.AppointmentFromDatabase(result[i]));
+                }
+            }
+            if (callback) {
+                callback(err, appointments);
+            }
+        });
+    },
+
+    retrieveDetailedAvailabilitiesForProvider: function (providerId, date, callback) {
+        var sql =
+            'SELECT timeSlot, a.ProviderId, Color FROM (' +
+                '    SELECT timeSlot, ProviderId, count(*) as occurances ' +
+                '    FROM ( ' +
+                '            SELECT time(Start) as timeSlot, ProviderId FROM Provider_Hours WHERE ProviderId = ? and Day = strftime(\'%w\',?) ' +
+                '        UNION ALL ' +
+                '            SELECT time(BreakStart) as timeSlot, ProviderId FROM Provider_Hours WHERE ProviderId = ? and Day = strftime(\'%w\',?) ' +
+                '        UNION ALL ' +
+                '            SELECT time(BreakEnd) as timeSlot , ProviderId FROM Provider_Hours WHERE ProviderId = ? and Day = strftime(\'%w\',?) ' +
+                '        UNION ALL ' +
+                '           SELECT time(End) as timeSlot, ProviderId FROM Provider_Hours WHERE ProviderId = ? and Day = strftime(\'%w\',?) ' +
+                '        UNION ALL ' +
+                '           SELECT time(Time) as timeSlot, ProviderId ' +
+                '           FROM Appointment as a ' +
+                '               LEFT JOIN Appointment_Type as b ON b.TypeId = a.TypeId ' +
+                '           WHERE ProviderId = ? AND Date = ? ' +
+                '       UNION ALL ' +
+                '           SELECT time(strftime(\'%s\',Time) + strftime(\'%s\',Duration), \'unixepoch\') as timeSlot, ProviderId ' +
+                '           FROM Appointment as a ' +
+                '               LEFT JOIN Appointment_Type as b ON b.TypeId = a.TypeId ' +
+                '           WHERE ProviderId = ? AND Date = ? ' +
+                '    )' +
+                '    GROUP BY timeSlot ' +
+                '    ORDER BY timeSlot ' +
+                ') AS a LEFT JOIN ON Provider.ProviderId = a.ProviderId ' +
+                'WHERE occurances = 1;';
+
+
+        var database = this._db;
+        database.all(sql,
+            [
+                id, date, //servHrsStart
+                id, date, //servHrsBreakStart
+                id, date, //servHrsBreakEnd
+                id, date,  //servHrsEnd
+                id, date,  //appTime
+                id, date  //appEndTime
+            ],
+
+            function (err, result) {
+                if (callback) {
+                    callback(err, result);
+                }
+            });
+
+    },
     remove: function (id, callback) {
         var sql = 'DELETE FROM Appointment WHERE AppointmentId=$id;';
         this.all(sql, {$id: id}, function (err) {
