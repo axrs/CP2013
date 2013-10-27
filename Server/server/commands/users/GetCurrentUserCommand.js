@@ -8,7 +8,7 @@ var GetCurrentUserCommand = Ring.create([ICommand], {
      * @param res Response
      */
     execute: function (req, res) {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.writeHead(202, { 'Content-Type': 'application/json' });
         res.write(JSON.stringify(req.user));
         res.end();
     }

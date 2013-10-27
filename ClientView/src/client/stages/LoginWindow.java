@@ -1,13 +1,15 @@
 package client.stages;
 
-import client.controllers.CompositeCommand;
 import client.controllers.ShowRegisterCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;
 import client.controllers.windows.core.ApplicationExitCommand;
-import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
+import client.scene.CoreStage;
 import client.scene.control.ActionButtons;
+import dao.DAO;
+import dao.events.UpdatedEvent;
+import dao.events.UserUpdatedListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -16,16 +18,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Timface
- * Date: 26/11/13
- * Time: 11:48 AM
- * To change this template use File | Settings | File Templates.
- */
-public class LoginWindow extends Stage {
+
+public class LoginWindow extends CoreStage {
+
 
     public LoginWindow() {
         setTitle("CP2013 Appointment Scheduler - Login");
@@ -38,11 +34,7 @@ public class LoginWindow extends Stage {
         TextField password = new TextField();
         Button gitLogin = new Button("Login With GitHub");
 
-        CompositeCommand githubActionCommands = new CompositeCommand();
-        githubActionCommands.addCommand(new GitLoginWindow());
-        githubActionCommands.addCommand(new CloseStageCommand(this));
-
-        gitLogin.setOnAction(new ActionEventStrategy(githubActionCommands));
+        gitLogin.setOnAction(new ActionEventStrategy(new GitLoginWindow()));
 
         GridPane gridPane = new GridPane();
         gridPane.getStyleClass().add("grid");
@@ -54,10 +46,7 @@ public class LoginWindow extends Stage {
         gridPane.addRow(2, register, login);
         login.setOnAction(login());
 
-        CompositeCommand registerActionCommands = new CompositeCommand();
-        registerActionCommands.addCommand(new ShowRegisterCommand());
-        registerActionCommands.addCommand(new CloseStageCommand(this));
-        register.setOnAction(new ActionEventStrategy(registerActionCommands));
+        register.setOnAction(new ActionEventStrategy(new ShowRegisterCommand()));
 
 
         ActionButtons buttons = new ActionButtons(false);
@@ -68,11 +57,28 @@ public class LoginWindow extends Stage {
         borderPane.setBottom(buttons);
 
         setScene(new CoreScene(borderPane));
+
+        DAO.getInstance().getUserDAO().addUpdatedEventLister(new UserUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                onSuccess();
+            }
+        });
+    }
+
+    @Override
+    public void validationError(String message) {
+    }
+
+    @Override
+    public void success() {
+        if (DAO.getInstance().getUserDAO().getUser() != null) {
+            this.close();
+        }
     }
 
     private EventHandler<ActionEvent> login() {
         return null;
-        //TODO implement logging in
     }
 
 }

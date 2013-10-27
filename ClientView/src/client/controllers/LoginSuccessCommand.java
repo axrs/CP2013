@@ -1,6 +1,6 @@
 package client.controllers;
 
-import Models.User;
+import dao.DAO;
 import javafx.stage.Stage;
 
 public class LoginSuccessCommand implements ICommand {
@@ -22,10 +22,10 @@ public class LoginSuccessCommand implements ICommand {
 
     @Override
     public void execute() {
+        DAO.getInstance().getUserDAO().setUser(token);
 
         if (stage != null) {
             this.stage.close();
         }
-        User.setUserToken(token);
     }
 }

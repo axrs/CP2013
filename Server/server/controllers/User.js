@@ -3,12 +3,19 @@ var GetCurrentCommand = require('../commands/users/GetCurrentUserCommand.js');
 var GetTokenCommand = require('../commands/users/GetCurrentAccessToken.js');
 var UpdateUserCommand = require('../commands/users/UpdateUserCommand.js');
 var CreateUserCommand = require('../commands/users/CreateUserCommand.js');
+var LoginUserCommand = require('../commands/users/LoginUserCommand.js');
+
 var User = require('../models/User.js');
 
 var DAO = require('../dao/DAO.js');
 
 var getCurrentUserCMD = function (req, res) {
     new GetCurrentCommand().execute(req, res);
+};
+
+var loginCMD = function (req, res) {
+    var user = User.fromJSON(req.body);
+    new LoginUserCommand(user, DAO.getUserDAO()).execute(req, res);
 };
 
 var createCMD = function (req, res) {
@@ -35,6 +42,10 @@ server.get('/api/user',
     passport.authenticate('bearer', { session: false }),
     server.requiresLogin,
     getCurrentUserCMD
+);
+
+server.put('/api/users/login',
+    loginCMD
 );
 
 server.put('/api/users/',

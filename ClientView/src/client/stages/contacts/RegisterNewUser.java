@@ -5,7 +5,6 @@ import client.controllers.ICommand;
 import client.controllers.adapters.WindowEventStrategy;
 import client.controllers.models.CreateUserCommand;
 import client.controllers.windows.core.CloseStageCommand;
-import client.controllers.windows.core.ShowLoginCommand;
 import client.scene.CoreScene;
 import client.scene.CoreStage;
 import client.scene.control.ActionButtons;
@@ -44,7 +43,7 @@ public class RegisterNewUser extends CoreStage {
     boolean isDirty = false;
     private User user = null;
     private RegisterNewUser instance = this;
-    private ICommand onFailure = new ShowLoginCommand();
+    private ICommand onFailure = null;
 
 
     public RegisterNewUser() {
@@ -99,13 +98,16 @@ public class RegisterNewUser extends CoreStage {
 
     @Override
     public void close() {
-        this.onFailure.execute();
+        if (onFailure != null) {
+            onFailure.execute();
+        }
         super.close();
     }
 
     @Override
     public void success() {
         this.isDirty = false;
+        this.onFailure = null;
         this.close();
     }
 

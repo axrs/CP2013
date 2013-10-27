@@ -5,11 +5,15 @@ import dao.events.UserUpdatedListener;
 import dao.rest.listeners.ResultListener;
 
 public interface IUserDAO {
-    public User getCurrentUser();
+    public User getUser();
 
-    public void getUser();
+    public void setUser(String token);
 
-    public void setUser();
+    public void setUser(User u);
+
+    public void login(User user, ResultListener listener);
+
+    public void login(User user);
 
     public void create(User user, ResultListener listener);
 

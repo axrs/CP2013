@@ -3458,3 +3458,72 @@
 2013-10-27 13:24:48	CiBFEY56zpG8OFFitRx0Pedl	127.0.0.1	/api/staff?access_token=	{}
 2013-10-27 13:24:48	H236007a6XxWyYLEl1C0V_OX	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
 2013-10-27 13:24:48	uEqLVWTU9boqjksCJlq416Rw	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:27:46	EFWmwXbROVPG9RwWiqXaM16a	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 13:27:46	xpTXpkSv6i4bCrXDYgkprWR2	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:27:46	n9yXw9MTwnP7F-tOelBBOpOa	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:27:46	B787xa21QguBg7CfX6JcX8s6	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:27:46	hhl8eqfbXBoP0xpIpFWzgTuz	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:45:44	6oyK9EZRgqNes5X8j8_MOdS7	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 13:45:44	StgPHibzUcxAsLKbOxNtJFOM	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:45:44	3D-TyigQqUReLVwKdb_P9tpC	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:45:44	wAOgNgk4HfSNi9llZZ9eBlN7	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:45:44	Y0lG08SCbE1PITrum4cpSojc	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:46:07	7iBLWoAwBBla-9PijacnzRRD	127.0.0.1	/api/user/login?access_token=0	{"userId":0,"strategyId":0,"strategy":"local","userName":"Xander","isAdmin":0,"password":"a","name":"Alexander","surname":"Scott","company":"","email":"","phone":"","address":"","suburb":"","city":"","post":"","state":"","contactId":0}
+2013-10-27 13:53:59	iRyZS-fwzPASelZmejh7_hQY	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 13:53:59	n_yQMo627obwqRjIsdPpsW-F	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:53:59	2D_dm-NYqNz1vNyf9IpS4oPB	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:54:00	OShARy7z7-JL1BY9qCuWn3Uu	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:54:00	x3gW_hM-NK-wuwAQQz51dfj9	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:55:18	LxjO7JqaWuAD0rgkHDjhnU-w	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 13:55:18	5I5S5I6unb7atrPr0uwsAUmz	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:55:18	kA2l26EWhWo7wxrGkdtdu3ka	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:55:19	Am2fmQpNOMLCYRz7BkRA8lHX	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:55:19	ZDSfJ8wGbbfnrThF2rJfI4u3	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:55:34	Existing GitHub User Logged In.
+2013-10-27 13:55:34	Serialising User Session
+2013-10-27 13:55:34	Deserialising User Session
+2013-10-27 13:56:38	_Us6r7rGvXDm2Rnf6QA0d0-e	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:56:38	ryNPMC6DDTtE2bGgsG958LdL	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 13:56:38	FHdPZRAfplJ5eN4AQsocDBOT	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:56:39	zjwc_fMmjV2EB6oUfEP1-wP4	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:56:39	5KnnIHV_aOWe9N3Cj0hbX3Aw	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:56:54	Existing GitHub User Logged In.
+2013-10-27 13:56:54	Serialising User Session
+2013-10-27 13:56:54	Deserialising User Session
+2013-10-27 13:59:11	QZW8GTc0lHgefUQnngc9IUP0	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:59:11	MXexCLEtIU1iytKmGs28xpKr	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 13:59:11	QWrE61Ia2UjTauiEHGpCEHKO	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 13:59:11	INq_ZJZe-trgSJr5dyv4mebK	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:59:11	Ez0-_1IlONi28A45G_VsAbvE	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 13:59:32	Existing GitHub User Logged In.
+2013-10-27 13:59:32	Serialising User Session
+2013-10-27 13:59:32	Deserialising User Session
+2013-10-27 14:00:24	_eknJJRt5Z1EzvXQQyYkq0zJ	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 14:00:24	ptGpvHchiuVZo_zBwKsHvJpq	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:00:24	G21JWdoaLVY-Tlz-bi17BeJP	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:00:25	jcCh4Q3x1raZkUOaQWPtSX7j	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:00:25	rGZyXLV_AH7drqdrCx1wa-vI	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:00:40	Existing GitHub User Logged In.
+2013-10-27 14:00:40	Serialising User Session
+2013-10-27 14:00:40	Deserialising User Session
+2013-10-27 14:01:29	UBFdY7YD2vresxdJ0lkQPNg8	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:01:29	VPD_S5N2uew4rj0e4dw-t1S3	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 14:01:29	cayc2925aUCNmzKFF5PO1ywl	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:01:29	elya30sQItsgYofSAD-WzwyL	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:01:29	jkFW8b-UZ55-cesELbfevuma	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:01:45	Existing GitHub User Logged In.
+2013-10-27 14:01:45	Serialising User Session
+2013-10-27 14:01:45	Deserialising User Session
+2013-10-27 14:03:55	YH0hO0VXUlQ7gWH61nTgRNHV	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 14:03:55	HMVJyk0S1ocknxbeNB06D179	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:03:55	yGvtmEj5m9t5eLmfaf0f4Veo	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:03:56	hpCisbA_KWOXZt3japhjq5LX	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:03:56	DviWxAWe76TeHIVP8r9meJ7a	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:05:39	sA8_l42x1yy5SETQaQOb4bI2	127.0.0.1	/api/staff?access_token=	{}
+2013-10-27 14:05:39	qzwcDGe1kmDRN_4lMj5ZElYD	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:05:39	_Llq4FuP16IWOn_RFYon23aR	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-27 14:05:39	_2SegFFl0tmB6NPpjT6VLdkW	127.0.0.1	/api/staff/appointments/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:05:39	lftb2gqIgTWINvUx4zCiUEQ3	127.0.0.1	/api/staff/available/2013-10-27/2013-11-02?access_token=	{}
+2013-10-27 14:06:03	Existing GitHub User Logged In.
+2013-10-27 14:06:03	Serialising User Session
+2013-10-27 14:06:03	Deserialising User Session

@@ -28,7 +28,6 @@ public class CreateUserCommand implements ICommand {
 
     @Override
     public void execute() {
-        System.out.println("HERE");
         if (!isValid()) {
             if (source != null) {
                 source.onValidationError("Users must have a name, surname, user name and password.");
@@ -37,9 +36,6 @@ public class CreateUserCommand implements ICommand {
             DAO.getInstance().getUserDAO().create(user, new ResultListener() {
                 @Override
                 public void results(Result result) {
-                    if (result.getStatus() == 201) {
-
-                    }
                     if (source == null) return;
                     switch (result.getStatus()) {
                         case 201:
