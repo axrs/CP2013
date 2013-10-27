@@ -21,15 +21,23 @@ public class DAO {
         return factory.getContactDAO();
     }
 
-    public IContactDAO getContactDAO() {
-        return getInstance().getContactsFactoryDAO();
-    }
-
     private IUserDAO getUserFactoryDAO() {
         return factory.getUserDAO();
     }
 
+    private IProviderDAO getProviderFactoryDAO() {
+        return factory.getProviderDAO();
+    }
+
+    public IContactDAO getContactDAO() {
+        return getInstance().getContactsFactoryDAO();
+    }
+
     public IUserDAO getUserDAO() {
         return getInstance().getUserFactoryDAO();
+    }
+
+    public IProviderDAO getProviderDAO() {
+        return getInstance().getProviderFactoryDAO();
     }
 }

@@ -1,10 +1,11 @@
 package client.stages.staff;
 
-import Interfaces.ServiceProviderView;
 import Models.ServiceHours;
-import client.controllers.windows.core.CloseStageCommand;
+import Models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
+import client.scene.CoreStage;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
 import javafx.collections.FXCollections;
@@ -23,36 +24,54 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
+import jfxtras.labs.scene.control.BeanPathAdapter;
 
-import java.util.Date;
-import java.util.List;
+public class FormView extends CoreStage {
 
-public class FormView extends Stage implements ServiceProviderView {
-    final TextField forenameInput = new TextField();
-    final TextField surnameInput = new TextField();
-    final TextField companyInput = new TextField();
-    final TextField phoneInput = new TextField();
-    final TextField emailInput = new TextField();
-    final TextField addrStreetInput = new TextField();
-    final TextField addrSuburbInput = new TextField();
-    final TextField addrCityInput = new TextField();
-    final TextField addrZipInput = new TextField();
-    final TextField addrStateInput = new TextField();
-    final TextField dateStartedInput = new TextField();
-    final TextField dateTerminatedInput = new TextField();
-    final TextArea bio = new TextArea();
+    final TextField name = new TextField();
+    final TextField surname = new TextField();
+    final TextField company = new TextField();
+    final TextField phone = new TextField();
+    final TextField email = new TextField();
+    final TextField address = new TextField();
+    final TextField suburb = new TextField();
+    final TextField city = new TextField();
+    final TextField post = new TextField();
+    final TextField state = new TextField();
+    final TextField initiated = new TextField();
+    final TextField terminated = new TextField();
+    final TextArea biography = new TextArea();
     private final ObservableList<String> timesList = FXCollections.observableArrayList();
     private final ObservableList<ServiceHours> servHours = FXCollections.observableArrayList();
     boolean isDirty = false;
     ActionButtons buttons = new ActionButtons(true);
+    ServiceProvider provider = null;
     private TableView<ServiceHours> table = new TableView<ServiceHours>();
 
     public FormView() {
+        provider = new ServiceProvider();
+        init();
+    }
 
+    public FormView(ServiceProvider provider) {
+        this.provider = provider;
+        init();
+    }
+
+    @Override
+    public void validationError(String message) {
+
+    }
+
+    @Override
+    public void success() {
+
+    }
+
+    private void init() {
         buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
         buttons.setOnSaveAction(onSaveAction());
 
@@ -70,6 +89,22 @@ public class FormView extends Stage implements ServiceProviderView {
         setOnCloseRequest(onClose());
         setResizable(false);
         setScene(scene);
+        bindProperties();
+    }
+
+    private void bindProperties() {
+        BeanPathAdapter<ServiceProvider> serviceProviderPA = new BeanPathAdapter<ServiceProvider>(provider);
+        serviceProviderPA.bindBidirectional("name", name.textProperty());
+        serviceProviderPA.bindBidirectional("surname", surname.textProperty());
+        serviceProviderPA.bindBidirectional("company", company.textProperty());
+        serviceProviderPA.bindBidirectional("phone", phone.textProperty());
+        serviceProviderPA.bindBidirectional("email", email.textProperty());
+
+        serviceProviderPA.bindBidirectional("address", address.textProperty());
+        serviceProviderPA.bindBidirectional("suburb", suburb.textProperty());
+        serviceProviderPA.bindBidirectional("city", city.textProperty());
+        serviceProviderPA.bindBidirectional("post", post.textProperty());
+        serviceProviderPA.bindBidirectional("state", state.textProperty());
     }
 
     private void initialiseTableColumns() {
@@ -137,7 +172,6 @@ public class FormView extends Stage implements ServiceProviderView {
             for (int quarter = 0; quarter <= 3; quarter++) {
                 String time = String.format("%02d:%02d", hour, (15 * quarter));
                 timesList.add(time);
-                System.out.println(time);
             }
         }
     }
@@ -150,46 +184,26 @@ public class FormView extends Stage implements ServiceProviderView {
         grid.setVgap(10);
         grid.setPadding(new Insets(10));
 
-        grid.addRow(0, LabelFactory.createFieldLabel("First Name:"), forenameInput);
-
-        grid.addRow(1, LabelFactory.createFieldLabel("Last Name:"), surnameInput);
-
+        grid.addRow(0, LabelFactory.createFieldLabel("First Name:"), name);
+        grid.addRow(1, LabelFactory.createFieldLabel("Last Name:"), surname);
         grid.addRow(2, new Separator(), new Separator());
-
-        grid.addRow(3, LabelFactory.createFieldLabel("Company:"), companyInput);
-
-        grid.addRow(4, LabelFactory.createFieldLabel("Phone:"), phoneInput);
-
-        grid.addRow(5, LabelFactory.createFieldLabel("Email:"), emailInput);
-
+        grid.addRow(3, LabelFactory.createFieldLabel("Company:"), company);
+        grid.addRow(4, LabelFactory.createFieldLabel("Phone:"), phone);
+        grid.addRow(5, LabelFactory.createFieldLabel("Email:"), email);
         grid.addRow(6, new Separator(), new Separator());
-
-        grid.addRow(7, LabelFactory.createFieldLabel("Street:"), addrStreetInput);
-
-        grid.addRow(8, LabelFactory.createFieldLabel("Suburb:"), addrSuburbInput);
-
-        grid.addRow(9, LabelFactory.createFieldLabel("City:"), addrCityInput);
-
-        grid.addRow(10, LabelFactory.createFieldLabel("Post Code:"), addrZipInput);
-
-        grid.addRow(11, LabelFactory.createFieldLabel("State:"), addrStateInput);
-
+        grid.addRow(7, LabelFactory.createFieldLabel("Street:"), address);
+        grid.addRow(8, LabelFactory.createFieldLabel("Suburb:"), suburb);
+        grid.addRow(9, LabelFactory.createFieldLabel("City:"), city);
+        grid.addRow(10, LabelFactory.createFieldLabel("Post Code:"), post);
+        grid.addRow(11, LabelFactory.createFieldLabel("State:"), state);
         grid.addRow(12, new Separator(), new Separator());
-
-        grid.addRow(13,LabelFactory.createFieldLabel("Date Employed:"), dateStartedInput);
-
-        grid.addRow(14, LabelFactory.createFieldLabel("Date Terminated:"), dateTerminatedInput);
-
-        grid.addRow(15, LabelFactory.createFieldLabel("Biography:"), bio);
-
+        grid.addRow(13, LabelFactory.createFieldLabel("Date Employed:"), initiated);
+        grid.addRow(14, LabelFactory.createFieldLabel("Date Terminated:"), terminated);
+        grid.addRow(15, LabelFactory.createFieldLabel("Biography:"), biography);
         grid.addColumn(2, LabelFactory.createFieldLabel("Available Hours:"));
-
         BorderPane tablePane = new BorderPane();
-
         tablePane.setTop(table);
-
         grid.add(tablePane, 2, 1, 1, 15);
-
         table.setItems(servHours);
         table.setMaxHeight(195);
 
@@ -260,161 +274,6 @@ public class FormView extends Stage implements ServiceProviderView {
                 }
             }
         };
-    }
-
-    @Override
-    public String getForename() {
-        return forenameInput.getText();
-    }
-
-    @Override
-    public void setForename(String forename) {
-        forenameInput.setText(forename);
-    }
-
-    @Override
-    public String getSurname() {
-        return surnameInput.getText();
-    }
-
-    @Override
-    public void setSurname(String surname) {
-        surnameInput.setText(surname);
-    }
-
-    @Override
-    public String getCompany() {
-        return companyInput.getText();
-    }
-
-    @Override
-    public void setCompany(String company) {
-        companyInput.setText(company);
-    }
-
-    @Override
-    public String getEmail() {
-        return emailInput.getText();
-    }
-
-    @Override
-    public void setEmail(String email) {
-        emailInput.setText(email);
-    }
-
-    @Override
-    public String getPhone() {
-        return phoneInput.getText();
-    }
-
-    @Override
-    public void setPhone(String phone) {
-        phoneInput.setText(phone);
-    }
-
-    @Override
-    public String getAddress() {
-        return addrStreetInput.getText();
-    }
-
-    @Override
-    public void setAddress(String address) {
-        addrStreetInput.setText(address);
-    }
-
-    @Override
-    public String getSuburb() {
-        return addrSuburbInput.getText();
-    }
-
-    @Override
-    public void setSuburb(String suburb) {
-        addrSuburbInput.setText(suburb);
-    }
-
-    @Override
-    public String getCity() {
-        return addrCityInput.getText();
-    }
-
-    @Override
-    public void setCity(String city) {
-        addrCityInput.setText(city);
-    }
-
-    @Override
-    public String getState() {
-        return addrStateInput.getText();
-    }
-
-    @Override
-    public void setState(String state) {
-        addrStateInput.setText(state);
-    }
-
-    @Override
-    public String getZip() {
-        return addrZipInput.getText();
-    }
-
-    @Override
-    public void setZip(String zip) {
-        addrZipInput.setText(zip);
-    }
-
-    @Override
-    public String getBio() {
-        return bio.getText();
-    }
-
-    @Override
-    public void setBio(String bio) {
-        this.bio.setText(bio);
-    }
-
-    @Override
-    public Date getDateEmployed() {
-        return new Date(dateStartedInput.getText());
-    }
-
-    @Override
-    public void setDateEmployed(Date dateEmployed) {
-        dateStartedInput.setText(dateEmployed.toString());
-    }
-
-    @Override
-    public Date getDateTerminated() {
-        return new Date(dateTerminatedInput.getText());
-    }
-
-    @Override
-    public void setDateTerminated(Date dateTerminated) {
-        dateTerminatedInput.setText(dateTerminated.toString());
-    }
-
-    @Override
-    public List<ServiceHours> getServHours() {
-        return servHours;
-    }
-
-    @Override
-    public void setServHours(List<ServiceHours> servHours) {
-        this.servHours.clear();
-        this.servHours.addAll(servHours);
-    }
-
-    @Override
-    public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
-        buttons.addSaveActionHandler(handler);
-    }
-
-    @Override
-    public void onError(String message) {
-        MonologFX infoDialog = new MonologFX(MonologFX.Type.INFO);
-        infoDialog.setMessage(message);
-        infoDialog.setModal(true);
-        infoDialog.showDialog();
-        isDirty = true;
     }
 
 }

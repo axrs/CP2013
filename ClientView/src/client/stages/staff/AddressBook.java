@@ -3,12 +3,15 @@ package client.stages.staff;
 import Controllers.ServiceProvidersController;
 import Models.Contact;
 import Models.ServiceProvider;
-import client.controllers.windows.core.CloseStageCommand;
-import client.controllers.windows.contacts.EditStaffWindowCommand;
 import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.windows.contacts.EditStaffWindowCommand;
+import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
+import dao.DAO;
+import dao.events.ProviderUpdatedListener;
+import dao.events.UpdatedEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -28,13 +31,16 @@ public class AddressBook extends Stage {
 
     public AddressBook() {
 
-        setTitle("CP2013 Appointment Scheduler - Admin");
+        setTitle("Service Providers");
         final BorderPane mainPane = new BorderPane();
 
-        final Label label = LabelFactory.createSloganLabel("Staff Listing");
+        final Label label = LabelFactory.createSloganLabel("Service Providers Index");
 
         initialiseTableColumns();
         staffTable.setItems(data);
+        updateTableData();
+
+        DAO.getInstance().getProviderDAO().addUpdatedEventLister(onStoreUpdate());
         staffTable.setOnMouseClicked(onTableRowDoubleClick());
 
         ServiceProvidersController serviceProviderController = ServiceProvidersController.getInstance();
@@ -53,14 +59,33 @@ public class AddressBook extends Stage {
         setScene(new CoreScene(mainPane, 300, 500));
     }
 
+    private void updateTableData() {
+        data.clear();
+        data.addAll(DAO.getInstance().getProviderDAO().getStore());
+    }
+
+    private ProviderUpdatedListener onStoreUpdate() {
+        return new ProviderUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                updateTableData();
+            }
+        };
+    }
+
     private void initialiseTableColumns() {
         TableColumn firstNameColumn = new TableColumn("First Name");
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contFirstName"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
+        firstNameColumn.prefWidthProperty().bind(staffTable.widthProperty().divide(3));
 
         TableColumn surnameColumn = new TableColumn("Last Name");
-        surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("contSurname"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("surname"));
+        surnameColumn.prefWidthProperty().bind(staffTable.widthProperty().divide(3));
 
-        staffTable.getColumns().addAll(firstNameColumn, surnameColumn);
+        TableColumn companyColumn = new TableColumn("Company");
+        companyColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("company"));
+        companyColumn.prefWidthProperty().bind(staffTable.widthProperty().divide(3));
+        staffTable.getColumns().addAll(firstNameColumn, surnameColumn, companyColumn);
     }
 
     private EventHandler<MouseEvent> onTableRowDoubleClick() {
@@ -69,12 +94,9 @@ public class AddressBook extends Stage {
             public void handle(MouseEvent mouseEvent) {
 
                 if (mouseEvent.getClickCount() > 1) {
-
                     TableView view = (TableView) mouseEvent.getSource();
-
-                    ServiceProvider c = (ServiceProvider) view.getSelectionModel().getSelectedItem();
-                    new EditStaffWindowCommand(c).execute();
-
+                    ServiceProvider provider = (ServiceProvider) view.getSelectionModel().getSelectedItem();
+                    new EditStaffWindowCommand(provider).execute();
                 }
             }
         };

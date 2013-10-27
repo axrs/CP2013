@@ -63,7 +63,7 @@ public class ServiceProviderController implements BaseController, ActionListener
             theView.setCity(theModel.getCity());
             theView.setState(theModel.getState());
             theView.setZip(theModel.getPost());
-            theView.setBio(theModel.getBiography());
+            theView.setBiography(theModel.getBiography());
             theView.setDateEmployed(theModel.getServInitiatedDate());
             theView.setDateTerminated(theModel.getServTerminatedDate());
             theView.setServHours(theModel.getHours());

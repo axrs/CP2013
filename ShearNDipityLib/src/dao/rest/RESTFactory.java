@@ -14,7 +14,7 @@ public class RESTFactory implements IDAOFactory {
 
     @Override
     public IProviderDAO getProviderDAO() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return ProviderDAO.getInstance();
     }
 
     @Override

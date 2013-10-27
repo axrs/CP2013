@@ -31,7 +31,7 @@ public class ServiceProvider extends Contact {
     }
 
     public ServiceProvider(String contForename, String contSurname, String servInitiated) {
-        super(contForename, contSurname);    //To change body of overridden methods use File | Settings | File Templates.
+        super(contForename, contSurname);
         this.initiated = servInitiated;
         initialiseServiceHours();
     }

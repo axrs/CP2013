@@ -39,7 +39,7 @@ public class AddressBook extends Stage {
     private TableView<Contact> table = new TableView<Contact>();
 
     public AddressBook() {
-        setTitle("CP2013 Appointment Scheduler - Contacts");
+        setTitle("Contacts");
         BorderPane contactPane = new BorderPane();
 
         final Label label = LabelFactory.createSloganLabel("Address Book");
@@ -88,12 +88,15 @@ public class AddressBook extends Stage {
     private void initialiseTableColumns() {
         TableColumn firstNameColumn = new TableColumn("First Name");
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("name"));
-
+        firstNameColumn.prefWidthProperty().bind(table.widthProperty().divide(3));
         TableColumn surnameColumn = new TableColumn("Last Name");
         surnameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("surname"));
+        surnameColumn.prefWidthProperty().bind(table.widthProperty().divide(3));
 
         TableColumn companyColumn = new TableColumn("Company");
         companyColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("company"));
+        companyColumn.prefWidthProperty().bind(table.widthProperty().divide(3));
+
         table.getColumns().addAll(firstNameColumn, surnameColumn, companyColumn);
     }
 

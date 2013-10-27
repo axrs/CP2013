@@ -1,13 +1,10 @@
 package client.controllers.windows.contacts;
 
-import Controllers.ServiceProviderController;
 import Models.ServiceProvider;
 import client.controllers.ICommand;
 import client.stages.staff.FormView;
 
-/**
- * Created by xander on 10/20/13.
- */
+
 public class EditStaffWindowCommand implements ICommand {
     ServiceProvider provider = null;
 
@@ -17,8 +14,7 @@ public class EditStaffWindowCommand implements ICommand {
 
     @Override
     public void execute() {
-        FormView serviceProviderFormUI = new FormView();
-        ServiceProviderController controller = new ServiceProviderController(serviceProviderFormUI, provider);
+        FormView serviceProviderFormUI = new FormView(provider);
         serviceProviderFormUI.show();
     }
 }

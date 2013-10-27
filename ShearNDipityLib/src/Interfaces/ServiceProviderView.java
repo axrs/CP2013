@@ -56,9 +56,9 @@ public interface ServiceProviderView extends BaseView {
 
     public void setZip(String zip);
 
-    public String getBio();
+    public String getBiography();
 
-    public void setBio(String bio);
+    public void setBiography(String bio);
 
     public Date getDateEmployed();
 
