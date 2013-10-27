@@ -5,7 +5,6 @@ public class User extends Contact {
 
     public static User loggedInUser = null;
     public static String userToken = "";
-
     private String token;
     private int userId;
     private int strategyId;
@@ -14,6 +13,7 @@ public class User extends Contact {
     private String userName;
     private int isAdmin;
     private String md5Email;
+    private String password;
 
 
     public User(String contForename, String contSurname) {
@@ -22,7 +22,6 @@ public class User extends Contact {
 
     public User() {
     }
-
 
     public static void setUserToken(String userToken) {
         User.userToken = userToken;
@@ -42,6 +41,14 @@ public class User extends Contact {
 
     public static void setLoggedInUser(User loggedInUser) {
         User.loggedInUser = loggedInUser;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getToken() {

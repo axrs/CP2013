@@ -71,7 +71,6 @@ public class ActiveRESTClient {
 
                         if (!request.getMethod().equals("GET") && !request.getMessage().equals("DELETE")) {
                             LogEventDispatcher.log("Writing JSON Data.");
-
                             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                             writer.write(request.getMessage());
                             writer.flush();

@@ -24,4 +24,12 @@ public class DAO {
     public IContactDAO getContactDAO() {
         return getInstance().getContactsFactoryDAO();
     }
+
+    private IUserDAO getUserFactoryDAO() {
+        return factory.getUserDAO();
+    }
+
+    public IUserDAO getUserDAO() {
+        return getInstance().getUserFactoryDAO();
+    }
 }

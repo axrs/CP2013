@@ -1,11 +1,11 @@
 package client.stages;
 
-import client.controllers.windows.core.ApplicationExitCommand;
-import client.controllers.windows.core.CloseStageCommand;
 import client.controllers.CompositeCommand;
 import client.controllers.ShowRegisterCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;
+import client.controllers.windows.core.ApplicationExitCommand;
+import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import javafx.event.ActionEvent;
@@ -38,11 +38,11 @@ public class LoginWindow extends Stage {
         TextField password = new TextField();
         Button gitLogin = new Button("Login With GitHub");
 
-        CompositeCommand cmds = new CompositeCommand();
-        cmds.addCommand(new GitLoginWindow());
-        cmds.addCommand(new CloseStageCommand(this));
+        CompositeCommand githubActionCommands = new CompositeCommand();
+        githubActionCommands.addCommand(new GitLoginWindow());
+        githubActionCommands.addCommand(new CloseStageCommand(this));
 
-        gitLogin.setOnAction(new ActionEventStrategy(cmds));
+        gitLogin.setOnAction(new ActionEventStrategy(githubActionCommands));
 
         GridPane gridPane = new GridPane();
         gridPane.getStyleClass().add("grid");
@@ -53,7 +53,11 @@ public class LoginWindow extends Stage {
         Button register = new Button("Register");
         gridPane.addRow(2, register, login);
         login.setOnAction(login());
-        register.setOnAction(register());
+
+        CompositeCommand registerActionCommands = new CompositeCommand();
+        registerActionCommands.addCommand(new ShowRegisterCommand());
+        registerActionCommands.addCommand(new CloseStageCommand(this));
+        register.setOnAction(new ActionEventStrategy(registerActionCommands));
 
 
         ActionButtons buttons = new ActionButtons(false);
@@ -64,15 +68,6 @@ public class LoginWindow extends Stage {
         borderPane.setBottom(buttons);
 
         setScene(new CoreScene(borderPane));
-    }
-
-    private EventHandler<ActionEvent> register() {
-        return new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                new ShowRegisterCommand().execute();
-            }
-        };
     }
 
     private EventHandler<ActionEvent> login() {

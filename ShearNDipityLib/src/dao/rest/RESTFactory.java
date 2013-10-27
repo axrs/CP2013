@@ -19,6 +19,6 @@ public class RESTFactory implements IDAOFactory {
 
     @Override
     public IUserDAO getUserDAO() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return UserDAO.getInstance();
     }
 }

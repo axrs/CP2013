@@ -1,9 +1,9 @@
 package client.stages;
 
 import Models.Config;
-import client.controllers.*;
+import client.controllers.ICommand;
+import client.controllers.LoginSuccessCommand;
 import client.controllers.adapters.WindowEventStrategy;
-import client.controllers.windows.core.CloseStageCommand;
 import client.controllers.windows.core.ShowLoginCommand;
 import client.scene.CoreScene;
 import javafx.beans.value.ChangeListener;
@@ -26,10 +26,13 @@ public class GitLoginWindow extends Stage implements ICommand {
 
     public GitLoginWindow(LoginSuccessCommand onSuccess, ICommand onFailure) {
         this.onSuccess = onSuccess;
-        CompositeCommand c = new CompositeCommand();
-        c.addCommand(onFailure);
-        c.addCommand(new CloseStageCommand(this));
-        this.onFailure = c;
+        this.onFailure = onFailure;
+    }
+
+    @Override
+    public void close() {
+        this.onFailure.execute();
+        super.close();
     }
 
     @Override

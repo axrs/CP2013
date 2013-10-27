@@ -167,11 +167,10 @@ User.fromJSON = function (data) {
     user.setPhone(data.phone);
     user.setEmail(data.email);
 
-
     user.setAddress(data.address, data.suburb, data.city, data.country, data.state, data.post);
 
     user.setId(data.userId);
-    user.setUserName(data.username);
+    user.setUserName(data.userName);
 
     if (data.userId) {
         user.setHashedPassword(data.password);

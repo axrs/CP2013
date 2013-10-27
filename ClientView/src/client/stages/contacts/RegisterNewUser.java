@@ -1,6 +1,13 @@
 package client.stages.contacts;
 
+import Models.User;
+import client.controllers.ICommand;
+import client.controllers.adapters.WindowEventStrategy;
+import client.controllers.models.CreateUserCommand;
+import client.controllers.windows.core.CloseStageCommand;
+import client.controllers.windows.core.ShowLoginCommand;
 import client.scene.CoreScene;
+import client.scene.CoreStage;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
 import javafx.event.ActionEvent;
@@ -15,39 +22,44 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
+import jfxtras.labs.scene.control.BeanPathAdapter;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Timface
- * Date: 26/11/13
- * Time: 1:44 PM
- * To change this template use File | Settings | File Templates.
- */
-public class RegisterNewUser extends Stage {
-
-    final TextField forenameInput = new TextField();
-    final TextField surnameInput = new TextField();
-    final TextField companyInput = new TextField();
-    final TextField phoneInput = new TextField();
-    final TextField emailInput = new TextField();
-    final TextField addrStreetInput = new TextField();
-    final TextField addrSuburbInput = new TextField();
-    final TextField addrCityInput = new TextField();
-    final TextField addrZipInput = new TextField();
-    final TextField addrStateInput = new TextField();
-    final TextField usernameInput = new TextField();
-    final PasswordField passwordInput = new PasswordField();
-    final PasswordField cPasswordInput = new PasswordField();
+public class RegisterNewUser extends CoreStage {
+    final TextField name = new TextField();
+    final TextField surname = new TextField();
+    final TextField company = new TextField();
+    final TextField phone = new TextField();
+    final TextField email = new TextField();
+    final TextField address = new TextField();
+    final TextField suburb = new TextField();
+    final TextField city = new TextField();
+    final TextField post = new TextField();
+    final TextField state = new TextField();
+    final TextField userName = new TextField();
+    final PasswordField password = new PasswordField();
+    final PasswordField confirmPassword = new PasswordField();
     final ActionButtons buttons = new ActionButtons(true);
     boolean isDirty = false;
+    private User user = null;
+    private RegisterNewUser instance = this;
+    private ICommand onFailure = new ShowLoginCommand();
+
 
     public RegisterNewUser() {
-        setTitle("CP2013 Appointment Scheduler - New Contact");
+        setTitle("Create an Account");
+        user = new User();
+        init();
+    }
 
+    public RegisterNewUser(User user) {
+        setTitle("Update Account Details");
+        this.user = user;
+        init();
+    }
+
+    private void init() {
         BorderPane border = new BorderPane();
         border.setCenter(setupFormInputs());
         border.setBottom(buttons);
@@ -56,15 +68,45 @@ public class RegisterNewUser extends Stage {
         buttons.setOnSaveAction(onSaveAction());
 
         Scene scene = new CoreScene(border);
-        setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                close();
-            }
-        });
+        setOnCloseRequest(new WindowEventStrategy(new CloseStageCommand(this)));
         setResizable(false);
         setScene(scene);
-        show();
+        bindToModel();
+    }
+
+    private void bindToModel() {
+        BeanPathAdapter<User> userPA = new BeanPathAdapter<User>(user);
+        userPA.bindBidirectional("name", name.textProperty());
+        userPA.bindBidirectional("surname", surname.textProperty());
+        userPA.bindBidirectional("company", company.textProperty());
+        userPA.bindBidirectional("phone", phone.textProperty());
+        userPA.bindBidirectional("email", email.textProperty());
+
+        userPA.bindBidirectional("address", address.textProperty());
+        userPA.bindBidirectional("suburb", suburb.textProperty());
+        userPA.bindBidirectional("city", city.textProperty());
+        userPA.bindBidirectional("post", post.textProperty());
+        userPA.bindBidirectional("state", state.textProperty());
+
+        userPA.bindBidirectional("userName", userName.textProperty());
+        userPA.bindBidirectional("password", password.textProperty());
+    }
+
+    @Override
+    public void validationError(String message) {
+
+    }
+
+    @Override
+    public void close() {
+        this.onFailure.execute();
+        super.close();
+    }
+
+    @Override
+    public void success() {
+        this.isDirty = false;
+        this.close();
     }
 
     public GridPane setupFormInputs() {
@@ -73,38 +115,22 @@ public class RegisterNewUser extends Stage {
         grid.setAlignment(Pos.CENTER);
         grid.getStyleClass().add("grid");
 
-        grid.addRow(0, LabelFactory.createFieldLabel("First Name:"), forenameInput);
-
-        grid.addRow(1, LabelFactory.createFieldLabel("Last Name:"), surnameInput);
-
-        grid.addRow(2, new Separator(), new Separator());
-
-        grid.addRow(3, LabelFactory.createFieldLabel("Company:"), companyInput);
-
-        grid.addRow(4, LabelFactory.createFieldLabel("Phone:"), phoneInput);
-
-        grid.addRow(5, LabelFactory.createFieldLabel("Email:"), emailInput);
-
+        grid.addRow(0, LabelFactory.createFieldLabel("Username:"), userName);
+        grid.addRow(1, LabelFactory.createFieldLabel("First Name:"), name);
+        grid.addRow(2, LabelFactory.createFieldLabel("Last Name:"), surname);
+        grid.addRow(3, new Separator(), new Separator());
+        grid.addRow(4, LabelFactory.createFieldLabel("Password:"), password);
+        grid.addRow(5, LabelFactory.createFieldLabel("Confirm Password:"), confirmPassword);
         grid.addRow(6, new Separator(), new Separator());
-
-        grid.addRow(7, LabelFactory.createFieldLabel("Street:"), addrStreetInput);
-
-        grid.addRow(8, LabelFactory.createFieldLabel("Suburb:"), addrSuburbInput);
-
-        grid.addRow(9, LabelFactory.createFieldLabel("City:"), addrCityInput);
-
-        grid.addRow(10, LabelFactory.createFieldLabel("Post Code:"), addrZipInput);
-
-        grid.addRow(11, LabelFactory.createFieldLabel("State:"), addrStateInput);
-
-        grid.addRow(12, new Separator(), new Separator());
-
-        grid.addRow(13, LabelFactory.createFieldLabel("Username:"), usernameInput);
-
-        grid.addRow(14, LabelFactory.createFieldLabel("Password:"), passwordInput);
-
-        grid.addRow(15, LabelFactory.createFieldLabel("Confirm Password:"), cPasswordInput);
-
+        grid.addRow(7, LabelFactory.createFieldLabel("Company:"), company);
+        grid.addRow(8, LabelFactory.createFieldLabel("Phone:"), phone);
+        grid.addRow(9, LabelFactory.createFieldLabel("Email:"), email);
+        grid.addRow(10, new Separator(), new Separator());
+        grid.addRow(11, LabelFactory.createFieldLabel("Street:"), address);
+        grid.addRow(12, LabelFactory.createFieldLabel("Suburb:"), suburb);
+        grid.addRow(13, LabelFactory.createFieldLabel("City:"), city);
+        grid.addRow(14, LabelFactory.createFieldLabel("Post Code:"), post);
+        grid.addRow(15, LabelFactory.createFieldLabel("State:"), state);
 
         for (Node n : grid.getChildren()) {
             if (n instanceof TextField) {
@@ -112,13 +138,12 @@ public class RegisterNewUser extends Stage {
                 ((TextField) n).setPrefHeight(20);
             }
             if (n instanceof Label) {
-                ((Label) n).setPrefWidth(80);
+                ((Label) n).setPrefWidth(120);
                 ((Label) n).setPrefHeight(20);
             }
         }
 
         grid.addEventFilter(KeyEvent.KEY_RELEASED, setDirty());
-
 
         return grid;
     }
@@ -127,7 +152,22 @@ public class RegisterNewUser extends Stage {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                isDirty = false;
+
+                boolean isValid = true;
+
+                if (!validatePasswordLength()) {
+                    isValid = false;
+                    onInformation("Your password must be a minimum of 8 characters.");
+                }
+
+                if (!validateWithConfirmationPassword()) {
+                    isValid = false;
+                    onInformation("Your passwords do not match.");
+                }
+
+                if (isValid) {
+                    new CreateUserCommand(user, instance).execute();
+                }
             }
         };
     }
@@ -167,28 +207,11 @@ public class RegisterNewUser extends Stage {
         };
     }
 
-    public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
-        buttons.addSaveActionHandler(handler);
+    private boolean validatePasswordLength() {
+        return !(password.getText().length() < 8);
     }
 
-    public void onError(String message) {
-        MonologFX infoDialog = new MonologFX(MonologFX.Type.INFO);
-        infoDialog.setMessage(message);
-        infoDialog.setModal(true);
-        infoDialog.showDialog();
-        isDirty = true;
+    private boolean validateWithConfirmationPassword() {
+        return (confirmPassword.getText().equals(password.getText()));
     }
-
-    private boolean isValidPassword() {
-        boolean isValid = true;
-        if (passwordInput.getText().length() < 8) {
-            isValid = false;
-        }
-        if (!cPasswordInput.getText().equals(passwordInput.getText())) {
-            isValid = false;
-        }
-        return isValid;
-    }
-
 }
-

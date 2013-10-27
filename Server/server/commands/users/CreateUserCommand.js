@@ -5,10 +5,7 @@ var StatusHelpers = require('../../helpers/StatusHelpers.js');
 
 var CreateUserCommand = Ring.create([AbstractUserCommand], {
     _user: null,
-    /**
-     * @param {User} user
-     * @param {IContactDAO} contactDAO
-     */
+
     init: function (user, contactDAO) {
         this._user = user;
         this.$super(contactDAO);
@@ -21,7 +18,6 @@ var CreateUserCommand = Ring.create([AbstractUserCommand], {
     execute: function (req, res) {
         var user = this._user;
         var dao = this._dao;
-
         if (!user.isValid() || user.getId() > 0) {
             StatusHelpers.status400(req, res);
         } else {

@@ -17,6 +17,7 @@ import client.controllers.windows.contacts.NewContactAddressBookCommand;
 import client.controllers.windows.contacts.NewContactWindowCommand;
 import client.controllers.windows.core.ApplicationExitCommand;
 import client.controllers.windows.core.ShowAboutWindowCommand;
+import client.controllers.windows.core.ShowLoginCommand;
 import client.controllers.windows.core.StatsWindowCommand;
 import client.controllers.windows.staff.NewServiceProviderFormCommand;
 import client.controllers.windows.staff.ShowStaffAddressBookWindowCommand;
@@ -24,7 +25,6 @@ import client.scene.CoreScene;
 import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
 import client.scene.control.ReadOnlyAppointmentImpl;
-import dao.DAO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -91,8 +91,6 @@ public class MainView extends Application {
     public void start(final Stage primaryStage) throws Exception {
 
         new ConfigureDAOCommand().execute();
-        DAO.getInstance().getContactDAO();
-
         new HookLoggerCommand().execute();
 
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
@@ -134,7 +132,7 @@ public class MainView extends Application {
 
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
-        //new ShowLoginCommand().execute();
+        new ShowLoginCommand().execute();
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {

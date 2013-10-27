@@ -82,7 +82,7 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
         });
     },
     retrieveByUserName: function (username, callback) {
-        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserName=$username AND User.ContactId = Contact.ContactId LIMIT 1;';
+        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE User=$username AND User.ContactId = Contact.ContactId AND Strategy="local" LIMIT 1;';
         var values = {$username: username};
         var queryHelper = new SqliteHelper(this._db);
 
