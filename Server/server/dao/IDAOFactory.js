@@ -12,6 +12,9 @@ var IDAOFactory = Ring.create({
     },
     getProviderDAO: function () {
         throw new Error('Method Not Implemented.');
+    },
+    getAppointmentDAO: function () {
+        throw new Error('Method Not Implemented.');
     }
 });
 

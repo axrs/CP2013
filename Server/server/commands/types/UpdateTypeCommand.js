@@ -7,7 +7,7 @@ var UpdateTypeCommand = Ring.create([AbstractTypeCommand], {
     _type: null,
     /**
      *
-     * @param {AppointmentType} type
+     * @param {Appointment} type
      * @param {ITypeDAO} dao
      */
     init: function (type, dao) {
