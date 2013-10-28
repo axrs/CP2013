@@ -7,6 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
@@ -14,11 +15,18 @@ import jfxtras.labs.dialogs.MonologFXButton;
 public class Agenda extends jfxtras.labs.scene.control.Agenda {
     int appointmentLastClicked = 0;
     private Boolean isViewingAvailabilities = false;
+    private Agenda instance = this;
 
     public Agenda() {
         selectedAppointments().addListener(onAgendaSelection());
         setOnKeyReleased(onAgendaKeyPress());
         setCalendarRangeCallback(onAgendaRangeCallback());
+        setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                instance.setFocused(true);
+            }
+        });
     }
 
     private EventHandler<KeyEvent> onAgendaKeyPress() {
@@ -29,7 +37,7 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
                     if (selectedAppointments().size() == 1) {
                         jfxtras.labs.scene.control.Agenda.Appointment app = selectedAppointments().get(0);
 
-                        if (app instanceof ReadOnlyAppointmentImpl && ((ReadOnlyAppointmentImpl) app).getAppId() != null) {
+                        if (app instanceof ReadOnlyAppointmentImpl && ((ReadOnlyAppointmentImpl) app).getAppId() != 0) {
                             MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
                             dialog.setMessage("Are you sure you wish to cancel this appointment");
                             dialog.setTitleText("Confirm Cancellation");
