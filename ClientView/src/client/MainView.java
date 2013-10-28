@@ -22,6 +22,8 @@ import dao.events.AvailabilitiesUpdatedListener;
 import dao.events.ProviderUpdatedListener;
 import dao.events.UpdatedEvent;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,6 +32,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.ServiceProvider;
+
+import javax.swing.event.ChangeListener;
 
 public class MainView extends Application {
     private final Agenda agendaView = new Agenda();
@@ -101,6 +106,23 @@ public class MainView extends Application {
                 new UpdateProviderComboboxCommand(staffCombo).execute();
             }
         });
+
+     staffCombo.setOnAction(new EventHandler<ActionEvent>() {
+         @Override
+         public void handle(ActionEvent actionEvent) {
+             ServiceProvider[] providers = DAO.getInstance().getProviderDAO().getStore();
+             for (ServiceProvider p:providers) {
+                 String curName = p.getName();
+                 curName.compareTo(staffCombo.getValue());
+                 if (curName.equals(staffCombo.getValue())) {
+                     agendaView.setProviderToShow(p.getProviderId());
+                 }
+                 else
+                     agendaView.setProviderToShow(0);
+             }
+         }
+     });
+
 
         Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);
