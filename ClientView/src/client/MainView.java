@@ -110,18 +110,6 @@ public class MainView extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ServiceProvider[] providers = DAO.getInstance().getProviderDAO().getStore();
-<<<<<<< HEAD
-                for (ServiceProvider p : providers) {
-                    String curName = p.getName();
-                    if (curName.equals(staffCombo.getValue())) {
-                        agendaView.setProviderToShow(p.getProviderId());
-                        System.out.println(p.getProviderId());
-                    } else
-                        agendaView.setProviderToShow(0);
-                }
-            }
-        });
-=======
 
                 int id = 0;
                 for (ServiceProvider p : providers) {
@@ -133,8 +121,6 @@ public class MainView extends Application {
                 agendaView.setProviderToShow(id);
             }
         });
-
->>>>>>> c70b9e5c7cf753e20fc7b5f7574532b7d2598261
 
         Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);
