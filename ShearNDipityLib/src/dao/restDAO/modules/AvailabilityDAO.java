@@ -19,6 +19,8 @@ public class AvailabilityDAO extends Publisher implements IAvailabilitiesDAO {
 
     private static AvailabilityDAO instance = null;
     private static AvailabilitiesStore store = null;
+    private String start = "";
+    private String end = "";
 
     protected AvailabilityDAO() {
     }
@@ -33,6 +35,14 @@ public class AvailabilityDAO extends Publisher implements IAvailabilitiesDAO {
 
     public static Availability[] getMap() {
         return getInstance().getStore();
+    }
+
+    @Override
+    public void update() {
+        if (start.isEmpty() || end.isEmpty()) {
+            return;
+        }
+        update(start, end);
     }
 
     @Override
@@ -61,6 +71,8 @@ public class AvailabilityDAO extends Publisher implements IAvailabilitiesDAO {
 
     @Override
     public void update(String start, String end, ResultListener listener) {
+        this.start = start;
+        this.end = end;
         Request r = new GetAllAvailabilitiesRequest(start, end);
         if (listener != null) {
             r.addResultListener(listener);

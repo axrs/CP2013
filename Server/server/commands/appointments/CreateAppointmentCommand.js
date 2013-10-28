@@ -25,7 +25,7 @@ var CreateAppointmentCommand = Ring.create([AbstractAppointmentCommand], {
                     dao.lastInserted(function (err, result) {
                         res.writeHead(201, { 'Content-Type': 'application/json' });
                         appointment = result;
-                        res.write(JSON.stringify(appointment));
+                        res.write(JSON.stringify(result));
                         res.end();
                     });
                 }

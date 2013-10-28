@@ -15,7 +15,6 @@ import dao.restDAO.requests.appointments.CreateAppointmentRequest;
 import dao.restDAO.requests.appointments.GetAllAppointmentsRequest;
 import dao.restDAO.requests.appointments.RemoveAppointmentRequest;
 import dao.restDAO.requests.appointments.UpdateAppointmentRequest;
-import dao.restDAO.requests.contacts.GetAllContactsRequest;
 import dao.restDAO.requests.contacts.GetContactRequest;
 import dao.restDAO.stores.AppointmentStore;
 import models.Appointment;
@@ -110,7 +109,7 @@ public class AppointmentDAO extends Publisher implements IAppointmentDAO {
             @Override
             public void results(Result result) {
                 if (result.getStatus() != 201 && result.getStatus() != 202) return;
-                Request r = new GetAllContactsRequest();
+                Request r = new GetAllAppointmentsRequest();
                 r.addResultListener(onGetAllAppointments());
                 ActiveRESTClient.addRequest(r);
             }

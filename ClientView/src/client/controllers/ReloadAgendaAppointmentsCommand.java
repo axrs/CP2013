@@ -39,6 +39,7 @@ public class ReloadAgendaAppointmentsCommand implements ICommand {
                 ArrayList<Agenda.Appointment> addList = new ArrayList<Agenda.Appointment>();
 
                 Appointment[] appointments = DAO.getInstance().getAppointmentDAO().getStore();
+
                 for (Appointment item : appointments) {
 
                     Calendar cal = Calendar.getInstance();

@@ -42,7 +42,6 @@ public class LoginWindow extends CoreStage {
         Button login = new Button("Login");
         Button register = new Button("Register");
         gridPane.addRow(2, register, login);
-        login.setDefaultButton(true);
 
         ActionButtons buttons = new ActionButtons(false);
         buttons.setOnCloseAction(ActionEventStrategy.create(new ApplicationExitCommand()));
@@ -52,6 +51,7 @@ public class LoginWindow extends CoreStage {
         borderPane.setBottom(buttons);
 
         setScene(new CoreScene(borderPane));
+        login.setDefaultButton(true);
 
 
         register.setOnAction(new ActionEventStrategy(new ShowRegisterCommand()));

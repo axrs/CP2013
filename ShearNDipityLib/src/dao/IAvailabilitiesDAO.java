@@ -11,6 +11,7 @@ public interface IAvailabilitiesDAO {
     public Availability[] getProviderAvailabilities(int providerId);
 
     public void update(String start, String end, ResultListener listener);
+    public void update();
 
     public void update(String start, String end);
 

@@ -1,6 +1,7 @@
 package client.stages.appointments;
 
 import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.models.CreateAppointmentCommand;
 import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
@@ -37,7 +38,6 @@ public class AppointmentFormView extends Stage {
     private Appointment appointment;
     private Date endTime;
     private AppointmentType selectedType;
-
     private Contact contact = DAO.getInstance().getUserDAO().getUser();
 
 
@@ -74,11 +74,10 @@ public class AppointmentFormView extends Stage {
 
         Node nameNode;
 
-        if (DAO.getInstance().getUserDAO().getUser().getAdmin() > 0){
+        if (DAO.getInstance().getUserDAO().getUser().getAdmin() > 0) {
             nameNode = contactAdminChoice;
-        }
-        else{
-            nameNode =  new Label(String.format("%s %s", contact.getName(), contact.getSurname()));
+        } else {
+            nameNode = new Label(String.format("%s %s", contact.getName(), contact.getSurname()));
             setContactForAppointment();
         }
 
@@ -96,7 +95,7 @@ public class AppointmentFormView extends Stage {
         mainPane.add(appointmentType, 1, 1);
 
         mainPane.add(LabelFactory.createFieldLabel("Client: "), 0, 2);
-        mainPane.add(nameNode , 1, 2);
+        mainPane.add(nameNode, 1, 2);
 
         mainPane.add(LabelFactory.createFieldLabel("Date: "), 0, 3);
         mainPane.add(date, 1, 3);
@@ -133,6 +132,7 @@ public class AppointmentFormView extends Stage {
             public void handle(ActionEvent actionEvent) {
                 boolean isValid;
                 appointment.setAppDate(date.getValue().getTime());
+                System.out.println(date.getValue().getTime());
                 appointment.setTime((String) timeSelection.getValue());
 
                 isValid = (appointment.getContactId() > 0);
@@ -140,7 +140,7 @@ public class AppointmentFormView extends Stage {
                 isValid = isValid && (appointment.getDate().getTime() > new Date().getTime());
                 isValid = isValid && (appointment.getTypeId() > 0);
                 if (isValid) {
-                    DAO.getInstance().getAppointmentDAO().create(appointment);
+                    new CreateAppointmentCommand(appointment, null).execute();
                     close();
                 }
             }
