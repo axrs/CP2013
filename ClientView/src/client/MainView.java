@@ -115,9 +115,10 @@ public class MainView extends Application {
                  String curName = p.getName();
                  curName.compareTo(staffCombo.getValue());
                  if (curName.equals(staffCombo.getValue())) {
-                     //set that provider p as the one to see, using ID
-                     // if no match, see to all
+                     agendaView.setProviderToShow(p.getProviderId());
                  }
+                 else
+                     agendaView.setProviderToShow(0);
              }
          }
      });
