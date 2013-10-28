@@ -24,9 +24,7 @@ public class AppointmentDAO extends Publisher implements IAppointmentDAO {
     private static AppointmentStore store = null;
 
     protected AppointmentDAO() {
-        Request r = new GetAllAppointmentsRequest();
-        r.addResultListener(onGetAllAppointments());
-        ActiveRESTClient.addRequest(r);
+        reload();
     }
 
     public static AppointmentDAO getInstance() {
@@ -44,6 +42,12 @@ public class AppointmentDAO extends Publisher implements IAppointmentDAO {
     @Override
     public Appointment[] getStore() {
         return store.getValues();
+    }
+
+    public void reload() {
+        Request r = new GetAllAppointmentsRequest();
+        r.addResultListener(onGetAllAppointments());
+        ActiveRESTClient.addRequest(r);
     }
 
     @Override
