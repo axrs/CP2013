@@ -260,7 +260,6 @@ SqliteProviderDAO.ProviderFromDatabase = function (row) {
     provider.setInitiated(row.Initiated);
     provider.setTerminated(row.Terminated);
     provider.setColor(row.Color);
-
     return provider;
 };
 

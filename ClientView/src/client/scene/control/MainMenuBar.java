@@ -42,6 +42,20 @@ public class MainMenuBar extends MenuBar {
         init();
     }
 
+<<<<<<< HEAD
+=======
+    public MainMenuBar(boolean isAdmin) {
+        if (isAdmin) {
+            DAO.getInstance().getUserDAO().addUpdatedEventLister(onUserChangeEvent());
+            init();
+        } else {
+            DAO.getInstance().getUserDAO().addUpdatedEventLister(onUserChangeEvent());
+            buildUserFileMenu();
+            buildUserStaffMenu();
+        }
+    }
+
+>>>>>>> 1e17fc681290a503a86c4f5a33175c6c4b53b25e
     private UserUpdatedListener onUserChangeEvent() {
         return new UserUpdatedListener() {
             @Override
@@ -52,6 +66,7 @@ public class MainMenuBar extends MenuBar {
                         User u = DAO.getInstance().getUserDAO().getUser();
                         if (u == null) {
                             getMenus().remove(userMenu);
+<<<<<<< HEAD
                         } else if (u.getAdmin() <= 0 ) {
                             getMenus().remove(statsMenuItem);
                             getMenus().remove(typeMenu);
@@ -60,6 +75,11 @@ public class MainMenuBar extends MenuBar {
                             getMenus().remove(contactMenu);
                         }
                         else {
+=======
+                        } else if (u.getAdmin() < 0) {
+
+                        } else {
+>>>>>>> 1e17fc681290a503a86c4f5a33175c6c4b53b25e
                             userMenu.setText(u.getName() + " " + u.getSurname());
                             getMenus().add(userMenu);
                         }
@@ -70,10 +90,10 @@ public class MainMenuBar extends MenuBar {
     }
 
     private void init() {
-            buildFileMenu();
-            buildContactMenu();
-            buildStaffMenu();
-            buildTypesMenu();
+        buildFileMenu();
+        buildContactMenu();
+        buildStaffMenu();
+        buildTypesMenu();
     }
 
     private void buildTypesMenu() {

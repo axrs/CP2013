@@ -20,14 +20,13 @@ var UpdateProviderCommand = Ring.create([AbstractProviderCommand], {
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {
-                console.log(result);
                 var updatedContact = Provider.fromJSON(
                     Utilities.mergeObjectProperties([
                         result.toJSON(),
                         provider.toJSON()
                     ])
                 );
-
+                console.log(provider.toJSON());
                 if (!provider.isValid() || provider.getId() <= 0) {
                     StatusHelpers.status400(req, res);
                 } else {

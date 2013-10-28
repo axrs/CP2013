@@ -107,6 +107,7 @@ public class FormView extends CoreStage {
         serviceProviderPA.bindBidirectional("company", company.textProperty());
         serviceProviderPA.bindBidirectional("phone", phone.textProperty());
         serviceProviderPA.bindBidirectional("email", email.textProperty());
+        serviceProviderPA.bindBidirectional("biography", biography.textProperty());
 
         serviceProviderPA.bindBidirectional("address", address.textProperty());
         serviceProviderPA.bindBidirectional("suburb", suburb.textProperty());

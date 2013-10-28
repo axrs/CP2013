@@ -17,10 +17,7 @@ import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
 import client.scene.control.MainMenuBar;
 import dao.DAO;
-import dao.events.AppointmentsUpdatedListener;
-import dao.events.AvailabilitiesUpdatedListener;
-import dao.events.ProviderUpdatedListener;
-import dao.events.UpdatedEvent;
+import dao.events.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -66,6 +63,13 @@ public class MainView extends Application {
             @Override
             public void updated(UpdatedEvent event) {
                 new ReloadAgendaProvidersCommand(agendaView).execute();
+            }
+        });
+
+        DAO.getInstance().getUserDAO().addUpdatedEventLister(new UserUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                DAO.getInstance().getAppointmentDAO().reload();
             }
         });
 

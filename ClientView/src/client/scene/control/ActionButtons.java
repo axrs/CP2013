@@ -79,7 +79,7 @@ public class ActionButtons extends HBox {
         this.setAlignment(Pos.BASELINE_RIGHT);
         this.getChildren().add(closeButton);
         closeButton.setCancelButton(true);
-        submitButton.setDefaultButton(true);
+        //submitButton.setDefaultButton(true);
 
     }
 
@@ -87,10 +87,10 @@ public class ActionButtons extends HBox {
         this.showSaveButton = showSaveButton;
         if (showSaveButton && !this.getChildren().contains(submitButton)) {
             this.getChildren().add(submitButton);
-            closeButton.setDefaultButton(false);
+            //closeButton.setDefaultButton(false);
         } else {
             this.getChildren().remove(submitButton);
-            closeButton.setDefaultButton(true);
+            //closeButton.setDefaultButton(true);
         }
     }
 }

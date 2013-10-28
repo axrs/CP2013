@@ -11,6 +11,7 @@ public interface IAppointmentDAO {
 
     public Appointment get(int id);
 
+    public void reload();
     public void create(Appointment appointment, ResultListener listener);
 
     public void create(Appointment appointment);

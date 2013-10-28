@@ -1,7 +1,5 @@
 package client.stages.staff;
 
-import models.Contact;
-import models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.contacts.EditStaffWindowCommand;
 import client.controllers.windows.core.CloseStageCommand;
@@ -25,6 +23,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import models.Contact;
+import models.ServiceProvider;
 
 public class AddressBook extends CoreStage {
     private final ObservableList<ServiceProvider> data = FXCollections.observableArrayList();
