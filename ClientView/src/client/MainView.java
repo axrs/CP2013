@@ -9,6 +9,7 @@ import client.controllers.dao.ConfigureDAOCommand;
 import client.controllers.dao.InitialiseDAOCommand;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
+import client.controllers.utilities.UpdateProviderComboboxCommand;
 import client.controllers.windows.core.ApplicationExitCommand;
 import client.controllers.windows.core.ShowLoginCommand;
 import client.scene.CoreScene;
@@ -22,9 +23,12 @@ import dao.events.ProviderUpdatedListener;
 import dao.events.UpdatedEvent;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
@@ -83,6 +87,20 @@ public class MainView extends Application {
         centrePane.setCenter(agendaView);
 
         mainPane.setCenter(centrePane);
+
+        VBox box = new VBox();
+        box.getStyleClass().add("statusBar");
+        final ComboBox<String> staffCombo = new ComboBox<String>();
+        box.getChildren().add(staffCombo);
+        box.setAlignment(Pos.CENTER_RIGHT);
+        mainPane.setBottom(box);
+
+        DAO.getInstance().getProviderDAO().addUpdatedEventLister(new ProviderUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                new UpdateProviderComboboxCommand(staffCombo).execute();
+            }
+        });
 
         Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);
