@@ -9,17 +9,17 @@ import dao.rest.listeners.ResultListener;
 
 public class CreateTypeCommand implements ICommand {
 
-    AppointmentType type = null;
-    INotifiable source = null;
+    private AppointmentType type;
+    private INotifiable source;
 
-    public CreateTypeCommand(AppointmentType c, INotifiable source) {
+    public CreateTypeCommand(AppointmentType type, INotifiable source) {
         this.source = source;
-        type = c;
+        this.type = type;
     }
 
     private boolean isValid() {
         boolean isValid = true;
-        if (!type.getDescription().isEmpty() && !type.getDuration().isEmpty()) {
+        if (type.getDescription().isEmpty() || type.getDuration().isEmpty()) {
             isValid = false;
         }
         return isValid;

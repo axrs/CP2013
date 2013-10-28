@@ -13,7 +13,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -23,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
@@ -50,12 +50,12 @@ public class FormView extends CoreStage {
     ActionButtons buttons = new ActionButtons(true);
     ServiceProvider provider = new ServiceProvider();
     private TableView<ServiceHours> table = new TableView<ServiceHours>();
+    private Label heading = LabelFactory.createSloganLabel("Register Service Provider");
 
     public FormView() {
         init();
         buttons.setOnSaveAction(new ActionEventStrategy(new CreateProviderCommand(this.provider, this)));
         setTitle("Register Provider");
-
     }
 
     public FormView(ServiceProvider provider) {
@@ -63,6 +63,7 @@ public class FormView extends CoreStage {
         init();
         buttons.setOnSaveAction(new ActionEventStrategy(new UpdateProviderCommand(this.provider, this)));
         setTitle("Editing Provider: " + provider.getName() + " " + provider.getSurname());
+        heading.setText("Edit Provider");
     }
 
     @Override
@@ -79,9 +80,12 @@ public class FormView extends CoreStage {
     private void init() {
         buttons.setOnCloseAction(onCloseAction());
 
-        setTitle("CP2013 Appointment Scheduler - Edit/Create Service Provider");
         BorderPane border = new BorderPane();
 
+        StackPane pane = new StackPane();
+        pane.getChildren().add(heading);
+        pane.setAlignment(Pos.TOP_CENTER);
+        border.setTop(pane);
         border.setCenter(setupFormInputs());
         border.setBottom(buttons);
 
@@ -182,38 +186,58 @@ public class FormView extends CoreStage {
     }
 
     private Node setupFormInputs() {
-        GridPane grid = new GridPane();
+        GridPane mainGrid = new GridPane();
+        mainGrid.getStyleClass().add("grid");
 
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(10));
 
-        grid.addRow(0, LabelFactory.createFieldLabel("First Name:"), name);
-        grid.addRow(1, LabelFactory.createFieldLabel("Last Name:"), surname);
-        grid.addRow(2, new Separator(), new Separator());
-        grid.addRow(3, LabelFactory.createFieldLabel("Company:"), company);
-        grid.addRow(4, LabelFactory.createFieldLabel("Phone:"), phone);
-        grid.addRow(5, LabelFactory.createFieldLabel("Email:"), email);
-        grid.addRow(6, new Separator(), new Separator());
-        grid.addRow(7, LabelFactory.createFieldLabel("Street:"), address);
-        grid.addRow(8, LabelFactory.createFieldLabel("Suburb:"), suburb);
-        grid.addRow(9, LabelFactory.createFieldLabel("City:"), city);
-        grid.addRow(10, LabelFactory.createFieldLabel("Post Code:"), post);
-        grid.addRow(11, LabelFactory.createFieldLabel("State:"), state);
-        grid.addRow(12, new Separator(), new Separator());
-        grid.addRow(13, LabelFactory.createFieldLabel("Date Employed:"), initiated);
-        grid.addRow(14, LabelFactory.createFieldLabel("Date Terminated:"), terminated);
-        grid.addRow(15, LabelFactory.createFieldLabel("Biography:"), biography);
-        grid.addColumn(2, LabelFactory.createFieldLabel("Available Hours:"));
-        BorderPane tablePane = new BorderPane();
-        tablePane.setTop(table);
-        grid.add(tablePane, 2, 1, 1, 15);
+        GridPane leftGrid = new GridPane();
+        leftGrid.getStyleClass().add("grid");
+        leftGrid.addRow(0, LabelFactory.createFieldLabel("First Name:"), name);
+        leftGrid.addRow(1, LabelFactory.createFieldLabel("Last Name:"), surname);
+        leftGrid.addRow(2, new Separator(), new Separator());
+
+        leftGrid.addRow(3, LabelFactory.createFieldLabel("Street:"), address);
+        leftGrid.addRow(4, LabelFactory.createFieldLabel("Suburb:"), suburb);
+        leftGrid.addRow(5, LabelFactory.createFieldLabel("City:"), city);
+        leftGrid.addRow(6, LabelFactory.createFieldLabel("Post Code:"), post);
+        leftGrid.addRow(7, LabelFactory.createFieldLabel("State:"), state);
+
+        GridPane rightGrid = new GridPane();
+        rightGrid.getStyleClass().add("grid");
+
+        rightGrid.addRow(0, LabelFactory.createFieldLabel("Company:"), company);
+        rightGrid.addRow(1, LabelFactory.createFieldLabel("Phone:"), phone);
+        rightGrid.addRow(2, LabelFactory.createFieldLabel("Email:"), email);
+        rightGrid.addRow(3, new Separator(), new Separator());
+        rightGrid.addRow(4, LabelFactory.createFieldLabel("Date Employed:"), initiated);
+        rightGrid.addRow(5, LabelFactory.createFieldLabel("Date Terminated:"), terminated);
+
+
+        mainGrid.addRow(0, leftGrid, rightGrid);
+        mainGrid.addRow(1, LabelFactory.createFieldLabel("Biography:"));
+        mainGrid.add(biography, 0, 2, 2, 1);
+        mainGrid.addRow(3, LabelFactory.createFieldLabel("Available Hours:"));
+
         table.setItems(servHours);
-        table.setMaxHeight(195);
+        table.setMaxHeight(210);
         table.setMinWidth(250);
+        mainGrid.add(table, 0, 4, 2, 1);
 
-        for (Node n : grid.getChildren()) {
+
+        for (Node n : leftGrid.getChildren()) {
+            if (n instanceof TextField) {
+                ((TextField) n).setPrefWidth(150);
+                ((TextField) n).setPrefHeight(20);
+            } else if (n instanceof Label) {
+                ((Label) n).setPrefWidth(100);
+                ((Label) n).setTextAlignment(TextAlignment.RIGHT);
+                ((Label) n).setAlignment(Pos.BASELINE_RIGHT);
+            } else if (n instanceof TextArea) {
+                ((TextArea) n).setWrapText(true);
+                ((TextArea) n).setPrefWidth(150);
+            }
+        }
+        for (Node n : rightGrid.getChildren()) {
             if (n instanceof TextField) {
                 ((TextField) n).setPrefWidth(150);
                 ((TextField) n).setPrefHeight(20);
@@ -227,9 +251,9 @@ public class FormView extends CoreStage {
             }
         }
 
-        grid.addEventFilter(KeyEvent.KEY_RELEASED, setDirty());
 
-        return grid;
+        mainGrid.addEventFilter(KeyEvent.KEY_RELEASED, setDirty());
+        return mainGrid;
     }
 
     private EventHandler<WindowEvent> onClose() {

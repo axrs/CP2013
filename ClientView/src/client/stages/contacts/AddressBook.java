@@ -6,6 +6,7 @@ import client.controllers.windows.contacts.EditContactWindowCommand;
 import client.controllers.windows.contacts.NewContactWindowCommand;
 import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
+import client.scene.CoreStage;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
 import dao.DAO;
@@ -23,11 +24,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
-public class AddressBook extends Stage {
-
-
+public class AddressBook extends CoreStage {
     /**
      * Table data source.  Individual per AddressBook Instance
      */
@@ -65,9 +63,20 @@ public class AddressBook extends Stage {
         contactPane.setTop(filler);
         contactPane.setCenter(table);
         contactPane.setBottom(buttons);
-        setMinHeight(500);
-        setMinWidth(300);
+
+        setSize(500, 300);
+
         setScene(new CoreScene(contactPane));
+    }
+
+    @Override
+    public void validationError(String message) {
+
+    }
+
+    @Override
+    public void success() {
+
     }
 
     private void updateTableData() {

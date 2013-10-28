@@ -23,6 +23,14 @@ public class ActionButtons extends HBox {
         setShowSaveButton(showSave);
     }
 
+    public void setSaveText(String value) {
+        this.submitButton.setText(value);
+    }
+
+    public void setCloseText(String value) {
+        closeButton.setText(value);
+    }
+
     public void addControl(Control c) {
         this.getChildren().add(c);
     }

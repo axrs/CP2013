@@ -5,6 +5,13 @@ import jfxtras.labs.dialogs.MonologFX;
 
 public abstract class CoreStage extends NotifiableStage {
 
+    public void setSize(double height, double width) {
+        setHeight(height);
+        setWidth(width);
+        setMinWidth(width);
+        setMinHeight(height);
+    }
+
     @Override
     public void onInformation(final String message) {
         try {

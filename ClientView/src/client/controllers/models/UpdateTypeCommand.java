@@ -12,14 +12,14 @@ public class UpdateTypeCommand implements ICommand {
     AppointmentType type = null;
     INotifiable source = null;
 
-    public UpdateTypeCommand(AppointmentType c, INotifiable source) {
+    public UpdateTypeCommand(AppointmentType type, INotifiable source) {
         this.source = source;
-        type = c;
+        this.type = type;
     }
 
     private boolean isValid() {
         boolean isValid = true;
-        if (!type.getDescription().isEmpty() && !type.getDuration().isEmpty()) {
+        if (type.getDescription().isEmpty() && type.getDuration().isEmpty()) {
             isValid = false;
         }
         return isValid;
@@ -30,7 +30,7 @@ public class UpdateTypeCommand implements ICommand {
         if (!isValid()) {
             source.onValidationError("Type must have a description and a duration.");
         } else {
-            DAO.getInstance().getTypeDAO().create(type, new ResultListener() {
+            DAO.getInstance().getTypeDAO().update(type, new ResultListener() {
                 @Override
                 public void results(Result result) {
                     switch (result.getStatus()) {

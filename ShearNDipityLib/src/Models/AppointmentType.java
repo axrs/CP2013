@@ -13,8 +13,8 @@ package Models;
 public class AppointmentType {
 
     private int typeId;
-    private String description;
-    private String duration;
+    private String description = "";
+    private String duration = "";
     private int isAllDay;
 
     public AppointmentType() {

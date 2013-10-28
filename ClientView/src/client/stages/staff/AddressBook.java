@@ -7,6 +7,7 @@ import client.controllers.windows.contacts.EditStaffWindowCommand;
 import client.controllers.windows.core.CloseStageCommand;
 import client.controllers.windows.staff.NewServiceProviderFormCommand;
 import client.scene.CoreScene;
+import client.scene.CoreStage;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
 import dao.DAO;
@@ -24,9 +25,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
-public class AddressBook extends Stage {
+public class AddressBook extends CoreStage {
     private final ObservableList<ServiceProvider> data = FXCollections.observableArrayList();
     private TableView<ServiceProvider> staffTable = new TableView<ServiceProvider>();
 
@@ -58,8 +58,9 @@ public class AddressBook extends Stage {
         mainPane.setTop(filler);
         mainPane.setCenter(staffTable);
         mainPane.setBottom(buttons);
-        setMinHeight(500);
-        setMinWidth(300);
+
+        setSize(500, 300);
+
         setScene(new CoreScene(mainPane));
     }
 
@@ -106,4 +107,13 @@ public class AddressBook extends Stage {
         };
     }
 
+    @Override
+    public void validationError(String message) {
+
+    }
+
+    @Override
+    public void success() {
+
+    }
 }

@@ -23,7 +23,10 @@ var UpdateTypeCommand = Ring.create([AbstractTypeCommand], {
     execute: function (req, res) {
         var dao = this._dao;
         var type = this._type;
-        if (type.getId() == 0 || Utilities.isStringAndEmpty(type.getDescription)) {
+        console.log(Utilities.isStringAndEmpty(type.getDescription()));
+        console.log(Utilities.isStringAndNotEmpty(type.getDescription()));
+        console.log("HERE");
+        if (type.getId() == 0 || Utilities.isStringAndEmpty(type.getDescription())) {
             StatusHelpers.status400(req, res);
         } else {
             dao.update(type, function (err) {
