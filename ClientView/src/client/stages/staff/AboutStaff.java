@@ -1,11 +1,13 @@
 package client.stages.staff;
 
 import client.scene.CoreStage;
+import client.scene.control.LabelFactory;
 import dao.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import models.ServiceProvider;
@@ -26,11 +28,13 @@ public class AboutStaff extends CoreStage {
         BorderPane borderPane = new BorderPane();
 
         VBox vBox = new VBox();
+        vBox.setSpacing(5);
 
         serviceProviders.addAll(DAO.getInstance().getProviderDAO().getStore());
         for (ServiceProvider sp : serviceProviders) {
-            vBox.getChildren().add(new Label(sp.getContFirstName() + " " + sp.getSurname()));
+            vBox.getChildren().add(LabelFactory.createHeadingLabel(sp.getContFirstName() + " " + sp.getSurname()));
             vBox.getChildren().add(new Label(sp.getBiography()));
+            vBox.getChildren().add(new Separator());
         }
 
         borderPane.setCenter(vBox);
