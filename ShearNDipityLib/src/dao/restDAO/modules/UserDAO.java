@@ -1,4 +1,4 @@
-package dao.restDAO.models;
+package dao.restDAO.modules;
 
 import models.User;
 import com.google.gson.Gson;

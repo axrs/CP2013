@@ -1,7 +1,7 @@
 package dao.restDAO;
 
 import dao.*;
-import dao.restDAO.models.*;
+import dao.restDAO.modules.*;
 
 public class RESTFactory implements IDAOFactory {
 

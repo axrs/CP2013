@@ -1,17 +1,17 @@
-package dao.restDAO.models;
+package dao.restDAO.modules;
 
-import models.Availability;
 import com.google.gson.Gson;
 import dao.IAvailabilitiesDAO;
 import dao.events.AvailabilitiesUpdatedListener;
 import dao.events.UpdatedEvent;
-import dao.restDAO.client.ActiveRESTClient;
 import dao.restDAO.Publisher;
+import dao.restDAO.client.ActiveRESTClient;
 import dao.restDAO.events.Result;
 import dao.restDAO.listeners.ResultListener;
 import dao.restDAO.requests.Request;
 import dao.restDAO.requests.availabilities.GetAllAvailabilitiesRequest;
 import dao.restDAO.stores.AvailabilitiesStore;
+import models.Availability;
 
 import java.util.ArrayList;
 

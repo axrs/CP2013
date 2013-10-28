@@ -1,9 +1,9 @@
 package dao;
 
-import models.Appointment;
 import dao.events.AppointmentsAddedListener;
 import dao.events.AppointmentsUpdatedListener;
 import dao.restDAO.listeners.ResultListener;
+import models.Appointment;
 
 public interface IAppointmentDAO {
 
@@ -11,17 +11,17 @@ public interface IAppointmentDAO {
 
     public Appointment get(int id);
 
-    public void create(Appointment contact, ResultListener listener);
+    public void create(Appointment appointment, ResultListener listener);
 
-    public void create(Appointment contact);
+    public void create(Appointment appointment);
 
-    public void update(Appointment contact, ResultListener listener);
+    public void update(Appointment appointment, ResultListener listener);
 
-    public void update(Appointment contact);
+    public void update(Appointment appointment);
 
-    public void remove(Appointment contact, ResultListener listener);
+    public void remove(Appointment appointment, ResultListener listener);
 
-    public void remove(Appointment contact);
+    public void remove(Appointment appointment);
 
     public void remove(int id, ResultListener listener);
 
