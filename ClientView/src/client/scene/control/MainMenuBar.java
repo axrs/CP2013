@@ -1,6 +1,5 @@
 package client.scene.control;
 
-import models.User;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.appointments.ShowTypesWindow;
 import client.controllers.windows.contacts.NewContactAddressBookCommand;
@@ -9,6 +8,7 @@ import client.controllers.windows.core.ApplicationExitCommand;
 import client.controllers.windows.core.ShowAboutWindowCommand;
 import client.controllers.windows.core.StatsWindowCommand;
 import client.controllers.windows.staff.NewServiceProviderFormCommand;
+import client.controllers.windows.staff.ShowAboutStaffCommand;
 import client.controllers.windows.staff.ShowStaffAddressBookWindowCommand;
 import dao.DAO;
 import dao.events.UpdatedEvent;
@@ -18,6 +18,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import models.User;
 
 
 public class MainMenuBar extends MenuBar {
@@ -27,6 +28,17 @@ public class MainMenuBar extends MenuBar {
     public MainMenuBar() {
         DAO.getInstance().getUserDAO().addUpdatedEventLister(onUserChangeEvent());
         init();
+    }
+
+    public MainMenuBar(boolean isAdmin){
+        if(isAdmin){
+            DAO.getInstance().getUserDAO().addUpdatedEventLister(onUserChangeEvent());
+            init();
+        } else {
+            DAO.getInstance().getUserDAO().addUpdatedEventLister(onUserChangeEvent());
+            buildUserFileMenu();
+            buildUserStaffMenu();
+        }
     }
 
     private UserUpdatedListener onUserChangeEvent() {
@@ -39,7 +51,10 @@ public class MainMenuBar extends MenuBar {
                         User u = DAO.getInstance().getUserDAO().getUser();
                         if (u == null) {
                             getMenus().remove(userMenu);
-                        } else {
+                        } else if (u.getAdmin() < 0 ) {
+
+                        }
+                        else {
                             userMenu.setText(u.getName() + " " + u.getSurname());
                             getMenus().add(userMenu);
                         }
@@ -50,10 +65,30 @@ public class MainMenuBar extends MenuBar {
     }
 
     private void init() {
-        buildFileMenu();
-        buildContactMenu();
-        buildStaffMenu();
-        buildTypesMenu();
+            buildFileMenu();
+            buildContactMenu();
+            buildStaffMenu();
+            buildTypesMenu();
+    }
+
+    private void buildUserStaffMenu() {
+        Menu staffMenu = new Menu("Staff");
+        MenuItem viewStaffMenu = new MenuItem("View Staff");
+
+        staffMenu.getItems().addAll(viewStaffMenu);
+
+        viewStaffMenu.setOnAction(new ActionEventStrategy(new ShowAboutStaffCommand()));
+    }
+
+    private void buildUserFileMenu() {
+        Menu fileMenu = new Menu("File");
+        MenuItem aboutMenuItem = new MenuItem("About");
+        MenuItem exitMenuItem = new MenuItem("Quit");
+        fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), exitMenuItem);
+        getMenus().add(fileMenu);
+
+        exitMenuItem.setOnAction(new ActionEventStrategy(new ApplicationExitCommand()));
+        aboutMenuItem.setOnAction(new ActionEventStrategy(new ShowAboutWindowCommand()));
     }
 
     private void buildTypesMenu() {
