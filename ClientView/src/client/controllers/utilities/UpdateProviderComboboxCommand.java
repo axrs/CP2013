@@ -19,7 +19,7 @@ public class UpdateProviderComboboxCommand implements ICommand {
         comboBox.getItems().clear();
         comboBox.getItems().add("All Hairdressers");
         for(ServiceProvider p:providers) {
-            comboBox.getItems().add(p.getName());
+            comboBox.getItems().add(p.getFullName());
         }
         comboBox.setValue(comboBox.getItems().get(0));
     }

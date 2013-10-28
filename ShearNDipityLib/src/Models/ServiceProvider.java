@@ -46,15 +46,19 @@ public class ServiceProvider extends Contact {
         return Color.web(color);
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public void setColor(Color value) {
         color = String.format("#%02X%02X%02X",
                 (int) (value.getRed() * 255),
                 (int) (value.getGreen() * 255),
                 (int) (value.getBlue() * 255));
+    }
+
+    public String getFullName() {
+        return getName() + " " + getSurname();
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getProviderId() {

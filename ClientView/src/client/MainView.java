@@ -34,8 +34,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.ServiceProvider;
 
-import javax.swing.event.ChangeListener;
-
 public class MainView extends Application {
     private final Agenda agendaView = new Agenda();
 
@@ -107,21 +105,21 @@ public class MainView extends Application {
             }
         });
 
-     staffCombo.setOnAction(new EventHandler<ActionEvent>() {
-         @Override
-         public void handle(ActionEvent actionEvent) {
-             ServiceProvider[] providers = DAO.getInstance().getProviderDAO().getStore();
-             for (ServiceProvider p:providers) {
-                 String curName = p.getName();
-                 curName.compareTo(staffCombo.getValue());
-                 if (curName.equals(staffCombo.getValue())) {
-                     agendaView.setProviderToShow(p.getProviderId());
-                 }
-                 else
-                     agendaView.setProviderToShow(0);
-             }
-         }
-     });
+        staffCombo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ServiceProvider[] providers = DAO.getInstance().getProviderDAO().getStore();
+
+                int id = 0;
+                for (ServiceProvider p : providers) {
+                    if (p.getFullName().equals(staffCombo.getValue())) {
+                        id = p.getProviderId();
+                        break;
+                    }
+                }
+                agendaView.setProviderToShow(id);
+            }
+        });
 
 
         Scene scene = new CoreScene(mainPane, 800, 600);
