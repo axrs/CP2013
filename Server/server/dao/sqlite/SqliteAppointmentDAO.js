@@ -26,9 +26,27 @@ var SqliteAppointmentDAO = Ring.create([SqliteHelper, IAppointmentDAO], {
             $time: appointment.getTime()
         };
 
-        database.query(sql, values, function (err) {
+        this.query(sql, values, function (err) {
             if (callback) {
                 callback(err);
+            }
+        });
+    },
+    lastInserted: function (callback) {
+        var sql = 'SELECT AppointmentId, Appointment.TypeId, Appointment.ProviderId, ' +
+            'Appointment.ContactId, Appointment.Time, Appointment.Date, ' +
+            'time(strftime(\'%s\',Time) + strftime(\'%s\',Duration), \'unixepoch\') as EndTime, ' +
+            'Appointment_Type.Description, Contact.Name, Contact.Surname ' +
+            'FROM Appointment ' +
+            'LEFT JOIN Provider on Provider.ProviderId = Appointment.ProviderId ' +
+            'LEFT JOIN Contact on Contact.ContactId = Appointment.ContactId ' +
+            'LEFT JOIN Appointment_Type on Appointment_Type.TypeId = Appointment.TypeId ORDER BY Appointment.rowid DESC LIMIT 1;';
+        this.all(sql, null, function (err, result) {
+            if (result && result.length && callback) {
+                callback(err, SqliteAppointmentDAO.AppointmentFromDatabase(result[0]));
+            }
+            else if (callback) {
+                callback(err, null);
             }
         });
     },

@@ -14,8 +14,8 @@ var allAvailableCMD = function (req, res) {
 };
 
 var createCMD = function (req, res) {
-    var Appointment = Appointment.fromJSON(req.body);
-    new CreateCommand(Appointment, DAO.getAppointmentDAO()).execute(req, res);
+    var appointment = Appointment.fromJSON(req.body);
+    new CreateCommand(appointment, DAO.getAppointmentDAO()).execute(req, res);
 };
 
 server = module.exports.server = module.parent.exports.server;
