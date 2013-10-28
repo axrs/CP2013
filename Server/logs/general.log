@@ -4611,3 +4611,9 @@
 2013-10-28 17:20:19	Error running query.
 2013-10-28 17:20:19	Error: SQLITE_ERROR: no such column: AppointmentType.Description
 2013-10-28 17:20:19	SELECT AppointmentId, Appointment.TypeId, Appointment.ProviderId, Appointment.ContactId, Appointment.Time, Appointment.Date, time(strftime('%s',Time) + strftime('%s',Duration), 'unixepoch') as EndTime, AppointmentType.Description, Contact.Name, Contact.Surname FROM Appointment LEFT JOIN Provider on Provider.ProviderId = Appointment.ProviderId LEFT JOIN Contact on Contact.ContactId = Appointment.ContactId LEFT JOIN Appointment_Type on Appointment_Type.TypeId = Appointment.TypeId;null
+2013-10-28 19:55:25	C8-gwciuCmKLiBsP10x5pal6	10.100.0.182	/api/appointments/2/?access_token=30d4febd-7932-4a6f-8016-c5d35b822243	{}
+2013-10-28 19:55:27	jMkI9nRp34rGy3O6XLlRVyWs	10.100.0.182	/api/appointments/0/?access_token=30d4febd-7932-4a6f-8016-c5d35b822243	{}
+2013-10-28 19:55:31	a6-mFRMvwVW3MDax71jlKSqj	10.100.0.182	/api/appointments/3/?access_token=30d4febd-7932-4a6f-8016-c5d35b822243	{}
+2013-10-28 19:55:33	guwU-5jZlEmxcJSK26xmL3yu	10.100.0.182	/api/appointments/5/?access_token=30d4febd-7932-4a6f-8016-c5d35b822243	{}
+2013-10-28 19:55:36	vG6wGktlOqmjP5UMq70BRqaU	10.100.0.182	/api/appointments/0/?access_token=30d4febd-7932-4a6f-8016-c5d35b822243	{}
+2013-10-28 19:55:43	utQbkyNNh3ezpr6DMHQCSb0S	10.100.0.182	/api/appointments/4/?access_token=30d4febd-7932-4a6f-8016-c5d35b822243	{}
