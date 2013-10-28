@@ -125,6 +125,7 @@ public class MainView extends Application {
                 agendaView.setProviderToShow(id);
             }
         });
+        staffCombo.setMinWidth(250);
 
         Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);
