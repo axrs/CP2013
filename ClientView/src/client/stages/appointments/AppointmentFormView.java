@@ -1,9 +1,5 @@
 package client.stages.appointments;
 
-import models.Appointment;
-import models.AppointmentType;
-import models.Contact;
-import models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
@@ -25,6 +21,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import jfxtras.labs.scene.control.CalendarTextField;
+import models.Appointment;
+import models.AppointmentType;
+import models.Contact;
+import models.ServiceProvider;
 
 import java.util.Calendar;
 import java.util.Date;

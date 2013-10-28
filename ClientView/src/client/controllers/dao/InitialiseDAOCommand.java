@@ -12,5 +12,6 @@ public class InitialiseDAOCommand implements ICommand {
         DAO.getInstance().getContactDAO();
         DAO.getInstance().getUserDAO();
         DAO.getInstance().getAvailabilitiesDAO();
+        DAO.getInstance().getAppointmentDAO();
     }
 }

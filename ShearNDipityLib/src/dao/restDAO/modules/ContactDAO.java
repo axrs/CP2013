@@ -1,6 +1,5 @@
 package dao.restDAO.modules;
 
-import models.Contact;
 import com.google.gson.Gson;
 import dao.IContactDAO;
 import dao.events.ContactAddedEvent;
@@ -14,6 +13,7 @@ import dao.restDAO.listeners.ResultListener;
 import dao.restDAO.requests.Request;
 import dao.restDAO.requests.contacts.*;
 import dao.restDAO.stores.ContactDataStore;
+import models.Contact;
 
 public class ContactDAO extends Publisher implements IContactDAO {
 

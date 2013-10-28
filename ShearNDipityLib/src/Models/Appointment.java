@@ -3,6 +3,7 @@ package models;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,8 +19,10 @@ public class Appointment {
     private int typeId;
     private int contactId;
     private int providerId;
-    private String date;
-    private String time;
+    private String date = "";
+    private String time = "";
+    private String endTime = "";
+    private String description = "";
 
     public Appointment() {
     }
@@ -31,6 +34,30 @@ public class Appointment {
         this.providerId = providerId;
         this.date = date;
         this.time = time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getAppointmentId() {
@@ -85,11 +112,12 @@ public class Appointment {
         this.date = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
-    public String getTime() {
-        return time;
+    public Date getStartDate() throws ParseException {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(date + " " + time);
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public Date getEndDate() throws ParseException {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(date + " " + endTime);
     }
+
 }

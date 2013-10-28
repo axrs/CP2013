@@ -1,7 +1,5 @@
 package client.stages.staff;
 
-import models.ServiceHours;
-import models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.models.CreateProviderCommand;
 import client.controllers.models.UpdateProviderCommand;
@@ -28,6 +26,8 @@ import javafx.stage.WindowEvent;
 import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
 import jfxtras.labs.scene.control.BeanPathAdapter;
+import models.ServiceHours;
+import models.ServiceProvider;
 
 public class FormView extends CoreStage {
 
@@ -212,6 +212,15 @@ public class FormView extends CoreStage {
         rightGrid.addRow(4, LabelFactory.createFieldLabel("Date Employed:"), initiated);
         rightGrid.addRow(5, LabelFactory.createFieldLabel("Date Terminated:"), terminated);
 
+        final ColorPicker picker = new ColorPicker();
+        picker.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                provider.setColor(picker.getValue());
+            }
+        });
+        picker.setValue(provider.getColor());
+        rightGrid.addRow(6, LabelFactory.createFieldLabel("Display Colour:"), picker);
 
         mainGrid.addRow(0, leftGrid, rightGrid);
         mainGrid.addRow(1, LabelFactory.createFieldLabel("Biography:"));

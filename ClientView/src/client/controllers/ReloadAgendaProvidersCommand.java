@@ -1,9 +1,10 @@
 package client.controllers;
 
-import models.ServiceProvider;
+import client.controllers.models.GetAvailabilitiesRangeCommand;
 import client.scene.control.Agenda;
 import dao.DAO;
 import javafx.application.Platform;
+import models.ServiceProvider;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +39,7 @@ public class ReloadAgendaProvidersCommand implements ICommand {
                     styles.add(
                             String.format(".%s {-fx-background-color: %s; } ",
                                     grp.getStyleClass(),
-                                    p.getColor())
+                                    p.getColorCode())
                     );
 
                     addList.add(grp);
@@ -62,6 +63,9 @@ public class ReloadAgendaProvidersCommand implements ICommand {
                 }
                 agendaView.appointmentGroups().addAll(addList);
                 agendaView.getStylesheets().add("./styles/agenda.css");
+
+                new GetAvailabilitiesRangeCommand(agendaView).execute();
+                new ReloadAgendaAppointmentsCommand(agendaView).execute();
 
             }
         });

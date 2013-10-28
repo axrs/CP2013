@@ -110,7 +110,6 @@ public class AppointmentDAO extends Publisher implements IAppointmentDAO {
             @Override
             public void results(Result result) {
                 if (result.getStatus() != 201 && result.getStatus() != 202) return;
-
                 Request r = new GetAllContactsRequest();
                 r.addResultListener(onGetAllAppointments());
                 ActiveRESTClient.addRequest(r);

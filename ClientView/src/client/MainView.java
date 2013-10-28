@@ -1,5 +1,6 @@
 package client;
 
+import client.controllers.ReloadAgendaAppointmentsCommand;
 import client.controllers.ReloadAgendaAvailabilitiesCommand;
 import client.controllers.ReloadAgendaProvidersCommand;
 import client.controllers.adapters.ActionEventStrategy;
@@ -14,6 +15,7 @@ import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
 import client.scene.control.MainMenuBar;
 import dao.DAO;
+import dao.events.AppointmentsUpdatedListener;
 import dao.events.AvailabilitiesUpdatedListener;
 import dao.events.ProviderUpdatedListener;
 import dao.events.UpdatedEvent;
@@ -42,6 +44,13 @@ public class MainView extends Application {
             @Override
             public void updated(UpdatedEvent event) {
                 new ReloadAgendaAvailabilitiesCommand(agendaView).execute();
+            }
+        });
+
+        DAO.getInstance().getAppointmentDAO().addUpdatedEventLister(new AppointmentsUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                new ReloadAgendaAppointmentsCommand(agendaView).execute();
             }
         });
 
@@ -90,55 +99,7 @@ public class MainView extends Application {
             @Override
             public void updated(AppointmentController.AppointmentsUpdated event) {
 
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Iterator<Agenda.Appointment> iterator = agendaView.appointments().iterator();
-                        ArrayList<Agenda.Appointment> removeList = new ArrayList();
-                        while (iterator.hasNext()) {
-                            Agenda.Appointment app = iterator.next();
-                            if (app instanceof ReadOnlyAppointmentImpl) {
-                                if (((ReadOnlyAppointmentImpl) app).getAppId() != 0) {
-                                    removeList.add(app);
-                                }
-                            }
-                        }
-                        agendaView.appointments().removeAll(removeList);
-                        ArrayList<Agenda.Appointment> addList = new ArrayList();
 
-
-                        for (Appointment item : AppointmentController.getInstance().getAppointments().values()) {
-
-                            if (item instanceof ScheduledAppointment) {
-                                ScheduledAppointment schedItem = (ScheduledAppointment) item;
-
-                                Calendar cal = Calendar.getInstance();
-                                try {
-                                    cal.setTime(schedItem.getEndDate());
-                                    Calendar endTime = (Calendar) cal.clone();
-                                    cal.setTime(schedItem.getStartDate());
-                                    Calendar startTime = (Calendar) cal.clone();
-
-                                    ReadOnlyAppointmentImpl a =
-                                            new ReadOnlyAppointmentImpl();
-                                    a.withStartTime(startTime)
-                                            .withEndTime(endTime)
-                                            .withSummary(schedItem.getTitle())
-                                            .withDescription(schedItem.getStaff())
-                                            .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getProviderId() - 1))
-                                    ;
-
-                                    a.setAppId(schedItem.getAppointmentId());
-                                    addList.add(a);
-
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                        agendaView.appointments().addAll(addList);
-                    }
-                });
             }
         };
     }

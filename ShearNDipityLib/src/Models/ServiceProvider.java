@@ -1,5 +1,7 @@
 package models;
 
+import javafx.scene.paint.Color;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class ServiceProvider extends Contact {
     private String initiated = "";
     private String terminated = "";
     private int isActive;
-    private String color;
+    private String color = "#006dcc";
     private List<ServiceHours> hours;
 
     public ServiceProvider() {
@@ -36,12 +38,23 @@ public class ServiceProvider extends Contact {
         initialiseServiceHours();
     }
 
-    public String getColor() {
+    public String getColorCode() {
         return color;
+    }
+
+    public Color getColor() {
+        return Color.web(color);
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setColor(Color value) {
+        color = String.format("#%02X%02X%02X",
+                (int) (value.getRed() * 255),
+                (int) (value.getGreen() * 255),
+                (int) (value.getBlue() * 255));
     }
 
     public int getProviderId() {

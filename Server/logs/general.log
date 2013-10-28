@@ -4605,3 +4605,9 @@
 2013-10-28 15:09:49	w8aproAx6zLphoC392Wew5XK	127.0.0.1	/api/appointments/types?access_token=	{}
 2013-10-28 15:18:57	Ht5ME3AsdGCRlKJ05JbsvTC3	127.0.0.1	/api/appointments/types?access_token=	{}
 2013-10-28 15:24:56	fubGZPhqsVzKzDYRk41l2gGp	127.0.0.1	/api/appointments/types?access_token=	{}
+2013-10-28 17:19:36	Error running query.
+2013-10-28 17:19:36	Error: SQLITE_SCHEMA: near ".": syntax error
+2013-10-28 17:19:36	SELECT AppointmentId, Appointment.TypeId, Appointment.ProviderId, Appointment.ContactId, Appointment.Time, Appointment.Date, time(strftime('%s',Time) + strftime('%s',Duration), 'unixepoch') as EndTime, AppointmentType.Description Contact.Name, Contact.Surname FROM Appointment LEFT JOIN Provider on Provider.ProviderId = Appointment.ProviderId LEFT JOIN Contact on Contact.ContactId = Appointment.ContactId LEFT JOIN Appointment_Type on Appointment_Type.TypeId = Appointment.TypeId;null
+2013-10-28 17:20:19	Error running query.
+2013-10-28 17:20:19	Error: SQLITE_ERROR: no such column: AppointmentType.Description
+2013-10-28 17:20:19	SELECT AppointmentId, Appointment.TypeId, Appointment.ProviderId, Appointment.ContactId, Appointment.Time, Appointment.Date, time(strftime('%s',Time) + strftime('%s',Duration), 'unixepoch') as EndTime, AppointmentType.Description, Contact.Name, Contact.Surname FROM Appointment LEFT JOIN Provider on Provider.ProviderId = Appointment.ProviderId LEFT JOIN Contact on Contact.ContactId = Appointment.ContactId LEFT JOIN Appointment_Type on Appointment_Type.TypeId = Appointment.TypeId;null

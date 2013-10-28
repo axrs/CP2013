@@ -8,6 +8,8 @@ var Appointment = Ring.create({
     _providerId: 0,
     _date: "",
     _time: "",
+    _endTime: "",
+    _description: "",
 
     init: function () {
     },
@@ -62,6 +64,16 @@ var Appointment = Ring.create({
             this._time = value;
         }
     },
+
+    setEndTime: function (value) {
+        if (Utilities.isTimeStamp(value)) {
+            this._endTime = value;
+        }
+    },
+
+    setDescription: function (value) {
+        this._description = value;
+    },
     getTime: function () {
         return this._time;
     },
@@ -73,8 +85,10 @@ var Appointment = Ring.create({
             "typeId": this._typeId,
             "providerId": this._providerId,
             "contactId": this._contactId,
+            "description": this._description,
             "date": this._date,
-            "time": this._time
+            "time": this._time,
+            "endTime": this._endTime
         }
     }
 });
