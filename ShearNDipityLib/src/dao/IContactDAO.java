@@ -4,7 +4,7 @@ package dao;
 import Models.Contact;
 import dao.events.ContactAddedListener;
 import dao.events.ContactsUpdatedListener;
-import dao.rest.listeners.ResultListener;
+import dao.restDAO.listeners.ResultListener;
 
 public interface IContactDAO {
 

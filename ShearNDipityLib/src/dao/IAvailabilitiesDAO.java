@@ -2,7 +2,7 @@ package dao;
 
 import Models.Availability;
 import dao.events.AvailabilitiesUpdatedListener;
-import dao.rest.listeners.ResultListener;
+import dao.restDAO.listeners.ResultListener;
 
 public interface IAvailabilitiesDAO {
 

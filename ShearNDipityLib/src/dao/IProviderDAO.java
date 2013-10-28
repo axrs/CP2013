@@ -3,7 +3,7 @@ package dao;
 import Models.ServiceProvider;
 import dao.events.ProviderAddedListener;
 import dao.events.ProviderUpdatedListener;
-import dao.rest.listeners.ResultListener;
+import dao.restDAO.listeners.ResultListener;
 
 public interface IProviderDAO {
 

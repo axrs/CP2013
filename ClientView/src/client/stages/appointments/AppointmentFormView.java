@@ -1,19 +1,18 @@
 package client.stages.appointments;
 
 import Controllers.AppointmentController;
-import Controllers.AppointmentTypeController;
 import Controllers.ContactsController;
-import Controllers.ServiceProvidersController;
 import Models.Appointment;
 import Models.AppointmentType;
 import Models.Contact;
 import Models.ServiceProvider;
-import client.controllers.windows.core.CloseStageCommand;
 import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
 import client.scene.control.TimeComboBox;
+import dao.DAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -34,40 +33,43 @@ import java.util.Date;
 
 public class AppointmentFormView extends Stage {
     final TimeComboBox timeSelection = new TimeComboBox();
-    ObservableList<ServiceProvider> serviceProviderObservableList = FXCollections.observableArrayList();
-    ObservableList<AppointmentType> appointmentTypeObservableList = FXCollections.observableArrayList();
-    ObservableList<Contact> contactObservableList = FXCollections.observableArrayList();
+    ObservableList<ServiceProvider> serviceProviders = FXCollections.observableArrayList();
+    ObservableList<AppointmentType> appointmentTypes = FXCollections.observableArrayList();
+    ObservableList<Contact> contacts = FXCollections.observableArrayList();
     private Appointment appointment;
     private Date endTime;
+    private AppointmentType selectedType;
+
 
     public AppointmentFormView(Appointment app, Date startTime, Date endTime) {
         appointment = app;
         this.endTime = endTime;
         timeSelection.setStartTime(startTime);
 
-        serviceProviderObservableList.addAll(ServiceProvidersController.getInstance().getServiceProviders().values());
-        appointmentTypeObservableList.addAll(AppointmentTypeController.getInstance().getAppointmentTypes().values());
-        contactObservableList.addAll(ContactsController.getInstance().getContacts().values());
+        serviceProviders.addAll(DAO.getInstance().getProviderDAO().getStore());
+        appointmentTypes.addAll(DAO.getInstance().getTypeDAO().getStore());
+        contacts.addAll(DAO.getInstance().getContactDAO().getStore());
 
-        setTitle("CP2013 Appointment Scheduler - Appointment");
+        setTitle("Book appointment");
 
-        Label serviceProvider = new Label();
+        Label serviceProvider = new Label("Provider:");
         String selectedProvider = "";
-        for (ServiceProvider aServiceProviderObservableList : serviceProviderObservableList) {
-            if (aServiceProviderObservableList.getProviderId() == appointment.getProviderId()) {
-                selectedProvider = aServiceProviderObservableList.getContFirstName();
+        for (ServiceProvider provider : serviceProviders) {
+            if (provider.getProviderId() == appointment.getProviderId()) {
+                selectedProvider = provider.getName() + " " + provider.getSurname();
             }
         }
         serviceProvider.setText(selectedProvider);
 
         ComboBox<String> appointmentType = new ComboBox<String>();
-        for (int i = 0; i < appointmentTypeObservableList.size(); i++)
-            appointmentType.getItems().add(i, appointmentTypeObservableList.get(i).getDescription());
-
+        for (AppointmentType type : appointmentTypes) {
+            appointmentType.getItems().add(type.getDescription());
+        }
         appointmentType.valueProperty().addListener(onAppointmentTypeChange());
+
         ComboBox<String> contact = new ComboBox<String>();
-        for (int i = 0; i < contactObservableList.size(); i++)
-            contact.getItems().add(i, String.format("%s %s", contactObservableList.get(i).getContFirstName(), contactObservableList.get(i).getSurname()));
+        for (Contact c : contacts)
+            contact.getItems().add(String.format("%s %s", c.getName(), c.getSurname()));
 
         contact.valueProperty().addListener(onContactChange());
 
@@ -151,9 +153,10 @@ public class AppointmentFormView extends Stage {
         return new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object o2) {
-                for (AppointmentType type : AppointmentTypeController.getInstance().getAppointmentTypes().values()) {
+
+                for (AppointmentType type : appointmentTypes) {
                     if (type.getDescription().equals(o2)) {
-                        appointment.setTypeId(type.getTypeId());
+                        selectedType = type;
                         break;
                     }
                 }
@@ -163,7 +166,7 @@ public class AppointmentFormView extends Stage {
     }
 
     private void adjustMaximumTimeSelection() {
-        String appDuration = AppointmentTypeController.getInstance().getAppointmentType(appointment.getTypeId()).getDuration();
+        String appDuration = selectedType.getDuration();
         int appMinutes = (Integer.valueOf(appDuration.split(":")[0]) * 60) + (Integer.valueOf(appDuration.split(":")[1]));
 
         Calendar cal = Calendar.getInstance();

@@ -4,8 +4,8 @@ import Models.AppointmentType;
 import client.controllers.ICommand;
 import client.scene.INotifiable;
 import dao.DAO;
-import dao.rest.events.Result;
-import dao.rest.listeners.ResultListener;
+import dao.restDAO.events.Result;
+import dao.restDAO.listeners.ResultListener;
 
 public class RemoveTypeCommand implements ICommand {
 

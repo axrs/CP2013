@@ -3,7 +3,7 @@ package dao;
 import Models.AppointmentType;
 import dao.events.TypeAddedListener;
 import dao.events.TypeUpdatedListener;
-import dao.rest.listeners.ResultListener;
+import dao.restDAO.listeners.ResultListener;
 
 public interface ITypeDAO {
 

@@ -21,6 +21,10 @@ var Appointment = Ring.create({
         return this._appointmentId;
     },
 
+    isValid: function () {
+        return (this._typeId != 0 && this._providerId != 0 && this._contactId != 0
+            && Utilities.isStringAndNotEmpty(this._date) && Utilities.isStringAndNotEmpty(this._time));
+    },
     setTypeId: function (value) {
         if (Utilities.isIntegerAboveZero(value)) {
             this._typeId = value;

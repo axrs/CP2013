@@ -2,7 +2,7 @@ package dao;
 
 import Models.User;
 import dao.events.UserUpdatedListener;
-import dao.rest.listeners.ResultListener;
+import dao.restDAO.listeners.ResultListener;
 
 public interface IUserDAO {
     public User getUser();

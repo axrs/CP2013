@@ -1,8 +1,8 @@
 package dao;
 
-import dao.rest.RESTFactory;
+import dao.restDAO.RESTFactory;
 
-public class DAO {
+public class DAO implements IDAOFactory {
     private static DAO instance;
     private IDAOFactory factory;
 
@@ -37,6 +37,10 @@ public class DAO {
         return factory.getAvailabilitiesDAO();
     }
 
+    private IAppointmentDAO getAppointmentFactoryDAO() {
+        return factory.getAppointmentDAO();
+    }
+
     public ITypeDAO getTypeDAO() {
         return getInstance().getTypeFactoryDAO();
     }
@@ -55,5 +59,9 @@ public class DAO {
 
     public IAvailabilitiesDAO getAvailabilitiesDAO() {
         return getInstance().getAvailabilitiesFactoryDAO();
+    }
+
+    public IAppointmentDAO getAppointmentDAO() {
+        return getInstance().getAppointmentFactoryDAO();
     }
 }
