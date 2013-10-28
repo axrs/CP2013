@@ -1,6 +1,5 @@
 package client.stages.staff;
 
-import Controllers.ServiceProvidersController;
 import Models.Contact;
 import Models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
@@ -24,7 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class AddressBook extends Stage {
@@ -45,23 +44,23 @@ public class AddressBook extends Stage {
         DAO.getInstance().getProviderDAO().addUpdatedEventLister(onStoreUpdate());
         staffTable.setOnMouseClicked(onTableRowDoubleClick());
 
-        ServiceProvidersController serviceProviderController = ServiceProvidersController.getInstance();
-        serviceProviderController.addUpdatedListener(onStaffListUpdated());
-        serviceProviderController.getServiceProvidersFromServer();
-
         ActionButtons buttons = new ActionButtons(false);
         buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
         Button b = new Button("+");
         b.setOnAction(new ActionEventStrategy(new NewServiceProviderFormCommand()));
         buttons.addControl(b);
 
-        final VBox vbox = new VBox();
-        vbox.getStyleClass().add("grid");
-        vbox.getChildren().addAll(label, staffTable);
-        vbox.setAlignment(Pos.CENTER);
-        mainPane.setCenter(vbox);
+        StackPane filler = new StackPane();
+        filler.getStyleClass().add("grid");
+        filler.getChildren().addAll(label);
+        filler.setAlignment(Pos.TOP_CENTER);
+
+        mainPane.setTop(filler);
+        mainPane.setCenter(staffTable);
         mainPane.setBottom(buttons);
-        setScene(new CoreScene(mainPane, 300, 500));
+        setMinHeight(500);
+        setMinWidth(300);
+        setScene(new CoreScene(mainPane));
     }
 
     private void updateTableData() {
@@ -103,16 +102,6 @@ public class AddressBook extends Stage {
                     ServiceProvider provider = (ServiceProvider) view.getSelectionModel().getSelectedItem();
                     new EditStaffWindowCommand(provider).execute();
                 }
-            }
-        };
-    }
-
-    private ServiceProvidersController.ServiceProvidersUpdatedListener onStaffListUpdated() {
-        return new ServiceProvidersController.ServiceProvidersUpdatedListener() {
-            @Override
-            public void updated(ServiceProvidersController.ServiceProvidersUpdated event) {
-                data.clear();
-                data.addAll(ServiceProvidersController.getInstance().getServiceProviders().values());
             }
         };
     }

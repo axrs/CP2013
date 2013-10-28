@@ -28,10 +28,8 @@ public class UpdateProviderCommand implements ICommand {
     @Override
     public void execute() {
         if (!isValid()) {
-            System.out.println("HERE");
             source.onValidationError("Provider must have a name and surname.");
         } else {
-            System.out.println("update");
             DAO.getInstance().getProviderDAO().update(provider, new ResultListener() {
                 @Override
                 public void results(Result result) {

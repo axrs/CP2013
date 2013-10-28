@@ -36,7 +36,6 @@ public class AppointmentType {
     }
 
     public String getDescription() {
-        System.out.println(description);
         return description;
     }
 

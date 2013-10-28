@@ -22,7 +22,6 @@ public class ServiceProviderController implements BaseController, ActionListener
     public ServiceProviderController(ServiceProviderView view, ServiceProvider model) {
         this.setModel(model);
         this.setView(view);
-        System.out.println("new controller");
     }
 
     public void setModel(ServiceProvider model) {

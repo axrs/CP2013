@@ -196,7 +196,6 @@ public class Contact {
      * @param address address address
      */
     public void setAddress(String address) {
-        System.out.println(address);
         this.address = address;
     }
 

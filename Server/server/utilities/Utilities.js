@@ -23,6 +23,10 @@ module.exports.isStringAndNotEmpty = function (value) {
     return (typeof value == 'string' && value != '');
 };
 
+module.exports.isStringAndEmpty= function (value) {
+    return (typeof value == 'string' && value == '');
+};
+
 /**
  * Checks if the passed value {n} is an integer
  * @param n object to be checked

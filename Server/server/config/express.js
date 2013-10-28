@@ -1,7 +1,7 @@
 var express = require('express'),
     config = require('./config');
 var MemoryStore = express.session.MemoryStore;
-var sessionStore = new MemoryStore();
+
 module.exports = function (server, passport) {
     server.set('showStackError', true);
 

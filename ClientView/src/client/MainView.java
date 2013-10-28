@@ -4,32 +4,26 @@ import Controllers.AppointmentController;
 import Controllers.AppointmentTypeController;
 import Controllers.ContactsController;
 import Controllers.ServiceProvidersController;
-import Models.*;
+import Models.Appointment;
+import Models.Availability;
+import Models.ScheduledAppointment;
+import Models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;
 import client.controllers.dao.ConfigureDAOCommand;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
-import client.controllers.windows.contacts.NewContactAddressBookCommand;
-import client.controllers.windows.contacts.NewContactWindowCommand;
 import client.controllers.windows.core.ApplicationExitCommand;
-import client.controllers.windows.core.ShowAboutWindowCommand;
-import client.controllers.windows.core.ShowLoginCommand;
-import client.controllers.windows.core.StatsWindowCommand;
-import client.controllers.windows.staff.NewServiceProviderFormCommand;
-import client.controllers.windows.staff.ShowStaffAddressBookWindowCommand;
 import client.scene.CoreScene;
 import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
+import client.scene.control.MainMenuBar;
 import client.scene.control.ReadOnlyAppointmentImpl;
-import dao.DAO;
-import dao.events.UpdatedEvent;
-import dao.events.UserUpdatedListener;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -44,48 +38,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MainView extends Application {
-
-    private final MenuBar menuBar = new MenuBar();
     private final Agenda agendaView = new Agenda();
-    private final Menu userMenu = new Menu();
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    private void buildFileMenu() {
-        Menu fileMenu = new Menu("File");
-        MenuItem aboutMenuItem = new MenuItem("About");
-        MenuItem statsMenuItem = new MenuItem("Stats");
-        MenuItem exitMenuItem = new MenuItem("Quit");
-        fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), statsMenuItem, new SeparatorMenuItem(), exitMenuItem);
-        menuBar.getMenus().add(fileMenu);
-
-        exitMenuItem.setOnAction(new ActionEventStrategy(new ApplicationExitCommand()));
-        aboutMenuItem.setOnAction(new ActionEventStrategy(new ShowAboutWindowCommand()));
-        statsMenuItem.setOnAction(new ActionEventStrategy(new StatsWindowCommand()));
-    }
-
-    private void buildContactMenu() {
-        Menu contactMenu = new Menu("Contacts");
-        MenuItem contactAddressBookMenuItem = new MenuItem("Address Book");
-        MenuItem newContactMenuItem = new MenuItem("New Contact");
-        contactMenu.getItems().addAll(contactAddressBookMenuItem, new SeparatorMenuItem(), newContactMenuItem);
-        menuBar.getMenus().add(contactMenu);
-
-        contactAddressBookMenuItem.setOnAction(new ActionEventStrategy(new NewContactAddressBookCommand()));
-        newContactMenuItem.setOnAction(new ActionEventStrategy(new NewContactWindowCommand()));
-    }
-
-    private void buildStaffMenu() {
-        Menu staffMenu = new Menu("Staff");
-        MenuItem staffAddressBookMenuItem = new MenuItem("Staff Listing");
-        MenuItem newStaffMemberMenuItem = new MenuItem("New Staff Member");
-        staffMenu.getItems().addAll(staffAddressBookMenuItem, new SeparatorMenuItem(), newStaffMemberMenuItem);
-        menuBar.getMenus().add(staffMenu);
-
-        staffAddressBookMenuItem.setOnAction(ActionEventStrategy.create(new ShowStaffAddressBookWindowCommand()));
-        newStaffMemberMenuItem.setOnAction(ActionEventStrategy.create(new NewServiceProviderFormCommand()));
     }
 
     @Override
@@ -93,19 +49,6 @@ public class MainView extends Application {
 
         new ConfigureDAOCommand().execute();
         new HookLoggerCommand().execute();
-
-        DAO.getInstance().getUserDAO().addUpdatedEventLister(new UserUpdatedListener() {
-            @Override
-            public void updated(UpdatedEvent event) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        User u = DAO.getInstance().getUserDAO().getUser();
-                        userMenu.setText(u.getName() + " " + u.getSurname());
-                    }
-                });
-            }
-        });
 
         ServiceProvidersController.getInstance().getServiceProvidersFromServer();
         AppointmentTypeController.getInstance().getAppointmentTypesFromServer();
@@ -116,11 +59,7 @@ public class MainView extends Application {
 
         primaryStage.setTitle("CP2013 Appointment Scheduler");
         BorderPane mainPane = new BorderPane();
-        mainPane.setTop(menuBar);
-        menuBar.getMenus().add(userMenu);
-        buildFileMenu();
-        buildContactMenu();
-        buildStaffMenu();
+        mainPane.setTop(new MainMenuBar());
 
         BorderPane centrePane = new BorderPane();
         BorderPane topCentrePane = new BorderPane();
@@ -147,7 +86,7 @@ public class MainView extends Application {
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
         //ToDo: Force Login Again.
-        new ShowLoginCommand().execute();
+        //new ShowLoginCommand().execute();
     }
 
     private AppointmentController.AvailabilitiesUpdatedListener onAvailabilitiesUpdated() {
@@ -244,10 +183,10 @@ public class MainView extends Application {
                                             .withEndTime(endTime)
                                             .withSummary(schedItem.getTitle())
                                             .withDescription(schedItem.getStaff())
-                                            .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getServId() - 1))
+                                            .withAppointmentGroup(agendaView.appointmentGroups().get(schedItem.getProviderId() - 1))
                                     ;
 
-                                    a.setAppId(schedItem.getAppId());
+                                    a.setAppId(schedItem.getAppointmentId());
                                     addList.add(a);
 
                                 } catch (ParseException e) {

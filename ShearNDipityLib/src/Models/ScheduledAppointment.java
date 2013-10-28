@@ -22,6 +22,9 @@ public class ScheduledAppointment extends Appointment {
     private String color;
     private String staff;
 
+    public ScheduledAppointment() {
+    }
+
     public String getAppTypeDescription() {
         return appTypeDescription;
     }
@@ -110,11 +113,7 @@ public class ScheduledAppointment extends Appointment {
         this.staff = staff;
     }
 
-    public ScheduledAppointment() {
-    }
-
     public Date getStartDate() throws ParseException {
-        System.out.println(start);
         return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start);
     }
 

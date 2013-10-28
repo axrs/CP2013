@@ -54,7 +54,7 @@ public class AppointmentFormView extends Stage {
         Label serviceProvider = new Label();
         String selectedProvider = "";
         for (ServiceProvider aServiceProviderObservableList : serviceProviderObservableList) {
-            if (aServiceProviderObservableList.getProviderId() == appointment.getServId()) {
+            if (aServiceProviderObservableList.getProviderId() == appointment.getProviderId()) {
                 selectedProvider = aServiceProviderObservableList.getContFirstName();
             }
         }
@@ -73,7 +73,7 @@ public class AppointmentFormView extends Stage {
 
         final CalendarTextField date = new CalendarTextField();
         Calendar cal = Calendar.getInstance();
-        cal.setTime(appointment.getAppDate());
+        cal.setTime(appointment.getDate());
         date.setValue((Calendar) cal.clone());
 
         GridPane mainPane = new GridPane();
@@ -119,12 +119,12 @@ public class AppointmentFormView extends Stage {
             public void handle(ActionEvent actionEvent) {
                 boolean isValid;
                 appointment.setAppDate(date.getValue().getTime());
-                appointment.setAppTime((String) timeSelection.getValue());
+                appointment.setTime((String) timeSelection.getValue());
 
-                isValid = (appointment.getContId() > 0);
-                isValid = isValid && (!appointment.getAppTime().isEmpty());
+                isValid = (appointment.getContactId() > 0);
+                isValid = isValid && (!appointment.getTime().isEmpty());
                 isValid = isValid && (!appointment.getAppDateString().isEmpty());
-                isValid = isValid && (appointment.getAppTypeId() > 0);
+                isValid = isValid && (appointment.getTypeId() > 0);
                 if (isValid) {
                     AppointmentController.getInstance().createAppointment(appointment);
                     close();
@@ -139,7 +139,7 @@ public class AppointmentFormView extends Stage {
             public void changed(ObservableValue observableValue, Object o, Object o2) {
                 for (Contact type : ContactsController.getInstance().getContacts().values()) {
                     if (String.format("%s %s", type.getContFirstName(), type.getSurname()).equals(o2)) {
-                        appointment.setContId(type.getContactId());
+                        appointment.setContactId(type.getContactId());
                         break;
                     }
                 }
@@ -153,7 +153,7 @@ public class AppointmentFormView extends Stage {
             public void changed(ObservableValue observableValue, Object o, Object o2) {
                 for (AppointmentType type : AppointmentTypeController.getInstance().getAppointmentTypes().values()) {
                     if (type.getDescription().equals(o2)) {
-                        appointment.setAppTypeId(type.getTypeId());
+                        appointment.setTypeId(type.getTypeId());
                         break;
                     }
                 }
@@ -163,7 +163,7 @@ public class AppointmentFormView extends Stage {
     }
 
     private void adjustMaximumTimeSelection() {
-        String appDuration = AppointmentTypeController.getInstance().getAppointmentType(appointment.getAppTypeId()).getDuration();
+        String appDuration = AppointmentTypeController.getInstance().getAppointmentType(appointment.getTypeId()).getDuration();
         int appMinutes = (Integer.valueOf(appDuration.split(":")[0]) * 60) + (Integer.valueOf(appDuration.split(":")[1]));
 
         Calendar cal = Calendar.getInstance();

@@ -16,6 +16,7 @@ require('./server/config/authorisation')(server);
 
 server.listen(config.port);
 console.log('Express app started on port ' + config.port);
+server.env = env;
 
 module.exports.server = server;
 

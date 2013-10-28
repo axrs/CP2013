@@ -1,4 +1,4 @@
-package client.stages.contacts;
+package client.stages.user;
 
 import Models.User;
 import client.controllers.ICommand;

@@ -85,8 +85,8 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
                             if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
                                 Models.Appointment newApp = new Models.Appointment();
                                 newApp.setAppDate(app.getStartTime().getTime());
-                                newApp.setServId(((ReadOnlyAppointmentImpl) app).getServId());
-                                newApp.setAppTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
+                                newApp.setProviderId(((ReadOnlyAppointmentImpl) app).getServId());
+                                newApp.setTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));
                                 new AppointmentFormView(newApp, app.getStartTime().getTime(), app.getEndTime().getTime()).show();
                             }
                         }

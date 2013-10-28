@@ -77,7 +77,7 @@ var SqliteAppointmentTypeDAO = Ring.create([ITypeDAO], {
             $description: type.getDescription(),
             $duration: type.getDuration(),
             $isAllDay: type.getIsAllDay(),
-            $isActive: type.getIsActive(),
+            $active: type.getIsActive(),
             $id: type.getId()
         };
         var helper = new SqliteHelper(this._db);

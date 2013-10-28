@@ -9,12 +9,12 @@ import java.util.Date;
 public class TimeComboBox extends ComboBox {
 
     private int step = 15;
-    private int startMinutes;
-    private int endMinutes;
+    private int startMinutes = 0;
+    private int endMinutes = 1425;
 
 
     public TimeComboBox() {
-        setStartTime(new Date());
+        setStep(step);
     }
 
     public TimeComboBox(int step) {

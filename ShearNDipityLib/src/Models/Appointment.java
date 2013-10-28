@@ -10,86 +10,86 @@ import java.util.Date;
  * Date: 25/08/13
  * Time: 9:22 PM
  * <p/>
- * Appointment class - Requires all fields set upon creation. appTypeId, contId and servId are all foreign keys for the
+ * Appointment class - Requires all fields set upon creation. typeId, contactId and providerId are all foreign keys for the
  * database and the appointment can not be displayed without the time or date.
  */
 public class Appointment {
-    private int appId;
-    private int appTypeId;
-    private int contId;
-    private int servId;
-    private String appDate;
-    private String appTime;
+    private int appointmentId;
+    private int typeId;
+    private int contactId;
+    private int providerId;
+    private String date;
+    private String time;
 
     public Appointment() {
     }
 
-    public Appointment(int appId, int appTypeId, int contId, int servId, String appDate, String appTime) {
-        this.appId = appId;
-        this.appTypeId = appTypeId;
-        this.contId = contId;
-        this.servId = servId;
-        this.appDate = appDate;
-        this.appTime = appTime;
+    public Appointment(int id, int typeId, int contactId, int providerId, String date, String time) {
+        this.appointmentId = id;
+        this.typeId = typeId;
+        this.contactId = contactId;
+        this.providerId = providerId;
+        this.date = date;
+        this.time = time;
     }
 
-    public int getAppId() {
-        return appId;
+    public int getAppointmentId() {
+        return appointmentId;
     }
 
-    public void setAppId(int appId) {
-        this.appId = appId;
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
-    public int getAppTypeId() {
-        return appTypeId;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setAppTypeId(int appTypeId) {
-        this.appTypeId = appTypeId;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
-    public int getContId() {
-        return contId;
+    public int getContactId() {
+        return contactId;
     }
 
-    public void setContId(int contId) {
-        this.contId = contId;
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
     }
 
-    public int getServId() {
-        return servId;
+    public int getProviderId() {
+        return providerId;
     }
 
-    public void setServId(int servId) {
-        this.servId = servId;
+    public void setProviderId(int providerId) {
+        this.providerId = providerId;
     }
 
     public String getAppDateString() {
-        return appDate;
+        return date;
     }
 
-    public void setAppDate(String appDate) {
-        this.appDate = appDate;
-    }
-
-    public Date getAppDate() {
+    public Date getDate() {
         try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(this.appDate);
+            return new SimpleDateFormat("yyyy-MM-dd").parse(this.date);
         } catch (ParseException e) {
             return null;
         }
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public void setAppDate(java.util.Date date) {
-        this.appDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        this.date = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
-    public String getAppTime() {
-        return appTime;
+    public String getTime() {
+        return time;
     }
 
-    public void setAppTime(String appTime) {
-        this.appTime = appTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 }

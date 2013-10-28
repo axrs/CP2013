@@ -1,6 +1,6 @@
 package client.controllers;
 
-import client.stages.contacts.RegisterNewUser;
+import client.stages.user.RegisterNewUser;
 
 /**
  * Created with IntelliJ IDEA.

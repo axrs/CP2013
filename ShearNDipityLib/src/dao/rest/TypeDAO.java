@@ -10,11 +10,7 @@ import dao.events.UpdatedEvent;
 import dao.rest.events.Result;
 import dao.rest.listeners.ResultListener;
 import dao.rest.requests.Request;
-import dao.rest.requests.providers.GetProviderRequest;
-import dao.rest.requests.types.CreateTypeRequest;
-import dao.rest.requests.types.GetAllTypesRequest;
-import dao.rest.requests.types.RemoveTypeRequest;
-import dao.rest.requests.types.UpdateTypeRequest;
+import dao.rest.requests.types.*;
 import dao.rest.stores.TypeDataStore;
 
 public class TypeDAO extends Publisher implements ITypeDAO {
@@ -23,7 +19,9 @@ public class TypeDAO extends Publisher implements ITypeDAO {
     private static TypeDataStore store = null;
 
     protected TypeDAO() {
-
+        Request r = new GetAllTypesRequest();
+        r.addResultListener(onGetAllTypeResult());
+        ActiveRESTClient.addRequest(r);
     }
 
     public static TypeDAO getInstance() {
@@ -47,7 +45,7 @@ public class TypeDAO extends Publisher implements ITypeDAO {
         AppointmentType provider = store.get(id);
 
         if (provider == null) {
-            Request r = new GetProviderRequest(id);
+            Request r = new GetTypeRequest(id);
             r.addResultListener(onGetTypeRequest());
             ActiveRESTClient.addRequest(r);
         }

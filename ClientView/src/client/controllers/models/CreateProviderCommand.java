@@ -31,8 +31,6 @@ public class CreateProviderCommand implements ICommand {
         if (!isValid()) {
             source.onValidationError("Provider must have a name and surname.");
         } else {
-            System.out.println("CREATE");
-
             DAO.getInstance().getProviderDAO().create(provider, new ResultListener() {
                 @Override
                 public void results(Result result) {

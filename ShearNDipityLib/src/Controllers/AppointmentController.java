@@ -111,7 +111,7 @@ public class AppointmentController {
 
         RESTRunner runner = new RESTRunner();
         runner.addListner(new ModifyAppointmentResultListener());
-        runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments" + String.valueOf(appointment.getAppId()));
+        runner.setRequest(Config.getInstance().getServer() + "/api/staff/appointments" + String.valueOf(appointment.getAppointmentId()));
         runner.setMethod("PUT");
         runner.setMessage(new Gson().toJson(appointment, Appointment.class));
         Thread runnerThread = new Thread(runner, "Updating Appointment");
@@ -265,7 +265,7 @@ public class AppointmentController {
 
                     for (int i = 0; i < results.length; i++) {
                         Appointment a = results[i];
-                        appointments.put(a.getAppId(), a);
+                        appointments.put(a.getAppointmentId(), a);
                     }
                 } finally {
                     appointmentsLocker.release();
@@ -326,8 +326,8 @@ public class AppointmentController {
                 try {
                     a = new Gson().fromJson(result.getResponse(), Appointment.class);
 
-                    if (a.getContId() != 0) {
-                        appointments.put(a.getAppId(), a);
+                    if (a.getContactId() != 0) {
+                        appointments.put(a.getAppointmentId(), a);
                     }
                 } finally {
                     appointmentsLocker.release();

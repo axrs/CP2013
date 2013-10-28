@@ -33,7 +33,6 @@ public class CreateContactCommand implements ICommand {
             DAO.getInstance().getContactDAO().create(contact, new ResultListener() {
                 @Override
                 public void results(Result result) {
-                    System.out.println(result.getStatus());
                     switch (result.getStatus()) {
                         case 201:
                             source.onSuccess();
