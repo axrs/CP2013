@@ -98,6 +98,7 @@ public class MainView extends Application {
         box.setAlignment(Pos.CENTER_RIGHT);
         mainPane.setBottom(box);
 
+
         DAO.getInstance().getProviderDAO().addUpdatedEventLister(new ProviderUpdatedListener() {
             @Override
             public void updated(UpdatedEvent event) {
@@ -109,6 +110,7 @@ public class MainView extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ServiceProvider[] providers = DAO.getInstance().getProviderDAO().getStore();
+<<<<<<< HEAD
                 for (ServiceProvider p : providers) {
                     String curName = p.getName();
                     if (curName.equals(staffCombo.getValue())) {
@@ -119,6 +121,20 @@ public class MainView extends Application {
                 }
             }
         });
+=======
+
+                int id = 0;
+                for (ServiceProvider p : providers) {
+                    if (p.getFullName().equals(staffCombo.getValue())) {
+                        id = p.getProviderId();
+                        break;
+                    }
+                }
+                agendaView.setProviderToShow(id);
+            }
+        });
+
+>>>>>>> c70b9e5c7cf753e20fc7b5f7574532b7d2598261
 
         Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);

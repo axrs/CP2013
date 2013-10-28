@@ -1,5 +1,7 @@
 package client.scene.control;
 
+import client.controllers.ReloadAgendaAppointmentsCommand;
+import client.controllers.ReloadAgendaAvailabilitiesCommand;
 import client.controllers.models.GetAvailabilitiesRangeCommand;
 import client.controllers.models.RemoveAppointmentCommand;
 import client.stages.appointments.AppointmentFormView;
@@ -14,7 +16,6 @@ import jfxtras.labs.dialogs.MonologFXButton;
 
 public class Agenda extends jfxtras.labs.scene.control.Agenda {
     int appointmentLastClicked = 0;
-    private Boolean isViewingAvailabilities = false;
     private Agenda instance = this;
     private int providerToShow = 0;
 
@@ -38,7 +39,12 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
         if (providerId < 0) {
             providerId = 0;
         }
-        this.providerToShow = providerId;
+
+        if (providerId != this.providerToShow) {
+            this.providerToShow = providerId;
+            new ReloadAgendaAppointmentsCommand(instance).execute();
+            new ReloadAgendaAvailabilitiesCommand(instance).execute();
+        }
     }
 
     private EventHandler<KeyEvent> onAgendaKeyPress() {
