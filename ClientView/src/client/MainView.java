@@ -32,6 +32,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.ServiceProvider;
 
 import javax.swing.event.ChangeListener;
 
@@ -109,7 +110,15 @@ public class MainView extends Application {
      staffCombo.setOnAction(new EventHandler<ActionEvent>() {
          @Override
          public void handle(ActionEvent actionEvent) {
-
+             ServiceProvider[] providers = DAO.getInstance().getProviderDAO().getStore();
+             for (ServiceProvider p:providers) {
+                 String curName = p.getName();
+                 curName.compareTo(staffCombo.getValue());
+                 if (curName.equals(staffCombo.getValue())) {
+                     //set that provider p as the one to see, using ID
+                     // if no match, see to all
+                 }
+             }
          }
      });
 
