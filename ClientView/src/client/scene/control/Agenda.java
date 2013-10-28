@@ -92,6 +92,8 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
                         appointmentLastClicked = app.hashCode();
                     }
                 }
+                instance.setFocused(true);
+
             }
         };
     }
