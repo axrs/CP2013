@@ -1,8 +1,8 @@
 package client.scene.control;
 
 import client.controllers.models.GetAvailabilitiesRangeCommand;
+import client.controllers.models.RemoveAppointmentCommand;
 import client.stages.appointments.AppointmentFormView;
-import dao.DAO;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -36,8 +36,7 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
                             dialog.setModal(true);
                             MonologFXButton.Type type = dialog.showDialog();
                             if (type == MonologFXButton.Type.YES) {
-                                appointments().remove(app);
-                                DAO.getInstance().getAppointmentDAO().remove(((ReadOnlyAppointmentImpl) app).getAppId());
+                                new RemoveAppointmentCommand(((ReadOnlyAppointmentImpl) app).getAppId(), null).execute();
                             }
                         }
 

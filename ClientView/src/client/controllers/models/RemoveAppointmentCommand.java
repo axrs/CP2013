@@ -10,17 +10,22 @@ import models.Appointment;
 
 public class RemoveAppointmentCommand implements ICommand {
 
-    Appointment appointment = null;
+    int appointment = 0;
     INotifiable source = null;
 
     public RemoveAppointmentCommand(Appointment appointment, INotifiable source) {
+        this.source = source;
+        this.appointment = appointment.getAppointmentId();
+    }
+
+    public RemoveAppointmentCommand(int appointment, INotifiable source) {
         this.source = source;
         this.appointment = appointment;
     }
 
     @Override
     public void execute() {
-        DAO.getInstance().getAppointmentDAO().remove(appointment.getTypeId(), new ResultListener() {
+        DAO.getInstance().getAppointmentDAO().remove(appointment, new ResultListener() {
             @Override
             public void results(Result result) {
                 switch (result.getStatus()) {
