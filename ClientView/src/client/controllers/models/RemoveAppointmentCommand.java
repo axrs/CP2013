@@ -8,7 +8,7 @@ import dao.restDAO.listeners.ResultListener;
 import models.Appointment;
 
 
-public class RemoveAppointmentCommand extends ICommand {
+public class RemoveAppointmentCommand implements ICommand {
 
     Appointment appointment = null;
     INotifiable source = null;
