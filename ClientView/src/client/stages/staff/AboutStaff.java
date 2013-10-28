@@ -30,7 +30,7 @@ public class AboutStaff extends CoreStage {
     ObservableList<ServiceProvider> serviceProviders = FXCollections.observableArrayList();
 
     public AboutStaff() {
-        setTitle("CP2013 Appointment Scheduler - Our Staff");
+        setTitle("Our Staff");
         setSize(500, 700);
         BorderPane borderPane = new BorderPane();
 
