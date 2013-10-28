@@ -1,10 +1,10 @@
 package client.controllers;
 
-import models.Availability;
 import client.scene.control.Agenda;
 import client.scene.control.ReadOnlyAppointmentImpl;
 import dao.DAO;
 import javafx.application.Platform;
+import models.Availability;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -43,12 +43,10 @@ public class ReloadAgendaAvailabilitiesCommand implements ICommand {
                     for (Availability available : DAO.getInstance().getAvailabilitiesDAO().getStore()) {
                         Calendar cal = Calendar.getInstance();
                         try {
-
                             cal.setTime(available.getStartDate());
                             Calendar startTime = (Calendar) cal.clone();
                             cal.setTime(available.getEndDate());
                             Calendar endTime = (Calendar) cal.clone();
-
                             ReadOnlyAppointmentImpl a =
                                     new ReadOnlyAppointmentImpl();
                             a.withStartTime(startTime);
@@ -57,7 +55,10 @@ public class ReloadAgendaAvailabilitiesCommand implements ICommand {
                             a.withDescription("");
                             a.withAppointmentGroup(agendaView.appointmentGroups().get(available.getProviderId() - 1));
                             a.setServId(available.getProviderId());
-                            addList.add(a);
+
+                            if (agendaView.getProviderToShow() == available.getProviderId() || agendaView.getProviderToShow() == 0) {
+                                addList.add(a);
+                            }
 
                         } catch (ParseException e) {
                             e.printStackTrace();

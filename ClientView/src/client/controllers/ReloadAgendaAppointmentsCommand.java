@@ -57,7 +57,10 @@ public class ReloadAgendaAppointmentsCommand implements ICommand {
                         ;
 
                         a.setAppId(item.getAppointmentId());
-                        addList.add(a);
+
+                        if (agendaView.getProviderToShow() == item.getProviderId() || agendaView.getProviderToShow() == 0) {
+                            addList.add(a);
+                        }
 
                     } catch (ParseException e) {
                         e.printStackTrace();
