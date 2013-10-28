@@ -33,6 +33,10 @@ public class DAO {
         return factory.getTypeDAO();
     }
 
+    private IAvailabilitiesDAO getAvailabilitiesFactoryDAO() {
+        return factory.getAvailabilitiesDAO();
+    }
+
     public ITypeDAO getTypeDAO() {
         return getInstance().getTypeFactoryDAO();
     }
@@ -47,5 +51,9 @@ public class DAO {
 
     public IProviderDAO getProviderDAO() {
         return getInstance().getProviderFactoryDAO();
+    }
+
+    public IAvailabilitiesDAO getAvailabilitiesDAO() {
+        return getInstance().getAvailabilitiesFactoryDAO();
     }
 }

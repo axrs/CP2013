@@ -64,7 +64,9 @@ var Provider = Ring.create([Contact], {
         return this._isActive;
     },
     setColor: function (value) {
-        this._color = value;
+        if (Utilities.isStringAndNotEmpty(value)) {
+            this._color = value;
+        }
     },
     getColor: function () {
         return this._color;

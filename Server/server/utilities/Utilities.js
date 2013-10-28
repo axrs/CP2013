@@ -23,7 +23,7 @@ module.exports.isStringAndNotEmpty = function (value) {
     return (typeof value == 'string' && value != '');
 };
 
-module.exports.isStringAndEmpty= function (value) {
+module.exports.isStringAndEmpty = function (value) {
     return (typeof value == 'string' && value == '');
 };
 
@@ -51,7 +51,11 @@ module.exports.isIntegerAboveZero = function (n) {
  * @returns {boolean} True if the {value} matches the format
  */
 module.exports.isTimeStamp = function (value) {
-    return RegExp("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$").test(value);
+    var isValid = RegExp("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$").test(value);
+    if (!isValid) {
+        isValid = RegExp("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$").test(value);
+    }
+    return isValid;
 };
 
 /**

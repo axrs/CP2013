@@ -15,50 +15,37 @@ import java.util.Locale;
  */
 public class Availability {
 
-    private String title;
-    private String timeSlot;
-    private int servId;
-    private String servColor;
-    private String color;
+    private int providerId;
     private String date;
     private String start;
     private String end;
-    private boolean allDay;
+    private String color;
 
     public Availability() {
     }
 
-    public Availability(String title, int servId, String color, String start, String end, boolean allDay) {
-        this.title = title;
-        this.servId = servId;
-        this.color = color;
-        this.start = start;
-        this.end = end;
-        this.allDay = allDay;
+    public Date getDate() {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(this.date);
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
-    public String getTitle() {
-        return title;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDate(java.util.Date date) {
+        this.date = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
-    public int getServId() {
-        return servId;
+    public int getProviderId() {
+        return providerId;
     }
 
-    public void setServId(int servId) {
-        this.servId = servId;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
+    public void setProviderId(int providerId) {
+        this.providerId = providerId;
     }
 
     public String getStart() {
@@ -77,19 +64,19 @@ public class Availability {
         this.end = end;
     }
 
-    public boolean isAllDay() {
-        return allDay;
+    public String getColor() {
+        return color;
     }
 
-    public void setAllDay(boolean allDay) {
-        this.allDay = allDay;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Date getStartDate() throws ParseException {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(start);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(date + " " + start);
     }
 
     public Date getEndDate() throws ParseException {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(end);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(date + " " + end);
     }
 }

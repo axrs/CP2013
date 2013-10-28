@@ -8,5 +8,5 @@ public interface IDAOFactory {
     public IUserDAO getUserDAO();
 
     public ITypeDAO getTypeDAO();
-
+    public IAvailabilitiesDAO getAvailabilitiesDAO();
 }

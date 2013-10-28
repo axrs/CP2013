@@ -2,6 +2,7 @@ var Ring = require('ring');
 var Appointment = require('../../models/AppointmentType.js');
 var SqliteHelper = require('./SqliteHelper.js');
 var IAppointmentDAO = require('../IAppointmentDAO.js');
+var Availability = require('../../models/Availability.js');
 
 var SqliteAppointmentDAO = Ring.create([SqliteHelper, IAppointmentDAO], {
         _oneDay: 24 * 60 * 60 * 1000,
@@ -221,7 +222,7 @@ var SqliteAppointmentDAO = Ring.create([SqliteHelper, IAppointmentDAO], {
                                 while (startDate < endDate) {
                                     date = startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2);
                                     database.all(
-                                        'SELECT Slot, ProviderId, ? as date FROM (' +
+                                        'SELECT Slot, ProviderId, ? as Date FROM (' +
                                             '    SELECT Slot, ProviderId,  count(*) as Occurrence' +
                                             '    FROM (' +
                                             '            SELECT time(Start) as Slot, ProviderId FROM Provider_Hours WHERE ProviderId = ? and Day = strftime(\'%w\',?)' +
@@ -259,10 +260,9 @@ var SqliteAppointmentDAO = Ring.create([SqliteHelper, IAppointmentDAO], {
                                             if (err && callback) {
                                                 callback(true, events);
                                             } else {
-                                                for (var j = 0; j < result.length; j++) {
-                                                    result[j].servColor = row.servColor;
+                                                for (var j = 0; j < result.length; j += 2) {
+                                                    events = events.concat(SqliteAppointmentDAO.AvailabilityFromDatabase(result[j], result[j + 1], row.Color));
                                                 }
-                                                events = events.concat(result);
                                                 iteration++;
                                                 if (iteration == expectedIterations && callback) {
                                                     callback(false, events);
@@ -302,5 +302,16 @@ SqliteAppointmentDAO.AppointmentFromDatabase = function (row) {
 
     return appointment;
 };
+
+SqliteAppointmentDAO.AvailabilityFromDatabase = function (row, endRow, color) {
+    var availability = new Availability();
+    availability.setId(row.ProviderId);
+    availability.setColor(color);
+    availability.setStart(row.Slot);
+    availability.setEnd(endRow.Slot);
+    availability.setDate(row.Date);
+
+    return availability;
+}
 
 module.exports = SqliteAppointmentDAO;

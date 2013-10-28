@@ -23,4 +23,9 @@ public class RESTFactory implements IDAOFactory {
     public ITypeDAO getTypeDAO() {
         return TypeDAO.getInstance();
     }
+
+    @Override
+    public IAvailabilitiesDAO getAvailabilitiesDAO() {
+        return AvailabilityDAO.getInstance();
+    }
 }
