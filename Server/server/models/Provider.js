@@ -3,7 +3,6 @@ var Contact = require('./Contact.js');
 var ProviderHours = require('./ProviderHours.js');
 var Utilities = require('../utilities/Utilities.js');
 
-
 var Provider = Ring.create([Contact], {
     _providerId: 0,
     _biography: '',

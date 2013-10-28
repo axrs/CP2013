@@ -38,6 +38,8 @@ public class AppointmentFormView extends Stage {
     private Date endTime;
     private AppointmentType selectedType;
 
+    private Contact contact = DAO.getInstance().getUserDAO().getUser();
+
 
     public AppointmentFormView(Appointment app, Date startTime, Date endTime) {
         appointment = app;
@@ -65,11 +67,20 @@ public class AppointmentFormView extends Stage {
         }
         appointmentType.valueProperty().addListener(onAppointmentTypeChange());
 
-        ComboBox<String> contact = new ComboBox<String>();
+        ComboBox<String> contactAdminChoice = new ComboBox<String>();
         for (Contact c : contacts)
-            contact.getItems().add(String.format("%s %s", c.getName(), c.getSurname()));
+            contactAdminChoice.getItems().add(String.format("%s %s", c.getName(), c.getSurname()));
+        contactAdminChoice.valueProperty().addListener(onContactChange());
 
-        contact.valueProperty().addListener(onContactChange());
+        Node nameNode;
+
+        if (DAO.getInstance().getUserDAO().getUser().getAdmin() > 0){
+            nameNode = contactAdminChoice;
+        }
+        else{
+            nameNode =  new Label(String.format("%s %s", contact.getName(), contact.getSurname()));
+            setContactForAppointment();
+        }
 
         final CalendarTextField date = new CalendarTextField();
         Calendar cal = Calendar.getInstance();
@@ -85,7 +96,7 @@ public class AppointmentFormView extends Stage {
         mainPane.add(appointmentType, 1, 1);
 
         mainPane.add(LabelFactory.createFieldLabel("Client: "), 0, 2);
-        mainPane.add(contact, 1, 2);
+        mainPane.add(nameNode , 1, 2);
 
         mainPane.add(LabelFactory.createFieldLabel("Date: "), 0, 3);
         mainPane.add(date, 1, 3);
@@ -95,7 +106,7 @@ public class AppointmentFormView extends Stage {
 
         for (Node n : mainPane.getChildren()) {
             if (n instanceof Label) {
-                ((Label) n).setPrefWidth(75);
+                ((Label) n).setPrefWidth(120);
                 ((Label) n).setMinWidth(75);
             }
         }
@@ -112,6 +123,10 @@ public class AppointmentFormView extends Stage {
         setScene(scene);
     }
 
+    private void setContactForAppointment() {
+        appointment.setContactId(contact.getContactId());
+    }
+
     private EventHandler<ActionEvent> onSaveAction(final CalendarTextField date) {
         return new EventHandler<ActionEvent>() {
             @Override
@@ -122,7 +137,7 @@ public class AppointmentFormView extends Stage {
 
                 isValid = (appointment.getContactId() > 0);
                 isValid = isValid && (!appointment.getTime().isEmpty());
-                isValid = isValid && (!appointment.getAppDateString().isEmpty());
+                isValid = isValid && (appointment.getDate().getTime() > new Date().getTime());
                 isValid = isValid && (appointment.getTypeId() > 0);
                 if (isValid) {
                     DAO.getInstance().getAppointmentDAO().create(appointment);
@@ -154,6 +169,7 @@ public class AppointmentFormView extends Stage {
                 for (AppointmentType type : appointmentTypes) {
                     if (type.getDescription().equals(o2)) {
                         selectedType = type;
+                        appointment.setTypeId(selectedType.getTypeId());
                         break;
                     }
                 }
