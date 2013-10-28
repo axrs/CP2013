@@ -3,6 +3,7 @@ var Appointment = require('../models/Appointment.js');
 var AllCommand = require('../commands/appointments/AllAppointmentsCommand.js');
 var GetAvailabilitiesCommand = require('../commands/appointments/GetAvailabilities.js');
 var CreateCommand = require('../commands/appointments/CreateAppointmentCommand.js');
+var RemoveCommand = require('../commands/appointments/RemoveAppointmentCommand.js');
 
 var DAO = require('../dao/DAO.js');
 
@@ -18,6 +19,9 @@ var createCMD = function (req, res) {
     new CreateCommand(appointment, DAO.getAppointmentDAO()).execute(req, res);
 };
 
+var removeCMD = function (req, res) {
+    new RemoveCommand(req.params.id, DAO.getAppointmentDAO()).execute(req, res);
+};
 server = module.exports.server = module.parent.exports.server;
 
 /**
@@ -30,7 +34,11 @@ server.get('/api/appointments',
 server.put('/api/appointments',
     createCMD
 );
+server.delete('/api/appointments/:id',
+    removeCMD
+);
 
 server.get('/api/available/:start/:end',
     allAvailableCMD
 );
+
