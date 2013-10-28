@@ -16,7 +16,6 @@ import jfxtras.labs.dialogs.MonologFXButton;
 
 public class Agenda extends jfxtras.labs.scene.control.Agenda {
     int appointmentLastClicked = 0;
-    private Boolean isViewingAvailabilities = false;
     private Agenda instance = this;
     private int providerToShow = 0;
 

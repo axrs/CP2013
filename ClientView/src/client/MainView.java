@@ -98,6 +98,7 @@ public class MainView extends Application {
         box.setAlignment(Pos.CENTER_RIGHT);
         mainPane.setBottom(box);
 
+
         DAO.getInstance().getProviderDAO().addUpdatedEventLister(new ProviderUpdatedListener() {
             @Override
             public void updated(UpdatedEvent event) {
