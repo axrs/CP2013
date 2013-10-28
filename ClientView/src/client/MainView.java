@@ -10,6 +10,7 @@ import client.controllers.dao.InitialiseDAOCommand;
 import client.controllers.utilities.HookLoggerCommand;
 import client.controllers.utilities.OffsetAgendaViewCommand;
 import client.controllers.windows.core.ApplicationExitCommand;
+import client.controllers.windows.core.ShowLoginCommand;
 import client.scene.CoreScene;
 import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
@@ -90,20 +91,9 @@ public class MainView extends Application {
         primaryStage.setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
         //ToDo: Force Login Again.
-        //new ShowLoginCommand().execute();
+        new ShowLoginCommand().execute();
     }
 
-    /*
-    private AppointmentController.AppointmentsUpdatedListener onAppointmentsUpdated() {
-        return new AppointmentController.AppointmentsUpdatedListener() {
-            @Override
-            public void updated(AppointmentController.AppointmentsUpdated event) {
-
-
-            }
-        };
-    }
-*/
     static { // use system proxy settings when standalone application
         System.setProperty("java.net.useSystemProxies", "true");
     }
