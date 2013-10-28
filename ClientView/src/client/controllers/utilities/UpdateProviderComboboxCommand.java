@@ -21,5 +21,6 @@ public class UpdateProviderComboboxCommand implements ICommand {
         for(ServiceProvider p:providers) {
             comboBox.getItems().add(p.getName());
         }
+        comboBox.setValue(comboBox.getItems().get(0));
     }
 }
