@@ -33,29 +33,29 @@ server = module.exports.server = module.parent.exports.server;
  * API Routing
  */
 server.get('/api/contacts',
-    //passport.authenticate('bearer', { session: false }),
-    //server.requiresAdmin,
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     allCMD
 );
 
 server.get('/api/contacts/:id',
-    //passport.authenticate('bearer', { session: false }),
-    //server.requiresAdmin,
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     getCMD
 );
 server.put('/api/contacts',
-    //passport.authenticate('bearer', { session: false }),
-    //server.requiresAdmin,
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     createCMD
 );
 server.put('/api/contacts/:id',
-    //passport.authenticate('bearer', { session: false }),
-    //server.requiresAdmin,
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     updateCMD
 );
 server.delete('/api/contacts/:id',
-    //passport.authenticate('bearer', { session: false }),
-    //server.requiresAdmin,
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     removeCMD
 );
 

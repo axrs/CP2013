@@ -30,8 +30,8 @@ public class MainMenuBar extends MenuBar {
         init();
     }
 
-    public MainMenuBar(boolean isAdmin){
-        if(isAdmin){
+    public MainMenuBar(boolean isAdmin) {
+        if (isAdmin) {
             DAO.getInstance().getUserDAO().addUpdatedEventLister(onUserChangeEvent());
             init();
         } else {
@@ -51,10 +51,9 @@ public class MainMenuBar extends MenuBar {
                         User u = DAO.getInstance().getUserDAO().getUser();
                         if (u == null) {
                             getMenus().remove(userMenu);
-                        } else if (u.getAdmin() < 0 ) {
+                        } else if (u.getAdmin() < 0) {
 
-                        }
-                        else {
+                        } else {
                             userMenu.setText(u.getName() + " " + u.getSurname());
                             getMenus().add(userMenu);
                         }
@@ -65,10 +64,10 @@ public class MainMenuBar extends MenuBar {
     }
 
     private void init() {
-            buildFileMenu();
-            buildContactMenu();
-            buildStaffMenu();
-            buildTypesMenu();
+        buildFileMenu();
+        buildContactMenu();
+        buildStaffMenu();
+        buildTypesMenu();
     }
 
     private void buildUserStaffMenu() {
