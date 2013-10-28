@@ -31,6 +31,9 @@ module.exports = {
     },
     getProviderDAO: function () {
         return this.getInstance().getFactory().getProviderDAO();
+    },
+    getAppointmentDAO: function () {
+        return this.getInstance().getFactory().getAppointmentDAO();
     }
 };
 
