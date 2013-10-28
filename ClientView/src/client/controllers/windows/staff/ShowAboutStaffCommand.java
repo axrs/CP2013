@@ -14,6 +14,6 @@ import client.stages.staff.AboutStaff;
 public class ShowAboutStaffCommand extends NewStage implements ICommand {
     @Override
     public void execute() {
-        new AboutStaff();
+        new AboutStaff().show();
     }
 }
