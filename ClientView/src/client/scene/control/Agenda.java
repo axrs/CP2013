@@ -16,6 +16,7 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
     int appointmentLastClicked = 0;
     private Boolean isViewingAvailabilities = false;
     private Agenda instance = this;
+    private int providerToShow = 0;
 
     public Agenda() {
         selectedAppointments().addListener(onAgendaSelection());
@@ -27,6 +28,17 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
                 instance.setFocused(true);
             }
         });
+    }
+
+    public int getProviderToShow() {
+        return providerToShow;
+    }
+
+    public void setProviderToShow(int providerId) {
+        if (providerId < 0) {
+            providerId = 0;
+        }
+        this.providerToShow = providerId;
     }
 
     private EventHandler<KeyEvent> onAgendaKeyPress() {
