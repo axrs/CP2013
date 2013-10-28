@@ -1,14 +1,20 @@
 package client.stages.staff;
 
+import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.windows.core.CloseStageCommand;
+import client.scene.CoreScene;
 import client.scene.CoreStage;
+import client.scene.control.ActionButtons;
 import client.scene.control.LabelFactory;
 import dao.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import models.ServiceProvider;
 
@@ -25,6 +31,7 @@ public class AboutStaff extends CoreStage {
 
     public AboutStaff() {
         setTitle("CP2013 Appointment Scheduler - Our Staff");
+        setSize(500, 700);
         BorderPane borderPane = new BorderPane();
 
         VBox vBox = new VBox();
@@ -33,13 +40,25 @@ public class AboutStaff extends CoreStage {
         serviceProviders.addAll(DAO.getInstance().getProviderDAO().getStore());
         for (ServiceProvider sp : serviceProviders) {
             vBox.getChildren().add(LabelFactory.createHeadingLabel(sp.getContFirstName() + " " + sp.getSurname()));
-            vBox.getChildren().add(new Label(sp.getBiography()));
+            Label label = new Label(sp.getBiography());
+            label.setWrapText(true);
+            vBox.getChildren().add(label);
             vBox.getChildren().add(new Separator());
         }
 
-        borderPane.setCenter(vBox);
+        ActionButtons actionButtons = new ActionButtons(false);
+        actionButtons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
 
-        setScene(new Scene(borderPane));
+        Label label = LabelFactory.createSloganLabel("About Our Staff");
+        label.setAlignment(Pos.CENTER);
+        StackPane p = new StackPane();
+        p.setAlignment(Pos.CENTER);
+        p.getChildren().addAll(label);
+        borderPane.setTop(p);
+        borderPane.setCenter(vBox);
+        borderPane.setBottom(actionButtons);
+
+        setScene(new CoreScene(borderPane));
     }
 
     @Override
