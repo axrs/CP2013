@@ -1,6 +1,6 @@
 package dao.restDAO.requests.types;
 
-import Models.AppointmentType;
+import models.AppointmentType;
 import com.google.gson.Gson;
 import dao.restDAO.requests.Request;
 

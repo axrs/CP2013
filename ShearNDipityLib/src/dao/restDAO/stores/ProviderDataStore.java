@@ -1,6 +1,6 @@
 package dao.restDAO.stores;
 
-import Models.ServiceProvider;
+import models.ServiceProvider;
 import dao.DataStore;
 
 import java.util.Arrays;

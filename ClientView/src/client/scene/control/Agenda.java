@@ -1,8 +1,8 @@
 package client.scene.control;
 
-import Controllers.AppointmentController;
 import client.controllers.models.GetAvailabilitiesRangeCommand;
 import client.stages.appointments.AppointmentFormView;
+import dao.DAO;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -37,7 +37,7 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
                             MonologFXButton.Type type = dialog.showDialog();
                             if (type == MonologFXButton.Type.YES) {
                                 appointments().remove(app);
-                                AppointmentController.getInstance().deleteAppointment(((ReadOnlyAppointmentImpl) app).getAppId());
+                                DAO.getInstance().getAppointmentDAO().remove(((ReadOnlyAppointmentImpl) app).getAppId());
                             }
                         }
 
@@ -73,7 +73,7 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
 
                         if (app instanceof ReadOnlyAppointmentImpl) {
                             if (((ReadOnlyAppointmentImpl) app).getAppId() == 0) {
-                                Models.Appointment newApp = new Models.Appointment();
+                                models.Appointment newApp = new models.Appointment();
                                 newApp.setAppDate(app.getStartTime().getTime());
                                 newApp.setProviderId(((ReadOnlyAppointmentImpl) app).getServId());
                                 newApp.setTime(String.format("%d:%d", app.getStartTime().getTime().getHours(), app.getStartTime().getTime().getMinutes()));

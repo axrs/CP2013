@@ -1,8 +1,5 @@
 package client;
 
-import Controllers.AppointmentController;
-import Models.Appointment;
-import Models.ScheduledAppointment;
 import client.controllers.ReloadAgendaAvailabilitiesCommand;
 import client.controllers.ReloadAgendaProvidersCommand;
 import client.controllers.adapters.ActionEventStrategy;
@@ -16,23 +13,16 @@ import client.scene.CoreScene;
 import client.scene.control.Agenda;
 import client.scene.control.LabelFactory;
 import client.scene.control.MainMenuBar;
-import client.scene.control.ReadOnlyAppointmentImpl;
 import dao.DAO;
 import dao.events.AvailabilitiesUpdatedListener;
 import dao.events.ProviderUpdatedListener;
 import dao.events.UpdatedEvent;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
 
 public class MainView extends Application {
     private final Agenda agendaView = new Agenda();
@@ -94,6 +84,7 @@ public class MainView extends Application {
         //new ShowLoginCommand().execute();
     }
 
+    /*
     private AppointmentController.AppointmentsUpdatedListener onAppointmentsUpdated() {
         return new AppointmentController.AppointmentsUpdatedListener() {
             @Override
@@ -151,7 +142,7 @@ public class MainView extends Application {
             }
         };
     }
-
+*/
     static { // use system proxy settings when standalone application
         System.setProperty("java.net.useSystemProxies", "true");
     }

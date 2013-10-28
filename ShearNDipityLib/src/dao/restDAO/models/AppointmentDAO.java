@@ -1,6 +1,6 @@
 package dao.restDAO.models;
 
-import Models.Appointment;
+import models.Appointment;
 import dao.IAppointmentDAO;
 import dao.events.AppointmentsAddedListener;
 import dao.events.AppointmentsUpdatedListener;

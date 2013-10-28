@@ -1,6 +1,6 @@
 package dao.restDAO.models;
 
-import Models.Availability;
+import models.Availability;
 import com.google.gson.Gson;
 import dao.IAvailabilitiesDAO;
 import dao.events.AvailabilitiesUpdatedListener;

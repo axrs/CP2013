@@ -1,11 +1,9 @@
 package client.stages.appointments;
 
-import Controllers.AppointmentController;
-import Controllers.ContactsController;
-import Models.Appointment;
-import Models.AppointmentType;
-import Models.Contact;
-import Models.ServiceProvider;
+import models.Appointment;
+import models.AppointmentType;
+import models.Contact;
+import models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.core.CloseStageCommand;
 import client.scene.CoreScene;
@@ -112,7 +110,6 @@ public class AppointmentFormView extends Stage {
 
         Scene scene = new CoreScene(border, 300, 200);
         setScene(scene);
-
     }
 
     private EventHandler<ActionEvent> onSaveAction(final CalendarTextField date) {
@@ -128,7 +125,7 @@ public class AppointmentFormView extends Stage {
                 isValid = isValid && (!appointment.getAppDateString().isEmpty());
                 isValid = isValid && (appointment.getTypeId() > 0);
                 if (isValid) {
-                    AppointmentController.getInstance().createAppointment(appointment);
+                    DAO.getInstance().getAppointmentDAO().create(appointment);
                     close();
                 }
             }
@@ -139,9 +136,9 @@ public class AppointmentFormView extends Stage {
         return new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object o2) {
-                for (Contact type : ContactsController.getInstance().getContacts().values()) {
-                    if (String.format("%s %s", type.getContFirstName(), type.getSurname()).equals(o2)) {
-                        appointment.setContactId(type.getContactId());
+                for (Contact c : contacts) {
+                    if (String.format("%s %s", c.getContFirstName(), c.getSurname()).equals(o2)) {
+                        appointment.setContactId(c.getContactId());
                         break;
                     }
                 }

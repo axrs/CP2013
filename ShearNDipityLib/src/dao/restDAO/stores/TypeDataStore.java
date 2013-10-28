@@ -1,6 +1,6 @@
 package dao.restDAO.stores;
 
-import Models.AppointmentType;
+import models.AppointmentType;
 import dao.DataStore;
 
 import java.util.Arrays;

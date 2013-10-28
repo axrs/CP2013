@@ -1,6 +1,6 @@
 package dao.restDAO.models;
 
-import Models.AppointmentType;
+import models.AppointmentType;
 import com.google.gson.Gson;
 import dao.ITypeDAO;
 import dao.events.TypeAddedEvent;

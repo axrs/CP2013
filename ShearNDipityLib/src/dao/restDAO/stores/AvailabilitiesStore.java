@@ -1,6 +1,6 @@
 package dao.restDAO.stores;
 
-import Models.Availability;
+import models.Availability;
 import dao.BasicStore;
 
 import java.util.Arrays;

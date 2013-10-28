@@ -1,14 +1,14 @@
 package client.controllers.utilities;
 
-import Utilities.ILogListener;
-import Utilities.LogEventDispatcher;
-import Utilities.Loggers.FormatStrategies.DateTimeFormatStrategy;
-import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
-import Utilities.Loggers.ILogger;
-import Utilities.Loggers.StrategyLogger;
-import Utilities.Recorders.ConsoleRecorder;
-import Utilities.Recorders.DatedFileStreamRecorder;
-import Utilities.Recorders.SingletonCompositeRecorder;
+import utilities.ILogListener;
+import utilities.LogEventDispatcher;
+import utilities.loggers.strategies.DateTimeFormatStrategy;
+import utilities.loggers.strategies.TimeFormatStrategy;
+import utilities.loggers.ILogger;
+import utilities.loggers.StrategyLogger;
+import utilities.recorders.ConsoleRecorder;
+import utilities.recorders.DatedFileStreamRecorder;
+import utilities.recorders.SingletonCompositeRecorder;
 import client.controllers.ICommand;
 
 public class HookLoggerCommand implements ICommand {

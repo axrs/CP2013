@@ -1,6 +1,6 @@
 package dao.restDAO.models;
 
-import Models.User;
+import models.User;
 import com.google.gson.Gson;
 import dao.IUserDAO;
 import dao.events.UpdatedEvent;

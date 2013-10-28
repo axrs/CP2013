@@ -1,6 +1,6 @@
 package client.stages.appointments;
 
-import Models.AppointmentType;
+import models.AppointmentType;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.models.CreateTypeCommand;
 import client.controllers.models.UpdateTypeCommand;

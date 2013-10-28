@@ -1,6 +1,6 @@
 package client.scene.control;
 
-import Models.User;
+import models.User;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.appointments.ShowTypesWindow;
 import client.controllers.windows.contacts.NewContactAddressBookCommand;

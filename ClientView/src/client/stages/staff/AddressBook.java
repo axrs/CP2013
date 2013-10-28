@@ -1,7 +1,7 @@
 package client.stages.staff;
 
-import Models.Contact;
-import Models.ServiceProvider;
+import models.Contact;
+import models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.contacts.EditStaffWindowCommand;
 import client.controllers.windows.core.CloseStageCommand;

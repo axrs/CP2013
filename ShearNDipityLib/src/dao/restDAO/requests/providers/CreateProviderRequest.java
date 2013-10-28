@@ -1,6 +1,6 @@
 package dao.restDAO.requests.providers;
 
-import Models.ServiceProvider;
+import models.ServiceProvider;
 import com.google.gson.Gson;
 import dao.restDAO.requests.Request;
 

@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 /**
  * Created with IntelliJ IDEA.

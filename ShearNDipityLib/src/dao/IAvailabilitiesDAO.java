@@ -1,6 +1,6 @@
 package dao;
 
-import Models.Availability;
+import models.Availability;
 import dao.events.AvailabilitiesUpdatedListener;
 import dao.restDAO.listeners.ResultListener;
 

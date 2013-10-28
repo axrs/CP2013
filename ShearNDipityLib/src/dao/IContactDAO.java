@@ -1,7 +1,7 @@
 package dao;
 
 
-import Models.Contact;
+import models.Contact;
 import dao.events.ContactAddedListener;
 import dao.events.ContactsUpdatedListener;
 import dao.restDAO.listeners.ResultListener;

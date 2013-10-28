@@ -1,6 +1,6 @@
 package dao.restDAO.requests.users;
 
-import Models.User;
+import models.User;
 import com.google.gson.Gson;
 import dao.restDAO.requests.Request;
 

@@ -1,6 +1,6 @@
 package dao;
 
-import Models.User;
+import models.User;
 import dao.events.UserUpdatedListener;
 import dao.restDAO.listeners.ResultListener;
 

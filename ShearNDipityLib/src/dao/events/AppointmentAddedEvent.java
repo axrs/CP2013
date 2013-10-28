@@ -1,6 +1,6 @@
 package dao.events;
 
-import Models.Appointment;
+import models.Appointment;
 
 import java.util.EventObject;
 

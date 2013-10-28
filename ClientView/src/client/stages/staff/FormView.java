@@ -1,7 +1,7 @@
 package client.stages.staff;
 
-import Models.ServiceHours;
-import Models.ServiceProvider;
+import models.ServiceHours;
+import models.ServiceProvider;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.models.CreateProviderCommand;
 import client.controllers.models.UpdateProviderCommand;

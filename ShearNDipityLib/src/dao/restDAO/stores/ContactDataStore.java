@@ -1,6 +1,6 @@
 package dao.restDAO.stores;
 
-import Models.Contact;
+import models.Contact;
 import dao.DataStore;
 
 import java.util.Arrays;

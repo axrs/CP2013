@@ -1,6 +1,6 @@
 package client.controllers;
 
-import Models.Availability;
+import models.Availability;
 import client.scene.control.Agenda;
 import client.scene.control.ReadOnlyAppointmentImpl;
 import dao.DAO;

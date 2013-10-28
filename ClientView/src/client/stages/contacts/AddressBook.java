@@ -1,6 +1,6 @@
 package client.stages.contacts;
 
-import Models.Contact;
+import models.Contact;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.windows.contacts.EditContactWindowCommand;
 import client.controllers.windows.contacts.NewContactWindowCommand;

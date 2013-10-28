@@ -1,6 +1,6 @@
 package client.controllers.models;
 
-import Models.AppointmentType;
+import models.AppointmentType;
 import client.controllers.ICommand;
 import client.scene.INotifiable;
 import dao.DAO;

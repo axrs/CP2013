@@ -1,8 +1,8 @@
-package Utilities.Loggers;
+package utilities.loggers;
 
-import Utilities.Loggers.FormatStrategies.IFormatStrategy;
-import Utilities.Loggers.FormatStrategies.TimeFormatStrategy;
-import Utilities.Recorders.IRecorder;
+import utilities.loggers.strategies.IFormatStrategy;
+import utilities.loggers.strategies.TimeFormatStrategy;
+import utilities.recorders.IRecorder;
 
 public class StrategyLogger extends BasicLogger {
     IFormatStrategy strategy = new TimeFormatStrategy();

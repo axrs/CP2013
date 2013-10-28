@@ -1,6 +1,6 @@
 package client.controllers;
 
-import Models.ServiceProvider;
+import models.ServiceProvider;
 import client.scene.control.Agenda;
 import dao.DAO;
 import javafx.application.Platform;

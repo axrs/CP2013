@@ -1,6 +1,6 @@
-package Utilities.Loggers;
+package utilities.loggers;
 
-import Utilities.Recorders.IRecorder;
+import utilities.recorders.IRecorder;
 
 public class BasicLogger implements ILogger {
     IRecorder recorder;

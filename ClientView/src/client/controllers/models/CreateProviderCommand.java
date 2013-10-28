@@ -1,6 +1,6 @@
 package client.controllers.models;
 
-import Models.ServiceProvider;
+import models.ServiceProvider;
 import client.controllers.ICommand;
 import client.scene.INotifiable;
 import dao.DAO;

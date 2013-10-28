@@ -1,6 +1,6 @@
 package client.stages;
 
-import Models.Config;
+import models.Config;
 import client.controllers.ICommand;
 import client.controllers.LoginSuccessCommand;
 import client.scene.CoreScene;

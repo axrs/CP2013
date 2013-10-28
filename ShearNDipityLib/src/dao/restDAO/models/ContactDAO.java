@@ -1,14 +1,14 @@
 package dao.restDAO.models;
 
-import Models.Contact;
+import models.Contact;
 import com.google.gson.Gson;
 import dao.IContactDAO;
 import dao.events.ContactAddedEvent;
 import dao.events.ContactAddedListener;
 import dao.events.ContactsUpdatedListener;
 import dao.events.UpdatedEvent;
-import dao.restDAO.client.ActiveRESTClient;
 import dao.restDAO.Publisher;
+import dao.restDAO.client.ActiveRESTClient;
 import dao.restDAO.events.Result;
 import dao.restDAO.listeners.ResultListener;
 import dao.restDAO.requests.Request;

@@ -1,6 +1,6 @@
 package client.controllers.windows.contacts;
 
-import Models.Contact;
+import models.Contact;
 import client.controllers.ICommand;
 import client.controllers.windows.core.NewStage;
 

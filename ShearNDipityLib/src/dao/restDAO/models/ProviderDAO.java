@@ -1,6 +1,6 @@
 package dao.restDAO.models;
 
-import Models.ServiceProvider;
+import models.ServiceProvider;
 import com.google.gson.Gson;
 import dao.IProviderDAO;
 import dao.events.ProviderAddedEvent;

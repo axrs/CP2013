@@ -1,6 +1,6 @@
 package client.controllers.windows.core;
 
-import Models.Config;
+import models.Config;
 import client.controllers.ICommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;

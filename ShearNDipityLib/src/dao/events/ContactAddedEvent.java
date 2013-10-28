@@ -1,6 +1,6 @@
 package dao.events;
 
-import Models.Contact;
+import models.Contact;
 
 import java.util.EventObject;
 

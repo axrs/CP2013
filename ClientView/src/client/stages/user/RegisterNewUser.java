@@ -1,6 +1,6 @@
 package client.stages.user;
 
-import Models.User;
+import models.User;
 import client.controllers.ICommand;
 import client.controllers.adapters.WindowEventStrategy;
 import client.controllers.models.CreateUserCommand;

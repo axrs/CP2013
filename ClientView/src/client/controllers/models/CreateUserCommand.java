@@ -1,6 +1,6 @@
 package client.controllers.models;
 
-import Models.User;
+import models.User;
 import client.controllers.ICommand;
 import client.scene.INotifiable;
 import dao.DAO;

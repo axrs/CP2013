@@ -1,6 +1,6 @@
 package dao.restDAO.client;
 
-import Utilities.LogEventDispatcher;
+import utilities.LogEventDispatcher;
 import dao.restDAO.events.Result;
 import dao.restDAO.requests.Request;
 

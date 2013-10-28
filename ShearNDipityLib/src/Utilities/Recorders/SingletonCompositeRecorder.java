@@ -1,4 +1,4 @@
-package Utilities.Recorders;
+package utilities.recorders;
 
 public class SingletonCompositeRecorder extends CompositeRecorder {
 

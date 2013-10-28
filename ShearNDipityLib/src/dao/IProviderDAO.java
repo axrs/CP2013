@@ -1,6 +1,6 @@
 package dao;
 
-import Models.ServiceProvider;
+import models.ServiceProvider;
 import dao.events.ProviderAddedListener;
 import dao.events.ProviderUpdatedListener;
 import dao.restDAO.listeners.ResultListener;

@@ -1,7 +1,7 @@
 package dao.events;
 
-import Models.Contact;
-import Models.ServiceProvider;
+import models.Contact;
+import models.ServiceProvider;
 
 import java.util.EventObject;
 

@@ -1,6 +1,6 @@
-package Models;
+package models;
 
-import Utilities.LogEventDispatcher;
+import utilities.LogEventDispatcher;
 
 import java.io.File;
 import java.io.FileInputStream;

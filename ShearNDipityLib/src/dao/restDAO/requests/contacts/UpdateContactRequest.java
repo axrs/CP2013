@@ -1,6 +1,6 @@
 package dao.restDAO.requests.contacts;
 
-import Models.Contact;
+import models.Contact;
 import com.google.gson.Gson;
 import dao.restDAO.requests.Request;
 
