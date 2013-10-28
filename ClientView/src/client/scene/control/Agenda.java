@@ -1,6 +1,7 @@
 package client.scene.control;
 
 import Controllers.AppointmentController;
+import client.controllers.models.GetAvailabilitiesRangeCommand;
 import client.stages.appointments.AppointmentFormView;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
@@ -50,18 +51,7 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
         return new Callback<jfxtras.labs.scene.control.Agenda.CalendarRange, Void>() {
             @Override
             public Void call(jfxtras.labs.scene.control.Agenda.CalendarRange calendarRange) {
-
-                if (isViewingAvailabilities) {
-                    AppointmentController.getInstance().getAvailabilitiesFromServer(
-                            calendarRange.getStartCalendar().getTime(),
-                            calendarRange.getEndCalendar().getTime());
-
-                } else {
-                    AppointmentController.getInstance().getAppointmentsFromServer(
-                            calendarRange.getStartCalendar().getTime(),
-                            calendarRange.getEndCalendar().getTime()
-                    );
-                }
+                new GetAvailabilitiesRangeCommand(calendarRange.getStartCalendar().getTime(), calendarRange.getEndCalendar().getTime()).execute();
                 return null;
             }
         };
