@@ -1,7 +1,9 @@
 <div class="row-fluid">
-
-    <div class="span6 well" ng-repeat="provider in providers">
+    <h1>Our Staff</h1>
+    <div class="span6 well" ng-repeat="provider in providers"
+         ng-class-odd="'no-left-margin clear-left'" ng-class-even="'clear-right'">
         <h2>{{provider.name}} {{provider.surname}}</h2>
+        <p>{{provider.biography}}</p>
     </div>
 
 </div>

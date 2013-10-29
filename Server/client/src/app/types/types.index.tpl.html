@@ -1,9 +1,5 @@
 <div class="row-fluid">
     <div class="span8 pull-right" ng-class="{well: contact.contactId != null}">
-        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><h4>{{alert.title}}</h4>
-            {{alert.msg}}
-        </alert>
-
         <div class="alert alert-info" ng-show="type.typeId == null">
             Select a type to edit by clicking on a table row, or click the '+' button to create a new type.
         </div>

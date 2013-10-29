@@ -7,7 +7,8 @@ angular.module('ngBoilerplate.providers', [
         'AuthService',
         'ngGrid', // angular grid
         'ui', // angular ui
-        'ui.bootstrap' // jquery ui bootstrap
+        'ui.bootstrap', // jquery ui bootstrap
+        '$strap.directives'
     ])
 
     .config(function config($stateProvider) {
@@ -28,9 +29,7 @@ angular.module('ngBoilerplate.providers', [
     })
     .controller('ProvidersCtrl', function ProvidersCtrl($rootScope, $scope, RESTService, AuthService) {
 
-        $scope.isAdmin = AuthService.isAdmin();
 
-        console.log($scope.isAdmin);
         $scope.action = 'Editing';
 
         $scope.provider = null;
@@ -47,28 +46,32 @@ angular.module('ngBoilerplate.providers', [
             $scope.clear();
             $scope.provider = {};
             $scope.provider.providerId = 0;
+            $scope.provider.hours = [];
+            for (var i = 0; i < 7; i++) {
+                $scope.provider.hours.push({day: i, start: "00:00", breakStart: "00:00", breakEnd: "00:00", end: "00:00"});
+            }
             $scope.action = 'New';
         };
 
         $scope.create = function () {
-            RESTService.put('/api/contacts', $scope.provider).
+            RESTService.put('/api/providers', $scope.provider).
                 success(function (data, status, headers, config) {
                     if (status == 201) {
                         $scope.provider = data;
-                        $scope.provders.push($scope.provider);
+                        $scope.providers.push($scope.provider);
                         $scope.clear();
                     }
                 }).
                 error(function (data, status, headers, config) {
                     switch (status) {
                         case 400:
-                            $rootScope.addError('Form Error:', 'A Provider must have a Name and Surname.');
+                            $rootScope.addError('Form Error:', 'A provider must have a Name and Surname.');
                             break;
                         case 409:
-                            $rootScope.addError('Conflict Error:', 'A Provider with the specified name exists.');
+                            $rootScope.addError('Conflict Error:', 'A provider with the specified name exists.');
                             break;
                         case 500:
-                            $rootScope.addError('Database Error:', 'Error creating the contact.');
+                            $rootScope.addError('Database Error:', 'Error creating the provider.');
                             break;
                     }
                 });
@@ -85,13 +88,13 @@ angular.module('ngBoilerplate.providers', [
                 error(function (data, status, headers, config) {
                     switch (status) {
                         case 400:
-                            $rootScope.addError('Form Error:', 'A Provider must have a Name and Surname.');
+                            $rootScope.addError('Form Error:', 'A provider must have a Name and Surname.');
                             break;
                         case 409:
-                            $rootScope.addError('Conflict Error:', 'A Provider with the specified name exists.');
+                            $rootScope.addError('Conflict Error:', 'A provider with the specified name exists.');
                             break;
                         case 500:
-                            $rootScope.addError('Database Error:', 'Error creating the contact.');
+                            $rootScope.addError('Database Error:', 'Error creating the provider.');
                             break;
                     }
                 });
@@ -99,15 +102,15 @@ angular.module('ngBoilerplate.providers', [
 
         $scope.clear = function () {
             $scope.provider = null;
-            $scope.selected.splice(0, 1);
+            $scope.selectedProviders.splice(0, 1);
         };
 
         $scope.remove = function () {
             if ($scope.provider.providerId > 0) {
                 RESTService.remove('/api/providers/' + $scope.provider.providerId).
                     success(function (data, status, headers, config) {
-                        var index = $scope.provders.indexOf($scope.provider);
-                        $scope.provders.splice(index, 1);
+                        var index = $scope.providers.indexOf($scope.provider);
+                        $scope.providers.splice(index, 1);
                         $scope.clear();
                     }).
                     error(function (data, status, headers, config) {
@@ -136,7 +139,7 @@ angular.module('ngBoilerplate.providers', [
         };
         $scope.setPagingData = function (data, page, pageSize) {
             var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
-            $scope.provders = pagedData;
+            $scope.providers = pagedData;
             $scope.totalServerItems = data.length;
             if (!$scope.$$phase) {
                 $scope.$apply();
@@ -174,7 +177,10 @@ angular.module('ngBoilerplate.providers', [
             }
         }, true);
 
-        $scope.selected = [];
+        $scope.selectedProviders = [];
+
+        $scope.workDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 
         $scope.gridOptions = {
             data: 'providers',
@@ -184,7 +190,7 @@ angular.module('ngBoilerplate.providers', [
             totalServerItems: 'totalServerItems',
             pagingOptions: $scope.pagingOptions,
             filterOptions: $scope.filterOptions,
-            selectedItems: $scope.selected,
+            selectedItems: $scope.selectedProviders,
             columnDefs: [
                 {field: 'name', displayName: 'Name'},
                 {field: 'surname', displayName: 'Surname'},
@@ -192,8 +198,9 @@ angular.module('ngBoilerplate.providers', [
 
             ],
             afterSelectionChange: function () {
-                if ($scope.selected.length == 1) {
-                    $scope.provider = $scope.selected[0];
+                if ($scope.selectedProviders.length == 1) {
+                    $scope.provider = $scope.selectedProviders[0];
+                    console.log($scope.provider);
                     $scope.action = 'Editing';
                 } else {
                     $scope.provider = null;

@@ -1,0 +1,88 @@
+<h2>{{action}}: {{provider.name}} {{provider.surname}} <a class="btn btn-danger pull-right" ng-click="remove()"><i
+        class="icon-remove icon-white"></i></a></h2>
+<div class="clearfix"></div>
+<fieldset>
+    <legend>General</legend>
+    <div class="controls">
+        <label class="control-label">Name</label>
+        <input type="text" class="span6" placeholder="Name" ng-model="provider.name" required>
+        <input type="text" class="span6" placeholder="Surname" ng-model="provider.surname" required>
+        <label class="control-label">Company</label>
+        <input type="text" class="input-block-level" placeholder="Company" ng-model="provider.company">
+        <input class="span6" type="email" placeholder="you@domain.com" ng-model="provider.email">
+        <input class="span6" type="text" placeholder="(07) 0000 0000" ng-model="provider.phone">
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Address</legend>
+    <div class="controls">
+        <label class="control-label">Street</label>
+        <input class="span6" type="text" placeholder="123 Street Name" ng-model="provider.address">
+        <input class="span6" type="text" placeholder="Suburb" ng-model="provider.suburb">
+
+        <label class="control-label">City/Town</label>
+        <input class="span6" type="text" placeholder="City" ng-model="provider.city">
+        <select class="span3" ng-model="provider.state">
+            <option></option>
+            <option>ACT</option>
+            <option>NSW</option>
+            <option>NT</option>
+            <option>QLD</option>
+            <option>SA</option>
+            <option>TAS</option>
+            <option>VIC</option>
+            <option>WA</option>
+        </select>
+        <input class="span3" type="text" placeholder="POST" ng-model="provider.post">
+    </div>
+    <legend>Shift Hours</legend>
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Shift Start</th>
+            <th>Break Start</th>
+            <th>Break End</th>
+            <th>Shift End</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="workHours in provider.hours">
+            <th>{{workDays[$index]}}</th>
+            <td>
+                <div class="control-group input-append">
+                    <input type="text" data-show-meridian="false" ng-model="workHours.start" class="span6" bs-timepicker>
+                    <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
+                </div>
+            </td>
+            <td>
+                <div class="control-group input-append">
+                    <input type="text" data-show-meridian="false" ng-model="workHours.breakStart" class="span6" bs-timepicker>
+                    <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
+                </div>
+            </td>
+            <td>
+                <div class="control-group input-append">
+                    <input type="text" data-show-meridian="false" ng-model="workHours.breakEnd" class="span6" bs-timepicker>
+                    <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
+                </div>
+            </td>
+            <td>
+                <div class="control-group input-append">
+                    <input type="text" data-show-meridian="false" ng-model="workHours.end" class="span6" bs-timepicker>
+                    <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
+                </div>
+            </td>
+
+        </tr>
+        </tbody>
+
+    </table>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-danger right" ng-click="clear()">Cancel</button>
+        <button type="submit" class="btn btn-primary pull-right" ng-click="process()">Save</button>
+    </div>
+</fieldset>
+
+

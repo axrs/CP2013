@@ -17,7 +17,8 @@
         "angular-placeholders": "latest",
         "angular-cookies": "latest",
         "underscore": "latest",
-        "fullcalendar": "latest"
+        "fullcalendar": "latest",
+        "bootstrap-timepicker": "latest"
     },
     "dependencies": {}
 }

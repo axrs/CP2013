@@ -49,11 +49,11 @@ CREATE TABLE IF NOT EXISTS User (
  * SERVICE PROVIDERS
  -=-=-=-=-=-=-=-=-=-=*/
 CREATE TABLE IF NOT EXISTS Provider (
-  ProviderId INTEGER PRIMARY KEY AUTOINCREMENT,
-  ContactId  INTEGER,
+  ProviderId INTEGER  NOT NULL  PRIMARY KEY AUTOINCREMENT,
+  ContactId  INTEGER  NOT NULL ,
   Biography  VARCHAR,
   Portrait   VARCHAR,
-  Initiated  DATE NOT NULL,
+  Initiated  DATE,
   Terminated DATE,
   isActive   BOOLEAN DEFAULT 1,
   Color      VARCHAR DEFAULT '#006dcc',

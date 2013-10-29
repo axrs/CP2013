@@ -9,9 +9,11 @@
     <div class="controls">
         <label class="control-label">Description</label>
         <input type="text" class="input-block-level" placeholder="Description" ng-model="type.description" required>
-        <label class="control-label">Duration</label>
-        <input type="text" id="typeTimePicker" placeholder="00:00" class="span4 timepicker8" required ng-model="type.duration">
 
+        <div class="control-group input-append">
+            <input type="text" data-show-meridian="false" class="span6" ng-model="type.duration" bs-timepicker>
+            <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></button>
+        </div>
     </div>
 </fieldset>
 
@@ -21,21 +23,3 @@
         <button type="submit" class="btn btn-danger" ng-click="clear()">Cancel</button>
     </div>
 </fieldset>
-
-<script>
-    $(document).ready(function () {
-
-        $('#typeTimePicker').timepicker({
-            step: 15,
-            at_row: 4,
-            active_from: '00:15',
-            active_to: '8:00',
-            alarm_from: '00:00',
-            alarm_to: '00:00',
-            close_callback: function () {
-                var time = $('#typeTimePicker')[0].value;
-                $('#typeTimePicker').scope().setTypeDuration(time);
-            }
-        });
-    });
-</script>

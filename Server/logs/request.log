@@ -4634,3 +4634,9 @@
 2013-10-29 19:53:20	Serialising User Session
 2013-10-29 19:53:20	Deserialising User Session
 2013-10-29 20:04:03	DVnUn40CyC4GhFaCYkukNeeu	10.100.0.136	/api/users/undefined/?access_token=aca6b009-6625-4621-b198-947ea9fbf7be	{"role":{"bitMask":4,"title":"admin"},"contactId":1,"name":"Super","middleName":"","surname":"Administrator","company":"Shear-N-Dipity","phone":"","email":"admin@shear-n-dipity.com","address":"","suburb":"","city":"","country":"","state":"","post":"","userId":1,"strategyId":0,"strategy":"local","strategyData":"","userName":"admin","isAdmin":1,"token":"aca6b009-6625-4621-b198-947ea9fbf7be","md5Email":"d41d8cd98f00b204e9800998ecf8427e"}
+2013-10-29 22:31:16	Error running query.
+2013-10-29 22:31:16	Error: SQLITE_CONSTRAINT: Provider.Initiated may not be NULL
+2013-10-29 22:31:16	INSERT INTO Provider (ContactId, Biography, Portrait, Initiated, Terminated, Color) VALUES ($contactId, $biography, $portrait, $initiated, $terminated, $color);{"$contactId":12,"$biography":"","$portrait":"","$color":"#006dcc"}
+2013-10-29 22:33:06	Error running query.
+2013-10-29 22:33:06	Error: SQLITE_CONSTRAINT: Provider.Initiated may not be NULL
+2013-10-29 22:33:06	INSERT INTO Provider (ContactId, Biography, Portrait, Initiated, Terminated, Color) VALUES ($contactId, $biography, $portrait, $initiated, $terminated, $color);{"$contactId":13,"$biography":"","$portrait":"","$color":"#006dcc"}

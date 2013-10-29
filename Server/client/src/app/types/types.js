@@ -7,7 +7,8 @@ angular.module('ngBoilerplate.types', [
         'AuthService',
         'ngGrid', // angular grid
         'ui', // angular ui
-        'ui.bootstrap' // jquery ui bootstrap
+        'ui.bootstrap', // jquery ui bootstrap
+        '$strap.directives'
     ])
 
     .config(function config($stateProvider) {
@@ -23,17 +24,13 @@ angular.module('ngBoilerplate.types', [
                     templateUrl: 'types/types.index.tpl.html'
                 }
             },
-            data: { pageTitle: 'AppointmentTypes' }
+            data: { pageTitle: 'Appointment Types' }
         });
     })
     .controller('TypesCtrl', function TypesCtrl($rootScope, $scope, RESTService) {
 
         $scope.action = 'Editing';
-
-        $scope.setTypeDuration = function (value) {
-            $scope.type.duration = value;
-        };
-        $scope.type = null;
+        $scope.type = {};
 
         $scope.process = function () {
             if ($scope.type.typeId === 0) {
@@ -131,6 +128,7 @@ angular.module('ngBoilerplate.types', [
                 $scope.$apply();
             }
         };
+
         $scope.getPagedDataAsync = function (pageSize, page, searchText) {
             setTimeout(function () {
                 var data;

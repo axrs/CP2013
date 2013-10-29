@@ -74,7 +74,11 @@ module.exports = {
             'vendor/angular-cookies/angular-cookies.min.js',
             'vendor/underscore/underscore-min.js',
             'vendor/timepicker/timepicker.js',
-            'vendor/fullcalendar/fullcalendar.js'
+            'vendor/fullcalendar/fullcalendar.js',
+            'vendor/moment/min/moment.min.js',
+            'vendor/bootstrap/docs/assets/js/bootstrap.js',
+            'vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
+            'vendor/angular-strap/dist/angular-strap.min.js'
         ],
         css: [
             'vendor/ng-grid/ng-grid.css',
