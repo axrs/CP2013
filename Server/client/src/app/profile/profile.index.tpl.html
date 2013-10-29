@@ -3,7 +3,7 @@
     <h2>What We Know About You</h2>
 
     <div class="clearfix"></div>
-    <div class="span1">
+    <div class="span1" ng-show="user.email != ''">
         <img src="http://www.gravatar.com/avatar/{{user.md5Email}}?s=128&r=x&d=404"/>
     </div>
     <div class="span4">
@@ -15,7 +15,7 @@
                 <dd>{{user.name}} {{user.surname}}</dd>
 
                 <dt ng-show="user.userName != ''">Username</dt>
-                <dd ng-show="user.userName != ''">{{user.user}}</dd>
+                <dd ng-show="user.userName != ''">{{user.userName}}</dd>
 
                 <dt ng-show="user.email != ''">Email</dt>
                 <dd ng-show="user.email != ''">{{user.email}}</dd>

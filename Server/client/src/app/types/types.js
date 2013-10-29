@@ -26,24 +26,16 @@ angular.module('ngBoilerplate.types', [
             data: { pageTitle: 'AppointmentTypes' }
         });
     })
-    .controller('TypesCtrl', function TypesCtrl($scope, RESTService) {
+    .controller('TypesCtrl', function TypesCtrl($rootScope, $scope, RESTService) {
 
         $scope.action = 'Editing';
-        $scope.alerts = [];
-
-        $scope.closeAlert = function (index) {
-            $scope.alerts.splice(index, 1);
-        };
 
         $scope.setTypeDuration = function (value) {
             $scope.type.duration = value;
         };
-
-
         $scope.type = null;
 
         $scope.process = function () {
-            console.log($scope.type.typeId);
             if ($scope.type.typeId === 0) {
                 $scope.create();
             } else {
@@ -70,10 +62,10 @@ angular.module('ngBoilerplate.types', [
                 error(function (data, status, headers, config) {
                     switch (status) {
                         case 400:
-                            $scope.alerts.push({type: 'error', title: 'Form Error:', msg: "An appointment type must have a description."});
+                            $rootScope.addError('Form Error:', 'An appointment type must have a description.');
                             break;
                         case 500:
-                            $scope.alerts.push({type: 'error', title: 'Database Error:', msg: "Error creating the appointment type."});
+                            $rootScope.addError('Database Error:', 'Error creating the appointment type.');
                             break;
                     }
                 });
@@ -90,10 +82,10 @@ angular.module('ngBoilerplate.types', [
                 error(function (data, status) {
                     switch (status) {
                         case 400:
-                            $scope.alerts.push({type: 'error', title: 'Form Error:', msg: "An appointment type must have a description."});
+                            $rootScope.addError('Form Error:', 'An appointment type must have a description.');
                             break;
                         case 500:
-                            $scope.alerts.push({type: 'error', title: 'Database Error:', msg: "Error creating the appointment type."});
+                            $rootScope.addError('Database Error:', 'Error creating the appointment type.');
                             break;
                     }
                 });
@@ -115,7 +107,7 @@ angular.module('ngBoilerplate.types', [
                     error(function (data, status) {
                         switch (status) {
                             case 501:
-                                $scope.alerts.push({type: 'error', title: 'Deletion Error:', msg: "Method not Implemented"});
+                                $rootScope.addError('Database Error:', 'Method not implemented.');
                         }
                     });
             }

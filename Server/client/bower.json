@@ -2,6 +2,8 @@
     "name": "ng-boilerplate",
     "version": "0.3.1",
     "devDependencies": {
+        "jquery": "latest",
+        "font-awesome": "latest",
         "angular": "latest",
         "angular-mocks": "latest",
         "bootstrap": "~2.3.2",

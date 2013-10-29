@@ -1,19 +1,38 @@
 angular.module('AuthService', [])
 
-    .factory('AuthService', function ($http, $cookieStore, $rootScope, RESTService) {
+    .factory('AuthService', function ($http, $cookieStore, $rootScope, RESTService, $location) {
 
         var accessLevels = routingConfig.accessLevels,
             userRoles = routingConfig.userRoles,
             currentUser = $cookieStore.get('user') || { role: userRoles.public };
 
-        function changeUser(user) {
-            user.role = (user.isAdmin) ? userRoles.admin : userRoles.user;
-            user.strategyDataDecode = JSON.parse(user.strategyData);
-            _.extend(currentUser, user);
-            $cookieStore.put('user',user);
+        function changeUser(newUser) {
+            $cookieStore.remove('user');
+
+            newUser.role = userRoles.public;
+
+            RESTService.setToken(newUser.token);
+            if (newUser.isAdmin === 0) {
+                newUser.role = userRoles.user;
+            } else if (newUser.isAdmin === 1) {
+                newUser.role = userRoles.admin;
+            }
+
+            if (newUser.strategyData && newUser.strategyData !== "") {
+                newUser.strategyDataDecode = JSON.parse(newUser.strategyData);
+            }
+
+            _.extend(currentUser, newUser);
+
+
+            $cookieStore.put('user', currentUser);
+            $location.path('/');
         }
 
         return {
+            setUser: function (value) {
+                this.user = value;
+            },
             authorize: function (accessLevel, role) {
                 if (role === undefined) {
                     role = currentUser.role;
@@ -32,20 +51,61 @@ angular.module('AuthService', [])
                     success();
                 }).error(error);
             },
-            login: function (user, success, error) {
-                $http.post('/login', user).success(function (user) {
-                    changeUser(user);
-                    success(user);
-                }).error(error);
-            },
-            logout: function (success, error) {
-                $http.post('/logout').success(function () {
-                    changeUser({
-                        username: '',
-                        role: userRoles.public
+            plainTextLogin: function (username, password) {
+                var user = {};
+                user.userName = username;
+                user.password = password;
+
+                RESTService.put('/api/user/login', user).
+                    success(function (data, status, headers, config) {
+                        if (status == 202) {
+                            changeUser(data);
+                        }
+                    }).error(function (data, status) {
+                        switch (status) {
+                            case 500:
+                                $rootScope.addError("Database Error:", "There was an error attempting login.  Please try again later.");
+                                break;
+                            case 409:
+                                $rootScope.addError("Invalid Credentials:", "The specified username and/or password are incorrect.");
+
+                                break;
+                            case 404:
+                                $rootScope.addError("Invalid Credentials:", "The specified username and/or password are incorrect.");
+                                break;
+                        }
                     });
-                    success();
-                }).error(error);
+            },
+            login: function (user) {
+                RESTService.put('/api/user/login', user).
+                    success(function (data, status, headers, config) {
+                        if (status == 202) {
+                            changeUser(data);
+                        }
+                    }).
+                    error(function (data, status) {
+                        switch (status) {
+                            case 500:
+                                $rootScope.addError("Database Error:", "There was an error attempting login.  Please try again later.");
+                                break;
+                            case 409:
+                                $rootScope.addError("Invalid Credentials:", "The specified username and/or password are incorrect.");
+
+                                break;
+                            case 404:
+                                $rootScope.addError("Invalid Credentials:", "The specified username and/or password are incorrect.");
+                                break;
+                        }
+                    });
+
+            },
+            logout: function (success) {
+                console.log('LoggingOut');
+                changeUser({
+                    userName: '',
+                    isAdmin: -1,
+                    role: userRoles.public
+                });
             },
             loginGitHub: function (success, error) {
                 var popup = window.open('http://10.100.0.167:8081/api/auth/github/login', 'LoginWithGitHub', 'location=0,status=0,width=1020,height=590');
@@ -73,14 +133,5 @@ angular.module('AuthService', [])
             accessLevels: accessLevels,
             userRoles: userRoles,
             user: currentUser
-        };
-    });
-
-angular.module('AuthService')
-    .factory('Users', function ($http) {
-        return {
-            getAll: function (success, error) {
-                $http.get('/users').success(success).error(error);
-            }
         };
     });

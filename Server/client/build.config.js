@@ -78,7 +78,6 @@ module.exports = {
         css: [
             'vendor/ng-grid/ng-grid.css',
             'vendor/timepicker/timepicker.css'
-
         ],
         assets: [
         ]

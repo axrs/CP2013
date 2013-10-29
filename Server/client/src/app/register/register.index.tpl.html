@@ -1,0 +1,118 @@
+<div class="row-fluid">
+    <div class="span12">
+        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><h4>{{alert.title}}</h4>
+            {{alert.msg}}
+        </alert>
+    </div>
+    <div class="span6 well pull-right">
+        <h3>Already Registered?</h3>
+        <fieldset>
+            <legend>Login</legend>
+            <div class="controls">
+                <label class="control-label">Username</label>
+                <input type="text" class="input-block-level" placeholder="Your username" ng-model="login.userName"
+                       required>
+                <label class="control-label">Password</label>
+                <input type="password" class="input-block-level" placeholder="Your password"
+                       ng-model="login.password"
+                       required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn" ng-click="authService.loginGitHub()">
+                    <i class="icon-github-sign icon-white"></i> Login with GitHub
+                </button>
+                <button type="submit" class="btn btn-primary pull-right"
+                        ng-click="authService.login(loginInput, passwordInput)">
+                    Login
+                </button>
+            </div>
+
+        </fieldset>
+
+    </div>
+    <div class="span6 well">
+        <h3>Register</h3>
+
+        <fieldset>
+            <legend>User Details</legend>
+
+            <div class="controls">
+                <span class="help-inline" ng-show="errors.nameError == null">{{errors.nameError}}</span>
+
+                <label class="control-label">Name</label>
+                <input type="text" class="span6" placeholder="Name" ng-model="user.name" required>
+                <input type="text" class="span6" placeholder="Surname" ng-model="user.surname" required>
+
+                <label class="control-label">Choose your username</label>
+                <input type="text" class="input-block-level" placeholder="Username" ng-model="user.userName"
+                       required>
+                <span class="help-inline" data-ng-show="errors.usernameError != ''">{{errors.usernameError}}</span>
+
+                <label class="control-label">Create a password</label>
+                <input type="password" class="input-block-level" placeholder="Password" ng-model="user.password"
+                       required>
+
+                <label class="control-label">Confirm your password</label>
+                <input type="password" class="input-block-level" placeholder="Confirm your password"
+                       ng-model="user.validationPassword" required>
+
+                <span class="help-inline" data-ng-show="errors.passwordError != ''">{{errors.passwordError}}</span>
+
+                <div>
+        </fieldset>
+        <fieldset>
+            <legend>Additional Information</legend>
+            <div class="controls">
+                <label class="control-label">Company</label>
+                <input type="text" class="input-block-level" placeholder="Company" ng-model="user.company">
+                <label class="control-label">Email</label>
+                <input class="input-block-level" type="email" placeholder="you@domain.com" ng-model="user.email">
+                <label class="control-label">Phone</label>
+                <input class="input-block-level" type="text" placeholder="(07) 0000 0000" ng-model="user.phone">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Address</legend>
+            <div class="controls">
+                <label class="control-label">Street</label>
+                <input class="input-block-level" type="text" placeholder="123 Street Name" ng-model="user.address">
+            </div>
+
+            <div class="controls">
+                <label class="control-label">Suburb</label>
+                <input class="input-block-level" type="text" placeholder="Suburb" ng-model="user.suburb">
+            </div>
+
+            <div class="controls">
+                <label class="control-label">City/Town</label>
+
+                <input class="span6" type="text" placeholder="City" ng-model="user.city">
+                <select class="span3" ng-model="user.state">
+                    <option></option>
+                    <option>ACT</option>
+                    <option>NSW</option>
+                    <option>NT</option>
+                    <option>QLD</option>
+                    <option>SA</option>
+                    <option>TAS</option>
+                    <option>VIC</option>
+                    <option>WA</option>
+                </select>
+                <input class="span3" type="text" placeholder="POST" ng-model="user.post">
+            </div>
+
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary pull-right"
+                    ng-click="tryRegistration()">
+                Register
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+

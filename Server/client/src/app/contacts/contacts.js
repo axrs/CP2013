@@ -26,14 +26,9 @@ angular.module('ngBoilerplate.contacts', [
             data: { pageTitle: 'Contacts' }
         });
     })
-    .controller('ContactsCtrl', function ContactsController($scope, RESTService) {
+    .controller('ContactsCtrl', function ContactsController($rootScope, $scope, RESTService) {
 
         $scope.action = 'Editing';
-        $scope.alerts = [];
-
-        $scope.closeAlert = function (index) {
-            $scope.alerts.splice(index, 1);
-        };
 
         $scope.contact = null;
 
@@ -64,13 +59,13 @@ angular.module('ngBoilerplate.contacts', [
                 error(function (data, status, headers, config) {
                     switch (status) {
                         case 400:
-                            $scope.alerts.push({type: 'error', title: 'Form Error:', msg: "A contact must have a First and Last name."});
+                            $rootScope.addError('Form Error:', 'A Contact must have a Name and Surname.');
                             break;
                         case 409:
-                            $scope.alerts.push({type: 'error', title: 'Conflict:', msg: "A contact with the specified name exists."});
+                            $rootScope.addError('Conflict Error:', 'A contact with the specified name exists.');
                             break;
                         case 500:
-                            $scope.alerts.push({type: 'error', title: 'Database Error:', msg: "Error creating the contact."});
+                            $rootScope.addError('Database Error:', 'Error creating the contact.');
                             break;
                     }
                 });
@@ -87,13 +82,13 @@ angular.module('ngBoilerplate.contacts', [
                 error(function (data, status, headers, config) {
                     switch (status) {
                         case 400:
-                            $scope.alerts.push({type: 'error', title: 'Form Error:', msg: "A contact must have a First and Last name."});
+                            $rootScope.addError('Form Error:', 'A Contact must have a Name and Surname.');
                             break;
                         case 409:
-                            $scope.alerts.push({type: 'error', title: 'Conflict:', msg: "A contact with the specified name exists."});
+                            $rootScope.addError('Conflict Error:', 'A contact with the specified name exists.');
                             break;
                         case 500:
-                            $scope.alerts.push({type: 'error', title: 'Database Error:', msg: "Error creating the contact."});
+                            $rootScope.addError('Database Error:', 'Error creating the contact.');
                             break;
                     }
                 });
@@ -115,7 +110,7 @@ angular.module('ngBoilerplate.contacts', [
                     error(function (data, status, headers, config) {
                         switch (status) {
                             case 501:
-                                $scope.alerts.push({type: 'error', title: 'Deletion Error:', msg: "Method not Implemented"});
+                                $rootScope.addError('Deletion Error:', 'Method not Implemented.');
                         }
                     });
             }
@@ -189,7 +184,9 @@ angular.module('ngBoilerplate.contacts', [
             selectedItems: $scope.selectedContacts,
             columnDefs: [
                 {field: 'name', displayName: 'Name'},
-                {field: 'surname', displayName: 'Surname'}
+                {field: 'surname', displayName: 'Surname'},
+                {field: 'company', displayName: 'Company'}
+
             ],
             afterSelectionChange: function () {
                 if ($scope.selectedContacts.length == 1) {

@@ -12,7 +12,7 @@ angular.module('ngBoilerplate.profile', [
             views: {
                 "main": {
                     controller: 'ProfileCtrl',
-                    templateUrl: 'profile/index.tpl.html'
+                    templateUrl: 'profile/profile.index.tpl.html'
                 }
             },
             data: { pageTitle: 'About You!' }

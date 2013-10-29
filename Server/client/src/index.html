@@ -26,63 +26,79 @@
                 <div class="nav-collapse collapse">
 
                     <ul class="nav">
-                        <li ui-route="/" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'>
+                        <li ui-route="/" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'
+                            active-nav>
                             <a href="#/"><i class="icon-home"></i> Home</a>
                         </li>
-                        <ul class="dropdown-menu">
-                            <li ui-route="/contacts" ng-class="{active:$uiRoute}"
-                                data-access-level='accessLevels.admin'>
-                                <a href="#/contacts"><i class="icon-user"></i> Contacts</a>
-                            </li>
-                            <li ui-route="/types" ng-class="{active:$uiRoute}" data-access-level='accessLevels.admin'>
-                                <a href="#/types">Appointment Types</a>
-                            </li>
-
-                        </ul>
-                        <li ui-route="/profile" ng-class="{active:$uiRoute}" data-access-level='accessLevels.user'>
+                        <li ui-route="/contacts" ng-class="{active:$uiRoute}"
+                            data-access-level='accessLevels.admin' active-nav>
+                            <a href="#/contacts"><i class="icon-user"></i> Contacts</a>
+                        </li>
+                        <li ui-route="/types" ng-class="{active:$uiRoute}" data-access-level='accessLevels.admin'
+                            active-nav>
+                            <a href="#/types">Appointment Types</a>
+                        </li>
+                        <li ui-route="/profile" ng-class="{active:$uiRoute}" data-access-level='accessLevels.user'
+                            active-nav>
                             <a href="#/profile"><i class="icon-user"></i> Profile</a>
                         </li>
-                        <li ui-route="/about" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'>
+                        <li ui-route="/about" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'
+                            active-nav>
                             <a href="#/about"><i class="icon-info-sign"></i> About Us</a>
                         </li>
                     </ul>
 
 
-                    <div class="nav navbar-form pull-right">
+                    <form class="nav navbar-form pull-right">
                         <div ng-show="!authService.isLoggedIn()">
-
-                            <input class="span2" style="width: 100px;" ng-model="loginInput" type="text"
-                                   placeholder="Email">
-                            <input ng-model="passwordInput" style="width: 100px;" type="password"
-                                   placeholder="Password">
+                            <input class="span2" style="width: 100px;" ng-model="navBarLogin.userName" type="text"
+                                   placeholder="Your username">
+                            <input ng-model="navBarLogin.password" style="width: 100px;" type="password"
+                                   placeholder="Your password">
 
                             <div class="btn-group">
-                                <button class="btn btn-primary"
-                                        ng-click="authService.login(loginInput, passwordInput)">Log In
+                                <button class="btn btn-primary" type="submit"
+                                        ng-click="authService.plainTextLogin(navBarLogin.userName, navBarLogin.password);clearLoginForm();">
+                                    Log In
                                 </button>
                                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret white"></span>
                                 </button>
                                 <ul class="dropdown-menu pull-right">
+                                    <li ui-route="/register" ng-class="{active:$uiRoute}">
+                                        <a href="#/register">
+                                            <i class="icon-user icon-white"></i> Register
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
                                     <li><a ng-click="authService.loginGitHub()">
-                                        <i class="icon-user icon-white"></i> Log in with GitHub</a></li>
+                                        <i class="icon-github-sign icon-white"></i> Log in with GitHub</a>
+                                    </li>
                                 </ul>
                             </div>
-
-
                         </div>
                         <div ng-show="authService.isLoggedIn()">
                             <a class="btn btn-primary" ng-click="authService.logout()">
                                 <i class="icon-off icon-white"></i> Log out</a>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
 
     </div>
     <!-- ng routes hook -->
-    <div class="container-fluid" ui-view="main"></div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12 pull-right" ng-class="well" ng-show="alerts.length > 0">
+                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><h4>{{alert.title}}</h4>
+                    {{alert.msg}}
+                </alert>
+            </div>
+        </div>
+        <div ui-view="main"></div>
+
+    </div>
     <div id="push"></div>
 </div>
 
@@ -97,7 +113,7 @@
                     </li>
                     <li class="divider-vertical"></li>
 
-                    <li ui-route="/about" ng-class="{active:$uiRoute}"><a href="#/about">About</a></li>
+                    <li ui-route="/about" ng-class="{active:$uiRoute}" active-nav><a href="#/about">About</a></li>
                 </ul>
             </div>
 
