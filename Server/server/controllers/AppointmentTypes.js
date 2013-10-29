@@ -41,13 +41,19 @@ server.get('/api/types/:id',
 );
 
 server.put('/api/types',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     createCMD
 );
 
 server.put('/api/types/:id',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     updateCMD
 );
 server.delete('/api/types/:id',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     removeCMD
 );
 

@@ -38,11 +38,17 @@ server.get('/api/providers/:id',
     getCMD
 );
 server.put('/api/providers',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     createCMD
 );
 server.put('/api/providers/:id',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     updateCMD
 );
 server.delete('/api/providers/:id',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresAdmin,
     removeCMD
 );
