@@ -56,14 +56,14 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
         if (strategy == null) {
             strategy = 'local';
         }
-        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND User.ContactId = Contact.ContactId AND Strategy=$strategy AND isActive=1 LIMIT 1;';
+        var sql = 'SELECT * FROM User LEFT JOIN Contact ON User.ContactId = Contact.ContactId  WHERE UserId=$id AND Strategy=$strategy AND isActive=1 LIMIT 1;';
         var values = {$id: id, $strategy: strategy};
 
         if (strategy != 'local') {
-            sql = 'SELECT * FROM User LEFT JOIN Contact WHERE StrategyId=$id AND User.ContactId = Contact.ContactId AND Strategy=$strategy AND isActive=1 LIMIT 1;';
+            sql = 'SELECT * FROM User LEFT JOIN Contact ON User.ContactId = Contact.ContactId  WHERE StrategyId=$id AND Strategy=$strategy AND isActive=1 LIMIT 1;';
         }
         if (strategy == 'Any') {
-            sql = 'SELECT * FROM User LEFT JOIN Contact WHERE UserId=$id AND User.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
+            sql = 'SELECT * FROM User LEFT JOIN Contact ON User.ContactId = Contact.ContactId  WHERE UserId=$id AND isActive=1 LIMIT 1;';
             values = {$id: id};
         }
         var queryHelper = new SqliteHelper(this._db);
@@ -82,7 +82,7 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
         });
     },
     retrieveByUserName: function (username, callback) {
-        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE User=$username AND User.ContactId = Contact.ContactId AND Strategy="local" LIMIT 1;';
+        var sql = 'SELECT * FROM User LEFT JOIN Contact ON User.ContactId = Contact.ContactId WHERE User=$username AND Strategy="local" LIMIT 1;';
         var values = {$username: username};
         var queryHelper = new SqliteHelper(this._db);
 
@@ -95,7 +95,7 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
         });
     },
     retrieveByToken: function (token, callback) {
-        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE Token=$token AND User.ContactId = Contact.ContactId AND isActive=1 LIMIT 1;';
+        var sql = 'SELECT * FROM User LEFT JOIN Contact ON User.ContactId = Contact.ContactId WHERE Token=$token AND isActive=1 LIMIT 1;';
         var values = {$token: token};
         var queryHelper = new SqliteHelper(this._db);
 
@@ -108,7 +108,7 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
         });
     },
     lastInserted: function (callback) {
-        var sql = 'SELECT * FROM User LEFT JOIN Contact WHERE User.ContactId = Contact.ContactId ORDER BY User.rowid DESC LIMIT 1;';
+        var sql = 'SELECT * FROM User LEFT JOIN Contact ON User.ContactId = Contact.ContactId ORDER BY User.rowid DESC LIMIT 1;';
         var queryHelper = new SqliteHelper(this._db);
 
         queryHelper.all(sql, null, function (err, result) {

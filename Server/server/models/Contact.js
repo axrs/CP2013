@@ -8,16 +8,22 @@ var Contact = Ring.create({
     _name: '',
     _middleName: '',
     _surname: '',
-    _address: new Address(),
+    _address: null,
     _email: '',
     _phone: '',
     _company: '',
 
+    init: function () {
+        this._address = new Address();
+    },
     isValid: function () {
         return (Utilities.isStringAndNotEmpty(this._name) && Utilities.isStringAndNotEmpty(this._surname));
     },
 
     getId: function () {
+        return this._contactId;
+    },
+    getContactId: function () {
         return this._contactId;
     },
 

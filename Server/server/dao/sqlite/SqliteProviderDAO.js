@@ -79,7 +79,7 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
 
     },
     removeProviderHours: function (id, callback) {
-        var sql = 'DELETE FROM  Provider_Hours WHERE ProviderId = $id;';
+        var sql = 'DELETE FROM Provider_Hours WHERE ProviderId = $id;';
         var queryHelper = new SqliteHelper(this._db);
 
         queryHelper.query(sql, {$id: id}, function (err, result) {
@@ -98,23 +98,24 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
         function getAll() {
             database.serialize(function () {
 
-                database.each('SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId;', function (err, result) {
-                        var provider = SqliteProviderDAO.ProviderFromDatabase(result);
-                        database.serialize(function () {
-                            database.all('SELECT * FROM Provider_Hours WHERE ProviderId=?;', provider.getId(), function (err, times) {
-                                var hours = [];
-                                if (times && times.length) {
-                                    for (var i = 0; i < times.length; i++) {
-                                        hours.push(SqliteProviderDAO.ProviderHoursFromDatabase(times[i]));
+                database.each('SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId AND Provider.isActive=1;', function (err, result) {
+                        SqliteProviderDAO.ProviderFromDatabase(result, function (res2) {
+                            database.serialize(function () {
+                                database.all('SELECT * FROM Provider_Hours WHERE ProviderId=?;', res2.getId(), function (err, times) {
+                                    var hours = [];
+                                    if (times && times.length) {
+                                        for (var i = 0; i < times.length; i++) {
+                                            hours.push(SqliteProviderDAO.ProviderHoursFromDatabase(times[i]));
+                                        }
                                     }
-                                }
-                                provider.setHours(hours);
-                                providers = providers.concat(provider);
-                                if (providers.length == total && callback) {
-                                    callback(false, providers);
-                                }
-                            });
-                        })
+                                    res2.setHours(hours);
+                                    providers = providers.concat(res2);
+                                    if (providers.length == total && callback) {
+                                        callback(false, providers);
+                                    }
+                                });
+                            })
+                        });
                     },
                     function (err, results) {
                         total = results;
@@ -146,34 +147,32 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
     retrieveById: function (id, callback) {
         var database = this._db;
 
-        function getOne() {
-            database.serialize(function () {
+        database.serialize(function () {
 
-                database.each('SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND Provider.ProviderId=? AND Provider.isActive=1;', id, function (err, result) {
-                        var provider = SqliteProviderDAO.ProviderFromDatabase(result);
-                        database.serialize(function () {
-                            database.all('SELECT * FROM Provider_Hours WHERE ProviderId=?;', id, function (err, times) {
-                                var hours = [];
-                                if (times && times.length) {
-                                    for (var i = 0; i < times.length; i++) {
-                                        hours.push(SqliteProviderDAO.ProviderHoursFromDatabase(times[i]));
-                                    }
+            database.each('SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId WHERE Provider.ProviderId=? AND Provider.isActive=1 LIMIT 1;', id, function (err, result) {
+                    var providerResult = SqliteProviderDAO.ProviderFromDatabase(result);
+                    database.serialize(function () {
+                        database.all('SELECT * FROM Provider_Hours WHERE ProviderId=?;', id, function (err, times) {
+                            var hours = [];
+                            if (times && times.length) {
+                                for (var i = 0; i < times.length; i++) {
+                                    hours.push(SqliteProviderDAO.ProviderHoursFromDatabase(times[i]));
                                 }
-                                provider.setHours(hours);
-                                if (callback) {
-                                    callback(false, provider);
-                                }
-                            });
-                        })
-                    }
-                );
-            });
-        }
+                            }
+                            providerResult.setHours(hours);
+                            if (callback) {
+                                callback(false, providerResult);
+                            }
+                        });
+                    })
+                }
+            );
+        });
 
-        getOne();
+
     },
     retrieveByName: function (name, surname, callback) {
-        var sql = 'SELECT * FROM Provider LEFT JOIN Contact WHERE Provider.ContactId = Contact.ContactId AND Name=$name AND Surname=$surname LIMIT 1;';
+        var sql = 'SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId WHERE Name=$name AND Surname=$surname LIMIT 1;';
 
         this.all(sql, {$name: name, $surname: surname}, function (err, result) {
             var provider = null;
@@ -208,11 +207,11 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
             }
         });
     },
-    update: function (provider, callback) {
+    update: function (updateProvider, callback) {
 
         var queryHelper = new SqliteHelper(this._db);
 
-        this.$super(provider, function (err) {
+        this.$super(updateProvider, function (err) {
             if (err) {
                 if (callback) {
                     callback(err);
@@ -224,12 +223,12 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
                     'WHERE ProviderId=$id;';
 
                 var values = {
-                    $biography: provider.getBiography(),
-                    $portrait: provider.getPortrait(),
-                    $initiated: provider.getInitiated(),
-                    $terminated: provider.getTerminated(),
-                    $color: provider.getColor(),
-                    $id: provider.getId()
+                    $biography: updateProvider.getBiography(),
+                    $portrait: updateProvider.getPortrait(),
+                    $initiated: updateProvider.getInitiated(),
+                    $terminated: updateProvider.getTerminated(),
+                    $color: updateProvider.getColor(),
+                    $id: updateProvider.getId()
                 };
                 queryHelper.query(sql, values, function (err) {
                     if (callback) {
@@ -242,25 +241,28 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
 });
 
 
-SqliteProviderDAO.ProviderFromDatabase = function (row) {
+SqliteProviderDAO.ProviderFromDatabase = function (row, callback) {
 
-    var provider = new Provider();
-
-    provider.setContactId(row.ContactId);
-    provider.setName(row.Name);
-    provider.setMiddleName(row.MiddleName);
-    provider.setSurname(row.Surname);
-    provider.setCompany(row.Company);
-    provider.setEmail(row.Email);
-    provider.setPhone(row.Phone);
-    provider.setAddress(row.Address, row.Suburb, row.City, row.Country, row.State, row.Post);
-    provider.setId(row.ProviderId);
-    provider.setBiography(row.Biography)
-    provider.setPortrait(row.Portrait);
-    provider.setInitiated(row.Initiated);
-    provider.setTerminated(row.Terminated);
-    provider.setColor(row.Color);
-    return provider;
+    var p = new Provider();
+    p.setContactId(row.ContactId);
+    p.setName(row.Name);
+    p.setMiddleName(row.MiddleName);
+    p.setSurname(row.Surname);
+    p.setCompany(row.Company);
+    p.setEmail(row.Email);
+    p.setPhone(row.Phone);
+    p.setAddress(row.Address, row.Suburb, row.City, row.Country, row.State, row.Post);
+    p.setId(row.ProviderId);
+    p.setBiography(row.Biography)
+    p.setPortrait(row.Portrait);
+    p.setInitiated(row.Initiated);
+    p.setTerminated(row.Terminated);
+    p.setColor(row.Color);
+    if (callback) {
+        callback(p);
+    } else {
+        return p;
+    }
 };
 
 

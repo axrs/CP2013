@@ -14,20 +14,21 @@ var UpdateProviderCommand = Ring.create([AbstractProviderCommand], {
 
     execute: function (req, res) {
 
-        var provider = this._provider;
+        var providerToUpdate = this._provider;
+        var data = providerToUpdate.toJSON();
+
         var dao = this._dao;
-        dao.retrieveById(provider.getId(), function (err, result) {
+        dao.retrieveById(providerToUpdate.getId(), function (err, result) {
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {
                 var updatedContact = Provider.fromJSON(
                     Utilities.mergeObjectProperties([
                         result.toJSON(),
-                        provider.toJSON()
+                        data
                     ])
                 );
-                console.log(provider.toJSON());
-                if (!provider.isValid() || provider.getId() <= 0) {
+                if (!providerToUpdate.isValid() || providerToUpdate.getId() <= 0) {
                     StatusHelpers.status400(req, res);
                 } else {
                     dao.update(updatedContact, function (err) {
@@ -35,12 +36,12 @@ var UpdateProviderCommand = Ring.create([AbstractProviderCommand], {
                             StatusHelpers.status500(req, res);
                         } else {
                             res.writeHead(202, { 'Content-Type': 'application/json' });
-                            res.write(JSON.stringify(provider));
+                            res.write(JSON.stringify(updatedContact));
                             res.end();
 
-                            var id = provider.getId();
+                            var id = providerToUpdate.getId();
                             dao.removeProviderHours(id, function (err, result) {
-                                dao.updateProviderHours(id, provider.getHours(), null);
+                                dao.updateProviderHours(id, providerToUpdate.getHours(), null);
                             });
                         }
                     });

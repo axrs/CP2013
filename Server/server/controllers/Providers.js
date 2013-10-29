@@ -18,12 +18,12 @@ var getCMD = function (req, res) {
 };
 
 var createCMD = function (req, res) {
-    var provider = Provider.fromJSON(req.body);
-    new CreateCommand(provider, DAO.getProviderDAO()).execute(req, res);
+    var createProvider = Provider.fromJSON(req.body);
+    new CreateCommand(createProvider, DAO.getProviderDAO()).execute(req, res);
 };
 var updateCMD = function (req, res) {
-    var provider = Provider.fromJSON(req.body);
-    new UpdateCommand(provider, DAO.getProviderDAO()).execute(req, res);
+    var updateProvider = Provider.fromJSON(req.body);
+    new UpdateCommand(updateProvider, DAO.getProviderDAO()).execute(req, res);
 };
 var removeCMD = function (req, res) {
     new RemoveCommand(req.params.id, DAO.getContactDAO()).execute(req, res);

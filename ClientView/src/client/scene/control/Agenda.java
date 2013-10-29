@@ -15,9 +15,11 @@ import jfxtras.labs.dialogs.MonologFX;
 import jfxtras.labs.dialogs.MonologFXButton;
 
 public class Agenda extends jfxtras.labs.scene.control.Agenda {
+
     int appointmentLastClicked = 0;
     private Agenda instance = this;
     private int providerToShow = 0;
+    private AppointmentDisplay display = AppointmentDisplay.ALL;
 
     public Agenda() {
         selectedAppointments().addListener(onAgendaSelection());
@@ -29,6 +31,18 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
                 instance.setFocused(true);
             }
         });
+    }
+
+    public AppointmentDisplay getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(AppointmentDisplay type) {
+        if (type != display) {
+            display = type;
+            new ReloadAgendaAppointmentsCommand(instance).execute();
+            new ReloadAgendaAvailabilitiesCommand(instance).execute();
+        }
     }
 
     public int getProviderToShow() {
@@ -115,4 +129,6 @@ public class Agenda extends jfxtras.labs.scene.control.Agenda {
             }
         };
     }
+
+    public enum AppointmentDisplay {ALL, APPOINTMENTS, AVAILABILITIES}
 }

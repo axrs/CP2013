@@ -37,6 +37,11 @@ public class ReloadAgendaAvailabilitiesCommand implements ICommand {
                     }
                 }
                 agendaView.appointments().removeAll(removeList);
+
+                if (agendaView.getDisplay() == Agenda.AppointmentDisplay.APPOINTMENTS) {
+                    return;
+                }
+
                 ArrayList addList = new ArrayList<Agenda.Appointment>();
 
                 if (agendaView.appointmentGroups().size() > 0) {

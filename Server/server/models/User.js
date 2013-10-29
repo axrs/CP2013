@@ -7,6 +7,11 @@ var User = Ring.create([Contact], {
     _saltLength: 24,
 
     _userId: 0,
+
+    init: function () {
+        this.$super();
+
+    },
     getId: function () {
         return this._userId;
     },

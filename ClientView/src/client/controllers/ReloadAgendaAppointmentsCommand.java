@@ -38,6 +38,11 @@ public class ReloadAgendaAppointmentsCommand implements ICommand {
                 agendaView.appointments().removeAll(removeList);
                 ArrayList<Agenda.Appointment> addList = new ArrayList<Agenda.Appointment>();
 
+
+                if (agendaView.getDisplay() == Agenda.AppointmentDisplay.AVAILABILITIES) {
+                    return;
+                }
+
                 Appointment[] appointments = DAO.getInstance().getAppointmentDAO().getStore();
 
                 for (Appointment item : appointments) {

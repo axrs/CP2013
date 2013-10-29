@@ -154,15 +154,13 @@ var SqliteContactDAO = Ring.create([SqliteHelper, IContactDAO], {
             'WHERE ContactId=$id;';
 
         var values = {
-            $id: contact.getId(),
+            $id: contact.getContactId(),
             $name: contact.getName(),
             $middleName: contact.getMiddleName(),
             $surname: contact.getSurname(),
-
             $company: contact.getCompany(),
             $phone: contact.getPhone(),
             $email: contact.getEmail(),
-
             $address: contact.getAddress(),
             $suburb: contact.getSuburb(),
             $city: contact.getCity(),

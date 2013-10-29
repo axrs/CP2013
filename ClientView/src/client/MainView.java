@@ -25,14 +25,17 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import models.ServiceProvider;
 
 public class MainView extends Application {
     private final Agenda agendaView = new Agenda();
+    private final CheckBox displayAppointments = new CheckBox("Show Appointments");
+    private final CheckBox displayAvailabilities = new CheckBox("Show Availabilities");
 
     public static void main(String[] args) {
         launch(args);
@@ -44,6 +47,11 @@ public class MainView extends Application {
         new ConfigureDAOCommand().execute();
         new InitialiseDAOCommand().execute();
         new HookLoggerCommand().execute();
+
+        displayAppointments.setSelected(true);
+        displayAvailabilities.setSelected(true);
+        displayAppointments.setOnAction(onAppointmentTypeDisplayChanged());
+        displayAvailabilities.setOnAction(onAppointmentTypeDisplayChanged());
 
         DAO.getInstance().getAvailabilitiesDAO().addUpdatedEventLister(new AvailabilitiesUpdatedListener() {
             @Override
@@ -95,10 +103,10 @@ public class MainView extends Application {
 
         mainPane.setCenter(centrePane);
 
-        VBox box = new VBox();
+        HBox box = new HBox();
         box.getStyleClass().add("statusBar");
         final ComboBox<String> staffCombo = new ComboBox<String>();
-        box.getChildren().add(staffCombo);
+        box.getChildren().addAll(displayAvailabilities, displayAppointments, staffCombo);
         box.setAlignment(Pos.CENTER_RIGHT);
         mainPane.setBottom(box);
 
@@ -127,6 +135,7 @@ public class MainView extends Application {
         });
         staffCombo.setMinWidth(250);
 
+
         Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -136,8 +145,32 @@ public class MainView extends Application {
 
         //ToDo: Force Login Again.
         new ShowLoginCommand().execute();
+    }
 
+    private EventHandler<ActionEvent> onAppointmentTypeDisplayChanged() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
 
+                Agenda.AppointmentDisplay appointmentDisplay;
+
+                if (displayAvailabilities.isSelected() && displayAppointments.isSelected()) {
+                    appointmentDisplay = Agenda.AppointmentDisplay.ALL;
+                } else if (displayAppointments.isSelected()) {
+                    appointmentDisplay = Agenda.AppointmentDisplay.APPOINTMENTS;
+                } else if (displayAvailabilities.isSelected()) {
+                    appointmentDisplay = Agenda.AppointmentDisplay.AVAILABILITIES;
+                } else if (actionEvent.getSource().equals(displayAppointments)) {
+                    displayAvailabilities.setSelected(true);
+                    appointmentDisplay = Agenda.AppointmentDisplay.AVAILABILITIES;
+                } else {
+                    displayAppointments.setSelected(true);
+                    appointmentDisplay = Agenda.AppointmentDisplay.APPOINTMENTS;
+                }
+
+                agendaView.setDisplay(appointmentDisplay);
+            }
+        };
     }
 
     static { // use system proxy settings when standalone application
