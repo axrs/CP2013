@@ -26,7 +26,7 @@ var updateCMD = function (req, res) {
     new UpdateCommand(updateProvider, DAO.getProviderDAO()).execute(req, res);
 };
 var removeCMD = function (req, res) {
-    new RemoveCommand(req.params.id, DAO.getContactDAO()).execute(req, res);
+    new RemoveCommand(req.params.id, DAO.getProviderDAO()).execute(req, res);
 };
 
 server = module.exports.server = module.parent.exports.server;

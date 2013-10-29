@@ -16,7 +16,6 @@ var LoginUserCommand = Ring.create([AbstractUserCommand], {
         var user = this._user;
         var dao = this._dao;
         var password = this._password;
-        console.log(password);
         dao.retrieveByUserName(user.getUserName(), function (err, result) {
             if (err) {
                 StatusHelpers.status500(req, res);

@@ -2,6 +2,7 @@ package client.stages.staff;
 
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.models.CreateProviderCommand;
+import client.controllers.models.RemoveProviderCommand;
 import client.controllers.models.UpdateProviderCommand;
 import client.scene.CoreScene;
 import client.scene.CoreStage;
@@ -49,13 +50,16 @@ public class FormView extends CoreStage {
     boolean isDirty = false;
     ActionButtons buttons = new ActionButtons(true);
     ServiceProvider provider = new ServiceProvider();
+    Button removeActionButton = new Button("Remove");
     private TableView<ServiceHours> table = new TableView<ServiceHours>();
     private Label heading = LabelFactory.createSloganLabel("Register Service Provider");
+    private FormView instance = this;
 
     public FormView() {
         init();
         buttons.setOnSaveAction(new ActionEventStrategy(new CreateProviderCommand(this.provider, this)));
         setTitle("Register Provider");
+        removeActionButton.setDisable(true);
     }
 
     public FormView(ServiceProvider provider) {
@@ -91,9 +95,8 @@ public class FormView extends CoreStage {
         border.setBottom(buttons);
 
 
-        Button b = new Button("Remove");
-        b.setOnAction(onRemoveAction());
-        buttons.addLeftControl(b);
+        removeActionButton.setOnAction(onRemoveAction());
+        buttons.addLeftControl(removeActionButton);
 
         initialiseTableColumns();
         table.setEditable(true);
@@ -110,7 +113,14 @@ public class FormView extends CoreStage {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                MonologFX dialog = new MonologFX(MonologFX.Type.QUESTION);
+                dialog.setMessage("Are you sure you wish to remove this provider?");
+                dialog.setTitleText("Confirm Removal");
+                dialog.setModal(true);
+                MonologFXButton.Type type = dialog.showDialog();
+                if (type == MonologFXButton.Type.YES) {
+                    new RemoveProviderCommand(provider, instance).execute();
+                }
             }
         };
     }

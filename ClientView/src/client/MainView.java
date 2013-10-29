@@ -140,6 +140,8 @@ public class MainView extends Application {
         });
         staffCombo.setMinWidth(250);
 
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(600);
 
         Scene scene = new CoreScene(mainPane, 800, 600);
         primaryStage.setScene(scene);
