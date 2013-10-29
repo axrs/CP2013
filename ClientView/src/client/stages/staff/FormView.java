@@ -78,6 +78,7 @@ public class FormView extends CoreStage {
     }
 
     private void init() {
+        biography.setWrapText(true);
         buttons.setOnCloseAction(onCloseAction());
 
         BorderPane border = new BorderPane();
