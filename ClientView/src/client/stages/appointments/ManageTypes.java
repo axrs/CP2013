@@ -1,6 +1,5 @@
 package client.stages.appointments;
 
-import models.AppointmentType;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.models.CreateTypeCommand;
 import client.controllers.models.UpdateTypeCommand;
@@ -25,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import models.AppointmentType;
 
 public class ManageTypes extends CoreStage {
 
@@ -35,7 +35,6 @@ public class ManageTypes extends CoreStage {
     private BorderPane mainPane = new BorderPane();
     private TextField descriptionInput = new TextField();
     private TimeComboBox durationInput = new TimeComboBox();
-    private ManageTypes instance = this;
 
     public ManageTypes() {
         setType(null);
@@ -68,7 +67,7 @@ public class ManageTypes extends CoreStage {
         ActionButtons buttons = new ActionButtons(false);
         buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
         Button b = new Button("+");
-        buttons.addControl(b);
+        buttons.addLeftControl(b);
         b.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

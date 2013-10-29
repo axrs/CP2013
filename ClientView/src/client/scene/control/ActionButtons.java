@@ -5,12 +5,15 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-public class ActionButtons extends HBox {
+public class ActionButtons extends BorderPane {
 
     final Button submitButton = new Button("Save");
     final Button closeButton = new Button("Close");
+    private final HBox rightPane = new HBox();
+    private final HBox leftPane = new HBox();
     Boolean showSaveButton = false;
 
     public ActionButtons() {
@@ -32,12 +35,22 @@ public class ActionButtons extends HBox {
     }
 
     public void addControl(Control c) {
-        this.getChildren().add(c);
+        rightPane.getChildren().add(c);
+    }
+
+    public void addLeftControl(Control c) {
+        leftPane.getChildren().add(c);
     }
 
     public void removeControl(Control c) {
-        if (this.getChildren().contains(c)) {
-            this.getChildren().remove(c);
+        if (rightPane.getChildren().contains(c)) {
+            rightPane.getChildren().remove(c);
+        }
+    }
+
+    public void removeLeftControl(Control c) {
+        if (leftPane.getChildren().contains(c)) {
+            leftPane.getChildren().remove(c);
         }
     }
 
@@ -74,22 +87,21 @@ public class ActionButtons extends HBox {
     }
 
     private void init() {
-
         this.getStyleClass().add("button_box");
-        this.setAlignment(Pos.BASELINE_RIGHT);
-        this.getChildren().add(closeButton);
+        rightPane.setAlignment(Pos.BASELINE_RIGHT);
+        rightPane.getChildren().add(closeButton);
         closeButton.setCancelButton(true);
-        //submitButton.setDefaultButton(true);
-
+        this.setRight(rightPane);
+        this.setLeft(leftPane);
     }
 
     public void setShowSaveButton(Boolean showSaveButton) {
         this.showSaveButton = showSaveButton;
         if (showSaveButton && !this.getChildren().contains(submitButton)) {
-            this.getChildren().add(submitButton);
+            rightPane.getChildren().add(submitButton);
             //closeButton.setDefaultButton(false);
         } else {
-            this.getChildren().remove(submitButton);
+            rightPane.getChildren().remove(submitButton);
             //closeButton.setDefaultButton(true);
         }
     }

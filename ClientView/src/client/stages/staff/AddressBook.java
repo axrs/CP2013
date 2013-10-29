@@ -48,7 +48,7 @@ public class AddressBook extends CoreStage {
         buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
         Button b = new Button("+");
         b.setOnAction(new ActionEventStrategy(new NewServiceProviderFormCommand()));
-        buttons.addControl(b);
+        buttons.addLeftControl(b);
 
         StackPane filler = new StackPane();
         filler.getStyleClass().add("grid");

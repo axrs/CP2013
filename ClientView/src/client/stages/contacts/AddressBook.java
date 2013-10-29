@@ -52,7 +52,7 @@ public class AddressBook extends CoreStage {
         Button b = new Button("+");
         b.setOnAction(new ActionEventStrategy(new NewContactWindowCommand()));
         buttons.setOnCloseAction(new ActionEventStrategy(new CloseStageCommand(this)));
-        buttons.addControl(b);
+        buttons.addLeftControl(b);
 
         StackPane filler = new StackPane();
         filler.getStyleClass().add("grid");

@@ -45,7 +45,7 @@ public class LoginWindow extends CoreStage {
 
         ActionButtons buttons = new ActionButtons(false);
         buttons.setOnCloseAction(ActionEventStrategy.create(new ApplicationExitCommand()));
-        buttons.addControl(gitLogin);
+        buttons.addLeftControl(gitLogin);
 
         borderPane.setCenter(gridPane);
         borderPane.setBottom(buttons);

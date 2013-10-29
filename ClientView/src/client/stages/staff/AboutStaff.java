@@ -10,7 +10,6 @@ import dao.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +34,7 @@ public class AboutStaff extends CoreStage {
         BorderPane borderPane = new BorderPane();
 
         VBox vBox = new VBox();
+        vBox.getStyleClass().add("grid");
         vBox.setSpacing(5);
 
         serviceProviders.addAll(DAO.getInstance().getProviderDAO().getStore());

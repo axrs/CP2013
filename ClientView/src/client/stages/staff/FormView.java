@@ -90,6 +90,11 @@ public class FormView extends CoreStage {
         border.setCenter(setupFormInputs());
         border.setBottom(buttons);
 
+
+        Button b = new Button("Remove");
+        b.setOnAction(onRemoveAction());
+        buttons.addLeftControl(b);
+
         initialiseTableColumns();
         table.setEditable(true);
         createTimes();
@@ -99,6 +104,15 @@ public class FormView extends CoreStage {
         setResizable(false);
         setScene(scene);
         bindProperties();
+    }
+
+    private EventHandler<ActionEvent> onRemoveAction() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        };
     }
 
     private void bindProperties() {
