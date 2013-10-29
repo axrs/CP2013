@@ -1,11 +1,12 @@
-<div id="map" class="userAddress"></div>
+<div id="userMap" class="gmap3"></div>
 
 <script type="text/javascript">
     $(function () {
-
-        $("#map").gmap3({
+        var scope = $('#userMap').scope();
+        var userAddress = scope.getAddress();
+        $("#userMap").gmap3({
             marker: {
-                address: "{{user.address}} {{user.suburb}}, {{user.city}}, {{user.state}} {{user.post}}",
+                address: userAddress,
                 options: {
                     draggable: true
                 },

@@ -20,7 +20,7 @@ var UpdateUserCommand = Ring.create([AbstractUserCommand], {
         var user = this._user;
         var dao = this._dao;
 
-        dao.retrieveById(user.getId(),'local', function (err, result) {
+        dao.retrieveById(user.getId(), 'local', function (err, result) {
 
             var updatedUser = User.fromJSON(
                 Utilities.mergeObjectProperties([
@@ -29,7 +29,6 @@ var UpdateUserCommand = Ring.create([AbstractUserCommand], {
                 ])
             );
 
-            console.log(updatedUser.toJSON());
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {

@@ -20,18 +20,27 @@ angular.module('ngBoilerplate.profile', [
     })
 
 
-    .controller('ProfileCtrl', function ProfileCtrl($scope, AuthService, RESTService) {
+    .controller('ProfileCtrl', function ProfileCtrl($scope, $route, AuthService, RESTService) {
         $scope.user = AuthService.user;
 
-        console.log($scope.user);
+
+        $scope.getAddress = function () {
+            return $scope.user.address + " " +
+                $scope.user.suburb + ", " +
+                $scope.user.city + " " +
+                $scope.user.state + " " +
+                $scope.user.post;
+
+        };
         $scope.tryUpdate = function () {
             if (!validateUser()) {
                 return;
             }
             RESTService.put('/api/user/' + $scope.user.userId, $scope.user).
                 success(function (data, status, headers, config) {
-                    if (status == 201) {
+                    if (status == 202) {
                         $scope.user = data;
+                        $route.reload();
                     }
                 }).
                 error(function (data, status, headers, config) {
