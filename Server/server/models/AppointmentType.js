@@ -69,7 +69,6 @@ AppointmentType.fromJSON = function (data) {
     var type = new AppointmentType();
 
     type.setId(data.typeId);
-    console.log(data);
     type.setDuration(data.duration);
     type.setDescription(data.description);
     type.setIsAllDay(data.isAllDay);

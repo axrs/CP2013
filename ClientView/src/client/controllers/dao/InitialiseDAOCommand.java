@@ -9,9 +9,7 @@ public class InitialiseDAOCommand implements ICommand {
     public void execute() {
         DAO.getInstance().getTypeDAO();
         DAO.getInstance().getProviderDAO();
-        DAO.getInstance().getContactDAO();
         DAO.getInstance().getUserDAO();
         DAO.getInstance().getAvailabilitiesDAO();
-        //DAO.getInstance().getAppointmentDAO();
     }
 }

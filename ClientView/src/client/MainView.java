@@ -31,6 +31,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import models.ServiceProvider;
+import models.User;
 
 public class MainView extends Application {
     private final Agenda agendaView = new Agenda();
@@ -78,6 +79,10 @@ public class MainView extends Application {
             @Override
             public void updated(UpdatedEvent event) {
                 DAO.getInstance().getAppointmentDAO().reload();
+                User u = DAO.getInstance().getUserDAO().getUser();
+                if (u != null && u.getAdmin() > 0) {
+                    DAO.getInstance().getContactDAO();
+                }
             }
         });
 

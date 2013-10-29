@@ -4,6 +4,7 @@ var CreateCommand = require('../commands/types/CreateTypeCommand.js');
 var UpdateCommand = require('../commands/types/UpdateTypeCommand.js');
 var RemoveCommand = require('../commands/types/RemoveTypeCommand.js');
 var GetCommand = require('../commands/types/GetTypeCommand.js');
+var passport = require('passport');
 
 var DAO = require('../dao/DAO.js');
 
