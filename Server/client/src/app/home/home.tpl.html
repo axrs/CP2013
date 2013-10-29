@@ -1,11 +1,48 @@
 <div class="jumbotron">
     <h1>Welcome to Shear-N-Dipity!</h1>
-
-    <p class="lead">
-        Everything you need to kickstart AngularJS projects: a best-practice
-        directory structure, an intelligent build system, and the best web design
-        libraries around.
-    </p>
-
 </div>
 
+<div class="row-fluid">
+    <div class="calendar well span9" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"
+         ng-model="eventSources"></div>
+    <div class="span3 well">
+        <h3>Make a Booking</h3>
+
+        <div class="alert alert-info" ng-show="!provider.providerId">
+            Select an appointment time from the calendar.
+        </div>
+        <fieldset>
+            <legend>General</legend>
+            <div class="controls">
+                <label class="control-label">Booking With</label>
+                <input type="text" class="span6" placeholder="" ng-model="provider.name" disabled>
+                <input type="text" class="span6" placeholder="" ng-model="provider.surname" disabled>
+
+                <label class="control-label">On</label>
+                <input type="text" class="input-block-level" placeholder="" ng-model="selectedTimeSlot.dateString"
+                       disabled>
+
+                <label class="control-label">For a</label>
+                <select class="input-block-level"
+                        data-ng-model="selectedAppointment"
+                        data-ng-options="appointment.description for appointment in appointmentTypes"
+                        ng-disabled="!provider.providerId"
+                        ></select>
+
+                <label class="control-label">At</label>
+                <select class="input-block-level"
+                        data-ng-model="selectedTime"
+                        data-ng-options="c.time for c in allowedTime"
+                        ng-disabled="!selectedAppointment.typeId"
+                        ></select>
+
+            </div>
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger right" ng-click="clear()">Cancel</button>
+            <button type="submit" class="btn btn-primary pull-right" ng-click="tryMakeBooking()" ng-disabled="!validBooking">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

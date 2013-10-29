@@ -73,16 +73,15 @@ module.exports = {
             'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
             'vendor/angular-cookies/angular-cookies.min.js',
             'vendor/underscore/underscore-min.js',
-            'vendor/timepicker/timepicker.js',
-            'vendor/fullcalendar/fullcalendar.js',
-            'vendor/moment/min/moment.min.js',
             'vendor/bootstrap/docs/assets/js/bootstrap.js',
             'vendor/bootstrap-timepicker/js/bootstrap-timepicker.min.js',
-            'vendor/angular-strap/dist/angular-strap.min.js'
+            'vendor/angular-strap/dist/angular-strap.min.js',
+            'vendor/angular-ui-calendar/src/calendar.js',
+            'vendor/fullcalendar/fullcalendar.js'
+
         ],
         css: [
             'vendor/ng-grid/ng-grid.css',
-            'vendor/timepicker/timepicker.css',
             'vendor/fullcalendar/fullcalendar.css'
         ],
         assets: [

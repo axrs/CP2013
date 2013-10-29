@@ -52,7 +52,7 @@ var SqliteAppointmentDAO = Ring.create([SqliteHelper, IAppointmentDAO], {
     },
     retrieveAll: function (callback) {
         var sql = 'SELECT AppointmentId, Appointment.TypeId, Appointment.ProviderId, ' +
-            'Appointment.ContactId, Appointment.Time, Appointment.Date, ' +
+            'Appointment.ContactId, Appointment.Time, Appointment.Date, Provider.Color, ' +
             'time(strftime(\'%s\',Time) + strftime(\'%s\',Duration), \'unixepoch\') as EndTime, ' +
             'Appointment_Type.Description, Contact.Name, Contact.Surname ' +
             'FROM Appointment ' +
@@ -73,7 +73,7 @@ var SqliteAppointmentDAO = Ring.create([SqliteHelper, IAppointmentDAO], {
     },
     retrieveById: function (id, callback) {
         var sql = 'SELECT AppointmentId, Appointment.TypeId, Appointment.ProviderId, ' +
-            'Appointment.ContactId, Appointment.Time, Appointment.Date, ' +
+            'Appointment.ContactId, Appointment.Time, Appointment.Date, Provider.Color, ' +
             'time(strftime(\'%s\',Time) + strftime(\'%s\',Duration), \'unixepoch\') as EndTime, ' +
             'Appointment_Type.Description, Contact.Name, Contact.Surname ' +
             'FROM Appointment ' +
@@ -116,7 +116,7 @@ var SqliteAppointmentDAO = Ring.create([SqliteHelper, IAppointmentDAO], {
 
     retrieveForContact: function (contactID, callback) {
         var sql = 'SELECT AppointmentId, Appointment.TypeId, Appointment.ProviderId, ' +
-            'Appointment.ContactId, Appointment.Time, Appointment.Date, ' +
+            'Appointment.ContactId, Appointment.Time, Appointment.Date, Provider.Color, ' +
             'time(strftime(\'%s\',Time) + strftime(\'%s\',Duration), \'unixepoch\') as EndTime, ' +
             'Appointment_Type.Description, Contact.Name, Contact.Surname ' +
             'FROM Appointment ' +
@@ -344,6 +344,8 @@ SqliteAppointmentDAO.AppointmentFromDatabase = function (row) {
     appointment.setContactId(row.ContactId);
     appointment.setProviderId(row.ProviderId);
     appointment.setDate(row.Date);
+    appointment.setColor(row.Color);
+
     appointment.setTime(row.Time);
     appointment.setEndTime(row.EndTime);
     appointment.setDescription(row.Description + " for " + row.Name + " " + row.Surname);

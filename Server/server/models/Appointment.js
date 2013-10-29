@@ -10,6 +10,7 @@ var Appointment = Ring.create({
     _time: "",
     _endTime: "",
     _description: "",
+    _color: "",
 
     init: function () {
     },
@@ -70,7 +71,9 @@ var Appointment = Ring.create({
             this._endTime = value;
         }
     },
-
+    setColor: function (value) {
+        this._color = value;
+    },
     setDescription: function (value) {
         this._description = value;
     },
@@ -88,7 +91,9 @@ var Appointment = Ring.create({
             "description": this._description,
             "date": this._date,
             "time": this._time,
-            "endTime": this._endTime
+            "endTime": this._endTime,
+            "color": this._color
+
         }
     }
 });

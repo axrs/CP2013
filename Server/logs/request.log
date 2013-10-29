@@ -4640,3 +4640,6 @@
 2013-10-29 22:33:06	Error running query.
 2013-10-29 22:33:06	Error: SQLITE_CONSTRAINT: Provider.Initiated may not be NULL
 2013-10-29 22:33:06	INSERT INTO Provider (ContactId, Biography, Portrait, Initiated, Terminated, Color) VALUES ($contactId, $biography, $portrait, $initiated, $terminated, $color);{"$contactId":13,"$biography":"","$portrait":"","$color":"#006dcc"}
+2013-10-29 08:17:27	jkJB5O-7YRb1Nkh8M8Hxczu7	10.100.0.136	/api/providers//?access_token=0	{}
+2013-10-29 09:43:10	FDveiWUsDKaJBKCTo2j2oiuu	10.100.0.136	//api/available/2013-10-30/2013-11-03/?access_token=aca6b009-6625-4621-b198-947ea9fbf7be	{}
+2013-10-29 09:43:16	FDveiWUsDKaJBKCTo2j2oiuu	10.100.0.136	/api/appointments/2013-10-30/2013-11-03/?access_token=aca6b009-6625-4621-b198-947ea9fbf7be	{}
