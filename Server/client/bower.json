@@ -16,7 +16,8 @@
         "angular-strap": "latest",
         "angular-placeholders": "latest",
         "angular-cookies": "latest",
-        "underscore": "latest"
+        "underscore": "latest",
+        "fullcalendar": "latest"
     },
     "dependencies": {}
 }

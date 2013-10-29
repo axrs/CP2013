@@ -108,7 +108,7 @@ angular.module('AuthService', [])
                 });
             },
             loginGitHub: function (success, error) {
-                var popup = window.open('http://10.100.0.167:8081/api/auth/github/login', 'LoginWithGitHub', 'location=0,status=0,width=1020,height=590');
+                var popup = window.open('http://10.100.0.136:8081/api/auth/github/login', 'LoginWithGitHub', 'location=0,status=0,width=1020,height=590');
 
                 var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
                 var eventer = window[eventMethod];
@@ -120,8 +120,9 @@ angular.module('AuthService', [])
 
                     RESTService.get('/api/user').
                         success(function (data, status) {
-                            if (status == 200) {
+                            if (status == 202) {
                                 changeUser(data);
+                                console.log(data);
                                 if (success) {
                                     success(data);
                                 }

@@ -73,11 +73,13 @@ module.exports = {
             'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
             'vendor/angular-cookies/angular-cookies.min.js',
             'vendor/underscore/underscore-min.js',
-            'vendor/timepicker/timepicker.js'
+            'vendor/timepicker/timepicker.js',
+            'vendor/fullcalendar/fullcalendar.js'
         ],
         css: [
             'vendor/ng-grid/ng-grid.css',
-            'vendor/timepicker/timepicker.css'
+            'vendor/timepicker/timepicker.css',
+            'vendor/fullcalendar/fullcalendar.css'
         ],
         assets: [
         ]

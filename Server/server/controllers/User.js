@@ -1,10 +1,10 @@
 var passport = require('passport');
 var GetCurrentCommand = require('../commands/users/GetCurrentUserCommand.js');
 var GetTokenCommand = require('../commands/users/GetCurrentAccessToken.js');
-var UpdateUserCommand = require('../commands/users/UpdateUserCommand.js');
 var CreateUserCommand = require('../commands/users/CreateUserCommand.js');
 var LoginUserCommand = require('../commands/users/LoginUserCommand.js');
 var CheckUserAvailableCommand = require('../commands/users/CheckUserAvailableCommand.js');
+var UpdateUserCommand = require('../commands/users/UpdateUserCommand.js');
 
 var User = require('../models/User.js');
 
@@ -35,14 +35,17 @@ var getTokenCMD = function (req, res) {
 };
 
 var checkUserAvailable = function (req, res) {
+
     new CheckUserAvailableCommand(req.params.username, DAO.getUserDAO()).execute(req, res);
-}
+};
+
+var updateUserCMD = function (req, res) {
+    var user = User.fromJSON(req.body);
+    new UpdateUserCommand(user, DAO.getUserDAO()).execute(req, res);
+};
 
 server = module.exports.server = module.parent.exports.server;
 
-server.get('/api/user/:username',
-    checkUserAvailable
-);
 
 server.get('/api/token',
     server.requiresLogin,
@@ -54,6 +57,16 @@ server.get('/api/user',
     getCurrentUserCMD
 );
 
+
+server.put('/api/user/:id([0-9]+)',
+    passport.authenticate('bearer', { session: false }),
+    server.requiresLogin,
+    updateUserCMD
+);
+
+server.get('/api/user/:username',
+    checkUserAvailable
+);
 server.put('/api/user/login',
     loginCMD
 );

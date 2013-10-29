@@ -26,7 +26,10 @@ angular.module('ngBoilerplate.register', [
             data: { pageTitle: 'Register' }
         });
     })
-    .controller('RegisterCtrl', function RegisterCtrl($scope, AuthService, RESTService) {
+    .controller('RegisterCtrl', function RegisterCtrl($scope,$location, AuthService, RESTService) {
+        if (AuthService.isLoggedIn()){
+            $location.path('/profile');
+        }
         $scope.user = {};
         $scope.errors = {};
         $scope.alerts = [];

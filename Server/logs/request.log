@@ -4622,3 +4622,15 @@
 2013-10-28 21:45:29	Deserialising User Session
 2013-10-28 21:45:29	Deserialising User Session
 2013-10-29 16:27:26	8mk3p4XITlPyt41jIUgyFd6F	10.100.0.136	/api/users?access_token=0	{"name":"Alexander","surname":"Scott","username":"Xander","password":"3v1lX4nd3r9999","validationPassword":"3v1lX4nd3r9999"}
+2013-10-29 19:38:49	Creating new GitHub User.
+2013-10-29 19:38:49	Serialising User Session
+2013-10-29 19:38:49	Deserialising User Session
+2013-10-29 19:39:57	Existing GitHub User Logged In.
+2013-10-29 19:39:57	Serialising User Session
+2013-10-29 19:39:57	Deserialising User Session
+2013-10-29 19:53:16	Deserialising User Session
+2013-10-29 19:53:17	Deserialising User Session
+2013-10-29 19:53:20	Existing GitHub User Logged In.
+2013-10-29 19:53:20	Serialising User Session
+2013-10-29 19:53:20	Deserialising User Session
+2013-10-29 20:04:03	DVnUn40CyC4GhFaCYkukNeeu	10.100.0.136	/api/users/undefined/?access_token=aca6b009-6625-4621-b198-947ea9fbf7be	{"role":{"bitMask":4,"title":"admin"},"contactId":1,"name":"Super","middleName":"","surname":"Administrator","company":"Shear-N-Dipity","phone":"","email":"admin@shear-n-dipity.com","address":"","suburb":"","city":"","country":"","state":"","post":"","userId":1,"strategyId":0,"strategy":"local","strategyData":"","userName":"admin","isAdmin":1,"token":"aca6b009-6625-4621-b198-947ea9fbf7be","md5Email":"d41d8cd98f00b204e9800998ecf8427e"}

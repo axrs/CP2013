@@ -4,12 +4,9 @@ var AbstractUserCommand = require('./AbstractUserCommand.js');
 var StatusHelpers = require('../../helpers/StatusHelpers.js');
 var Utilities = require('../../utilities/Utilities.js');
 
-var CreateUserCommand = Ring.create([AbstractUserCommand], {
+var UpdateUserCommand = Ring.create([AbstractUserCommand], {
     _user: null,
-    /**
-     * @param {User} user
-     * @param {IContactDAO} contactDAO
-     */
+
     init: function (user, contactDAO) {
         this._user = user;
         this.$super(contactDAO);
@@ -23,7 +20,7 @@ var CreateUserCommand = Ring.create([AbstractUserCommand], {
         var user = this._user;
         var dao = this._dao;
 
-        dao.retrieveById(user.getId(), function (err, result) {
+        dao.retrieveById(user.getId(),'local', function (err, result) {
 
             var updatedUser = User.fromJSON(
                 Utilities.mergeObjectProperties([
@@ -32,6 +29,7 @@ var CreateUserCommand = Ring.create([AbstractUserCommand], {
                 ])
             );
 
+            console.log(updatedUser.toJSON());
             if (err) {
                 StatusHelpers.status500(req, res);
             } else {
@@ -53,4 +51,4 @@ var CreateUserCommand = Ring.create([AbstractUserCommand], {
     }
 });
 
-module.exports = CreateUserCommand;
+module.exports = UpdateUserCommand;

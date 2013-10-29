@@ -132,12 +132,11 @@ var SqliteUserDAO = Ring.create([IUserDAO, SqliteContactDAO], {
                 }
             } else {
                 var sql = '' +
-                    'UPDATE User SET' +
-                    'Password=$password, isAdmin=$isAdmin, StrategyData=$strategyData ' +
+                    'UPDATE User SET ' +
+                    'isAdmin=$isAdmin, StrategyData=$strategyData ' +
                     'WHERE UserId=$id;';
 
                 var values = {
-                    $password: user.getPassword(),
                     $isAdmin: user.getIsAdmin(),
                     $strategyData: user.getStrategyData(),
                     $id: user.getId()

@@ -34,20 +34,23 @@
                             data-access-level='accessLevels.admin' active-nav>
                             <a href="#/contacts"><i class="icon-user"></i> Contacts</a>
                         </li>
-                        <li ui-route="/types" ng-class="{active:$uiRoute}" data-access-level='accessLevels.admin'
-                            active-nav>
-                            <a href="#/types">Appointment Types</a>
-                        </li>
                         <li ui-route="/profile" ng-class="{active:$uiRoute}" data-access-level='accessLevels.user'
                             active-nav>
-                            <a href="#/profile"><i class="icon-user"></i> Profile</a>
+                            <a href="#/profile"><i class="icon-user-md"></i> Profile</a>
+                        </li>
+                        <li ui-route="/types" ng-class="{active:$uiRoute}" data-access-level='accessLevels.admin'
+                            active-nav>
+                            <a href="#/types"><i class="icon-bookmark"></i> Appointment Types</a>
+                        </li>
+                        <li ui-route="/types" ng-class="{active:$uiRoute}" data-access-level='accessLevels.admin'
+                            active-nav>
+                            <a href="#/types">Providers</a>
                         </li>
                         <li ui-route="/about" ng-class="{active:$uiRoute}" data-access-level='accessLevels.public'
                             active-nav>
                             <a href="#/about"><i class="icon-info-sign"></i> About Us</a>
                         </li>
                     </ul>
-
 
                     <form class="nav navbar-form pull-right">
                         <div ng-show="!authService.isLoggedIn()">
@@ -59,7 +62,7 @@
                             <div class="btn-group">
                                 <button class="btn btn-primary" type="submit"
                                         ng-click="authService.plainTextLogin(navBarLogin.userName, navBarLogin.password);clearLoginForm();">
-                                    Log In
+                                    <i class="icon-unlock icon-white"></i> Log In
                                 </button>
                                 <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret white"></span>
@@ -79,7 +82,7 @@
                         </div>
                         <div ng-show="authService.isLoggedIn()">
                             <a class="btn btn-primary" ng-click="authService.logout()">
-                                <i class="icon-off icon-white"></i> Log out</a>
+                                <i class="icon-lock icon-white"></i> Log out</a>
                         </div>
                     </form>
                 </div>

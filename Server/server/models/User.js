@@ -23,7 +23,7 @@ var User = Ring.create([Contact], {
 
     isValid: function () {
         if (this.getStrategy() === 'local') {
-            return (this.$super() && Utilities.isStringAndNotEmpty(this.getPassword()));
+            return (this.$super());
         } else {
             return true;
         }

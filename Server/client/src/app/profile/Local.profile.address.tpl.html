@@ -1,0 +1,23 @@
+<div id="map" class="userAddress"></div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#map").gmap3({
+            marker: {
+                address: "{{user.address}} {{user.suburb}}, {{user.city}}, {{user.state}} {{user.post}}",
+                options: {
+                    draggable: true
+                },
+                events: {
+                }
+            },
+            map: {
+                options: {
+                    zoom: 17
+                }
+            }
+        });
+
+    });
+</script>
