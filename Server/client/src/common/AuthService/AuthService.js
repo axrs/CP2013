@@ -39,6 +39,9 @@ angular.module('AuthService', [])
                 }
                 return accessLevel.bitMask & role.bitMask;
             },
+            isAdmin: function () {
+                return currentUser.isAdmin === 1;
+            },
             isLoggedIn: function (user) {
                 if (user === undefined) {
                     user = currentUser;

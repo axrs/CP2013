@@ -98,7 +98,7 @@ var SqliteProviderDAO = Ring.create([IProviderDAO, SqliteContactDAO], {
         function getAll() {
             database.serialize(function () {
 
-                database.each('SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId AND Provider.isActive=1;', function (err, result) {
+                database.each('SELECT * FROM Provider LEFT JOIN Contact ON Provider.ContactId = Contact.ContactId WHERE Provider.isActive=1;', function (err, result) {
                         SqliteProviderDAO.ProviderFromDatabase(result, function (res2) {
                             database.serialize(function () {
                                 database.all('SELECT * FROM Provider_Hours WHERE ProviderId=?;', res2.getId(), function (err, times) {

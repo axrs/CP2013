@@ -9,6 +9,8 @@ angular.module('ngBoilerplate', [
         'ngBoilerplate.home',
         'ngBoilerplate.about',
         'ngBoilerplate.contacts',
+        'ngBoilerplate.providers',
+        'ngBoilerplate.staff',
         'ngBoilerplate.register',
         'ngBoilerplate.types',
         'ngBoilerplate.profile',
