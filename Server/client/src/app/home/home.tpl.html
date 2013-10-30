@@ -5,7 +5,7 @@
 <div class="row-fluid">
     <div class="calendar well span9" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"
          ng-model="eventSources"></div>
-    <div class="span3 well">
+    <div class="span3 well" ng-show="user.contactId > 0">
         <h3>Make a Booking</h3>
 
         <div class="alert alert-info" ng-show="!provider.providerId">
@@ -40,9 +40,37 @@
         </fieldset>
         <div class="form-actions">
             <button type="submit" class="btn btn-danger right" ng-click="clear()">Cancel</button>
-            <button type="submit" class="btn btn-primary pull-right" ng-click="tryMakeBooking()" ng-disabled="!validBooking">
+            <button type="submit" class="btn btn-primary pull-right" ng-click="tryMakeBooking()"
+                    ng-disabled="!validBooking">
                 Save
             </button>
         </div>
     </div>
+    <div class="span3 well" ng-hide="user.contactId > 0">
+        <h3>Make A booking</h3>
+        <p>You must be a registered user to make a booking.</p>
+        <fieldset>
+            <legend>Login</legend>
+            <div class="controls">
+                <label class="control-label">Username</label>
+                <input type="text" class="input-block-level" placeholder="Your username" ng-model="navBarLogin.userName"
+                       required>
+                <label class="control-label">Password</label>
+                <input type="password" class="input-block-level" placeholder="Your password"
+                       ng-model="navBarLogin.password"
+                       required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn" ng-click="authService.loginGitHub()">
+                    <i class="icon-github-sign icon-white"></i> Login with GitHub
+                </button>
+                <button type="submit" class="btn btn-primary"
+                        ng-click="authService.plainTextLogin(navBarLogin.userName, navBarLogin.password)">
+                    <i class="icon-unlock"></i> Log In
+                </button>
+            </div>
+
+        </fieldset>
+    </div>
+
 </div>

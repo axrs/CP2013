@@ -67,6 +67,8 @@ angular.module('ngBoilerplate.home', [
         $scope.selectedAppointment = {};
         $scope.appointmentTypes = [];
 
+        $scope.user = AuthService.user;
+
         $scope.contact = AuthService.user;
 
         $scope.validBooking = false;

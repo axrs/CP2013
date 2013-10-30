@@ -106,6 +106,7 @@ angular.module('AuthService', [])
                 console.log('LoggingOut');
                 changeUser({
                     userName: '',
+                    contactId: 0,
                     isAdmin: -1,
                     role: userRoles.public
                 });
