@@ -125,6 +125,29 @@ angular.module('ngBoilerplate.home', [
 
         }, true);
 
+        $scope.$watch('user', function () {
+            $scope.clear();
+            $scope.myCalendar.fullCalendar('refetchEvents');
+
+        }, true);
+
+        $scope.tryCancelBooking = function () {
+            if ($scope.selectedTimeSlot.appointmentId > 0) {
+                RESTService.remove('/api/appointments/' + $scope.selectedTimeSlot.appointmentId).
+                    success(function (data, status, headers, config) {
+                        $scope.clear();
+                        $scope.myCalendar.fullCalendar('refetchEvents');
+                    }).
+                    error(function (data, status, headers, config) {
+                        switch (status) {
+                            case 501:
+                                $rootScope.addError('Deletion Error:', 'Method not Implemented.');
+                        }
+                    });
+            }
+        };
+
+
         $scope.tryMakeBooking = function () {
             if (!$scope.validBooking) {
                 return;

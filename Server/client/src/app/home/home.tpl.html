@@ -5,7 +5,7 @@
 <div class="row-fluid">
     <div class="calendar well span9" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"
          ng-model="eventSources"></div>
-    <div class="span3 well" ng-show="user.contactId > 0">
+    <div class="span3 well" ng-show="user.contactId > 0 && !selectedTimeSlot.appointmentId">
         <h3>Make a Booking</h3>
 
         <div class="alert alert-info" ng-show="!provider.providerId">
@@ -42,12 +42,13 @@
             <button type="submit" class="btn btn-danger right" ng-click="clear()">Cancel</button>
             <button type="submit" class="btn btn-primary pull-right" ng-click="tryMakeBooking()"
                     ng-disabled="!validBooking">
-                Save
+                Make Booking
             </button>
         </div>
     </div>
     <div class="span3 well" ng-hide="user.contactId > 0">
         <h3>Make A booking</h3>
+
         <p>You must be a registered user to make a booking.</p>
         <fieldset>
             <legend>Login</legend>
@@ -71,6 +72,30 @@
             </div>
 
         </fieldset>
+    </div>
+
+    <div class="span3 well" ng-show="selectedTimeSlot.appointmentId > 0">
+        <h3>Appointment Details</h3>
+        <fieldset>
+            <legend>General</legend>
+
+            <dl class="dl-horizontal">
+                <dt>Provider</dt>
+                <dd>{{provider.name}} {{provider.surname}}</dd>
+                <dt>Description</dt>
+                <dd>{{selectedTimeSlot.description}}</dd>
+                <dt>Date</dt>
+                <dd>{{selectedTimeSlot.dateString}}</dd>
+                <dt>Time</dt>
+                <dd>{{selectedTimeSlot.timeStart}}</dd>
+            </dl>
+        </fieldset>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger pull-right"
+                    ng-click="tryCancelBooking()">
+                <i class="icon-remove"></i> Cancel Appointment
+            </button>
+        </div>
     </div>
 
 </div>
