@@ -59,6 +59,9 @@ angular.module('ngBoilerplate.home', [
 
         $scope.allowedTime = [];
 
+        $scope.showOnlyProviderId = 0;
+        $scope.providerView = {};
+
         $scope.selectedTime = "";
         $scope.selectedTimeSlot = {};
         $scope.proposedAppointment = {};
@@ -73,11 +76,24 @@ angular.module('ngBoilerplate.home', [
 
         $scope.validBooking = false;
 
+
+        $scope.$watch('providerView', function () {
+
+            if ($scope.providerView.providerId > 0) {
+                $scope.showOnlyProviderId = $scope.providerView.providerId;
+            } else {
+                $scope.providerView.providerId = 0;
+            }
+            $scope.clear();
+            $scope.myCalendar.fullCalendar('refetchEvents');
+
+        }, true);
+
         function initialiseObjects() {
             RESTService.get('/api/providers').
                 success(function (data, status, headers, config) {
                     if (status == 200) {
-                        $scope.providers = data;
+                        $scope.providers.push(data);
                     }
                 }).
                 error(function (data, status, headers, config) {
@@ -233,7 +249,9 @@ angular.module('ngBoilerplate.home', [
 
                             timeSlot.title = timeSlot.description;
                             timeSlot.allDay = false;
-                            appointments.push(timeSlot);
+                            if ($scope.showOnlyProviderId === 0 || $scope.showOnlyProviderId == timeSlot.providerId) {
+                                appointments.push(timeSlot);
+                            }
                         }
                         console.log(appointments);
                         callback(appointments);
@@ -272,7 +290,10 @@ angular.module('ngBoilerplate.home', [
 
                             timeSlot.title = 'Available';
                             timeSlot.allDay = false;
-                            availabilities.push(timeSlot);
+
+                            if ($scope.showOnlyProviderId === 0 || $scope.showOnlyProviderId == timeSlot.providerId) {
+                                availabilities.push(timeSlot);
+                            }
                         }
                         callback(availabilities);
                     }

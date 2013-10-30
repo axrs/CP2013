@@ -5,6 +5,17 @@
 <div class="row-fluid">
     <div class="calendar well span9" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"
          ng-model="eventSources"></div>
+    <div class="span3 well" ng-show="user.contactId > 0">
+        <fieldset>
+            <legend>Filter Appointments for Provider</legend>
+            <select class="input-block-level"
+                    data-ng-model="providerView"
+                    data-ng-options="p.name for p in providers"
+                    >
+            </select>
+
+        </fieldset>
+    </div>
     <div class="span3 well" ng-show="user.contactId > 0 && !selectedTimeSlot.appointmentId">
         <h3>Make a Booking</h3>
 
