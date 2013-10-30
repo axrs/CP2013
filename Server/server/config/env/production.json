@@ -2,7 +2,9 @@
     "webLocation": "http://shear-n-dipity.com/",
     "db": "./resources/shears.db",
     "app": {
-        "name": "Project Central"
+        "name": "Project Central",
+        "webLocation": "http://shear-n-dipity.com/"
+
     },
     "github": {
         "clientID": "595e60171ce27a1a7142",

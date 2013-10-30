@@ -85,7 +85,7 @@ angular.module('ngBoilerplate.home', [
             if ($scope.providerView.providerId > 0) {
                 $scope.showOnlyProviderId = $scope.providerView.providerId;
             } else {
-                $scope.providerView.providerId = 0;
+                $scope.showOnlyProviderId = 0;
             }
             $scope.clear();
             $scope.myCalendar.fullCalendar('refetchEvents');

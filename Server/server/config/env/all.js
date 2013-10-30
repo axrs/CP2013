@@ -17,5 +17,5 @@ module.exports = {
     root: rootPath,
     publicFolder: rootPath + '/client',
     port: process.env.PORT || 8081,
-    webLocation: 'http://' + addresses[0] + ':8080/'
+    webLocation: 'http://10.100.0.136:8080/'
 }
