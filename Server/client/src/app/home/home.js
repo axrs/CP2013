@@ -55,7 +55,10 @@ angular.module('ngBoilerplate.home', [
         $scope.events = [ ];
 
         $scope.provider = {};
-        $scope.providers = [];
+        $scope.providers = [{
+            providerId: 0,
+            name: "All Providers"
+        }];
 
         $scope.allowedTime = [];
 
@@ -93,7 +96,7 @@ angular.module('ngBoilerplate.home', [
             RESTService.get('/api/providers').
                 success(function (data, status, headers, config) {
                     if (status == 200) {
-                        $scope.providers.push(data);
+                        $scope.providers = $scope.providers.concat(data);
                     }
                 }).
                 error(function (data, status, headers, config) {
