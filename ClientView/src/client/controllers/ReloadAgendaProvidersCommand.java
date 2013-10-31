@@ -34,7 +34,8 @@ public class ReloadAgendaProvidersCommand implements ICommand {
                 int i = 0;
                 for (ServiceProvider p : providers) {
                     Agenda.AppointmentGroup grp = new Agenda.AppointmentGroupImpl().withStyleClass("group" + String.valueOf(i));
-                    grp.setDescription(p.getName() + " " + p.getSurname());
+                    grp.setDescription(String.valueOf(p.getProviderId()));
+
 
                     styles.add(
                             String.format(".%s {-fx-background-color: %s; } ",

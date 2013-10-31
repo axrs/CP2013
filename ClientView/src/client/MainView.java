@@ -54,6 +54,14 @@ public class MainView extends Application {
         displayAppointments.setOnAction(onAppointmentTypeDisplayChanged());
         displayAvailabilities.setOnAction(onAppointmentTypeDisplayChanged());
 
+
+        DAO.getInstance().getProviderDAO().addUpdatedEventLister(new ProviderUpdatedListener() {
+            @Override
+            public void updated(UpdatedEvent event) {
+                new ReloadAgendaProvidersCommand(agendaView).execute();
+            }
+        });
+
         DAO.getInstance().getAvailabilitiesDAO().addUpdatedEventLister(new AvailabilitiesUpdatedListener() {
             @Override
             public void updated(UpdatedEvent event) {
@@ -68,12 +76,6 @@ public class MainView extends Application {
             }
         });
 
-        DAO.getInstance().getProviderDAO().addUpdatedEventLister(new ProviderUpdatedListener() {
-            @Override
-            public void updated(UpdatedEvent event) {
-                new ReloadAgendaProvidersCommand(agendaView).execute();
-            }
-        });
 
         DAO.getInstance().getUserDAO().addUpdatedEventLister(new UserUpdatedListener() {
             @Override

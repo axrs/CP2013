@@ -59,13 +59,25 @@ public class ReloadAgendaAppointmentsCommand implements ICommand {
                                 .withEndTime(endTime)
                                 .withSummary(item.getDescription())
                                 .withDescription(item.getDescription())
-                                .withAppointmentGroup(agendaView.appointmentGroups().get(item.getProviderId() - 1))
                         ;
 
-                        a.setAppId(item.getAppointmentId());
 
-                        if (agendaView.getProviderToShow() == item.getProviderId() || agendaView.getProviderToShow() == 0) {
-                            addList.add(a);
+                        jfxtras.labs.scene.control.Agenda.AppointmentGroup group = null;
+                        for (jfxtras.labs.scene.control.Agenda.AppointmentGroup provider : agendaView.appointmentGroups()) {
+                            if (provider.getDescription().equals(String.valueOf(item.getProviderId()))) {
+                                group = provider;
+                                break;
+                            }
+                        }
+
+                        if (group != null) {
+                            a.withAppointmentGroup(group);
+                            a.setServId(item.getProviderId());
+                            a.setAppId(item.getAppointmentId());
+
+                            if (agendaView.getProviderToShow() == item.getProviderId() || agendaView.getProviderToShow() == 0) {
+                                addList.add(a);
+                            }
                         }
 
                     } catch (ParseException e) {

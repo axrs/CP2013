@@ -1,4 +1,4 @@
-SERVER=http://10.100.0.136:8081
+SERVER=http://shear-n-dipity.com:8081
 GEOLOCATION=-19.329185,146.759574
 GITHUB=/api/auth/github/login
 TITLE=Shear-N-Dipity
