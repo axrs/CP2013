@@ -1,7 +1,13 @@
 CP2013
 ======
-
 Software Engineering - Semester 2 - 2013
+
+# ABOUT
+This is a Univseristy group assignment aiming to produce an appointment scheduling system for a fictious hairdresser using:
+
+- NodeJS as a REST service.
+- Angular WebClient - Started from ngBoilerplate.
+- JavaFX as a Desktop Client.
 
 # SERVER
 ## Installation
