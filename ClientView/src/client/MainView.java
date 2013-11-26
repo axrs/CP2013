@@ -47,12 +47,14 @@ public class MainView extends Application {
     private void buildFileMenu() {
         Menu fileMenu = new Menu("File");
         MenuItem aboutMenuItem = new MenuItem("About");
+        MenuItem statsMenuItem = new MenuItem("Stats");
         MenuItem exitMenuItem = new MenuItem("Quit");
-        fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), exitMenuItem);
+        fileMenu.getItems().addAll(aboutMenuItem, new SeparatorMenuItem(), statsMenuItem, new SeparatorMenuItem(), exitMenuItem);
         menuBar.getMenus().add(fileMenu);
 
         exitMenuItem.setOnAction(new ActionEventStrategy(new ApplicationExitCommand()));
         aboutMenuItem.setOnAction(new ActionEventStrategy(new ShowAboutWindowCommand()));
+        statsMenuItem.setOnAction(new ActionEventStrategy(new StatsWindowCommand()));
     }
 
     private void buildContactMenu() {
