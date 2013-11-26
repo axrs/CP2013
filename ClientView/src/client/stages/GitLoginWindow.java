@@ -21,6 +21,6 @@ public class GitLoginWindow extends Stage{
         WebEngine webEngine = webView.getEngine();
         webEngine.load(Config.getInstance().getGithubURL());
 
-        setScene(new CoreScene(webView));
+        setScene(new CoreScene(webView, 1020, 590));
     }
 }
