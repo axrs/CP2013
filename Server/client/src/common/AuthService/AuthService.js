@@ -48,7 +48,7 @@ angular.module('AuthService', [])
                 }).error(error);
             },
             loginGitHub: function (success, error) {
-                var popup = window.open('http://localhost:8081/api/auth/github/login', 'LoginWithGitHub', 'location=0,status=0,width=1020,height=590');
+                var popup = window.open('http://10.100.0.167:8081/api/auth/github/login', 'LoginWithGitHub', 'location=0,status=0,width=1020,height=590');
 
                 var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
                 var eventer = window[eventMethod];
