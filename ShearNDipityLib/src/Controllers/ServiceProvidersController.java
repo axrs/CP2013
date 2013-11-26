@@ -163,7 +163,7 @@ public class ServiceProvidersController {
     public void updateServiceProvider(ServiceProvider serviceProvider) {
         RESTRunner runner = new RESTRunner();
         runner.addListner(new ModifyServiceProviderResultListener());
-        runner.setRequest(Config.getInstance().getServer() + "/api/staff/" + String.valueOf(serviceProvider.getServId()));
+        runner.setRequest(Config.getInstance().getServer() + "/api/staff/" + String.valueOf(serviceProvider.getProviderId()));
         runner.setMethod("PUT");
         runner.setMessage(new Gson().toJson(serviceProvider, ServiceProvider.class));
         Thread runnerThread = new Thread(runner, "Updating Service Provider");
@@ -242,7 +242,7 @@ public class ServiceProvidersController {
 
                     for (int i = 0; i < results.length; i++) {
                         ServiceProvider sp = results[i];
-                        serviceProviders.put(sp.getServId(), sp);
+                        serviceProviders.put(sp.getProviderId(), sp);
                     }
 
                 } finally {
@@ -275,7 +275,7 @@ public class ServiceProvidersController {
                 try {
                     sp = new Gson().fromJson(result.getResponse(), ServiceProvider.class);
 
-                    if (sp.getServId() != 0) {
+                    if (sp.getProviderId() != 0) {
                         serviceProviders.put(sp.getContactId(), sp);
                     }
                 } finally {

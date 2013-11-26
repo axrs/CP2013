@@ -54,7 +54,7 @@ public class AppointmentFormView extends Stage {
         Label serviceProvider = new Label();
         String selectedProvider = "";
         for (ServiceProvider aServiceProviderObservableList : serviceProviderObservableList) {
-            if (aServiceProviderObservableList.getServId() == appointment.getServId()) {
+            if (aServiceProviderObservableList.getProviderId() == appointment.getServId()) {
                 selectedProvider = aServiceProviderObservableList.getContFirstName();
             }
         }

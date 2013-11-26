@@ -269,7 +269,7 @@ public class MainView extends Application {
                             styles.add(
                                     String.format(".%s {-fx-background-color: %s; } ",
                                             grp.getStyleClass(),
-                                            sp.getServColor())
+                                            sp.getColor())
                             );
 
                             addList.add(grp);

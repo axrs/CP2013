@@ -17,24 +17,14 @@ import java.util.List;
  */
 public class ServiceProvider extends Contact {
 
-    private int servId;
-    private String servBio;
-    private String servPortrait;
-    private String servInitiated = "";
-    private String servTerminated = "";
-    private String servIsActive;
-
-    public String getServColor() {
-        return servColor;
-    }
-
-    public void setServColor(String servColor) {
-        this.servColor = servColor;
-    }
-
-    private String servColor;
-
-    private List<ServiceHours> servHrs;
+    private int providerId;
+    private String biography;
+    private String portrait;
+    private String initiated = "";
+    private String terminated = "";
+    private int isActive;
+    private String color;
+    private List<ServiceHours> hours;
 
     public ServiceProvider() {
         initialiseServiceHours();
@@ -42,104 +32,110 @@ public class ServiceProvider extends Contact {
 
     public ServiceProvider(String contForename, String contSurname, String servInitiated) {
         super(contForename, contSurname);    //To change body of overridden methods use File | Settings | File Templates.
-        this.servInitiated = servInitiated;
+        this.initiated = servInitiated;
         initialiseServiceHours();
     }
 
-    public int getServId() {
-        return servId;
+    public String getColor() {
+        return color;
     }
 
-    public void setServId(int servId) {
-        this.servId = servId;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public String getServBio() {
-        return servBio;
+    public int getProviderId() {
+        return providerId;
     }
 
-    public void setServBio(String servBio) {
-        this.servBio = servBio;
+    public void setProviderId(int providerId) {
+        this.providerId = providerId;
     }
 
-    public String getServPortrait() {
-        return servPortrait;
+    public String getBiography() {
+        return biography;
     }
 
-    public List<ServiceHours> getServHrs() {
-        return servHrs;
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 
-    public void setServHrs(List<ServiceHours> servHrs) {
-        this.servHrs = servHrs;
+    public String getPortrait() {
+        return portrait;
     }
 
-    public void setServPortrait(String servPortrait) {
-        this.servPortrait = servPortrait;
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
+    }
+
+    public List<ServiceHours> getHours() {
+        return hours;
+    }
+
+    public void setHours(List<ServiceHours> hours) {
+        this.hours = hours;
     }
 
     public Date getServInitiatedDate() {
         try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(this.servInitiated);
+            return new SimpleDateFormat("yyyy-MM-dd").parse(this.initiated);
         } catch (ParseException e) {
             return new Date();
         }
     }
 
     public void setServInitiatedDate(Date date) {
-        this.servInitiated = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        this.initiated = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
-
-    public String getServInitiated() {
-        return servInitiated;
+    public String getInitiated() {
+        return initiated;
     }
 
-    public void setServInitiated(String servInitiated) {
-        this.servInitiated = servInitiated;
+    public void setInitiated(String initiated) {
+        this.initiated = initiated;
     }
 
     public Date getServTerminatedDate() {
         try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(this.servTerminated);
+            return new SimpleDateFormat("yyyy-MM-dd").parse(this.terminated);
         } catch (ParseException e) {
             return new Date();
         }
     }
 
     public void setServTerminatedDate(Date date) {
-        this.servTerminated = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        this.terminated = new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
-    public String getServTerminated() {
-        return servTerminated;
+    public String getTerminated() {
+        return terminated;
     }
 
-    public void setServTerminated(String servTerminated) {
-        this.servTerminated = servTerminated;
+    public void setTerminated(String terminated) {
+        this.terminated = terminated;
     }
 
-    public String getServIsActive() {
-        return servIsActive;
+    public int getActive() {
+        return isActive;
     }
 
-    public void setServIsActive(String servIsActive) {
-        this.servIsActive = servIsActive;
+    public void setActive(int active) {
+        this.isActive = active;
     }
 
     public void initialiseServiceHours() {
-        servHrs = new ArrayList<ServiceHours>(7);
+        hours = new ArrayList<ServiceHours>(7);
         for (int i = 0; i < 7; i++) {
-            servHrs.add(i, new ServiceHours(i, "00:00", "00:00", "00:00", "00:00"));
+            hours.add(i, new ServiceHours(i, "00:00", "00:00", "00:00", "00:00"));
         }
     }
 
     public ServiceHours getByDay(int dayNum) {
-        return this.servHrs.get(dayNum);
+        return this.hours.get(dayNum);
     }
 
-
     public void serByDay(int dayNum, ServiceHours servHours) {
-        this.servHrs.set(dayNum, servHours);
+        this.hours.set(dayNum, servHours);
     }
 }
