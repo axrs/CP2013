@@ -4,6 +4,7 @@ public class User extends Contact {
 
 
     public static User loggedInUser = null;
+    public static String userToken = "";
     private String token;
     private int userId;
     private int strategyId;
@@ -19,6 +20,14 @@ public class User extends Contact {
     }
 
     public User() {
+    }
+
+    public static String getUserToken() {
+        return userToken;
+    }
+
+    public static void setUserToken(String userToken) {
+        User.userToken = userToken;
     }
 
     public static String getAuthToken() {
