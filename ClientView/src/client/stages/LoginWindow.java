@@ -1,10 +1,10 @@
 package client.stages;
 
-import client.controllers.CloseStageCommand;
+import client.controllers.ApplicationExitCommand;
 import client.controllers.adapters.ActionEventStrategy;
+import client.controllers.adapters.WindowEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -12,11 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,19 +24,15 @@ import javafx.stage.WindowEvent;
  */
 public class LoginWindow extends Stage {
 
-    public LoginWindow(){
+    public LoginWindow() {
         setTitle("CP2013 Appointment Scheduler - Login");
         initModality(Modality.APPLICATION_MODAL);
-        setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                Platform.exit();
-            }
-        });
+        setOnCloseRequest(WindowEventStrategy.create(new ApplicationExitCommand()));
 
         Button login = new Button("Login");
         ActionButtons buttons = new ActionButtons(false);
         buttons.addControl(login);
+        buttons.setOnCloseAction(ActionEventStrategy.create(new ApplicationExitCommand()));
 
         BorderPane borderPane = new BorderPane();
 
