@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -28,36 +27,32 @@ import javafx.stage.Stage;
 public class StatWindow extends Stage {
 
     final static private ObservableList<String> graphChoices = FXCollections.observableArrayList();
+    final BorderPane borderPane = new BorderPane();
 
 
     public StatWindow() {
 
         setTitle("CP2013 Appointment Scheduler - Stats");
-        BorderPane borderPane = new BorderPane();
+
 
         Label heading = LabelFactory.createHeadingLabel("Statistics");
 
-        final Node[] graph = new Node[1];
         graphChoices.addAll("Graph 1", "Graph 2", "Graph 3");
         final ComboBox<String> graphs = new ComboBox<String>(graphChoices);
-        graphs.setValue("Graph 1");
+
         graphs.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 String selectedGraph = graphs.getValue();
-                if (selectedGraph.equals("Graph 1")){
-                    graph[0] = makeBarChart();
-                }
-                else if (selectedGraph.equals("Graph 2")){
-                    graph[0] = makeLineChart();
-                }
-                else if (selectedGraph.equals("Graph 3")){
-                    graph[0] = makePieChart();
+                if (selectedGraph.equals("Graph 1")) {
+                    makeBarChart();
+                } else if (selectedGraph.equals("Graph 2")) {
+                    makeLineChart();
+                } else if (selectedGraph.equals("Graph 3")) {
+                    makePieChart();
                 }
             }
         });
-
-
 
 
         ActionButtons buttons = new ActionButtons(false);
@@ -69,18 +64,21 @@ public class StatWindow extends Stage {
         topPane.getStyleClass().addAll("grid");
 
         borderPane.setTop(topPane);
-        borderPane.setCenter(graph[0]);
         borderPane.setBottom(buttons);
+        makeBarChart();
+    }
 
+    private void makePieChart() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Joey", 23),
+                new PieChart.Data("Felicity", 77));
+        PieChart pieChart = new PieChart(pieChartData);
+        pieChart.setTitle("Hairdressers");
+
+        borderPane.setCenter(pieChart);
         setScene(new CoreScene(borderPane));
     }
 
-    private Node makePieChart() {
-        PieChart pieChart = new PieChart();
-        return pieChart;
-    }
-
-    private Node makeLineChart() {
+    private void makeLineChart() {
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Value");
@@ -90,10 +88,11 @@ public class StatWindow extends Stage {
         XYChart.Series series = new XYChart.Series();
         //TODO implement adding of data here
         lineChart.getData().addAll(series);
-        return lineChart;
+        borderPane.setCenter(lineChart);
+        setScene(new CoreScene(borderPane));
     }
 
-    private Node makeBarChart() {
+    private void makeBarChart() {
 
         NumberAxis xAxis = new NumberAxis();
         CategoryAxis yAxis = new CategoryAxis();
@@ -106,8 +105,9 @@ public class StatWindow extends Stage {
         XYChart.Series series = new XYChart.Series();
         //TODO implement adding of data here
         barChart.getData().addAll(series);
-        return barChart;
+        borderPane.setCenter(barChart);
+        setScene(new CoreScene(borderPane));
     }
 
-    }
+}
 
