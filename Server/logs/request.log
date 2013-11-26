@@ -2478,3 +2478,12 @@
 2013-10-26 11:49:43	Deserialising User Session
 2013-10-26 12:04:06	Deserialising User Session
 2013-10-26 12:08:53	Deserialising User Session
+2013-10-26 12:20:28	Existing GitHub User Logged In.
+2013-10-26 12:20:28	Serialising User Session
+2013-10-26 12:20:28	Deserialising User Session
+2013-10-26 12:20:56	Deserialising User Session
+2013-10-26 12:23:02	9mZP8YCsZAJwm4q9jf6LlwLa	10.100.0.182	/api/staff	{}
+2013-10-26 12:23:02	Ro0l_BQzv6-WagOfkZIVoZYC	10.100.0.182	/api/staff/appointments/2013-11-24/2013-11-30	{}
+2013-10-26 12:23:02	O-HOtvkL7thGkxCldkRIt2ck	10.100.0.182	/api/staff/available/2013-11-24/2013-11-30	{}
+2013-10-26 12:23:05	ZWBFpKzVVC6PNAIRABKeRMq_	10.100.0.182	/api/appointments/types	{}
+2013-10-26 12:23:05	w6il53JeIaihbvaOMz4b31_V	10.100.0.182	/api/appointments/types	{}
