@@ -3,6 +3,7 @@ package client.stages;
 import client.controllers.ApplicationExitCommand;
 import client.controllers.CloseStageCommand;
 import client.controllers.CompositeCommand;
+import client.controllers.ShowRegisterCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.controllers.adapters.WindowEventStrategy;
 import client.scene.CoreScene;
@@ -49,8 +50,10 @@ public class LoginWindow extends Stage {
         gridPane.addRow(1, new Label("Password: "), password);
 
         Button login = new Button("Login");
-        gridPane.add(login, 1, 2);
+        Button register = new Button("Register");
+        gridPane.addRow(2, register, login);
         login.setOnAction(login());
+        register.setOnAction(register());
 
 
         ActionButtons buttons = new ActionButtons(false);
@@ -61,6 +64,15 @@ public class LoginWindow extends Stage {
         borderPane.setBottom(buttons);
 
         setScene(new CoreScene(borderPane));
+    }
+
+    private EventHandler<ActionEvent> register() {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                new ShowRegisterCommand().execute();
+            }
+        };
     }
 
     private EventHandler<ActionEvent> login() {
