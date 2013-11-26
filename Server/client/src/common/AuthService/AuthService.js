@@ -5,12 +5,12 @@ angular.module('AuthService', [])
         var accessLevels = routingConfig.accessLevels,
             userRoles = routingConfig.userRoles,
             currentUser = $cookieStore.get('user') || { role: userRoles.public };
-        $cookieStore.remove('user');
 
         function changeUser(user) {
             user.role = (user.isAdmin) ? userRoles.admin : userRoles.user;
             user.strategyDataDecode = JSON.parse(user.strategyData);
             _.extend(currentUser, user);
+            $cookieStore.put('user',user);
         }
 
         return {

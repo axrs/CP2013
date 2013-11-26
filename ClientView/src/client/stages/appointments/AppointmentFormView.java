@@ -67,7 +67,7 @@ public class AppointmentFormView extends Stage {
         appointmentType.valueProperty().addListener(onAppointmentTypeChange());
         ComboBox<String> contact = new ComboBox<String>();
         for (int i = 0; i < contactObservableList.size(); i++)
-            contact.getItems().add(i, String.format("%s %s", contactObservableList.get(i).getContFirstName(), contactObservableList.get(i).getContSurname()));
+            contact.getItems().add(i, String.format("%s %s", contactObservableList.get(i).getContFirstName(), contactObservableList.get(i).getSurname()));
 
         contact.valueProperty().addListener(onContactChange());
 
@@ -138,8 +138,8 @@ public class AppointmentFormView extends Stage {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object o2) {
                 for (Contact type : ContactsController.getInstance().getContacts().values()) {
-                    if (String.format("%s %s", type.getContFirstName(), type.getContSurname()).equals(o2)) {
-                        appointment.setContId(type.getContId());
+                    if (String.format("%s %s", type.getContFirstName(), type.getSurname()).equals(o2)) {
+                        appointment.setContId(type.getContactId());
                         break;
                     }
                 }
