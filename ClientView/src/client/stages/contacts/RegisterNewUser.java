@@ -44,7 +44,6 @@ public class RegisterNewUser extends Stage {
     final PasswordField cPasswordInput = new PasswordField();
     final ActionButtons buttons = new ActionButtons(true);
     boolean isDirty = false;
-    String message = null;
 
     public RegisterNewUser() {
         setTitle("CP2013 Appointment Scheduler - New Contact");
@@ -67,8 +66,6 @@ public class RegisterNewUser extends Stage {
         setScene(scene);
         show();
     }
-
-
 
     public GridPane setupFormInputs() {
         GridPane grid = new GridPane();
@@ -125,6 +122,7 @@ public class RegisterNewUser extends Stage {
 
         return grid;
     }
+
     private EventHandler<WindowEvent> onClose() {
         return new EventHandler<WindowEvent>() {
             @Override
@@ -178,111 +176,9 @@ public class RegisterNewUser extends Stage {
         };
     }
 
-
-    public String getForename() {
-        return forenameInput.getText();
-    }
-
-
-    public void setForename(String forename) {
-        forenameInput.setText(forename);
-    }
-
-
-    public String getSurname() {
-        return surnameInput.getText();
-    }
-
-
-    public void setSurname(String surname) {
-        surnameInput.setText(surname);
-    }
-
-
-    public String getCompany() {
-        return companyInput.getText();
-    }
-
-
-    public void setCompany(String company) {
-        companyInput.setText(company);
-    }
-
-
-    public String getEmail() {
-        return emailInput.getText();
-    }
-
-
-    public void setEmail(String email) {
-        emailInput.setText(email);
-    }
-
-
-    public String getPhone() {
-        return phoneInput.getText();
-    }
-
-
-    public void setPhone(String phone) {
-        phoneInput.setText(phone);
-    }
-
-
-    public String getAddress() {
-        return addrStreetInput.getText();
-    }
-
-
-    public void setAddress(String address) {
-        addrStreetInput.setText(address);
-    }
-
-
-    public String getSuburb() {
-        return addrSuburbInput.getText();
-    }
-
-
-    public void setSuburb(String suburb) {
-        addrSuburbInput.setText(suburb);
-    }
-
-
-    public String getCity() {
-        return addrCityInput.getText();
-    }
-
-
-    public void setCity(String city) {
-        addrCityInput.setText(city);
-    }
-
-
-    public String getState() {
-        return addrStateInput.getText();
-    }
-
-
-    public void setState(String state) {
-        addrStateInput.setText(state);
-    }
-
-
-    public String getZip() {
-        return addrZipInput.getText();
-    }
-
-
-    public void setZip(String zip) {
-        addrZipInput.setText(zip);
-    }
-
-
     public void addSaveActionEventHandler(EventHandler<ActionEvent> handler) {
         buttons.addSaveActionHandler(handler);
     }
-
 
     public void onError(String message) {
         MonologFX infoDialog = new MonologFX(MonologFX.Type.INFO);
@@ -292,16 +188,12 @@ public class RegisterNewUser extends Stage {
         isDirty = true;
     }
 
-
-
     private boolean isValidPassword() {
         boolean isValid = true;
         if (passwordInput.getText().length() < 8) {
-            message.concat("Password must be at least 8 characters long\n");
             isValid = false;
         }
         if (!cPasswordInput.getText().equals(passwordInput.getText())) {
-            message.concat("Passwords do not match");
             isValid = false;
         }
         return isValid;
