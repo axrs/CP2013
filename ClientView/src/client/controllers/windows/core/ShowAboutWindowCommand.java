@@ -1,6 +1,7 @@
-package client.controllers;
+package client.controllers.windows.core;
 
 import Models.Config;
+import client.controllers.ICommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;

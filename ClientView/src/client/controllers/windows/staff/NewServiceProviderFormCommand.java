@@ -1,5 +1,6 @@
-package client.controllers;
+package client.controllers.windows.staff;
 
+import client.controllers.ICommand;
 import client.stages.staff.FormView;
 
 

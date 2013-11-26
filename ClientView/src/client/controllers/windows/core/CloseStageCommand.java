@@ -1,5 +1,6 @@
-package client.controllers;
+package client.controllers.windows.core;
 
+import client.controllers.ICommand;
 import javafx.stage.Stage;
 
 public class CloseStageCommand implements ICommand {

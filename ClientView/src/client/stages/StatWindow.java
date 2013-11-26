@@ -1,6 +1,6 @@
 package client.stages;
 
-import client.controllers.CloseStageCommand;
+import client.controllers.windows.core.CloseStageCommand;
 import client.controllers.adapters.ActionEventStrategy;
 import client.scene.CoreScene;
 import client.scene.control.ActionButtons;
