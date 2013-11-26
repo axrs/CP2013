@@ -76,7 +76,8 @@ public class LoginWindow extends Stage {
     }
 
     private EventHandler<ActionEvent> login() {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        return null;
+        //TODO implement logging in
     }
 
 }

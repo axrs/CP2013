@@ -123,15 +123,6 @@ public class RegisterNewUser extends Stage {
         return grid;
     }
 
-    private EventHandler<WindowEvent> onClose() {
-        return new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                tryClose();
-            }
-        };
-    }
-
     private EventHandler<ActionEvent> onSaveAction() {
         return new EventHandler<ActionEvent>() {
             @Override
