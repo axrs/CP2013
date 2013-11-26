@@ -38,7 +38,8 @@ public class LoginWindow extends Stage {
         });
 
         Button login = new Button("Login");
-        ActionButtons buttons = new ActionButtons(login);
+        ActionButtons buttons = new ActionButtons(false);
+        buttons.addControl(login);
 
         BorderPane borderPane = new BorderPane();
 
